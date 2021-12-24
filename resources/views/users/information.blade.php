@@ -585,8 +585,11 @@ Toast::message('message', 'level', 'title');
 </div>
 
 <script>
-    $('#genralInfo').submit(function(e) {
+    $(document).on("click","#genral_info_submit",function() {
+        $('#genralInfo').submit(function(e) {
         e.preventDefault();
+ 
+       
         var token = $('input[name="_token"]').attr('value');
         var form = $(this);
         var url = form.attr('action');
@@ -617,7 +620,9 @@ Toast::message('message', 'level', 'title');
             }
         })
     })
-
+});
+   
+$(document).on("click","#skills_submit",function() {
     $('#skillsForm').submit(function(e) {
         e.preventDefault();
         var token = $('input[name="_token"]').attr('value');
@@ -651,7 +656,10 @@ Toast::message('message', 'level', 'title');
             }
         })
     })
+});
 
+    
+$(document).on("click","#exprince_submit",function() {
     $('#exprinceForm').submit(function(e) {
         e.preventDefault();
         var token = $('input[name="_token"]').attr('value');
@@ -682,7 +690,9 @@ Toast::message('message', 'level', 'title');
             }
         })
     })
-
+});
+  
+$(document).on("click","#project_submit",function() {
     $('#projectForm').submit(function(e) {
         e.preventDefault();
         var token = $('input[name="_token"]').attr('value');
@@ -703,13 +713,16 @@ Toast::message('message', 'level', 'title');
             success: function(data) {
                 if (data.status = "success") {
                     toastr.success("Record insert successfully");
-                    window.location.href = {!! json_encode(url('/')) !!}+"/users"
-
+                    window.location.href = {!! json_encode(url('/')) !!}+"/users";
                 }
 
             }
         })
     });
+});
+
+  
+
 
 
     $(function() {
@@ -863,6 +876,12 @@ Toast::message('message', 'level', 'title');
         })
 
     }
+ 
+     
+      
+
+
+
     $(window).on('load', function() {
         CKEDITOR.replace('about_employee');
 
@@ -870,6 +889,9 @@ Toast::message('message', 'level', 'title');
         CKEDITOR.replace('certification[]');
         CKEDITOR.replace('description[]');
         CKEDITOR.replace('project_description[]');
+        CKEDITOR.instances['about_employee'].updateElement();
+        
+
         // CKEDITOR.replaceAll( 'ckeditor' ); 
         // CKEDITOR.replace('ckeditor');
         // $('.ckeditor').ckeditor();
