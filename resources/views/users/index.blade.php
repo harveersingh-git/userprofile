@@ -13,7 +13,7 @@ Toast::message('message', 'level', 'title');
             </div>
 
             <div class="pull-right">
-                <a href="/information" class="active"><i class="fa fa-plus fa-fw"></i>
+                <a href="{{ url('information') }}" class="active"><i class="fa fa-plus fa-fw"></i>
                     <i class="fa fa-user fa-fw"></i> Add User
                 </a>
             </div>
