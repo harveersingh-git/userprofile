@@ -15,7 +15,7 @@ class AddNewFieldsToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('last_name');
-            $table->string('employee_id')->after('lastname')->unique();
+            $table->string('employee_id')->after('last_name')->unique();
             $table->string('resume_title')->after('employee_id');
             $table->string('mobile')->after('resume_title')->unique();
             $table->string('joining_date');
