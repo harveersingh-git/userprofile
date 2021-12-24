@@ -21,7 +21,7 @@ Users
                 <div class="panel panel-default">
 
                     <div class="panel-heading">
-                        <a type="reset" href="/users"> Back </a> Edit User
+                    <a class="btn btn-primary"  type="reset" href="/users"><i class="fa fa-arrow-left"></i> Back </a> Edit User
                     </div>
                     <div class="panel-body">
                         <div class="row">

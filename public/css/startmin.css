@@ -24,6 +24,15 @@ body {
         margin-left: 250px;
         padding: 30px 15px 0 15px;
         border-left: 1px solid #e7e7e7;
+        min-height: 100% !important;
+    }
+
+    h1.page-header {
+        font-size: 24px;
+    }
+
+    th.text-center {
+        font-size: 14px;
     }
 }
 
@@ -656,4 +665,35 @@ table.dataTable thead .sorting:after {
 .tabbed-panel.panel-danger .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
     color: #fff; /* active text color */
     background-color: #a94442; /* active bg color */
+}
+.input-group-btn .btn{padding:8px 12px;}
+.btn{ cursor: pointer;}
+.mb-20{ margin-bottom: 20px;}
+
+.submit_info{padding:8px 28px;}
+.sidebar ul li a {
+    padding: 20px 15px;
+    font-size: 16px;
+}
+label {
+    font-size: 13px;
+    color: #555;
+}
+.delete {
+    margin: 0 0px 0px 10px;
+}
+.table tr td{ font-size: 15px; vertical-align: middle !important;}
+.panel-heading > .btn-outline {
+    padding: 3px 10px;
+}
+
+.datepicker-wrap:before {
+    content: "\f073";
+    font-family: "Font Awesome 5 Free";
+    position: absolute;
+    right: 28px;
+    top: 48%;
+    font-weight: 400;
+    transform: translateY(-50%);
+    z-index: 444;
 }

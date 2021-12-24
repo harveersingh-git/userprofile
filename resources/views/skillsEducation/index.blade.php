@@ -12,15 +12,20 @@ Toast::message('message', 'level', 'title');
                 <h1 class="page-header">Skills-Education</h1>
             </div>
 
-            <div class="pull-right">
-                <a href="{{ url('add-skills-education') }}" class="active"><i class="fa fa-plus fa-fw"></i>
-                    <i class="fa fa-book fa-fw"></i> Add Skills-Education
-                </a>
-            </div>
+           
 
 
             <!-- /.col-lg-12 -->
         </div>
+
+        <div class="row">
+        <div class="col-lg-3">
+                <a class="btn btn-info mb-20" href="{{ url('add-skills-education') }}" class="active"><i class="fa fa-plus fa-fw"></i>
+                    <i class="fa fa-book fa-fw"></i> Add Skills-Education
+                </a>
+            </div>
+
+</div>
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-12">
@@ -50,9 +55,9 @@ Toast::message('message', 'level', 'title');
                                 <td class="text-center">{{ $value->category }}</td>
 
                                 <td class="text-center">
-                                    <a href="{{url('/skills-education/edit')}}/{{$value->id}}">Edit</button>
+                                    <a  class="btn btn-warning" href="{{url('/skills-education/edit')}}/{{$value->id}}"><i class="fa fa-edit"></i> Edit</button>
 
-                                        <a class="delete" id="{{$value->id}}">Delete</button>
+                                    <a class="delete btn btn-danger" id="{{$value->id}}"> <i class="fa fa-trash"></i> Delete</button>
 
                                 </td>
                             </tr>

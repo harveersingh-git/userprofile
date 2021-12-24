@@ -21,11 +21,11 @@ Users
                 <div class="panel panel-default">
 
                     <div class="panel-heading">
-                        <a type="reset" href="/users"> Back </a> Add User
+                        <a class="btn btn-outline btn-primary" type="reset" href="/users"><i class="fa fa-arrow-back"></i> Back </a> Add User
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-10 col-lg-offset-1 col-lg-10">
+                            <div class="col-lg-12">
 
                                 <form role="form" action="{{$url}}" method="post">
                                     @csrf
@@ -141,7 +141,7 @@ Users
                                         @enderror
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Add</button>
+                                    <button type="submit" class="btn btn-primary submit_info">Add</button>
                                 </form>
                             </div>
                             <!-- /.col-lg-6 (nested) -->

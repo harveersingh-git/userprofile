@@ -76,20 +76,21 @@ Toast::message('message', 'level', 'title');
                                                         <input type="text" class="form-control" placeholder="2021-01-02" name="joining_date" id="joining_date" value="{{isset($data->joining_date)?$data->joining_date:'' }}" required="" autocomplete="on|off" />
 
                                                     </div>
-                                                    <label>Shift Time</label>
-                                                    <div class="row">
-                                                        <div class="col-lg-3">
-
-                                                            <input type="time" class="form-control" placeholder="" name="shift_start" value="{{isset($data->shift_start)?$data->shift_start:'' }}" required="" autocomplete="on|off" />
+                                                    
+                                                    <div class="col-lg-6">
+                                                        <div class="row">
+                                                        <div class="col-lg-6">
+                                                        <label>Shift Time</label>
+                                                        <input type="time" class="form-control" placeholder="" name="shift_start" value="{{isset($data->shift_start)?$data->shift_start:'' }}" required="" autocomplete="on|off" />
 
                                                         </div>
-                                                        <div class="col-lg-3">
-
+                                                        <div class="col-lg-6">
+                                                        <label>&nbsp;</label>
                                                             <input type="time" class="form-control" placeholder="" name="shift_end" value="{{isset($data->shift_end)?$data->shift_end:'' }}" required="" autocomplete="on|off" />
 
                                                         </div>
                                                     </div>
-
+</div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-lg-6">
@@ -111,10 +112,10 @@ Toast::message('message', 'level', 'title');
                                                 </div>
 
                                             </div>
-                                            <input type="submit" value="Next Step" class=" action-button" id="genral_info_submit" />
+                                            <input type="submit" value="Next Step" class=" action-button btn btn-info col-md-3 " id="genral_info_submit" />
 
                                         </form>
-                                        <input type="button" name="next" style="display: none;" class="next action-button" value="Next Step" id="genral_info_button" />
+                                        <input type="button" name="next" style="display: none;" class="next btn btn-info  action-button col-md-3" value="Next Step" id="genral_info_button" />
 
                                     </fieldset>
                                     <fieldset>
@@ -213,13 +214,13 @@ Toast::message('message', 'level', 'title');
                                                             </select>
                                                         </div>
 
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-3 datepicker-wrap">
                                                             <label>From</label>
 
                                                             <input type="text" class="form-control edu_to" placeholder="12-17-2021" name="edu_from[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="off" />
 
                                                         </div>
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-3 datepicker-wrap">
                                                             <label>To</label>
                                                             <input type="text" class="form-control edu_from" placeholder="12-17-2021" name="edu_to[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="off" />
 
@@ -277,12 +278,12 @@ Toast::message('message', 'level', 'title');
 
                                             </div>
 
-                                            <input type="submit" value="Next Step" class=" action-button" id="skills_submit" />
+                                            <input type="submit" value="Next Step" class=" action-button btn btn-info col-md-3" id="skills_submit" />
 
                                         </form>
-                                        <input type="button" id="skills_prev" name="previous" class="previous action-button-previous" value="Previous" />
+                                        <input type="button" id="skills_prev" name="previous" class="previous action-button-previous  pull-right btn btn-warning" value="Previous" />
 
-                                        <input type="button" style="display:none" name="next" class="next action-button" value="Next Stepp" id="skills_button" />
+                                        <input type="button" style="display:none" name="next" class="next action-button btn btn-info col-md-3" value="Next Stepp" id="skills_button" />
 
                                     </fieldset>
                                     <fieldset>

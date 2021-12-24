@@ -12,18 +12,25 @@ Toast::message('message', 'level', 'title');
                 <h1 class="page-header">Users</h1>
             </div>
 
-            <div class="pull-right">
-                <a href="{{ url('information') }}" class="active"><i class="fa fa-plus fa-fw"></i>
-                    <i class="fa fa-user fa-fw"></i> Add User
-                </a>
-            </div>
+            
 
 
 
             <!-- /.col-lg-12 -->
         </div>
-        <!-- /.row -->
         <div class="row">
+        <div class="col-lg-3">
+                <a class="btn btn-info mb-20" href="{{ url('information') }}" class="active"><i class="fa fa-plus fa-fw"></i>
+                    <i class="fa fa-user fa-fw"></i> Add User
+                </a>
+            </div>
+         </div>
+        
+         <!-- /.row -->
+        
+        
+        
+         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -76,10 +83,10 @@ Toast::message('message', 'level', 'title');
                                 <td>{{ $value->team }}</td>
 
                                 <td>
-                                    <a href="{{url('/information')}}/{{$value->id}}">Edit</button>
+                                    <a  class="btn btn-warning" href="{{url('/information')}}/{{$value->id}}"><i class="fa fa-edit"></i> Edit</button>
 
-                                        <a class="delete" id="{{$value->id}}">Delete</button>
-                                            <a href="{{url('/resume')}}/{{$value->id}}">Download</button>
+                                        <a class="delete btn btn-danger" id="{{$value->id}}"> <i class="fa fa-trash"></i> Delete</button>
+                                            <a class="delete btn btn-info" href="{{url('/resume')}}/{{$value->id}}"><i class="fa fa-cloud-download" aria-hidden="true"></i> Download</button>
 
                                 </td>
                             </tr>
@@ -102,6 +109,7 @@ Toast::message('message', 'level', 'title');
             </div>
             <!-- /.col-lg-12 -->
         </div>
+</div>
 
         <!-- /.row -->
     </div>

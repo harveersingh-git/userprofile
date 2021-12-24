@@ -21,11 +21,11 @@ Add Skills Education
                 <div class="panel panel-default">
 
                     <div class="panel-heading">
-                        <a type="reset" href="{{url('skills-education')}}"> Back </a> Edit Skills Education
+                        <a class="btn btn-outline btn-primary" type="reset" href="{{url('skills-education')}}"><i class="fa fa-arrow-left"></i> Back </a> Edit Skills Education
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-10 col-lg-offset-1 col-lg-10">
+                            <div class="col-lg-12">
 
                                 <form role="form" action="{{url('update-skills-education')}}" method="post">
                                     @csrf
@@ -58,10 +58,10 @@ Add Skills Education
 
 
 
+                                    <button type="submit" class="btn btn-info submit_info">Add</button>
 
 
 
-                                    <button type="submit" class="btn btn-primary">Add</button>
                                 </form>
                             </div>
                             <!-- /.col-lg-6 (nested) -->
