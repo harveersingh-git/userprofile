@@ -50,7 +50,7 @@ Toast::message('message', 'level', 'title');
                             @if(!empty($data) && $data->count())
                             @foreach($data as $key => $value)
                             <tr>
-                                <td class="text-center">{{ $value->value }}</td>
+                                   <td class="text-center">{{ $key+1 }}</td>
                                 <td class="text-center">{{ $value->value }}</td>
                                 <td class="text-center">{{ $value->category }}</td>
 

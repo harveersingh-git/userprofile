@@ -90,11 +90,11 @@ $(document).ready(function() {
             projectFieldHTML += '</div>'
             projectFieldHTML += '<div class="col-lg-3"><label>Url</label>';
             projectFieldHTML += '<input type="text" class="form-control" placeholder="https://github.com/" name="url[]" value=""required="" autocomplete="on" />';
-			 projectFieldHTML += '</div>';
+        
             
             projectFieldHTML += '<div class="row"><label>Project Description</label>';
             projectFieldHTML += '<textarea class="form-control ckeditor" rows="3" name="project_description[]" id="project_description'+x+'" required=""></textarea>';
-           
+            projectFieldHTML += '</div>';
             projectFieldHTML += '</div>';
         
             projectFieldHTML += '<a href="javascript:void(0);" class="project_remove_button"><i class="fa fa-minus" aria-hidden="true"></i></a></div>';
