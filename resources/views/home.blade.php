@@ -1,5 +1,5 @@
 
-@extends('Admin.layout.head')
+@extends('admin.layout.head')
 
 @section('content')
 @include('admin.layout.header')

@@ -1,4 +1,4 @@
-@extends('Admin.layout.head')
+@extends('admin.layout.head')
 @section('title')
 Add Skills Education
 @endsection
