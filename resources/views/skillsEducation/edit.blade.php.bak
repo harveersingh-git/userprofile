@@ -21,7 +21,7 @@ Add Skills Education
                 <div class="panel panel-default">
 
                     <div class="panel-heading">
-                        <a type="reset" href="{{url('skills-education')}}"> Back </a> Edit Skills Education
+                        <a type="reset" href="/skills-education"> Back </a> Edit Skills Education
                     </div>
                     <div class="panel-body">
                         <div class="row">

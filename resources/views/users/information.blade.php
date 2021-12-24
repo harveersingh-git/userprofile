@@ -703,7 +703,8 @@ Toast::message('message', 'level', 'title');
             success: function(data) {
                 if (data.status = "success") {
                     toastr.success("Record insert successfully");
-                    window.location.href = "/users"
+                    window.location.href = {!! json_encode(url('/')) !!}+"/users"
+
                 }
 
             }
