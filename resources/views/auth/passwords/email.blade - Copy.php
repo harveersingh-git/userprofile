@@ -1,9 +1,4 @@
-@extends('admin.include.loginmain')
-@section('title')
-Login-Admin
-@endsection
-
-@section('content')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -13,13 +8,13 @@ Login-Admin
                 <div class="card-header">{{ __('Reset Password') }}</div>
 
                 <div class="card-body">
-                @if (Session::has('message'))
-                         <div class="alert alert-success" role="alert">
-                            {{ Session::get('message') }}
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('forget.password.post') }}">
+                    <form method="POST" action="{{ route('password.email') }}">
                         @csrf
 
                         <div class="row mb-3">
