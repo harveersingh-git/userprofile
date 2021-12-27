@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+
 
 
 /*
@@ -22,6 +24,9 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 
 
 Auth::routes();
+Route::get('/changePassword',[ForgotPasswordController::class, 'showChangePasswordGet'])->name('changePasswordGet');
+Route::post('/changePassword',[ForgotPasswordController::class, 'changePasswordPost'])->name('changePasswordPost');
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::any('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users');
