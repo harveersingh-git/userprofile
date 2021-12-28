@@ -97,7 +97,7 @@ $(document).ready(function() {
            
             projectFieldHTML += '</div>';
         
-            projectFieldHTML += '<a href="javascript:void(0);" class="project_remove_button btn btn danger"><i class="fa fa-minus" aria-hidden="true"></i> Remove</a></div>';
+            projectFieldHTML += '<a href="javascript:void(0);" class="project_remove_button btn btn danger  btn-danger"><i class="fa fa-minus" aria-hidden="true"></i> Remove</a></div>';
         
             $(project_wrapper).append(projectFieldHTML); //Add field html
           
@@ -209,16 +209,16 @@ $(document).ready(function() {
         if (x < maxField) {
             
             x++; //Increment field counter
-            var certificationFieldHTML = '<div class="row"><div class="col-lg-3"><label>Type</label>';
+            var certificationFieldHTML = '<div><div class="row"><div class="col-lg-3"><label>Type</label>';
             certificationFieldHTML += '<select class="form-control" aria-label="Default select example" name="certification_type[]"><option selected>--please select--</option>'+type+'</select></div>';
 
           
-            certificationFieldHTML += '</div>';
+            // certificationFieldHTML += '</div>';
             certificationFieldHTML += '</div>';
             certificationFieldHTML += '<div class="row"><div class="col-lg-12"><div class="form-group">';
             certificationFieldHTML += '<label><i class="fa fa-arrows" aria-hidden="true"></i>Certification </label>';
             certificationFieldHTML += '<textarea class="form-control" rows="3" name="certification[]" id="certification'+x+'"></textarea>';
-            certificationFieldHTML += '</div></div><a href="javascript:void(0);" class="certification_remove_button btn btn-danger"><i class="fa fa-minus" aria-hidden="true"></i></a></div>';
+            certificationFieldHTML += '</div></div></div> <a href="javascript:void(0);" class="certification_remove_button btn btn-danger"><i class="fa fa-minus" aria-hidden="true"></i>Remove</a></div>';
         
             $(certification_wrapper).append(certificationFieldHTML); //Add field html
             setTimeout(function(){
