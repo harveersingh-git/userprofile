@@ -11,6 +11,7 @@ use App\Models\User;
 use Mail; 
 use Hash;
 use Illuminate\Support\Str;
+use Auth;
 
 class ForgotPasswordController extends Controller
 {
@@ -83,4 +84,8 @@ class ForgotPasswordController extends Controller
  
          return redirect('/login')->with('message', 'Your password has been changed!');
      }
+
+    
+
+
 }
