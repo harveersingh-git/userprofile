@@ -730,7 +730,7 @@
             <DIV id="id1_1">
 
                 <P class="p0 ft0" style="color:#000;">ABOUT ME</P>
-                <div style="width: 75%;">
+                <div style="width: 75%; text-align: justify;text-justify: inter-word;">
                 <P class="p1 ft1" style="color:#000;">{!!html_entity_decode($data->about_employee)!!}</P>
                 </div>
                 <p class="p7 ft0" style="color:#fff;">SKILLS, LANGUAGES</p>
