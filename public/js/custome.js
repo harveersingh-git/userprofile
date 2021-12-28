@@ -135,6 +135,7 @@ $(document).ready(function() {
     $(addButton).click(function() {
          var token = $('input[name="_token"]').attr('value');
          var order_numbern = 1;
+         var typee="";
         $.ajax({
             type: 'GET',
             url: base_url+'/education_type',
@@ -148,10 +149,10 @@ $(document).ready(function() {
 
                 result.data.forEach(element =>{
                  
-                    type += "<option value="+element.id+">"+element.value+"</option>"
+                    typee += "<option value="+element.id+">"+element.value+"</option>"
                 } );
              var fieldHTML ='<div class="row"><div class="col-lg-3"><label><i class="fa fa-arrows" aria-hidden="true"></i>Type</label>';
-                fieldHTML += '<select class="form-control" aria-label="Default select example" name="edu_type[]"><option selected>--please select--</option>'+type+'</select></div>';
+                fieldHTML += '<select class="form-control" aria-label="Default select example" name="edu_type[]"><option selected>--please select--</option>'+typee+'</select></div>';
                 fieldHTML += '<div class="col-lg-3"><label>Title</label> <select class="form-control" name="edu_title[]" aria-label="Default select example"><option selected>--please select--</option><option value="1">BBA</option><option value="2">BCA</option><option value="3">B.Come</option></select>';
                 fieldHTML += '</div><div class="col-lg-3 datepicker-wrap"><label>From</label><input type="text" class="form-control edu_from" placeholder="2021-01-01" name="edu_to[]" value="" required="" autocomplete="on|off">';
                 fieldHTML += '</div><div class="col-lg-3 datepicker-wrap"><label>To</label><input type="text" class="form-control edu_to" placeholder="2021-02-01" name="edu_from[]" value="" required="" autocomplete="on|off">';
@@ -182,7 +183,7 @@ $(document).ready(function() {
         // alert(certification_wrapper);
         //Check maximum number of input fields
         var token = $('input[name="_token"]').attr('value');
-
+        type = "";
         $.ajax({
             type: 'GET',
             url: base_url+'/education_type',
