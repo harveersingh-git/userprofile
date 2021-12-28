@@ -685,8 +685,9 @@
         div#id1_1 {
             /* top: 72px; */
             padding-top: 384px;
-            padding-left: 2px;
+            /* padding-left: 2px; */
             z-index: 9999;
+
 
         }
 
@@ -701,7 +702,7 @@
 
         p.p1.ft1 {
             text-align: justify;
-            width: 54%;
+            width: 50%;
             text-justify: inter-word;
         }
 
@@ -729,7 +730,9 @@
             <DIV id="id1_1">
 
                 <P class="p0 ft0" style="color:#000;">ABOUT ME</P>
-                <P class="p1 ft1" style="color:#000;">{{strip_tags($data->about_employee)}}</P>
+                <P class="p1 ft1" style="color:#000;">{!!html_entity_decode($data->about_employee)!!}</P>
+                <p class="p7 ft0" style="color:#fff;">SKILLS, LANGUAGES</p>
+                <p class="p8 ft0" style="color:#fff;">AND TOOLS</p>
                 <TABLE cellpadding=0 cellspacing=0 class="t0">
 
 
@@ -807,7 +810,7 @@
             <P class="p31 ft11">Jan 2016</P>-->
             <P class="p32 ft8">CERTIFICATIONS</P>
             @forelse ($data['certificate'] as $res)
-            <P class="p33 ft16"><SPAN class="ft15">{{strip_tags($res['certification'])}}</SPAN></P>
+            <P class="p33 ft16"><SPAN class="ft15">{!!html_entity_decode($res['certification'])!!}</SPAN></P>
             @empty
             <p>No Certification Found</p>
             @endforelse
@@ -827,7 +830,7 @@
         <P class="p37 ft8">ABOUT PROJECTS</P>
         @forelse ($data['project'] as $show)
         <P class="p38 ft9">{{$show['project_name']}}</P>
-        <P class="p39 ft17">{{strip_tags($show['project_description'])}}</P>
+        <P class="p39 ft17">{!!html_entity_decode($show['project_description'])!!}</P>
         @empty
         <p>No Project Found</p>
         @endforelse
