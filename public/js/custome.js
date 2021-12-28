@@ -97,7 +97,7 @@ $(document).ready(function() {
            
             projectFieldHTML += '</div>';
         
-            projectFieldHTML += '<a href="javascript:void(0);" class="project_remove_button"><i class="fa fa-minus" aria-hidden="true"></i></a></div>';
+            projectFieldHTML += '<a href="javascript:void(0);" class="project_remove_button btn btn danger"><i class="fa fa-minus" aria-hidden="true"></i> Remove</a></div>';
         
             $(project_wrapper).append(projectFieldHTML); //Add field html
           
@@ -119,7 +119,7 @@ $(document).ready(function() {
             achFieldHTML +='<input type="text" class="form-control" placeholder="EX:abc" name="title[]" value="" required="" autocomplete="on|off">';
             achFieldHTML +='</div><div class="col-lg-12"><label>Achievement Description </label>';
             achFieldHTML +='<textarea class="form-control ckeditor" rows="3" name="description[]" id="description'+x+'"></textarea></div>';
-            achFieldHTML +='<a href="javascript:void(0);" class="ach_remove_button"><i class="fa fa-minus" aria-hidden="true"></i></a></div>';
+            achFieldHTML +='<a href="javascript:void(0);" class="ach_remove_button btn btn-danger"><i class="fa fa-minus" aria-hidden="true"></i> Remove</a></div>';
            
             $(ach_wrapper).append(achFieldHTML); //Add field html
           
@@ -153,9 +153,9 @@ $(document).ready(function() {
              var fieldHTML ='<div class="row"><div class="col-lg-3"><label><i class="fa fa-arrows" aria-hidden="true"></i>Type</label>';
                 fieldHTML += '<select class="form-control" aria-label="Default select example" name="edu_type[]"><option selected>--please select--</option>'+type+'</select></div>';
                 fieldHTML += '<div class="col-lg-3"><label>Title</label> <select class="form-control" name="edu_title[]" aria-label="Default select example"><option selected>--please select--</option><option value="1">BBA</option><option value="2">BCA</option><option value="3">B.Come</option></select>';
-                fieldHTML += '</div><div class="col-lg-3"><label>From</label><input type="text" class="form-control edu_from" placeholder="2021-01-01" name="edu_to[]" value="" required="" autocomplete="on|off">';
-                fieldHTML += '</div><div class="col-lg-3"><label>To</label><input type="text" class="form-control edu_to" placeholder="2021-02-01" name="edu_from[]" value="" required="" autocomplete="on|off">';
-                fieldHTML += '</div><a href="javascript:void(0);" class="remove_button"><i class="fa fa-minus" aria-hidden="true"></i></a></div>'; //New input field html 
+                fieldHTML += '</div><div class="col-lg-3 datepicker-wrap"><label>From</label><input type="text" class="form-control edu_from" placeholder="2021-01-01" name="edu_to[]" value="" required="" autocomplete="on|off">';
+                fieldHTML += '</div><div class="col-lg-3 datepicker-wrap"><label>To</label><input type="text" class="form-control edu_to" placeholder="2021-02-01" name="edu_from[]" value="" required="" autocomplete="on|off">';
+                fieldHTML += '</div><a href="javascript:void(0);" class="remove_button btn btn-danger"><i class="fa fa-minus" aria-hidden="true"></i> Remove</a></div>'; //New input field html 
    
         //Check maximum number of input fields
         if (x < maxField) {
@@ -217,7 +217,7 @@ $(document).ready(function() {
             certificationFieldHTML += '<div class="row"><div class="col-lg-12"><div class="form-group">';
             certificationFieldHTML += '<label><i class="fa fa-arrows" aria-hidden="true"></i>Certification </label>';
             certificationFieldHTML += '<textarea class="form-control" rows="3" name="certification[]" id="certification'+x+'"></textarea>';
-            certificationFieldHTML += '</div></div><a href="javascript:void(0);" class="certification_remove_button"><i class="fa fa-minus" aria-hidden="true"></i></a></div>';
+            certificationFieldHTML += '</div></div><a href="javascript:void(0);" class="certification_remove_button btn btn-danger"><i class="fa fa-minus" aria-hidden="true"></i></a></div>';
         
             $(certification_wrapper).append(certificationFieldHTML); //Add field html
             setTimeout(function(){
@@ -242,8 +242,8 @@ $(document).ready(function() {
             var expFieldHTML = '<div><div class="row"><div class="col-lg-3"><label><i class="fa fa-arrows" aria-hidden="true"></i>Companay Name</label>';
             expFieldHTML += '<input type="text" class="form-control" placeholder="XYZ" name="company_name[]" value="" required="" autocomplete="on|off">';
             expFieldHTML += '</div><div class="col-lg-3"><label>Designation</label><input type="text" class="form-control" placeholder="Team leader" name="designation[]" value="" required="" autocomplete="on|off">';
-            expFieldHTML += '</div><div class="col-lg-3"><label>From</label><input type="text" class="form-control exp_from" placeholder="2021-01-01" name="exp_from[]" value="" required="" autocomplete="on|off" id="dp1639739620183">';
-            expFieldHTML += '</div><div class="col-lg-3"><label>To</label><input type="text" class="form-control exp_to" placeholder="2021-01-01" name="exp_to[]" value="" required="" autocomplete="on|off" id="dp1639739620184">';
+            expFieldHTML += '</div><div class="col-lg-3 datepicker-wrap"><label>From</label><input type="text" class="form-control exp_from" placeholder="2021-01-01" name="exp_from[]" value="" required="" autocomplete="on|off" id="dp1639739620183">';
+            expFieldHTML += '</div><div class="col-lg-3 datepicker-wrap"><label>To</label><input type="text" class="form-control exp_to" placeholder="2021-01-01" name="exp_to[]" value="" required="" autocomplete="on|off" id="dp1639739620184">';
             expFieldHTML += '</div></div>';
             expFieldHTML += '<div class="row">';
             expFieldHTML += '<div class="col-lg-12">';
@@ -252,7 +252,7 @@ $(document).ready(function() {
             expFieldHTML += '<textarea class="form-control ckeditorr" rows="3" name="role_res[]" id="role_ress'+x+'" required=""></textarea>';
             expFieldHTML += '</div>';
             expFieldHTML += '</div>';
-            expFieldHTML += '</div><a href="javascript:void(0);" class="exp_remove_button"><i class="fa fa-minus" aria-hidden="true"></i></a></div>';
+            expFieldHTML += '</div><a href="javascript:void(0);" class="exp_remove_button btn btn-danger"><i class="fa fa-minus" aria-hidden="true"></i> Remove</a></div>';
         
          $(exp_wrapper).append(expFieldHTML); //Add field html
             $('.exp_more').find(".exp_to").datepicker({

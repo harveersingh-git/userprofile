@@ -672,8 +672,8 @@ table.dataTable thead .sorting:after {
 
 .submit_info{padding:8px 28px;}
 .sidebar ul li a {
-    padding: 20px 15px;
-    font-size: 16px;
+    padding: 12px 15px;
+    font-size: 15px;
 }
 label {
     font-size: 13px;
@@ -682,11 +682,11 @@ label {
 .delete {
     margin: 0 0px 0px 10px;
 }
-.table tr td{ font-size: 15px; vertical-align: middle !important;}
+.table tr td{ font-size: 13px; vertical-align: middle !important;}
 .panel-heading > .btn-outline {
     padding: 3px 10px;
 }
-
+.table .btn  { font-size: 12px; padding: 4px 6px;}
 .datepicker-wrap:before {
     content: "\f073";
     font-family: "Font Awesome 5 Free";
@@ -696,4 +696,8 @@ label {
     font-weight: 400;
     transform: translateY(-50%);
     z-index: 444;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th
+{
+    padding:4px;
 }

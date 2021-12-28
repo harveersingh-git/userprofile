@@ -112,7 +112,7 @@ Toast::message('message', 'level', 'title');
                                                 </div>
 
                                             </div>
-                                            <input type="submit" value="Next Step" class=" action-button btn btn-info col-md-3 " id="genral_info_submit" />
+                                            <input type="submit" value="Next Step" class=" action-button btn btn-primary  col-md-3 " id="genral_info_submit" />
 
                                         </form>
                                         <input type="button" name="next" style="display: none;" class="next btn btn-info  action-button col-md-3" value="Next Step" id="genral_info_button" />
@@ -122,10 +122,13 @@ Toast::message('message', 'level', 'title');
                                         <form action="{{url('add-user-skills')}}" id="skillsForm">
                                             <input type="hidden" value="" name="user_id" class="user_id">
                                             <div class="form-card">
-                                                <h2 class="fs-title">Skills</h2>
+                                                
 
                                                 <div class="row">
-                                                    <div class="col-lg-3">
+                                                    <div class="col-lg-6">
+														<h2 class="fs-title">Skills</h2>
+                                                        <div class="row">
+                                                    <div class="col-lg-6">
 
                                                         <select class="selectpicker" multiple data-live-search="true" data-style="form-control" name="skill_value_id[]" {{ isset($data->id)  ? '' : 'required=""'}}>
                                                             @forelse($allskills as $key=>$dat)
@@ -141,7 +144,7 @@ Toast::message('message', 'level', 'title');
                                                         </select>
 
                                                     </div>
-                                                    <div class="col-lg-3">
+                                                    <div class="col-lg-6">
                                                         <input type="hidden" name="drag_user_id" id="drag_user_id" value="{{isset($data->id)?$data->id:'' }}">
                                                         <ul id="sortable">
                                                             @if(isset($data->skills))
@@ -153,9 +156,14 @@ Toast::message('message', 'level', 'title');
                                                             @endif
                                                         </ul>
                                                     </div>
-
-                                                    <div class="col-lg-3">
-                                                        <label>Learning Skills</label>
+</div>
+														
+														</div>
+													 <div class="col-lg-6">
+														 <h2 class="fs-title">Learning Skills</h2>
+                                                    <div class="row">
+                                                    <div class="col-lg-6">
+                                                       
                                                         <select class="selectpicker" multiple data-live-search="true" data-style="form-control" name="learning_skills[]" {{ isset($data->id)  ? '' : 'required=""'}}>
                                                         @forelse($allskills as $key=>$dat)
                                                             @if(isset($selectedLearningSkills) && in_array($dat['id'],$selectedLearningSkills))
@@ -169,7 +177,7 @@ Toast::message('message', 'level', 'title');
 
                                                         </select>
                                                     </div>
-                                                    <div class="col-lg-3">
+                                                    <div class="col-lg-6">
                                                         <input type="hidden" name="drag_user_id" id="drag_user_id" value="{{isset($data->id)?$data->id:'' }}">
                                                         <ul id="sortable_lerning">
                                                             @if(isset($data->learning_skills))
@@ -183,11 +191,13 @@ Toast::message('message', 'level', 'title');
                                                             @endif
                                                         </ul>
                                                     </div>
-
-
-                                                </div>
-                                                <h2 class="fs-title">Education</h2>
-                                                <div class="education_more">
+</div>
+													</div>
+                                                
+												</div>
+													<h2 class="fs-title">Education</h2>
+												<div class="row">
+                                                <div class="education_more col-lg-12">
                                                     <div class="row">
                                                         
                                                         <div class="col-lg-3">
@@ -255,12 +265,12 @@ Toast::message('message', 'level', 'title');
                                                                 <option value="3" {{ isset($value['education_title_id']) == '3'  ? 'selected' : ''}}>B.Come</option>
                                                             </select>
                                                         </div>
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-3 datepicker-wrap">
                                                             <label>From</label>
                                                             <input type="text" class="form-control edu_to" placeholder="12-17-2021" name="edu_from[]" value="{{ isset($value['from'])?$value['from']:''}}" required="" autocomplete="off" />
 
                                                         </div>
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-3 datepicker-wrap">
                                                             <label>To</label>
                                                             <input type="text" class="form-control edu_from" placeholder="12-17-2021" name="edu_to[]" value="{{ isset($value['to'])?$value['to']:''}}" required="" autocomplete="off" />
 
@@ -271,19 +281,19 @@ Toast::message('message', 'level', 'title');
 
 
 
-                                                    <a href="javascript:void(0);" class="add_button" title="Add field"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                    <a href="javascript:void(0);" class="add_button btn btn-info" title="Add field"><i class="fa fa-plus" aria-hidden="true"></i> Add More</a>
 
                                                 </div>
 
-
+</div>
                                             </div>
 
-                                            <input type="submit" value="Next Step" class=" action-button btn btn-info col-md-3" id="skills_submit" />
+                                            <input type="submit" value="Next Step" class=" action-button btn btn-primary  col-md-3" id="skills_submit" />
 
                                         </form>
                                         <input type="button" id="skills_prev" name="previous" class="previous action-button-previous  pull-right btn btn-warning" value="Previous" />
 
-                                        <input type="button" style="display:none" name="next" class="next action-button btn btn-info col-md-3" value="Next Stepp" id="skills_button" />
+                                        <input type="button" style="display:none" name="next" class="next action-button btn btn-primary  col-md-3" value="Next Stepp" id="skills_button" />
 
                                     </fieldset>
                                     <fieldset>
@@ -300,18 +310,18 @@ Toast::message('message', 'level', 'title');
                                                             <input type="text" class="form-control" placeholder="XYZ" name="company_name[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
                                                         </div>
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-3 ">
                                                             <label>Designation</label>
                                                             <input type="text" class="form-control" placeholder="Team leader" name="designation[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
                                                         </div>
 
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-3 datepicker-wrap">
                                                             <label>From</label>
                                                             <input type="text" class="form-control exp_from" placeholder="2021-12-19" name="exp_from[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
                                                         </div>
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-3 datepicker-wrap">
                                                             <label>To</label>
                                                             <input type="text" class="form-control exp_to" placeholder="2021-12-19" name="exp_to[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
@@ -341,12 +351,12 @@ Toast::message('message', 'level', 'title');
                                                             <input type="text" class="form-control" placeholder="Team leader" name="designation[]" value="{{ isset($value['designation'])?$value['designation']:''}}" required="" autocomplete="on" />
 
                                                         </div>
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-3 datepicker-wrap">
                                                             <label>From</label>
                                                             <input type="text" class="form-control exp_from" placeholder="2021-12-19" name="exp_from[]" value="{{ isset($value['from'])?$value['from']:''}}" required="" autocomplete="on" />
 
                                                         </div>
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-3 datepicker-wrap">
                                                             <label>To</label>
                                                             <input type="text" class="form-control exp_to" placeholder="2021-12-19" name="exp_to[]" value="{{ isset($value['to'])?$value['to']:''}}" required="" autocomplete="on|off" />
 
@@ -367,7 +377,7 @@ Toast::message('message', 'level', 'title');
 
 
                                                     @endif
-                                                    <a href="javascript:void(0);" class="exp_add_button" title="Add field"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                    <a href="javascript:void(0);" class="exp_add_button btn btn-info" title="Add field"><i class="fa fa-plus" aria-hidden="true"></i> Add more</a>
 
                                                 </div>
 
@@ -430,16 +440,16 @@ Toast::message('message', 'level', 'title');
 
 
                                                     @endif
-                                                    <a href="javascript:void(0);" class="certification_add_button" title="Add field"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                    <a href="javascript:void(0);" class="certification_add_button btn btn-info" title="Add field"><i class="fa fa-plus" aria-hidden="true"> Add more</i></a>
                                                   
                                                 </div>
 
 
                                             </div>
-                                            <input type="submit" value="Next Step" class=" action-button" id="exprince_submit" />
+                                            <input type="submit" value="Next Step" class="  action-button btn btn-primary  col-md-3" id="exprince_submit" />
 
                                         </form>
-                                        <input type="button" name="previous" id="exprince_prev" class="previous action-button-previous" value="Previous" />
+                                        <input type="button" name="previous" id="exprince_prev" class="previous action-button-previous  pull-right btn btn-warning" value="Previous" />
 
                                         <input type="button" name="make_payment" style="display:none" class="next action-button" value="Next Step" id="exprince_button" />
                                     </fieldset>
@@ -453,7 +463,8 @@ Toast::message('message', 'level', 'title');
 
                                                
 
-                                                <div class="row ach_more">
+                                                <div class="row ach_more form-group">
+													<div class="col-lg-12">
                                                         <h2 class="fs-title">Achievement</h2>
                                                     <div class="row">
                                                         <div class="col-lg-12">
@@ -484,9 +495,10 @@ Toast::message('message', 'level', 'title');
                                                     @endforeach
 
                                                     @endif
-                                                        <a href="javascript:void(0);" class="ach_add_button" title="Add field"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                        <a href="javascript:void(0);" class="ach_add_button btn btn-info" title="Add field"><i class="fa fa-plus" aria-hidden="true"></i> Add more</a>
                                                        
                                                 </div>
+												</div>
                                                       
 
                                                
@@ -494,7 +506,7 @@ Toast::message('message', 'level', 'title');
 
                                                 <div class="project_more">
                                                     <h2 class="fs-title">Project</h2>
-                                                    <div class="row">
+                                                    <div class="row form-group">
                                                        
                                                             <div class="col-lg-3">
                                                                 <label>Project Name</label>
@@ -518,18 +530,19 @@ Toast::message('message', 'level', 'title');
                                                                 <input type="text" class="form-control" placeholder="https://github.com/" name="url[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
                                                             </div>
-                                                            <div class="row">
+                                                            <div class="r ow">
+																<div class="col-md-12">
                                                             <label>Project Description</label>
                                                             <textarea class="form-control" rows="3" name="project_description[]" {{ isset($data->id)  ? '' : 'required=""'}}></textarea>
 
-
+</div>
                                                         </div>
                                                         </div>
                                           
-                                                    <a href="javascript:void(0);" class="project_add_button" title="Add field"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                    <a href="javascript:void(0);" class="project_add_button btn btn-info" title="Add field"><i class="fa fa-plus" aria-hidden="true"></i> Add more</a>
                                                     @if(isset($data->project) && count($data->project)>0)
                                                     @foreach($data->project as $key=>$value)
-                                                    <div class="row">
+                                                    <div class="row form-group">
                                                             <div class="col-lg-3">
                                                                 <label>Project Name</label>
                                                                 <input type="text" class="form-control" placeholder="XYZ" name="project_name[]" value="{{ isset($value['project_name'])?$value['project_name']:''}}" required="" autocomplete="on|off" />
@@ -567,9 +580,9 @@ Toast::message('message', 'level', 'title');
 
 
                                             </div>
-                                            <input type="submit" value="Confirm" class=" action-button" id="project_submit" />
+                                            <input type="submit" value="Confirm" class="action-button btn btn-success col-md-3" id="project_submit" />
                                         </form>
-                                        <input type="button" id="project_previous" name="previous" class="previous action-button-previous" value="Previous" />
+                                        <input type="button" id="project_previous" name="previous" class="previous action-button-previous  pull-right btn btn-warning" value="Previous" />
                                     </fieldset>
                                     </fieldset>
                                 </div>

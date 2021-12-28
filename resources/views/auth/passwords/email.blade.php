@@ -6,12 +6,18 @@ Login-Admin
 @section('content')
 
 @section('content')
+<section class="ftco-section">
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+        <div class="col-md-12 col-lg-12">
+            <div class="wrap new_center">
+            <div class=" p-3 p-lg-4">
 
+            <div class="d-flex">
+            <div class="w-100 text-center">
+                <h4 class="mb-4 text-center">{{ __('Reset Password') }}</h4></div>
+</div>
+<hr>
                 <div class="card-body">
                 @if (Session::has('message'))
                          <div class="alert alert-success" role="alert">
@@ -22,10 +28,12 @@ Login-Admin
                     <form method="POST" action="{{ route('forget.password.post') }}">
                         @csrf
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                        
 
-                            <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label class="label" for="email">{{ __('E-Mail Address') }}</label>
+
+                           
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
@@ -34,19 +42,21 @@ Login-Admin
                                     </span>
                                 @enderror
                             </div>
-                        </div>
+                       
 
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                       
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-info w-100 px-3 mb-2 mt-2 text-uppercase">
                                     {{ __('Send Password Reset Link') }}
                                 </button>
                             </div>
-                        </div>
+                        
                     </form>
                 </div>
             </div>
+</div>
         </div>
     </div>
 </div>
+<section>
 @endsection

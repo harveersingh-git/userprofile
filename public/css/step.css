@@ -67,9 +67,9 @@ html {
 
 
 #msform .action-button {
-    width: 100px;
-   
-    padding: 10px 5px;
+    width: 85px;
+   font-size: 13px;
+    padding: 6px 5px;
     margin: 10px 0px
 }
 
@@ -79,10 +79,10 @@ html {
 }
 
 #msform .action-button-previous {
-    width: 100px;
-    
+    width: 85px;
+    font-size: 13px;
     cursor: pointer;
-    padding: 10px 5px;
+    padding:6px 5px;
     margin: 10px 5px
 }
 
@@ -111,9 +111,9 @@ select.list-dt:focus {
 }
 
 .fs-title {
-    font-size: 25px;
+    font-size: 22px;
     color: #2C3E50;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     font-weight: bold;
     text-align: left
 }
@@ -218,3 +218,37 @@ select.list-dt:focus {
 .ui-state-highlight {
     border-color: red;
   }
+
+  h2.fs-title.ui-sortable-handle {
+    font-size: 22px;
+}
+
+.ach_remove_button , .add_button,.remove_button, a.exp_add_button, .exp_remove_button, a.ach_add_button, .project_add_button {
+    margin-bottom: 25px;
+    padding: 4px 5px;
+    font-size: 13px;
+}
+a.remove_button{
+    position: relative;
+    left:20px;
+}
+
+.ui-state-default {
+    height: 30px;
+    padding: 3px;
+}
+
+.ui-sortable li {
+    display: block;
+}
+.show-tick .dropdown-toggle.form-control {
+    border: 1px solid #d7d7d7;
+}
+
+.ui-sortable li {
+    display: block;
+    margin: 1px 8px !important;
+    height: 33px;
+    border-radius: 3px;
+}
+.cke_4{ margin-bottom: 25px;}
