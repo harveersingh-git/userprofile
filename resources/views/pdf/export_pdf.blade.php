@@ -831,8 +831,11 @@
 
         <P class="p37 ft8">ABOUT PROJECTS</P>
         @forelse ($data['project'] as $show)
+        <div style="width: 100%; text-align: justify;text-justify: inter-word; margin-left:10px">
+
         <P class="p38 ft9">{{$show['project_name']}}</P>
         <P class="p39 ft17">{!!html_entity_decode($show['project_description'])!!}</P>
+        </div>
         @empty
         <p>No Project Found</p>
         @endforelse
