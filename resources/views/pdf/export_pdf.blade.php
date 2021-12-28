@@ -709,7 +709,7 @@
         #p2dimg1 {
             position: fixed;
             opacity: 0.5;
-            margin-left: -50px;
+            margin-left: 112px;
             margin-top: 100px;
             z-index: -1;
             /* z-index:-1;
@@ -821,7 +821,7 @@
 
     <DIV id="page_2">
         <div id="p2dimg1">
-            <IMG src="{{public_path('pdf/img-2.jpg')}}">
+            <IMG src="{{asset('pdf/img-2.jpg')}}">
         </div>
 
 
