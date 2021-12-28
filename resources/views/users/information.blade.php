@@ -227,12 +227,12 @@ Toast::message('message', 'level', 'title');
                                                         <div class="col-lg-3 datepicker-wrap">
                                                             <label>From</label>
 
-                                                            <input type="text" class="form-control edu_to" placeholder="12-17-2021" name="edu_from[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="off" />
+                                                            <input type="text" class="form-control edu_to" placeholder="2021-02-27" name="edu_from[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="off" />
 
                                                         </div>
                                                         <div class="col-lg-3 datepicker-wrap">
                                                             <label>To</label>
-                                                            <input type="text" class="form-control edu_from" placeholder="12-17-2021" name="edu_to[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="off" />
+                                                            <input type="text" class="form-control edu_from" placeholder="2021-02-27" name="edu_to[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="off" />
 
                                                         </div>
                                                     </div>
