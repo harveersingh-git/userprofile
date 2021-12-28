@@ -709,7 +709,7 @@
         #p2dimg1 {
             position: fixed;
             opacity: 0.5;
-            margin-left: 112px;
+            margin-left: -50px;
             margin-top: 100px;
             z-index: -1;
             /* z-index:-1;
@@ -730,7 +730,7 @@
             <DIV id="id1_1">
 
                 <P class="p0 ft0" style="color:#000;">ABOUT ME</P>
-                <div style="width: 72%; text-align: justify;text-justify: inter-word; margin-left:10px">
+                <div style="width:75%; text-align: justify; margin-left:10px">
                 <P class="p1 ft1" style="color:#000;">{!!html_entity_decode($data->about_employee)!!}</P>
                 </div>
                 <p class="p7 ft0" style="color:#fff;">SKILLS, LANGUAGES</p>
@@ -821,7 +821,7 @@
 
     <DIV id="page_2">
         <div id="p2dimg1">
-            <IMG src="{{asset('pdf/img-2.jpg')}}">
+            <IMG src="{{public_path('pdf/img-2.jpg')}}">
         </div>
 
 
@@ -831,11 +831,8 @@
 
         <P class="p37 ft8">ABOUT PROJECTS</P>
         @forelse ($data['project'] as $show)
-        <div style="width: 100%; text-align: justify;text-justify: inter-word; margin-left:10px">
-
         <P class="p38 ft9">{{$show['project_name']}}</P>
         <P class="p39 ft17">{!!html_entity_decode($show['project_description'])!!}</P>
-        </div>
         @empty
         <p>No Project Found</p>
         @endforelse
