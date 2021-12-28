@@ -1,4 +1,4 @@
-@extends('Admin.include.loginmain')
+@extends('admin.include.loginmain')
 @section('title')
 Login-Admin
 @endsection
