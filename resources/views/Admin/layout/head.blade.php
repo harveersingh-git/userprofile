@@ -125,6 +125,8 @@
   }
   		toastr.warning("{{ session('warning') }}");
   @endif
+  var base_url = {!! json_encode(url('/')) !!}
+//   alert(base_url);
 </script>
     @yield('script')
 </body>

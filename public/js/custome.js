@@ -137,7 +137,7 @@ $(document).ready(function() {
          var order_numbern = 1;
         $.ajax({
             type: 'GET',
-            url: '/education_type',
+            url: base_url+'/education_type',
             contentType: 'application/json',
             dataType: 'json',
             headers: {
@@ -185,7 +185,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: 'GET',
-            url: '/education_type',
+            url: base_url+'/education_type',
             contentType: 'application/json',
             dataType: 'json',
             headers: {

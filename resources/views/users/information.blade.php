@@ -833,7 +833,7 @@ $(document).on("click","#project_submit",function() {
 
         $.ajax({
             type: 'POST',
-            url: '/learning_skills_sorting',
+            url: base_url+'/learning_skills_sorting',
             contentType: 'application/json',
             dataType: 'json',
             data: JSON.stringify(data),
@@ -867,7 +867,7 @@ $(document).on("click","#project_submit",function() {
 
         $.ajax({
             type: 'POST',
-            url: '/skills_sorting',
+            url: base_url+'/skills_sorting',
             contentType: 'application/json',
             dataType: 'json',
             data: JSON.stringify(data),
