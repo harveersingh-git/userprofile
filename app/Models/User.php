@@ -72,6 +72,11 @@ class User extends Authenticatable
         return strtoupper($value);
     }
   
+    public function getResumeTitleAttribute($value)
+    {
+        return strtoupper($value);
+    }
+   
 
     public function skills(){
         return $this->hasMany(UserSkills::class, 'user_id', 'id')->with('skills_details');

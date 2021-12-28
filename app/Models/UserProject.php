@@ -19,4 +19,8 @@ class UserProject extends Model
         
         
     ];
+    public function getProjectNameAttribute($value)
+    {
+        return strtoupper($value);
+    }
 }

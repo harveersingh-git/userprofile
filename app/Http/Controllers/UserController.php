@@ -27,7 +27,7 @@ use PDF;
 class UserController extends Controller
 {
 
-     /**
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -43,15 +43,14 @@ class UserController extends Controller
             $skills =  SkillsEducation::where('value', 'like', '%' . $request['search'] . '%')->pluck('id');
         }
 
-       
+
         $query = User::where('id', '!=', 1);
 
         if (isset($skills) && $skills->count() > 0) {
 
             $query->whereHas('skills', function ($q) use ($skills) {
-                $q->whereIn('skill_value_id',$skills->toArray());
+                $q->whereIn('skill_value_id', $skills->toArray());
             });
-           
         } else {
             if (isset($request['search'])) {
                 $query->where('mobile', 'like', '%' . $request['search'] . '%');
@@ -67,8 +66,8 @@ class UserController extends Controller
             }
         }
 
-        $data = $query->orderBy('id','DESC')->paginate(10);
-        
+        $data = $query->orderBy('id', 'DESC')->paginate(10);
+
         return view('users.index', compact('data'));
     }
 
@@ -81,14 +80,14 @@ class UserController extends Controller
             UserSkills::where(['user_id' => $input['user_id']])->delete();
             for ($i = 0; $i < count($input['skill_value_id']); $i++) {
 
-                $inpu['order'] =  $i+1;
+                $inpu['order'] =  $i + 1;
                 $inpu['user_id'] =  $input['user_id'];
                 $inpu['skill_value_id'] =  $input['skill_value_id'][$i];
                 $skills = UserSkills::create($inpu);
             }
             LearningSkills::where(['user_id' => $input['user_id']])->delete();
             for ($i = 0; $i < count($input['learning_skills']); $i++) {
-                $inpu['order'] =  $i+1;
+                $inpu['order'] =  $i + 1;
                 $inpu['user_id'] =  $input['user_id'];
                 $inpu['learning_skill_value_id'] =  $input['learning_skills'][$i];
                 $learningSkills = LearningSkills::create($inpu);
@@ -96,8 +95,8 @@ class UserController extends Controller
             UserEducation::where(['user_id' => $input['user_id']])->delete();
             for ($i = 0; $i < count($input['edu_type']); $i++) {
                 if (isset($input['edu_type'][$i])) {
-                 
-                    $inp['order'] = $i+1;
+
+                    $inp['order'] = $i + 1;
                     $inp['user_id'] =  $input['user_id'];
                     $inp['degree_type_id'] =  $input['edu_type'][$i];
                     $inp['education_title_id'] =  $input['edu_title'][$i];
@@ -127,7 +126,7 @@ class UserController extends Controller
             for ($i = 0; $i < count($input['company_name']); $i++) {
                 if (isset($input['company_name'][$i])) {
 
-                    $value['order'] = $i+1;
+                    $value['order'] = $i + 1;
                     $value['user_id'] =  $input['user_id'];
                     $value['company_name'] =  $input['company_name'][$i];
                     $value['designation'] =  $input['designation'][$i];
@@ -140,7 +139,7 @@ class UserController extends Controller
             Certification::where(['user_id' => $input['user_id']])->delete();
             for ($i = 0; $i < count($input['certification']); $i++) {
                 if (isset($input['certification'][$i])) {
-                    $inpu['order'] = $i+1;
+                    $inpu['order'] = $i + 1;
                     $inpu['certification'] =  $input['certification'][$i];
                     $inpu['certifications_value_id'] =  $input['certification_type'][$i];
                     $inpu['user_id'] =  $input['user_id'];
@@ -154,7 +153,7 @@ class UserController extends Controller
 
             return response()->json([
                 'status' => 'success',
-                
+
             ]);
         }
     }
@@ -172,7 +171,7 @@ class UserController extends Controller
             userAchievement::where(['user_id' => $input['user_id']])->delete();
             for ($i = 0; $i < count($input['title']); $i++) {
                 if (isset($input['title'][$i])) {
-                    $inp['order'] = $i+1;
+                    $inp['order'] = $i + 1;
                     $inp['user_id'] =  $input['user_id'];
                     $inp['title'] =  $input['title'][$i];
                     $inp['description'] =  $input['description'][$i];
@@ -183,7 +182,7 @@ class UserController extends Controller
             for ($i = 0; $i < count($input['project_name']); $i++) {
                 if (isset($input['project_name'][$i])) {
 
-                    $inp['order'] = $i+1;
+                    $inp['order'] = $i + 1;
                     $inp['project_name'] =  $input['project_name'][$i];
                     $inp['project_skills'] =  $input['project_skills'][$i];
                     $inp['team_size'] =  $input['team_size'][$i];
@@ -332,22 +331,22 @@ class UserController extends Controller
 
         $data = [];
         if (isset($id)) {
-          
+
 
             $data = User::with(['education', 'exprince', 'certification', 'learning_skills', 'achievement', 'project'])->with('skills', function ($q) {
                 $q->orderBy('order', 'asc');
             })->where('id', '=', $id)->first();
             // dd($data->toArray());
-            $selectedSkills =UserSkills::where('user_id','=', $id)->pluck('skill_value_id');
-            $selectedLearningSkills =LearningSkills::where('user_id','=', $id)->pluck('learning_skill_value_id');
-            $selectedEducationType = UserEducation::where('user_id','=', $id)->pluck('degree_type_id');
+            $selectedSkills = UserSkills::where('user_id', '=', $id)->pluck('skill_value_id');
+            $selectedLearningSkills = LearningSkills::where('user_id', '=', $id)->pluck('learning_skill_value_id');
+            $selectedEducationType = UserEducation::where('user_id', '=', $id)->pluck('degree_type_id');
 
             $selectedSkills = $selectedSkills->toArray();
             $selectedLearningSkills = $selectedLearningSkills->toArray();
             $selectedEducationType = $selectedEducationType->toArray();
             // dd($education );
 
-            return view('users.information',compact('allskills', 'data', 'education', 'certificate','selectedSkills','selectedLearningSkills','selectedEducationType'));
+            return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'selectedSkills', 'selectedLearningSkills', 'selectedEducationType'));
         }
 
         return view('users.information', compact('allskills', 'data', 'education', 'certificate'));
@@ -391,7 +390,8 @@ class UserController extends Controller
     }
 
 
-    public function educationType(Request $request){
+    public function educationType(Request $request)
+    {
         $education = SkillsEducation::where('category', '=', 'education')->get();
         $certificate = SkillsEducation::where('category', '=', 'certificate')->get();
 
@@ -399,39 +399,47 @@ class UserController extends Controller
         return response()->json([
             'status' => true,
             'data' => $education,
-            'certificate'=>$certificate
+            'certificate' => $certificate
         ]);
     }
 
     public function resume(Request $request, $id = null)
     {
 
-        // $skills = SkillsEducation::get();
+        $data = User::where('id', '=', $id)->first();
+        $data['project'] =  UserProject::where('user_id', '=', $id)->get();
+        $data['certificate'] =  Certification::where('user_id', '=', $id)->get();
+        $data['skills'] =  UserSkills::with('skills_details')->where('user_id', '=', $id)->orderBy('order', 'asc')->get();
+        $data['education'] =  UserEducation::with('education_details')->where('user_id', '=', $id)->orderBy('order', 'asc')->get();
 
-        // if ($skills) {
-
-        //     view()->share('skills', $skills);
-
-        //     $pdf_doc = PDF::loadView('pdf.export_pdf', $skills->toArray());
-
-        //     return $pdf_doc->download('pdf.pdf');
-        // }
+        // dd($data['education']->toArray());
 
 
-        return view('pdf.export_pdf');
-    }
+        if ($data) {
 
-    
-    public function changePasswordPost(Request $request) {
-     
-        if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
-            // The passwords matches
-            return redirect()->back()->with("error","Your current password does not matches with the password.");
+            view()->share('data', $data);
+
+            $pdf_doc = PDF::loadView('pdf.export_pdf', $data->toArray());
+
+            return $pdf_doc->download('pdf.pdf');
         }
 
-        if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
+
+        return view('pdf.export_pdf', compact('data'));
+    }
+
+
+    public function changePasswordPost(Request $request)
+    {
+
+        if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
+            // The passwords matches
+            return redirect()->back()->with("error", "Your current password does not matches with the password.");
+        }
+
+        if (strcmp($request->get('current-password'), $request->get('new-password')) == 0) {
             // Current password and new password same
-            return redirect()->back()->with("error","New Password cannot be same as your current password.");
+            return redirect()->back()->with("error", "New Password cannot be same as your current password.");
         }
 
         $validatedData = $request->validate([
@@ -444,10 +452,11 @@ class UserController extends Controller
         $user->password = bcrypt($request->get('new-password'));
         $user->save();
 
-        return redirect()->back()->with("success","Password successfully changed!");
+        return redirect()->back()->with("success", "Password successfully changed!");
     }
-    public function showChangePasswordGet() {
-  
+    public function showChangePasswordGet()
+    {
+
         return view('auth.passwords.change-password');
     }
 }

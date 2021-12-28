@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html>
+<HTML>
 
 <HEAD>
     <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <TITLE>CV</TITLE>
     <META name="generator" content="BCL easyConverter SDK 5.0.252">
     <META name="title" content="HS_AS_TK10827">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <style type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <STYLE type="text/css">
         body {
             margin-top: 0px;
             margin-left: 0px;
@@ -28,8 +27,7 @@
         #page_1 #id1_1 {
             float: left;
             border: none;
-            /* margin: 375px 0px 0px 47px; */
-            margin-top: 375px;
+            margin: 375px 0px 0px 47px;
             padding: 0px;
             border: none;
             width: 348px;
@@ -64,28 +62,28 @@
 
 
         #page_2 {
-            position: relative;
+            /* position: relative; */
             overflow: hidden;
             margin: 0px 0px 0px 0px;
             padding: 0px;
             border: none;
-            width: 864px;
-            height: 1209px;
+            /* width: 864px; */
+            /* height: 1209px; */
             box-shadow: 1px 1px 6px rgb(0 0 0 / 50%);
         }
 
         #page_2 #p2dimg1 {
-            position: absolute;
+            /* position: absolute;
             top: 0px;
             left: 0px;
             z-index: -1;
             width: 864px;
-            height: 1209px;
+            height: 1209px; */
         }
 
         #page_2 #p2dimg1 #p2img1 {
-            width: 864px;
-            height: 1209px;
+            /* width: 864px;
+            height: 1209px; */
         }
 
 
@@ -102,35 +100,35 @@
 
         .ft0 {
             font: bold 22px 'Arial';
-            color: #ffffff;
+            color: #000000;
             line-height: 26px;
         }
 
         .ft1 {
-            font: bold 13px 'Arial';
-            color: #ffffff;
+            font: 15px 'Arial';
+            color: #000000;
             line-height: 16px;
         }
 
         .ft2 {
             font: 7px 'Arial';
-            color: #ffffff;
+            color: #000000;
             line-height: 7px;
             width: 6px;
             height: 6px;
-            background: #fff;
+            background: #000;
             border-radius: 50px;
         }
 
         .ft3 {
             font: bold 12px 'Arial';
-            color: #ffffff;
+            color: #000000;
             line-height: 15px;
         }
 
         .ft4 {
             font: bold 12px 'Arial';
-            color: #ffffff;
+            color: #000000;
             line-height: 21px;
         }
 
@@ -141,13 +139,13 @@
         }
 
         .ft6 {
-            font: bold 47px 'Impact';
+            font: bold 39px 'Impact';
             color: #ea4335;
             line-height: 59px;
         }
 
         .ft7 {
-            font: bold 20px 'Arial';
+            font: bold 17px 'Arial';
             line-height: 24px;
         }
 
@@ -164,7 +162,7 @@
         }
 
         .ft10 {
-            font: 17px 'Arial';
+            font: 16px 'Arial';
             color: #333333;
             line-height: 19px;
         }
@@ -276,7 +274,7 @@
         .p7 {
             text-align: left;
             padding-left: 43px;
-            margin-top: 76px;
+            margin-top: 10px;
             margin-bottom: 0px;
         }
 
@@ -325,7 +323,7 @@
 
         .p14 {
             text-align: left;
-            padding-left: 378px;
+            padding-left: 291px;
             margin-top: 0px;
             margin-bottom: 0px;
         }
@@ -346,27 +344,29 @@
 
         .p17 {
             text-align: left;
-            margin-top: 33px;
+            margin-top: 32px;
             margin-bottom: 0px;
+            margin-left: 30px;
+
         }
 
         .p18 {
             text-align: left;
-            padding-left: 2px;
+            padding-left: 30px;
             margin-top: 19px;
             margin-bottom: 0px;
         }
 
         .p19 {
             text-align: left;
-            padding-left: 3px;
-            margin-top: 30px;
+            padding-left: 30px;
+            margin-top: 15px;
             margin-bottom: 0px;
         }
 
         .p20 {
             text-align: left;
-            padding-left: 2px;
+            padding-left: 30px;
             margin-top: 24px;
             margin-bottom: 0px;
         }
@@ -381,28 +381,28 @@
 
         .p22 {
             text-align: left;
-            padding-left: 2px;
-            margin-top: 33px;
+            padding-left: 30px;
+            margin-top: 15px;
             margin-bottom: 0px;
         }
 
         .p23 {
             text-align: left;
-            padding-left: 2px;
+            padding-left: 30px;
             margin-top: 23px;
             margin-bottom: 0px;
         }
 
         .p24 {
             text-align: left;
-            padding-left: 2px;
+            padding-left: 30px;
             margin-top: 8px;
             margin-bottom: 0px;
         }
 
         .p25 {
             text-align: left;
-            padding-left: 3px;
+            padding-left: 31px;
             padding-right: 140px;
             margin-top: 19px;
             margin-bottom: 0px;
@@ -410,14 +410,14 @@
 
         .p26 {
             text-align: left;
-            padding-left: 3px;
+            padding-left: 30px;
             margin-top: 32px;
             margin-bottom: 0px;
         }
 
         .p27 {
             text-align: left;
-            padding-left: 3px;
+            padding-left: 32px;
             padding-right: 128px;
             margin-top: 19px;
             margin-bottom: 0px;
@@ -425,49 +425,49 @@
 
         .p28 {
             text-align: left;
-            padding-left: 2px;
-            margin-top: 35px;
+            padding-left: 30px;
+            margin-top: 15px;
             margin-bottom: 0px;
         }
 
         .p29 {
             text-align: left;
-            padding-left: 2px;
+            padding-left: 30px;
             margin-top: 14px;
             margin-bottom: 0px;
         }
 
         .p30 {
             text-align: left;
-            padding-left: 2px;
+            padding-left: 30px;
             margin-top: 4px;
             margin-bottom: 0px;
         }
 
         .p31 {
             text-align: left;
-            padding-left: 3px;
+            padding-left: 30px;
             margin-top: 14px;
             margin-bottom: 0px;
         }
 
         .p32 {
             text-align: left;
-            padding-left: 3px;
-            margin-top: 52px;
+            padding-left: 30px;
+            margin-top: 15px;
             margin-bottom: 0px;
         }
 
         .p33 {
             text-align: left;
-            padding-left: 4px;
+            padding-left: 30px;
             margin-top: 18px;
             margin-bottom: 0px;
         }
 
         .p34 {
             text-align: left;
-            padding-left: 768px;
+            padding-left: 681px;
             margin-top: 34px;
             margin-bottom: 0px;
         }
@@ -607,7 +607,7 @@
         .td5 {
             padding: 0px;
             margin: 0px;
-            width: 246px;
+            /* width: 246px; */
         }
 
         .tr0 {
@@ -643,20 +643,22 @@
             width: 271px;
             margin-top: 39px;
             font: 7px 'Arial';
-            color: #ffffff;
+            color: #000000;
+            margin-left: 55px;
+
         }
 
         .t1 {
-            width: 428px;
-            margin-left: 2px;
+            width: 394px;
+            margin-left: 20px;
             margin-top: 2px;
             font: 17px 'Arial';
             color: #333333;
         }
 
-        .page-containerr {
+        .page-container {
             background-color: #9e9e9e;
-            background-image: url('../pdf/download.svg');
+            background-image: url('../../../pdf/download.svg');
             -webkit-transition: left 500ms;
             transition: left 500ms;
         }
@@ -672,224 +674,166 @@
             height: 6px;
             vertical-align: middle;
         }
-    </style>
+
+        #p1dimg1 {
+            position: fixed;
+            opacity: 0.5;
+            margin-left: -50px;
+        }
+
+
+        div#id1_1 {
+            /* top: 72px; */
+            padding-top: 384px;
+            padding-left: 2px;
+            z-index: 9999;
+
+        }
+
+        .logo_div {
+            margin-left: 68%;
+            margin-top: 28px;
+        }
+
+        .page-break {
+            page-break-after: always;
+        }
+
+        p.p1.ft1 {
+            text-align: justify;
+            width: 54%;
+            text-justify: inter-word;
+        }
+
+        #p2dimg1 {
+            position: fixed;
+            opacity: 0.5;
+            margin-left: -50px;
+            margin-top: 100px;
+            z-index: -1;
+            /* z-index:-1;
+            width: 864px;
+            height: 1209px;  */
+        }
+    </STYLE>
 </HEAD>
 
-<BODY class="page-container">
-    <div class="center" style="width:800px; margin: 0 auto;">
-        <DIV id="page_1">
-            <DIV id="p1dimg1">
-                <IMG src="images/img-1.jpg" id="p1img1">
+<BODY>
+
+    <div class="row page-break">
+
+        <div class="col" style="width: 50%; float:left">
+            <div id="p1dimg1">
+                <IMG src="{{public_path('pdf/img-1.jpg')}}" id="p1img1">
+            </div>
+            <DIV id="id1_1">
+
+                <P class="p0 ft0" style="color:#000;">ABOUT ME</P>
+                <P class="p1 ft1" style="color:#000;">{{strip_tags($data->about_employee)}}</P>
+                <TABLE cellpadding=0 cellspacing=0 class="t0">
+
+
+                    @forelse ($data['skills'] as $skill)
+                    <TR>
+                        <TD class="tr0 td0">
+                            <P class="p9 ft2" style="color:#000;">○</P>
+                        </TD>
+                        <TD class="tr0 td1">
+                            <P class="p9 ft1" style="color:#000;">{{$skill['skills_details']['value']}}</P>
+                        </TD>
+
+                    </TR>
+                    @empty
+                    <p>No skills Found</p>
+                    @endforelse
+
+                </TABLE>
+
             </DIV>
 
+        </div>
+        <div class="col" style="width: 50%; float:right">
+            <P class="ft4" style="width:300px; height: 51px; float:left; margin:0; padding: 0; margin-top:-8px;"><img style="width:90%" src="{{ public_path('pdf/logo.jpg') }}"></P>
+            <P class="p14 ft5">CMMI L3 SCV</P>
+            <P class="p14 ft5">ISO 27001:2013</P>
+            <P class="p14 ft5">ISO 9001:2015</P>
+            <P class="p17 ft6" style="margin-top: 33px;">{{$data->employee_id}}</P>
+            <p class="p18 ft7" style="color:#222;">{{$data->resume_title}}</p>
+            <P class="p19 ft8">WORK EXPERIENCE</P>
+            <P class="p20 ft9">{{$data->resume_title}}</P>
+            <TABLE cellpadding=0 cellspacing=0 class="t1">
+                <TR>
+                    <TD class="tr2 td4">
+                        <P class="p21 ft10">Virtual Employee</P>
+                    </TD>
+                    <TD class="tr2 td5">
+                        <P class="p9 ft10">CMMI L3 SCV</P>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD rowspan=2 class="tr3 td4">
+                        <P class="p9 ft11">{{ \Carbon\Carbon::parse($data['joining_date'])->format('M Y')}} - Present</P>
+                    </TD>
+                    <TD class="tr4 td5">
+                        <P class="p9 ft10">ISO 27001:2013/ISO 9001:2015</P>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD class="tr5 td5">
+                        <P class="p9 ft12">&nbsp;</P>
+                    </TD>
+                </TR>
+            </TABLE>
+            <P class="p22 ft8">EDUCATION</P>
 
-            <DIV class="dclr"></DIV>
-            <DIV>
-                <DIV id="id1_1">
-                    <P class="p0 ft0" style="color:#fff;">ABOUT ME</P>
-                    <P class="p1 ft1" style="color:#fff;">Have 4.5 years of experience as</P>
-                    <P class="p2 ft1" style="color:#fff;">Full Stack Developer and Good hand</P>
-                    <P class="p3 ft1" style="color:#fff;">experience as a software developer in the</P>
-                    <P class="p4 ft1" style="color:#fff;">IT industry.</P>
-                    <P class="p5 ft1" style="color:#fff;">Having good knowledge about the Laravel</P>
-                    <P class="p6 ft1" style="color:#fff;">and PHP</P>
-                    <P class="p7 ft0" style="color:#fff;">SKILLS, LANGUAGES</P>
-                    <P class="p8 ft0" style="color:#fff;">AND TOOLS</P>
-                    <TABLE cellpadding=0 cellspacing=0 class="t0">
-                        <TR>
-                            <TD class="tr0 td0">
-                                <P class="p9 ft2" style="color:#fff;">○</P>
-                            </TD>
-                            <TD class="tr0 td1">
-                                <P class="p9 ft1" style="color:#fff;">Laravel</P>
-                            </TD>
-                            <TD class="tr0 td2">
-                                <P class="p9 ft2" style="color:#fff;">○</P>
-                            </TD>
-                            <TD class="tr0 td3">
-                                <P class="p9 ft1" style="color:#fff;">Vue JS</P>
-                            </TD>
-                        </TR>
-                        <TR>
-                            <TD class="tr1 td0">
-                                <P class="p9 ft2" style="color:#fff;">○</P>
-                            </TD>
-                            <TD class="tr1 td1">
-                                <P class="p9 ft1" style="color:#fff;">React JS</P>
-                            </TD>
-                            <TD class="tr1 td2">
-                                <P class="p9 ft2" style="color:#fff;">○</P>
-                            </TD>
-                            <TD class="tr1 td3">
-                                <P class="p9 ft1" style="color:#fff;">Rest API</P>
-                            </TD>
-                        </TR>
-                        <TR>
-                            <TD class="tr1 td0">
-                                <P class="p9 ft2" style="color:#fff;">○</P>
-                            </TD>
-                            <TD class="tr1 td1">
-                                <P class="p9 ft1" style="color:#fff;">Cake PHP</P>
-                            </TD>
-                            <TD class="tr1 td2">
-                                <P class="p9 ft2" style="color:#fff;">○</P>
-                            </TD>
-                            <TD class="tr1 td3">
-                                <P class="p9 ft3" style="color:#fff;">GOOGLE MAP API</P>
-                            </TD>
-                        </TR>
-                        <TR>
-                            <TD class="tr1 td0">
-                                <P class="p9 ft2" style="color:#fff;">○</P>
-                            </TD>
-                            <TD class="tr1 td1">
-                                <P class="p9 ft1" style="color:#fff;">MySQL</P>
-                            </TD>
-                            <TD class="tr1 td2">
-                                <P class="p9 ft2" style="color:#fff;">○</P>
-                            </TD>
-                            <TD class="tr1 td3">
-                                <P class="p9 ft1" style="color:#fff;">HOSTFULLY API</P>
-                            </TD>
-                        </TR>
-                        <TR>
-                            <TD class="tr1 td0">
-                                <P class="p9 ft2" style="color:#fff;">○</P>
-                            </TD>
-                            <TD class="tr1 td1">
-                                <P class="p9 ft1" style="color:#fff;">PayPal</P>
-                            </TD>
-                            <TD class="tr1 td2">
-                                <P class="p9 ft2" style="color:#fff;">○</P>
-                            </TD>
-                            <TD class="tr1 td3">
-                                <P class="p9 ft1" style="color:#fff;">GuestLine</P>
-                            </TD>
-                        </TR>
-                        <TR>
-                            <TD class="tr1 td0">
-                                <P class="p9 ft2" style="color:#fff;">○</P>
-                            </TD>
-                            <TD class="tr1 td1">
-                                <P class="p9 ft1" style="color:#fff;">Third party API</P>
-                            </TD>
-                            <TD class="tr1 td2">
-                                <P class="p9 ft2" style="color:#fff;">○</P>
-                            </TD>
-                            <TD class="tr1 td3">
-                                <P class="p9 ft3" style="color:#fff;">Stripe Integration</P>
-                            </TD>
-                        </TR>
-                        <TR>
-                            <TD class="tr1 td0">
-                                <P class="p9 ft2" style="color:#fff;">○</P>
-                            </TD>
-                            <TD class="tr1 td1">
-                                <P class="p9 ft1" style="color:#fff;">SMS Integration</P>
-                            </TD>
-                            <TD class="tr1 td2">
-                                <P class="p9 ft2" style="color:#fff;">○</P>
-                            </TD>
-                            <TD class="tr1 td3">
-                                <P class="p9 ft3" style="color:#fff;">PUSH Notification</P>
-                            </TD>
-                        </TR>
-                    </TABLE>
-                    <P class="p10 ft0" style="color:#fff;">VISIT PORTFOLIO</P>
-                    <P class="p11 ft1"><a style="color:#fff; text-decoration: none" href="https://cghabitats.com">https://cghabitats.com</a></P>
-                    <P class="p12 ft1"><a style="color:#fff; text-decoration: none" href="https://skwoll.com/en">https://skwoll.com/en</a></P>
-                    <P class="p13 ft4"><a style="color:#fff; text-decoration: none" href="https://skwoll.com/en">https://skwoll.com/en</a></p>
-
-                </DIV>
-                <DIV id="id1_2">
-                    <P class="ft4" style="width:371px; height: 51px; float:left; margin:0; padding: 0; margin-top:-8px;"><img src="images/logo.jpg"></P>
-                    <P class="p14 ft5">CMMI L3 SCV</P>
-                    <P class="p14 ft5">ISO 27001:2013</P>
-                    <P class="p14 ft5">ISO 9001:2015</P>
-                    <P class="p17 ft6" style="margin-top:50px;">HS_AS _TK10827</P>
-                    <p class="p18 ft7" style="color:#222;">FULL STACK DEVLOPER | LARAVEL | REACTJS</p>
-                    <P class="p19 ft8">WORK EXPERIENCE</P>
-                    <P class="p20 ft9">FULL STACK DEVLOPER</P>
-                    <TABLE cellpadding=0 cellspacing=0 class="t1">
-                        <TR>
-                            <TD class="tr2 td4">
-                                <P class="p21 ft10">Virtual Employee</P>
-                            </TD>
-                            <TD class="tr2 td5">
-                                <P class="p9 ft10">CMMI L3 SCV</P>
-                            </TD>
-                        </TR>
-                        <TR>
-                            <TD rowspan=2 class="tr3 td4">
-                                <P class="p9 ft11">Nov 2021 - Present</P>
-                            </TD>
-                            <TD class="tr4 td5">
-                                <P class="p9 ft10">ISO 27001:2013/ISO 9001:2015</P>
-                            </TD>
-                        </TR>
-                        <TR>
-                            <TD class="tr5 td5">
-                                <P class="p9 ft12">&nbsp;</P>
-                            </TD>
-                        </TR>
-                    </TABLE>
-                    <P class="p22 ft8">EDUCATION</P>
-                    <P class="p23 ft9">POSTGRADUATE FROM TMU</P>
-                    <P class="p24 ft11">MCA | 2014 - 2016</P>
-                    <P class="p25 ft13">Completed my Master of Computer Applications with an aggregate of 75%</P>
-                    <P class="p26 ft9">GRADUATE FROM TMU</P>
-                    <P class="p24 ft11">BCA | 2011 - 2014</P>
-                    <P class="p27 ft13">Completed my Bachelor of Computer Applications with an aggregate of 65%</P>
-                    <P class="p28 ft8">INTERNSHIP</P>
-                    <P class="p29 ft9">TECHMENTRO,</P>
-                    <P class="p30 ft9">INDIA, NOIDA</P>
-                    <P class="p31 ft11">Jan 2016</P>
-                    <P class="p32 ft8">CERTIFICATIONS</P>
-                    <P class="p33 ft16"><SPAN class="ft14">○</SPAN><SPAN class="ft15">Certified By Oracle 10G</SPAN></P>
-                </DIV>
-            </DIV>
-        </DIV>
-        <DIV id="page_2">
-            <DIV id="p2dimg1">
-                <IMG src="images/img-2.jpg" id="p2img1">
-            </DIV>
+            @forelse ($data['education'] as $education)
+            <P class="p23 ft9">{{$education['education_details']['value']}}</P>
+            @if($education['education_title_id']=='1')
+            <P class="p24 ft11">BBA | {{ \Carbon\Carbon::parse($education['from'])->format('Y')}} - {{ \Carbon\Carbon::parse($education['to'])->format('Y')}}</P>
+            @elseif($education['education_title_id']=='2')
+            <P class="p24 ft11">BCA | {{ \Carbon\Carbon::parse($education['from'])->format('Y')}} - {{ \Carbon\Carbon::parse($education['to'])->format('Y')}}</P>
+            @elseif($education['education_title_id']=='3')
+            <P class="p24 ft11">B.Come | {{ \Carbon\Carbon::parse($education['from'])->format('Y')}} - {{ \Carbon\Carbon::parse($education['to'])->format('Y')}}</P>
+            @endif
 
 
-            <DIV class="dclr"></DIV>
-            <p class="ft4 p34" style="width:371px;height:51px;float:left; padding-left: 390px; margin-top:25px;"><img src="images/logo.jpg"></p>
-            <P class="p34 ft5">CMMI L3 SCV</P>
-            <P class="p36 ft5" style="margin-top:0px;">ISO 27001:2013</P>
-            <P class="p36 ft5" style="margin-top:0px;">ISO 9001:2015</P>
 
-            <P class="p37 ft8">ABOUT PROJECTS</P>
-            <P class="p38 ft9">QEDED</P>
-            <P class="p39 ft17">In this application three types of users. First one(submitter) is upload the old paper and get the reward points according to the paper and then they can convert this points in the money according to the formulas. Second is admin who manage the paper and application and approved the status accordingly. Third users(viewer) who view the paper after spend some money and got the point and through this point user can access the exam sample paper of last year.</P>
-            <P class="p40 ft16"><SPAN class="ft14">○</SPAN><SPAN class="ft18">User management system.</SPAN></P>
-            <P class="p41 ft16"><SPAN class="ft14">○</SPAN><SPAN class="ft18">User wallet management system.</SPAN></P>
-            <P class="p41 ft16"><SPAN class="ft14">○</SPAN><SPAN class="ft18">Paper management system.</SPAN></P>
-            <P class="p40 ft16"><SPAN class="ft14">○</SPAN><SPAN class="ft18">Payment getaway Integration.</SPAN></P>
-            <P class="p41 ft16"><SPAN class="ft14">○</SPAN><SPAN class="ft18">S3 bucket update the question paper.</SPAN></P>
-            <P class="p42 ft9">CLICKHOOK</P>
-            <P class="p43 ft19">It's a lead management system application which is come from the FACEBOOK side. In this application user create a LEAD generated form on Facebook and fetch all lead on our application.</P>
-            <P class="p40 ft16"><SPAN class="ft14">○</SPAN><SPAN class="ft18">Check new leads and fetch on our application.</SPAN></P>
-            <P class="p41 ft16"><SPAN class="ft14">○</SPAN><SPAN class="ft18">Maintain the leads on our system.</SPAN></P>
-            <P class="p41 ft16"><SPAN class="ft14">○</SPAN><SPAN class="ft18">Maintain the status of the leads on our system.</SPAN></P>
-            <P class="p44 ft9">ADVISOME</P>
-            <P class="p45 ft17">It's just like advice management system. A user can take the advice in any area’s using this app. There are main two type of user in this application. One is quester and second one is adviser.</P>
-            <P class="p46 ft16"><SPAN class="ft14">○</SPAN><SPAN class="ft18">User management system.</SPAN></P>
-            <P class="p41 ft16"><SPAN class="ft14">○</SPAN><SPAN class="ft18">Maintain the query which is come from the quester side.</SPAN></P>
-            <P class="p40 ft16"><SPAN class="ft14">○</SPAN><SPAN class="ft18">Create a REST API with the mobile team in the application.</SPAN></P>
-            <P class="p47 ft9">PRODESIGN</P>
-            <P class="p48 ft19">It is application in which user can modify the original image with the selected provide design in the application.</P>
-            <P class="p40 ft16"><SPAN class="ft14">○</SPAN><SPAN class="ft18">Implementation of HTML theme Structure.</SPAN></P>
-            <P class="p41 ft16"><SPAN class="ft14">○</SPAN><SPAN class="ft18">Developed Job management system for employer and admin.</SPAN></P>
-            <P class="p41 ft16"><SPAN class="ft14">○</SPAN><SPAN class="ft18">Manage the different type of user role and permission,</SPAN></P>
-            <P class="p40 ft16"><SPAN class="ft14">○</SPAN><SPAN class="ft18">Designer: Create the image design according to the requirement who is hired by the designer.</SPAN></P>
-            <P class="p41 ft16"><SPAN class="ft14">○</SPAN><SPAN class="ft18">User: who upload the image and pic in the application for the modification.</SPAN></P>
-            <P class="p41 ft16"><SPAN class="ft14">○</SPAN><SPAN class="ft18">Manage the notification for every type of user.</SPAN></P>
-        </DIV>
-
+            @empty
+            <p>No EDUCATION Found</p>
+            @endforelse
+            <!-- <P class="p28 ft8">INTERNSHIP</P>
+            <P class="p29 ft9">TECHMENTRO,</P>
+            <P class="p30 ft9">INDIA, NOIDA</P>
+            <P class="p31 ft11">Jan 2016</P>-->
+            <P class="p32 ft8">CERTIFICATIONS</P>
+            @forelse ($data['certificate'] as $res)
+            <P class="p33 ft16"><SPAN class="ft15">{{strip_tags($res['certification'])}}</SPAN></P>
+            @empty
+            <p>No Certification Found</p>
+            @endforelse
+        </div>
     </div>
+
+    <DIV id="page_2">
+        <div id="p2dimg1">
+            <IMG src="{{public_path('pdf/img-2.jpg')}}">
+        </div>
+
+
+
+        <DIV class="dclr"></DIV>
+
+
+        <P class="p37 ft8">ABOUT PROJECTS</P>
+        @forelse ($data['project'] as $show)
+        <P class="p38 ft9">{{$show['project_name']}}</P>
+        <P class="p39 ft17">{{strip_tags($show['project_description'])}}</P>
+        @empty
+        <p>No Project Found</p>
+        @endforelse
+    </DIV>
+
+
 </BODY>
 
-</html>
+</HTML>
