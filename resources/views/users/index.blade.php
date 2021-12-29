@@ -33,8 +33,8 @@ Toast::message('message', 'level', 'title');
          <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Users
+                    <div class="panel-heading mypnl_heading">
+                        <span>Users</span>
                         <div class="col-sm-3 pull-right" style="margin-top: -7px;">
                             <form action="{{url('users')}}" method="GET" role="search">
                                 {{ csrf_field() }}
