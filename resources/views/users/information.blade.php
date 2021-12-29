@@ -54,14 +54,14 @@ Toast::message('message', 'level', 'title');
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <label>Email</label>
-                                                        <input type="email" class="form-control" placeholder="Ex:Jackson@temporary-mail.net" name="email" value="{{isset($data->email)?$data->email:'' }}" required="" autocomplete="off"/>
+                                                        <input type="email" class="form-control" placeholder="Ex:Jackson@temporary-mail.net" name="email" value="{{isset($data->email)?$data->email:'' }}" required="" autocomplete="off" />
 
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <label>Mobile</label>
-                                                        <input type="number" class="form-control" placeholder="Ex:968565472" name="mobile" value="{{isset($data->mobile)?$data->mobile:'' }}" required=""     autocomplete="off"/>
+                                                        <input type="number" class="form-control" placeholder="Ex:968565472" name="mobile" value="{{isset($data->mobile)?$data->mobile:'' }}" required="" autocomplete="off" />
 
                                                     </div>
                                                     <div class="col-lg-6">
@@ -76,26 +76,26 @@ Toast::message('message', 'level', 'title');
                                                         <input type="text" class="form-control" placeholder="2021-01-02" name="joining_date" id="joining_date" value="{{isset($data->joining_date)?$data->joining_date:'' }}" required="" autocomplete="on|off" />
 
                                                     </div>
-                                                    
+
                                                     <div class="col-lg-6">
                                                         <div class="row">
-                                                        <div class="col-lg-6">
-                                                        <label>Shift Time</label>
-                                                        <input type="time" class="form-control" placeholder="" name="shift_start" value="{{isset($data->shift_start)?$data->shift_start:'' }}" required="" autocomplete="on|off" />
+                                                            <div class="col-lg-6">
+                                                                <label>Shift Time</label>
+                                                                <input type="time" class="form-control" placeholder="" name="shift_start" value="{{isset($data->shift_start)?$data->shift_start:'' }}" required="" autocomplete="on|off" />
 
-                                                        </div>
-                                                        <div class="col-lg-6">
-                                                        <label>&nbsp;</label>
-                                                            <input type="time" class="form-control" placeholder="" name="shift_end" value="{{isset($data->shift_end)?$data->shift_end:'' }}" required="" autocomplete="on|off" />
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <label>&nbsp;</label>
+                                                                <input type="time" class="form-control" placeholder="" name="shift_end" value="{{isset($data->shift_end)?$data->shift_end:'' }}" required="" autocomplete="on|off" />
 
+                                                            </div>
                                                         </div>
                                                     </div>
-</div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <label>Team</label>
-                                                        <input type="text" class="form-control" placeholder="EX:PHP/Node" name="team" value="{{isset($data->team)?$data->team:'' }}" required="" autocomplete="on|off" />
+                                                        <input type="text" class="form-control" placeholder="EX: Anshul Sehgal" name="team" value="{{isset($data->team)?$data->team:'' }}" required="" autocomplete="on|off" />
 
                                                     </div>
                                                     <div class="col-lg-6">
@@ -122,170 +122,187 @@ Toast::message('message', 'level', 'title');
                                         <form action="{{url('add-user-skills')}}" id="skillsForm">
                                             <input type="hidden" value="" name="user_id" class="user_id">
                                             <div class="form-card">
-                                                
+
 
                                                 <div class="row">
                                                     <div class="col-lg-6">
-														<h2 class="fs-title">Skills</h2>
+                                                        <h2 class="fs-title">Skills</h2>
                                                         <div class="row">
-                                                    <div class="col-lg-6">
+                                                            <div class="col-lg-6">
 
-                                                        <select class="selectpicker" multiple data-live-search="true" data-style="form-control" name="skill_value_id[]" {{ isset($data->id)  ? '' : 'required=""'}}>
-                                                            @forelse($allskills as $key=>$dat)
-                                                            @if(isset($selectedSkills) && in_array($dat['id'],$selectedSkills))
-                                                            <option value="{{$dat['id']}}" selected>{{$dat['value']}}</option>
-                                                           @else
-                                                           <option value="{{$dat['id']}}" >{{$dat['value']}}</option>
-                                                           @endif
-                                                           @empty
-                                                            <p>No replies</p>
-                                                            @endforelse
-
-                                                        </select>
-
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <input type="hidden" name="drag_user_id" id="drag_user_id" value="{{isset($data->id)?$data->id:'' }}">
-                                                        <ul id="sortable">
-                                                            @if(isset($data->skills))
-                                                            @forelse($data->skills as $key=>$dat)
-                                                            <li class="ui-state-default" style="margin: 4px;" id="{{$dat['id']}}"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span> {{$dat['skills_details']['value']}}</li>
-                                                            @empty
-                                                            <p>No Skills</p>
-                                                            @endforelse
-                                                            @endif
-                                                        </ul>
-                                                    </div>
-</div>
-														
-														</div>
-													 <div class="col-lg-6">
-														 <h2 class="fs-title">Learning Skills</h2>
-                                                    <div class="row">
-                                                    <div class="col-lg-6">
-                                                       
-                                                        <select class="selectpicker" multiple data-live-search="true" data-style="form-control" name="learning_skills[]" {{ isset($data->id)  ? '' : 'required=""'}}>
-                                                        @forelse($allskills as $key=>$dat)
-                                                            @if(isset($selectedLearningSkills) && in_array($dat['id'],$selectedLearningSkills))
-                                                            <option value="{{$dat['id']}}" selected>{{$dat['value']}}</option>
-                                                           @else
-                                                           <option value="{{$dat['id']}}" >{{$dat['value']}}</option>
-                                                           @endif
-                                                           @empty
-                                                            <p>No replies</p>
-                                                            @endforelse
-
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <input type="hidden" name="drag_user_id" id="drag_user_id" value="{{isset($data->id)?$data->id:'' }}">
-                                                        <ul id="sortable_lerning">
-                                                            @if(isset($data->learning_skills))
-                                                            @forelse($data->learning_skills as $key=>$dat)
-
-                                                            <li class="ui-state-default" style="margin: 4px;" id="{{$dat['id']}}"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span> {{$dat['skills_details']['value']}}</li>
-
-                                                            @empty
-                                                            <p>No Skills</p>
-                                                            @endforelse
-                                                            @endif
-                                                        </ul>
-                                                    </div>
-</div>
-													</div>
-                                                
-												</div>
-													<h2 class="fs-title">Education</h2>
-												<div class="row">
-                                                <div class="education_more col-lg-12">
-                                                    <div class="row">
-                                                        
-                                                        <div class="col-lg-3">
-                                                        
-
-                                                        <!-- <input type="hidden" name="order[]" value="1"> -->
-                                                            <label><i class="fa fa-arrows" aria-hidden="true"></i>Type</label>
-                                                            <select class="form-control" aria-label="Default select example" name="edu_type[]" {{ isset($data->id)  ? '' : 'required=""'}}>
-                                                                <option value="">--Please select--</option>
-                                                                @forelse($education as $key=>$dat)
-                                                                <option value="{{$dat['id']}}" >{{$dat['value']}}</option>
-                                                                @empty
-                                                                <p>No replies</p>
-                                                                @endforelse
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <label>Title</label>
-                                                            <select class="form-control" aria-label="Default select example" name="edu_title[]" {{ isset($data->id)  ? '' : 'required=""'}}>
-                                                                <option value="">--Please select--</option>
-                                                                <option value="1">BBA</option>
-                                                                <option value="2">BCA</option>
-                                                                <option value="3">B.Come</option>
-                                                            </select>
-                                                        </div>
-
-                                                        <div class="col-lg-3 datepicker-wrap">
-                                                            <label>From</label>
-
-                                                            <input type="text" class="form-control edu_to" placeholder="2021-02-27" name="edu_from[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="off" />
-
-                                                        </div>
-                                                        <div class="col-lg-3 datepicker-wrap">
-                                                            <label>To</label>
-                                                            <input type="text" class="form-control edu_from" placeholder="2021-02-27" name="edu_to[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="off" />
-
-                                                        </div>
-                                                    </div>
-                                                    @if(isset($data->education) && (count($data->education)>0))
-                                                    @foreach($data->education as $key=>$value)
-                                                    <div class="row" order="{{$value['order']}}">
-                                                        <div class="col-lg-3">
-                                                            <label><i class="fa fa-arrows" aria-hidden="true"></i>Type</label>
-                                                            <select class="form-control" aria-label="Default select example" name="edu_type[]" required="">
-                                                           
-                                                            @forelse($education as $key=>$dat)
-                                                               
-                                                                @if($dat['id']==$value['degree_type_id'])
-                                                                        <option value="{{$dat['id']}}" selected>{{$dat['value']}} </option>
+                                                                <select class="selectpicker" multiple data-live-search="true" data-style="form-control" name="skill_value_id[]" {{ isset($data->id)  ? '' : 'required=""'}}>
+                                                                    @forelse($allskills as $key=>$dat)
+                                                                    @if(isset($selectedSkills) && in_array($dat['id'],$selectedSkills))
+                                                                    <option value="{{$dat['id']}}" selected>{{$dat['value']}}</option>
                                                                     @else
-                                                                    <option value="{{$dat['id']}}" >{{$dat['value']}}</option>
+                                                                    <option value="{{$dat['id']}}">{{$dat['value']}}</option>
                                                                     @endif
-                                                                @empty
+                                                                    @empty
                                                                     <p>No replies</p>
                                                                     @endforelse
-                                                               
-                                                            </select>
+
+                                                                </select>
+
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <input type="hidden" name="drag_user_id" id="drag_user_id" value="{{isset($data->id)?$data->id:'' }}">
+                                                                <ul id="sortable">
+                                                                    @if(isset($data->skills))
+                                                                    @forelse($data->skills as $key=>$dat)
+                                                                    <li class="ui-state-default" style="margin: 4px;" id="{{$dat['id']}}"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span> {{$dat['skills_details']['value']}}</li>
+                                                                    @empty
+                                                                    <p>No Skills</p>
+                                                                    @endforelse
+                                                                    @endif
+                                                                </ul>
+                                                            </div>
                                                         </div>
 
-                                                        <div class="col-lg-3">
-                                                            <label>Title</label>
-                                                            <select class="form-control" aria-label="Default select example" name="edu_title[]" {{ isset($data->id)  ? '' : 'required=""'}}>
-                                                                <option value="1" {{ isset($value['education_title_id']) == '1'  ? 'selected' : ''}}>BBA</option>
-                                                                <option value="2" {{ isset($value['education_title_id']) == '2'  ? 'selected' : ''}}>BCA</option>
-                                                                <option value="3" {{ isset($value['education_title_id']) == '3'  ? 'selected' : ''}}>B.Come</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-lg-3 datepicker-wrap">
-                                                            <label>From</label>
-                                                            <input type="text" class="form-control edu_to" placeholder="12-17-2021" name="edu_from[]" value="{{ isset($value['from'])?$value['from']:''}}" required="" autocomplete="off" />
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <h2 class="fs-title">Learning Skills</h2>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
 
-                                                        </div>
-                                                        <div class="col-lg-3 datepicker-wrap">
-                                                            <label>To</label>
-                                                            <input type="text" class="form-control edu_from" placeholder="12-17-2021" name="edu_to[]" value="{{ isset($value['to'])?$value['to']:''}}" required="" autocomplete="off" />
+                                                                <select class="selectpicker" multiple data-live-search="true" data-style="form-control" name="learning_skills[]" {{ isset($data->id)  ? '' : 'required=""'}}>
+                                                                    @forelse($allskills as $key=>$dat)
+                                                                    @if(isset($selectedLearningSkills) && in_array($dat['id'],$selectedLearningSkills))
+                                                                    <option value="{{$dat['id']}}" selected>{{$dat['value']}}</option>
+                                                                    @else
+                                                                    <option value="{{$dat['id']}}">{{$dat['value']}}</option>
+                                                                    @endif
+                                                                    @empty
+                                                                    <p>No replies</p>
+                                                                    @endforelse
 
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <input type="hidden" name="drag_user_id" id="drag_user_id" value="{{isset($data->id)?$data->id:'' }}">
+                                                                <ul id="sortable_lerning">
+                                                                    @if(isset($data->learning_skills))
+                                                                    @forelse($data->learning_skills as $key=>$dat)
+
+                                                                    <li class="ui-state-default" style="margin: 4px;" id="{{$dat['id']}}"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span> {{$dat['skills_details']['value']}}</li>
+
+                                                                    @empty
+                                                                    <p>No Skills</p>
+                                                                    @endforelse
+                                                                    @endif
+                                                                </ul>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    @endforeach
-                                                    @endif
-
-
-
-                                                    <a href="javascript:void(0);" class="add_button btn btn-info" title="Add field"><i class="fa fa-plus" aria-hidden="true"></i> Add More</a>
 
                                                 </div>
+                                                <h2 class="fs-title">Education</h2>
+                                                <div class="row">
+                                                    <div class="education_more col-lg-12">
+                                                        <div class="row">
 
-</div>
+                                                            <div class="col-lg-3">
+
+
+                                                                <!-- <input type="hidden" name="order[]" value="1"> -->
+                                                                <label><i class="fa fa-arrows" aria-hidden="true"></i>Type</label>
+                                                                <select class="form-control" aria-label="Default select example" name="edu_type[]" {{ isset($data->id)  ? '' : 'required=""'}}>
+                                                                    <option value="">--Please select--</option>
+                                                                    @forelse($education as $key=>$dat)
+                                                                    <option value="{{$dat['id']}}">{{$dat['value']}}</option>
+                                                                    @empty
+                                                                    <p>No replies</p>
+                                                                    @endforelse
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <label>Title</label>
+                                                                <select class="form-control" aria-label="Default select example" name="edu_title[]" {{ isset($data->id)  ? '' : 'required=""'}}>
+                                                                    @forelse($course as $key=>$res)
+
+                                                                    @if($res['id']==$res['education_title_id'])
+                                                                    <option value="{{$res['id']}}" selected>{{$res['value']}} </option>
+                                                                    @else
+                                                                    <option value="{{$res['id']}}">{{$res['value']}}</option>
+                                                                    @endif
+                                                                    @empty
+                                                                    <p>No replies</p>
+                                                                    @endforelse
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="col-lg-3 datepicker-wrap">
+                                                                <label>From</label>
+
+                                                                <input type="text" class="form-control edu_to" placeholder="2021-02-27" name="edu_from[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="off" />
+
+                                                            </div>
+                                                            <div class="col-lg-3 datepicker-wrap">
+                                                                <label>To</label>
+                                                                <input type="text" class="form-control edu_from" placeholder="2021-02-27" name="edu_to[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="off" />
+
+                                                            </div>
+                                                        </div>
+                                                        @if(isset($data->education) && (count($data->education)>0))
+                                                        @foreach($data->education as $key=>$value)
+                                                        <div class="row" order="{{$value['order']}}">
+                                                            <div class="col-lg-3">
+                                                                <label><i class="fa fa-arrows" aria-hidden="true"></i>Type</label>
+                                                                <select class="form-control" aria-label="Default select example" name="edu_type[]" required="">
+
+                                                                    @forelse($education as $key=>$dat)
+
+                                                                    @if($dat['id']==$value['degree_type_id'])
+                                                                    <option value="{{$dat['id']}}" selected>{{$dat['value']}} </option>
+                                                                    @else
+                                                                    <option value="{{$dat['id']}}">{{$dat['value']}}</option>
+                                                                    @endif
+                                                                    @empty
+                                                                    <p>No replies</p>
+                                                                    @endforelse
+
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="col-lg-3">
+                                                                <label>Title</label>
+                                                                <select class="form-control" aria-label="Default select example" name="edu_title[]" {{ isset($data->id)  ? '' : 'required=""'}}>
+                                                                @forelse($course as $key=>$datt)
+
+                                                                    @if($datt['id']==$value['education_title_id'])
+                                                                    <option value="{{$datt['id']}}" selected>{{$datt['value']}} </option>
+                                                                    @else
+                                                                    <option value="{{$datt['id']}}">{{$datt['value']}}</option>
+                                                                    @endif
+                                                                    @empty
+                                                                    <p>No replies</p>
+                                                                    @endforelse
+                                                                    
+                                                                <!-- <option value="1" {{ isset($value['education_title_id']) == '1'  ? 'selected' : ''}}>BBA</option>
+                                                                    <option value="2" {{ isset($value['education_title_id']) == '2'  ? 'selected' : ''}}>BCA</option>
+                                                                    <option value="3" {{ isset($value['education_title_id']) == '3'  ? 'selected' : ''}}>B.Come</option> -->
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-lg-3 datepicker-wrap">
+                                                                <label>From</label>
+                                                                <input type="text" class="form-control edu_to" placeholder="12-17-2021" name="edu_from[]" value="{{ isset($value['from'])?$value['from']:''}}" required="" autocomplete="off" />
+
+                                                            </div>
+                                                            <div class="col-lg-3 datepicker-wrap">
+                                                                <label>To</label>
+                                                                <input type="text" class="form-control edu_from" placeholder="12-17-2021" name="edu_to[]" value="{{ isset($value['to'])?$value['to']:''}}" required="" autocomplete="off" />
+
+                                                            </div>
+                                                        </div>
+                                                        @endforeach
+                                                        @endif
+
+
+
+                                                        <a href="javascript:void(0);" class="add_button btn btn-info" title="Add field"><i class="fa fa-plus" aria-hidden="true"></i> Add More</a>
+
+                                                    </div>
+
+                                                </div>
                                             </div>
 
                                             <input type="submit" value="Next Step" class=" action-button btn btn-primary  col-md-3" id="skills_submit" />
@@ -304,37 +321,37 @@ Toast::message('message', 'level', 'title');
 
                                                 <div class="exp_more">
                                                     <div>
-                                                    <div class="row">
-                                                        <div class="col-lg-3">
-                                                            <label><i class="fa fa-arrows" aria-hidden="true"></i>Companay Name</label>
-                                                            <input type="text" class="form-control" placeholder="XYZ" name="company_name[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
+                                                        <div class="row">
+                                                            <div class="col-lg-3">
+                                                                <label><i class="fa fa-arrows" aria-hidden="true"></i>Companay Name</label>
+                                                                <input type="text" class="form-control" placeholder="XYZ" name="company_name[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
-                                                        </div>
-                                                        <div class="col-lg-3 ">
-                                                            <label>Designation</label>
-                                                            <input type="text" class="form-control" placeholder="Team leader" name="designation[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
+                                                            </div>
+                                                            <div class="col-lg-3 ">
+                                                                <label>Designation</label>
+                                                                <input type="text" class="form-control" placeholder="Team leader" name="designation[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
-                                                        </div>
+                                                            </div>
 
-                                                        <div class="col-lg-3 datepicker-wrap">
-                                                            <label>From</label>
-                                                            <input type="text" class="form-control exp_from" placeholder="2021-12-19" name="exp_from[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
+                                                            <div class="col-lg-3 datepicker-wrap">
+                                                                <label>From</label>
+                                                                <input type="text" class="form-control exp_from" placeholder="2021-12-19" name="exp_from[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
-                                                        </div>
-                                                        <div class="col-lg-3 datepicker-wrap">
-                                                            <label>To</label>
-                                                            <input type="text" class="form-control exp_to" placeholder="2021-12-19" name="exp_to[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
+                                                            </div>
+                                                            <div class="col-lg-3 datepicker-wrap">
+                                                                <label>To</label>
+                                                                <input type="text" class="form-control exp_to" placeholder="2021-12-19" name="exp_to[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <div class="form-group">
-                                                                <label>Role and Responsibilities </label>
-                                                                <textarea class="form-control" rows="3" name="role_res[]" {{ isset($data->id)  ? '' : 'required=""'}}></textarea>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="form-group">
+                                                                    <label>Role and Responsibilities </label>
+                                                                    <textarea class="form-control" rows="3" name="role_res[]" {{ isset($data->id)  ? '' : 'required=""'}}></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
                                                     @if(isset($data->exprince) && count($data->exprince)>0)
@@ -382,66 +399,66 @@ Toast::message('message', 'level', 'title');
                                                 </div>
 
                                                 <div class="certification_more">
-                                                <div>
-                                                 <div class="row">
-                                                        <div class="col-lg-4">
-                                                            <label><i class="fa fa-arrows" aria-hidden="true"></i>Type</label>
+                                                    <div>
+                                                        <div class="row">
+                                                            <div class="col-lg-4">
+                                                                <label><i class="fa fa-arrows" aria-hidden="true"></i>Type</label>
                                                                 <select class="form-control" aria-label="Default select example" name="certification_type[]" {{ isset($data->id)  ? '' : 'required=""'}}>
                                                                     <option value="">--Please select--</option>
                                                                     @forelse($certificate as $key=>$dat)
-                                                                    <option value="{{$dat['id']}}" >{{$dat['value']}}</option>
+                                                                    <option value="{{$dat['id']}}">{{$dat['value']}}</option>
                                                                     @empty
                                                                     <p>No replies</p>
                                                                     @endforelse
                                                                 </select>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <div class="form-group">
-                                                                <label><i class="fa fa-arrows" aria-hidden="true"></i>
-                                                                Certification </label>
-                                                                <textarea class="form-control" rows="3" name="certification[]" {{ isset($data->id)  ? '' : 'required=""'}}></textarea>
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="form-group">
+                                                                    <label><i class="fa fa-arrows" aria-hidden="true"></i>
+                                                                        Certification </label>
+                                                                    <textarea class="form-control" rows="3" name="certification[]" {{ isset($data->id)  ? '' : 'required=""'}}></textarea>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                @if(isset($data->certification) && count($data->certification)>0)
+                                                    @if(isset($data->certification) && count($data->certification)>0)
                                                     @foreach($data->certification as $key=>$value)
                                                     <div>
-                                                    <div class="row">
-                                                        <div class="col-lg-4">
-                                                        <label><i class="fa fa-arrows" aria-hidden="true"></i>Type</label>
-                                                            <select class="form-control" aria-label="Default select example" name="certification_type[]" {{ isset($data->id)  ? '' : 'required=""'}}>
-                                                                <option value="">--Please select--</option>
-                                                                @forelse($certificate as $key=>$dat)
-                                                                @if($dat['id']==$value['certifications_value_id'])
+                                                        <div class="row">
+                                                            <div class="col-lg-4">
+                                                                <label><i class="fa fa-arrows" aria-hidden="true"></i>Type</label>
+                                                                <select class="form-control" aria-label="Default select example" name="certification_type[]" {{ isset($data->id)  ? '' : 'required=""'}}>
+                                                                    <option value="">--Please select--</option>
+                                                                    @forelse($certificate as $key=>$dat)
+                                                                    @if($dat['id']==$value['certifications_value_id'])
                                                                     <option value="{{$dat['id']}}" selected>{{$dat['value']}} </option>
                                                                     @else
-                                                                    <option value="{{$dat['id']}}" >{{$dat['value']}}</option>
-                                                                @endif
-                                                                @empty
-                                                                <p>No replies</p>
-                                                                @endforelse
-                                                            </select>
+                                                                    <option value="{{$dat['id']}}">{{$dat['value']}}</option>
+                                                                    @endif
+                                                                    @empty
+                                                                    <p>No replies</p>
+                                                                    @endforelse
+                                                                </select>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <div class="form-group">
-                                                                <label><i class="fa fa-arrows" aria-hidden="true"></i>
-                                                                    Certification </label>
-                                                                <textarea class="form-control ckeditor" rows="3" name="certification[]">{{ isset($value['certification'])?$value['certification']:''}} </textarea>
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="form-group">
+                                                                    <label><i class="fa fa-arrows" aria-hidden="true"></i>
+                                                                        Certification </label>
+                                                                    <textarea class="form-control ckeditor" rows="3" name="certification[]">{{ isset($value['certification'])?$value['certification']:''}} </textarea>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
                                                     @endforeach
 
 
                                                     @endif
                                                     <a href="javascript:void(0);" class="certification_add_button btn btn-info" title="Add field"><i class="fa fa-plus" aria-hidden="true"> Add more</i></a>
-                                                  
+
                                                 </div>
 
 
@@ -461,122 +478,122 @@ Toast::message('message', 'level', 'title');
                                             <div class="form-card">
 
 
-                                               
+
 
                                                 <div class="row ach_more form-group">
-													<div class="col-lg-12">
+                                                    <div class="col-lg-12">
                                                         <h2 class="fs-title">Achievement</h2>
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <label><i class="fa fa-arrows" aria-hidden="true"></i>Title </label>
-                                                            <input type="text" class="form-control" placeholder="EX:abc" name="title[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <label><i class="fa fa-arrows" aria-hidden="true"></i>Title </label>
+                                                                <input type="text" class="form-control" placeholder="EX:abc" name="title[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
-                                                        </div>
-                                                        <div class="col-lg-12">
-                                                            <label>Achievement Description </label>
-                                                            <textarea class="form-control " rows="3" name="description[]" {{ isset($data->id)  ? '' : 'required=""'}}></textarea>
+                                                            </div>
+                                                            <div class="col-lg-12">
+                                                                <label>Achievement Description </label>
+                                                                <textarea class="form-control " rows="3" name="description[]" {{ isset($data->id)  ? '' : 'required=""'}}></textarea>
 
+                                                            </div>
                                                         </div>
-                                                    </div>
                                                         @if(isset($data->achievement) && count($data->achievement)>0)
-                                                    @foreach($data->achievement as $key=>$value)
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <label>Title </label>
-                                                            <input type="text" class="form-control" placeholder="EX:abc" name="title[]" value="{{ isset($value['title'])?$value['title']:''}}" required="" autocomplete="on" />
+                                                        @foreach($data->achievement as $key=>$value)
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <label>Title </label>
+                                                                <input type="text" class="form-control" placeholder="EX:abc" name="title[]" value="{{ isset($value['title'])?$value['title']:''}}" required="" autocomplete="on" />
 
+                                                            </div>
+                                                            <div class="col-lg-12">
+                                                                <label>Achievement Description </label>
+                                                                <textarea class="form-control ckeditor" rows="3" name="description[]">{{ isset($value['description'])?$value['description']:''}}</textarea>
+
+                                                            </div>
                                                         </div>
-                                                        <div class="col-lg-12">
-                                                            <label>Achievement Description </label>
-                                                            <textarea class="form-control ckeditor" rows="3" name="description[]">{{ isset($value['description'])?$value['description']:''}}</textarea>
+                                                        @endforeach
 
-                                                        </div>
-                                                    </div>
-                                                    @endforeach
-
-                                                    @endif
+                                                        @endif
                                                         <a href="javascript:void(0);" class="ach_add_button btn btn-info" title="Add field"><i class="fa fa-plus" aria-hidden="true"></i> Add more</a>
-                                                       
-                                                </div>
-												</div>
-                                                      
 
-                                               
+                                                    </div>
+                                                </div>
+
+
+
 
 
                                                 <div class="project_more">
                                                     <h2 class="fs-title">Project</h2>
                                                     <div class="row form-group">
-                                                       
-                                                            <div class="col-lg-3">
-                                                                <label>Project Name</label>
-                                                                <input type="text" class="form-control" placeholder="XYZ" name="project_name[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
-                                                            </div>
-                                                            <div class="col-lg-3">
-                                                                <label>Project Skills</label>
-                                                                <input type="text" class="form-control" placeholder="php,node etc" name="project_skills[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
+                                                        <div class="col-lg-3">
+                                                            <label>Project Name</label>
+                                                            <input type="text" class="form-control" placeholder="XYZ" name="project_name[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
-                                                            </div>
-
-
-                                                            <div class="col-lg-3">
-                                                                <label>Team Size</label>
-                                                                <input type="text" class="form-control" placeholder="1" name="team_size[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
-
-                                                            </div>
-                                                            <div class="col-lg-3">
-                                                                <label>Url</label>
-                                                                <input type="text" class="form-control" placeholder="https://github.com/" name="url[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
-
-                                                            </div>
-                                                            <div class="r ow">
-																<div class="col-md-12">
-                                                            <label>Project Description</label>
-                                                            <textarea class="form-control" rows="3" name="project_description[]" {{ isset($data->id)  ? '' : 'required=""'}}></textarea>
-
-</div>
                                                         </div>
+                                                        <div class="col-lg-3">
+                                                            <label>Project Skills</label>
+                                                            <input type="text" class="form-control" placeholder="php,node etc" name="project_skills[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
+
                                                         </div>
-                                          
+
+
+                                                        <div class="col-lg-3">
+                                                            <label>Team Size</label>
+                                                            <input type="text" class="form-control" placeholder="1" name="team_size[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
+
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <label>Url</label>
+                                                            <input type="text" class="form-control" placeholder="https://github.com/" name="url[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
+
+                                                        </div>
+                                                        <div class="r ow">
+                                                            <div class="col-md-12">
+                                                                <label>Project Description</label>
+                                                                <textarea class="form-control" rows="3" name="project_description[]" {{ isset($data->id)  ? '' : 'required=""'}}></textarea>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                     <a href="javascript:void(0);" class="project_add_button btn btn-info" title="Add field"><i class="fa fa-plus" aria-hidden="true"></i> Add more</a>
                                                     @if(isset($data->project) && count($data->project)>0)
                                                     @foreach($data->project as $key=>$value)
                                                     <div class="row form-group">
-                                                            <div class="col-lg-3">
-                                                                <label>Project Name</label>
-                                                                <input type="text" class="form-control" placeholder="XYZ" name="project_name[]" value="{{ isset($value['project_name'])?$value['project_name']:''}}" required="" autocomplete="on|off" />
+                                                        <div class="col-lg-3">
+                                                            <label>Project Name</label>
+                                                            <input type="text" class="form-control" placeholder="XYZ" name="project_name[]" value="{{ isset($value['project_name'])?$value['project_name']:''}}" required="" autocomplete="on|off" />
 
-                                                            </div>
-                                                            <div class="col-lg-3">
-                                                                <label>Project Skills</label>
-                                                                <input type="text" class="form-control" placeholder="php,node etc" name="project_skills[]" value="{{ isset($value['project_skills'])?$value['project_skills']:''}}" required="" autocomplete="on|off" />
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <label>Project Skills</label>
+                                                            <input type="text" class="form-control" placeholder="php,node etc" name="project_skills[]" value="{{ isset($value['project_skills'])?$value['project_skills']:''}}" required="" autocomplete="on|off" />
 
-                                                            </div>
-                                                            <div class="col-lg-3">
-                                                                <label>Team Size</label>
-                                                                <input type="text" class="form-control" placeholder="1" name="team_size[]" value="{{ isset($value['team_size'])?$value['team_size']:''}}" required="" autocomplete="on|off" />
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <label>Team Size</label>
+                                                            <input type="text" class="form-control" placeholder="1" name="team_size[]" value="{{ isset($value['team_size'])?$value['team_size']:''}}" required="" autocomplete="on|off" />
 
-                                                            </div>
-                                                            <div class="col-lg-3">
-                                                                <label>Url</label>
-                                                                <input type="text" class="form-control" placeholder="1" name="url[]" value="{{ isset($value['url'])?$value['url']:''}}" required="" autocomplete="on|off" />
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <label>Url</label>
+                                                            <input type="text" class="form-control" placeholder="1" name="url[]" value="{{ isset($value['url'])?$value['url']:''}}" required="" autocomplete="on|off" />
 
 
-                                                            </div>
-                                                            <div class="row">
+                                                        </div>
+                                                        <div class="row">
                                                             <label>Project Description</label>
                                                             <textarea class="form-control ckeditor" rows="3" name="project_description[]" required="">{{ isset($value['project_description'])?$value['project_description']:''}}</textarea>
 
 
                                                         </div>
-                                                        </div>
-                                                  
+                                                    </div>
+
 
                                                     @endforeach
                                                     @endif
-                                                 </div>
-                                            
+                                                </div>
+
 
 
                                             </div>
@@ -599,143 +616,144 @@ Toast::message('message', 'level', 'title');
 </div>
 
 <script>
-    $(document).on("click","#genral_info_submit",function() {
+    $(document).on("click", "#genral_info_submit", function() {
         $('#genralInfo').submit(function(e) {
-        e.preventDefault();
- 
-       
-        var token = $('input[name="_token"]').attr('value');
-        var form = $(this);
-        var url = form.attr('action');
+            e.preventDefault();
 
-        var formData = new FormData(this);
 
-        $.ajax({
-            type: "POST",
-            url: url,
-            headers: {
-                'X-CSRF-Token': token
-            },
-            contentType: false,
-            processData: false,
-            data: new FormData(this),
-            success: function(data) {
-                console.log('test', data);
-                if (data.status == true) {
-                    toastr.success("Record insert successfully");
-                    $('.user_id').val(data.last_insert_id);
-                    $('#genral_info_submit').hide();
-                    $('#genral_info_button').show();
-                    $('#genral_info_button').trigger('click');
-                } else {
-                    toastr.error(data.message);
+            var token = $('input[name="_token"]').attr('value');
+            var form = $(this);
+            var url = form.attr('action');
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                headers: {
+                    'X-CSRF-Token': token
+                },
+                contentType: false,
+                processData: false,
+                data: new FormData(this),
+                success: function(data) {
+                    console.log('test', data);
+                    if (data.status == true) {
+                        toastr.success("Record insert successfully");
+                        $('.user_id').val(data.last_insert_id);
+                        $('#genral_info_submit').hide();
+                        $('#genral_info_button').show();
+                        $('#genral_info_button').trigger('click');
+                    } else {
+                        toastr.error(data.message);
+                    }
+
                 }
-
-            }
-        })
-    })
-});
-   
-$(document).on("click","#skills_submit",function() {
-    $('#skillsForm').submit(function(e) {
-        e.preventDefault();
-        var token = $('input[name="_token"]').attr('value');
-        var form = $(this);
-        var url = form.attr('action');
-
-        var formData = new FormData(this);
-
-        $.ajax({
-            type: "POST",
-            url: url,
-            headers: {
-                'X-CSRF-Token': token
-            },
-            contentType: false,
-            processData: false,
-            data: new FormData(this),
-            success: function(data) {
-                if (data.status = "success") {
-                    toastr.success("Record insert successfully");
-                    $('#skills_submit').hide();
-                    $('#skills_button').show();
-                    $('#skills_button').trigger('click');
-                } else {
-                    toastr.error(data.message);
-                }
-
-            },
-            error: function(textStatus, errorThrown) {
-                toastr.error("Somting went wrong Please try again");
-            }
-        })
-    })
-});
-
-    
-$(document).on("click","#exprince_submit",function() {
-    $('#exprinceForm').submit(function(e) {
-        e.preventDefault();
-        var token = $('input[name="_token"]').attr('value');
-        var form = $(this);
-        var url = form.attr('action');
-
-        var formData = new FormData(this);
-
-        $.ajax({
-            type: "POST",
-            url: url,
-            headers: {
-                'X-CSRF-Token': token
-            },
-            contentType: false,
-            processData: false,
-            data: new FormData(this),
-            success: function(data) {
-                if (data.status = "success") {
-                    toastr.success("Record insert successfully");
-                    $('#exprince_submit').hide();
-                    $('#exprince_button').show();
-                    $('#exprince_button').trigger('click');
-                } else {
-                    toastr.error(data.message);
-                }
-
-            }
-        })
-    })
-});
-  
-$(document).on("click","#project_submit",function() {
-    $('#projectForm').submit(function(e) {
-        e.preventDefault();
-        var token = $('input[name="_token"]').attr('value');
-        var form = $(this);
-        var url = form.attr('action');
-
-        var formData = new FormData(this);
-
-        $.ajax({
-            type: "POST",
-            url: url,
-            headers: {
-                'X-CSRF-Token': token
-            },
-            contentType: false,
-            processData: false,
-            data: new FormData(this),
-            success: function(data) {
-                if (data.status = "success") {
-                    toastr.success("Record insert successfully");
-                    window.location.href = {!! json_encode(url('/')) !!}+"/users";
-                }
-
-            }
+            })
         })
     });
-});
 
-  
+    $(document).on("click", "#skills_submit", function() {
+        $('#skillsForm').submit(function(e) {
+            e.preventDefault();
+            var token = $('input[name="_token"]').attr('value');
+            var form = $(this);
+            var url = form.attr('action');
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                headers: {
+                    'X-CSRF-Token': token
+                },
+                contentType: false,
+                processData: false,
+                data: new FormData(this),
+                success: function(data) {
+                    if (data.status = "success") {
+                        toastr.success("Record insert successfully");
+                        $('#skills_submit').hide();
+                        $('#skills_button').show();
+                        $('#skills_button').trigger('click');
+                    } else {
+                        toastr.error(data.message);
+                    }
+
+                },
+                error: function(textStatus, errorThrown) {
+                    toastr.error("Somting went wrong Please try again");
+                }
+            })
+        })
+    });
+
+
+    $(document).on("click", "#exprince_submit", function() {
+        $('#exprinceForm').submit(function(e) {
+            e.preventDefault();
+            var token = $('input[name="_token"]').attr('value');
+            var form = $(this);
+            var url = form.attr('action');
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                headers: {
+                    'X-CSRF-Token': token
+                },
+                contentType: false,
+                processData: false,
+                data: new FormData(this),
+                success: function(data) {
+                    if (data.status = "success") {
+                        toastr.success("Record insert successfully");
+                        $('#exprince_submit').hide();
+                        $('#exprince_button').show();
+                        $('#exprince_button').trigger('click');
+                    } else {
+                        toastr.error(data.message);
+                    }
+
+                }
+            })
+        })
+    });
+
+    $(document).on("click", "#project_submit", function() {
+        $('#projectForm').submit(function(e) {
+            e.preventDefault();
+            var token = $('input[name="_token"]').attr('value');
+            var form = $(this);
+            var url = form.attr('action');
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                headers: {
+                    'X-CSRF-Token': token
+                },
+                contentType: false,
+                processData: false,
+                data: new FormData(this),
+                success: function(data) {
+                    if (data.status = "success") {
+                        toastr.success("Record insert successfully");
+                        window.location.href = {!! json_encode(url('/')) !!}+"/users";
+                      
+                    }
+
+                }
+            });
+        });
+    });
+
+
 
 
 
@@ -743,7 +761,9 @@ $(document).on("click","#project_submit",function() {
         $("#sortable").sortable({
             connectWith: '.container',
             placeholder: "ui-state-highlight",
-            beforeStop: function (event, ui) { draggedItem = ui.item;},
+            beforeStop: function(event, ui) {
+                draggedItem = ui.item;
+            },
             iteams: "li",
             cursor: 'move',
             opacity: 0.6,
@@ -769,7 +789,9 @@ $(document).on("click","#project_submit",function() {
         $("#sortable_lerning").sortable({
             connectWith: '.container',
             placeholder: "ui-state-highlight",
-            beforeStop: function (event, ui) { draggedItem = ui.item;},
+            beforeStop: function(event, ui) {
+                draggedItem = ui.item;
+            },
             iteams: "li",
             cursor: 'move',
             opacity: 0.6,
@@ -777,7 +799,7 @@ $(document).on("click","#project_submit",function() {
 
                 var order = new Array();
                 $('#sortable_lerning>li').each(function(index, element) {
-                    
+
                     order.push({
                             id: $(this).attr("id"),
                             position: index + 1,
@@ -791,34 +813,44 @@ $(document).on("click","#project_submit",function() {
 
             }
         });
-        $( ".education_more" ).sortable({
+        $(".education_more").sortable({
             connectWith: '.container',
             placeholder: "ui-state-highlight",
-            beforeStop: function (event, ui) { draggedItem = ui.item;},
+            beforeStop: function(event, ui) {
+                draggedItem = ui.item;
+            },
         });
-        $( ".exp_more" ).sortable({
+        $(".exp_more").sortable({
             connectWith: '.container',
             placeholder: "ui-state-highlight",
-            beforeStop: function (event, ui) { draggedItem = ui.item;},
+            beforeStop: function(event, ui) {
+                draggedItem = ui.item;
+            },
         });
-        $( ".certification_more" ).sortable({
+        $(".certification_more").sortable({
             connectWith: '.container',
             placeholder: "ui-state-highlight",
-            beforeStop: function (event, ui) { draggedItem = ui.item;},
-        });
-        
-        $( ".ach_more" ).sortable({
-            connectWith: '.container',
-            placeholder: "ui-state-highlight",
-            beforeStop: function (event, ui) { draggedItem = ui.item;},
-        });
-        $( ".project_more" ).sortable({
-            connectWith: '.container',
-            placeholder: "ui-state-highlight",
-            beforeStop: function (event, ui) { draggedItem = ui.item;},
+            beforeStop: function(event, ui) {
+                draggedItem = ui.item;
+            },
         });
 
-        
+        $(".ach_more").sortable({
+            connectWith: '.container',
+            placeholder: "ui-state-highlight",
+            beforeStop: function(event, ui) {
+                draggedItem = ui.item;
+            },
+        });
+        $(".project_more").sortable({
+            connectWith: '.container',
+            placeholder: "ui-state-highlight",
+            beforeStop: function(event, ui) {
+                draggedItem = ui.item;
+            },
+        });
+
+
 
     });
 
@@ -833,7 +865,7 @@ $(document).on("click","#project_submit",function() {
 
         $.ajax({
             type: 'POST',
-            url: base_url+'/learning_skills_sorting',
+            url: base_url + '/learning_skills_sorting',
             contentType: 'application/json',
             dataType: 'json',
             data: JSON.stringify(data),
@@ -847,7 +879,7 @@ $(document).on("click","#project_submit",function() {
                 if (data.status = "success") {
                     toastr.success("Record insert successfully");
 
-                  
+
                 } else {
                     toastr.error(data.message);
                 }
@@ -856,6 +888,7 @@ $(document).on("click","#project_submit",function() {
         })
 
     }
+
     function updateOrder(order) {
         var token = $('input[name="_token"]').attr('value');
         // var token = $('meta[name="csrf-token"]').attr('content');
@@ -867,7 +900,7 @@ $(document).on("click","#project_submit",function() {
 
         $.ajax({
             type: 'POST',
-            url: base_url+'/skills_sorting',
+            url: base_url + '/skills_sorting',
             contentType: 'application/json',
             dataType: 'json',
             data: JSON.stringify(data),
@@ -890,9 +923,9 @@ $(document).on("click","#project_submit",function() {
         })
 
     }
- 
-     
-      
+
+
+
 
 
 
@@ -904,7 +937,7 @@ $(document).on("click","#project_submit",function() {
         CKEDITOR.replace('description[]');
         CKEDITOR.replace('project_description[]');
         CKEDITOR.instances['about_employee'].updateElement();
-        
+
 
         // CKEDITOR.replaceAll( 'ckeditor' ); 
         // CKEDITOR.replace('ckeditor');
@@ -917,4 +950,5 @@ $(document).on("click","#project_submit",function() {
 
     });
 </script>
+@endsection
 @endsection

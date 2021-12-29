@@ -45,6 +45,7 @@ Add Skills Education
                                                     <option value="skill">Skills</option>
                                                     <option value="education">Education</option>
                                                     <option value="certificate">Certificate</option>
+                                                    <option value="course">Course</option>
                                                     
                                                 </select>
                                                 @error('category')
@@ -86,4 +87,5 @@ Add Skills Education
         $("#joining_date").datepicker();
     });
 </script>
+@endsection
 @endsection

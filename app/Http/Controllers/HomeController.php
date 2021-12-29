@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Carbon;
+use DB;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data['current_month'] = User::whereMonth(
+            'created_at', '=', Carbon::now()->month
+        )->count();
+        $data['exprince'] = User::select('experience', DB::raw('count(*) as total'))
+        ->groupBy('experience')->get();
+
+        // dd($data['exprince']->toArray());
+        return view('home',compact('data'));
     }
 }

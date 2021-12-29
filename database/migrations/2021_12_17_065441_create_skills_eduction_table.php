@@ -16,7 +16,7 @@ class CreateSkillsEductionTable extends Migration
         Schema::create('skills_education', function (Blueprint $table) {
             $table->id();
             $table->string('value');
-            $table->enum('category', ['skill', 'education', 'certificate']);
+            $table->enum('category', ['skill', 'education', 'certificate','course']);
             $table->timestamps();
         });
     }
