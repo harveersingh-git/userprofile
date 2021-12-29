@@ -29,6 +29,7 @@ body {
 
     h1.page-header {
         font-size: 24px;
+        font-weight: bold;
     }
 
     th.text-center {
@@ -327,6 +328,7 @@ table.dataTable thead .sorting:after {
 
 .huge {
     font-size: 40px;
+    font-weight: bold;
 }
 
 .panel-green {
@@ -666,7 +668,10 @@ table.dataTable thead .sorting:after {
     color: #fff; /* active text color */
     background-color: #a94442; /* active bg color */
 }
-.input-group-btn .btn{padding:8px 12px;}
+.input-group-btn .btn {
+    padding: 6px 12px;
+    height: 33px;
+}
 .btn{ cursor: pointer;}
 .mb-20{ margin-bottom: 20px;}
 
@@ -674,6 +679,7 @@ table.dataTable thead .sorting:after {
 .sidebar ul li a {
     padding: 12px 15px;
     font-size: 15px;
+    color: #333;
 }
 label {
     font-size: 13px;
@@ -700,4 +706,9 @@ label {
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th
 {
     padding:4px;
+}
+
+/* nitin css */
+.mypnl_heading span {
+    font-weight: bold;
 }
