@@ -328,6 +328,7 @@ class UserController extends Controller
         $allskills = SkillsEducation::where('category', '=', 'skill')->get();
         $education = SkillsEducation::where('category', '=', 'education')->get();
         $certificate = SkillsEducation::where('category', '=', 'certificate')->get();
+        $course = SkillsEducation::where('category', '=', 'course')->get();
 
         $data = [];
         if (isset($id)) {
@@ -346,10 +347,10 @@ class UserController extends Controller
             $selectedEducationType = $selectedEducationType->toArray();
             // dd($education );
 
-            return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'selectedSkills', 'selectedLearningSkills', 'selectedEducationType'));
+            return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'selectedSkills', 'selectedLearningSkills', 'selectedEducationType','course'));
         }
 
-        return view('users.information', compact('allskills', 'data', 'education', 'certificate'));
+        return view('users.information', compact('allskills', 'data', 'education', 'certificate','course'));
     }
 
 
@@ -394,12 +395,14 @@ class UserController extends Controller
     {
         $education = SkillsEducation::where('category', '=', 'education')->get();
         $certificate = SkillsEducation::where('category', '=', 'certificate')->get();
+        $course = SkillsEducation::where('category', '=', 'course')->get();
 
 
         return response()->json([
             'status' => true,
             'data' => $education,
-            'certificate' => $certificate
+            'certificate' => $certificate,
+            'course'=>$course
         ]);
     }
 

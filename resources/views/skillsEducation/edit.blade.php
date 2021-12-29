@@ -46,7 +46,7 @@ Add Skills Education
                                                     <option value="skill" {{$data['category'] == 'skill'  ? 'selected' : ''}}>Skills</option>
                                                     <option value="education" {{$data['category']== 'education'  ? 'selected' : ''}}>Education</option>
                                                     <option value="certificate" {{$data['category'] == 'certificate' ? 'selected' : ''}}>Certificate</option>
-                                                    
+                                                    <option value="course"  {{$data['category'] == 'course' ? 'selected' : ''}}>Course</option>
                                                 </select>
                                                 @error('category')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
