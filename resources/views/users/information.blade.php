@@ -27,6 +27,7 @@ Toast::message('message', 'level', 'title');
                                     <ul id="progressbar">
                                         <li class="active" id="account"><strong>Personal Infromation</strong></li>
                                         <li id="personal"><strong>Skills & Education</strong></li>
+
                                         <li id="payment"><strong>Experience</strong></li>
                                         <li id="confirm"><strong>Projects</strong></li>
                                     </ul> <!-- fieldsets -->
@@ -95,7 +96,20 @@ Toast::message('message', 'level', 'title');
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <label>Team</label>
-                                                        <input type="text" class="form-control" placeholder="EX: Anshul Sehgal" name="team" value="{{isset($data->team)?$data->team:'' }}" required="" autocomplete="on|off" />
+                                                        <select class="form-control" name="team" {{ isset($data->id)  ? '' : 'required=""'}}>
+                                                          
+                                                            @forelse($team as $key=>$res)
+                                                            @if(isset($data->myTeam['id'] ) && $res['id']== $data->myTeam['id'])
+                                                            <option value="{{$res['id']}}" selected>{{$res['name']}} </option>
+
+                                                            @else
+                                                            <option value="{{$res['id']}}">{{$res['name']}}</option>
+
+                                                            @endif
+                                                            @empty
+                                                            <p>Team not found</p>
+                                                            @endforelse
+                                                        </select>
 
                                                     </div>
                                                     <div class="col-lg-6">
@@ -130,18 +144,7 @@ Toast::message('message', 'level', 'title');
                                                         <div class="row">
                                                             <div class="col-lg-6">
 
-                                                                <select class="selectpicker" multiple data-live-search="true" data-style="form-control" name="skill_value_id[]" {{ isset($data->id)  ? '' : 'required=""'}}>
-                                                                    @forelse($allskills as $key=>$dat)
-                                                                    @if(isset($selectedSkills) && in_array($dat['id'],$selectedSkills))
-                                                                    <option value="{{$dat['id']}}" selected>{{$dat['value']}}</option>
-                                                                    @else
-                                                                    <option value="{{$dat['id']}}">{{$dat['value']}}</option>
-                                                                    @endif
-                                                                    @empty
-                                                                    <p>No replies</p>
-                                                                    @endforelse
 
-                                                                </select>
 
                                                             </div>
                                                             <div class="col-lg-6">
@@ -172,7 +175,7 @@ Toast::message('message', 'level', 'title');
                                                                     <option value="{{$dat['id']}}">{{$dat['value']}}</option>
                                                                     @endif
                                                                     @empty
-                                                                    <p>No replies</p>
+                                                                    <p>No data found</p>
                                                                     @endforelse
 
                                                                 </select>
@@ -266,7 +269,7 @@ Toast::message('message', 'level', 'title');
                                                             <div class="col-lg-3">
                                                                 <label>Title</label>
                                                                 <select class="form-control" aria-label="Default select example" name="edu_title[]" {{ isset($data->id)  ? '' : 'required=""'}}>
-                                                                @forelse($course as $key=>$datt)
+                                                                    @forelse($course as $key=>$datt)
 
                                                                     @if($datt['id']==$value['education_title_id'])
                                                                     <option value="{{$datt['id']}}" selected>{{$datt['value']}} </option>
@@ -276,8 +279,8 @@ Toast::message('message', 'level', 'title');
                                                                     @empty
                                                                     <p>No replies</p>
                                                                     @endforelse
-                                                                    
-                                                                <!-- <option value="1" {{ isset($value['education_title_id']) == '1'  ? 'selected' : ''}}>BBA</option>
+
+                                                                    <!-- <option value="1" {{ isset($value['education_title_id']) == '1'  ? 'selected' : ''}}>BBA</option>
                                                                     <option value="2" {{ isset($value['education_title_id']) == '2'  ? 'selected' : ''}}>BCA</option>
                                                                     <option value="3" {{ isset($value['education_title_id']) == '3'  ? 'selected' : ''}}>B.Come</option> -->
                                                                 </select>
@@ -744,8 +747,8 @@ Toast::message('message', 'level', 'title');
                 success: function(data) {
                     if (data.status = "success") {
                         toastr.success("Record insert successfully");
-                        window.location.href = {!! json_encode(url('/')) !!}+"/users";
-                      
+                        window.location.href = {!!json_encode(url('/')) !!} + "/users";
+
                     }
 
                 }

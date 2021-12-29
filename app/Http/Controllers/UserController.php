@@ -13,6 +13,7 @@ use App\Models\Certification;
 use App\Models\LearningSkills;
 use App\Models\userAchievement;
 use App\Models\UserProject;
+use App\Models\Teams;
 use Validator;
 use PDF;
 
@@ -316,14 +317,16 @@ class UserController extends Controller
         $education = SkillsEducation::where('category', '=', 'education')->get();
         $certificate = SkillsEducation::where('category', '=', 'certificate')->get();
         $course = SkillsEducation::where('category', '=', 'course')->get();
+        $team = Teams::get();
 
         $data = [];
         if (isset($id)) {
 
 
-            $data = User::with(['education', 'exprince', 'certification', 'learning_skills', 'achievement', 'project'])->with('skills', function ($q) {
+            $data = User::with(['education', 'exprince', 'certification', 'learning_skills', 'achievement', 'project','myTeam'])->with('skills', function ($q) {
                 $q->orderBy('order', 'asc');
             })->where('id', '=', $id)->first();
+            // dd($data->myTeam['id']);
             // dd($data->toArray());
             $selectedSkills = UserSkills::where('user_id', '=', $id)->pluck('skill_value_id');
             $selectedLearningSkills = LearningSkills::where('user_id', '=', $id)->pluck('learning_skill_value_id');
@@ -334,10 +337,10 @@ class UserController extends Controller
             $selectedEducationType = $selectedEducationType->toArray();
             // dd($education );
 
-            return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'selectedSkills', 'selectedLearningSkills', 'selectedEducationType', 'course'));
+            return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'selectedSkills', 'selectedLearningSkills', 'selectedEducationType', 'course','team'));
         }
 
-        return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'course'));
+        return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'course','team'));
     }
 
 

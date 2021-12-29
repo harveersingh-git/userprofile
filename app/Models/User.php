@@ -14,6 +14,7 @@ use App\Models\Certification;
 use App\Models\LearningSkills;
 use App\Models\userAchievement;
 use App\Models\UserProject;
+use App\Models\Teams;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -107,6 +108,11 @@ class User extends Authenticatable
 
     public function project(){
         return $this->hasMany(UserProject::class, 'user_id', 'id');
+
+    }
+    
+    public function myTeam(){
+        return $this->belongsTo(Teams::class, 'team', 'id');
 
     }
     
