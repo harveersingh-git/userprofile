@@ -234,22 +234,9 @@ class UserController extends Controller
                     'Status_code' => "401"
                 ]);
             }
-            // $validator = $request->validate([
-            //     'first_name' => 'required',
-            //     'email' => 'required|email|unique:users',
-            //     'last_name' => 'required',
-            //     'employee_id' => 'required',
-            //     'resume_title' => 'required',
-            //     'mobile' => 'required',
-            //     'joining_date' => 'required',
-            //     'shift_start' => 'required',
-            //     'shift_end' => 'required',
-            //     'team' => 'required',
-            //     'about_employee' => 'required',
-            //     'experience' => 'required'
-            // ]);
-
-
+            if (empty($input['id'])) {
+                $input['employee_id'] = substr($input['first_name'], 0, 1) . substr($input['last_name'], 0, 1) . '_' . substr($input['team'], 0, 2) . '_' . $input['employee_id'];
+            }
 
             $input['password'] = bcrypt('welcome');
             $input['name'] =  $input['first_name'];
@@ -347,10 +334,10 @@ class UserController extends Controller
             $selectedEducationType = $selectedEducationType->toArray();
             // dd($education );
 
-            return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'selectedSkills', 'selectedLearningSkills', 'selectedEducationType','course'));
+            return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'selectedSkills', 'selectedLearningSkills', 'selectedEducationType', 'course'));
         }
 
-        return view('users.information', compact('allskills', 'data', 'education', 'certificate','course'));
+        return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'course'));
     }
 
 
@@ -402,7 +389,7 @@ class UserController extends Controller
             'status' => true,
             'data' => $education,
             'certificate' => $certificate,
-            'course'=>$course
+            'course' => $course
         ]);
     }
 

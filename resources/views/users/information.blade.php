@@ -95,7 +95,7 @@ Toast::message('message', 'level', 'title');
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <label>Team</label>
-                                                        <input type="text" class="form-control" placeholder="EX:PHP/Node" name="team" value="{{isset($data->team)?$data->team:'' }}" required="" autocomplete="on|off" />
+                                                        <input type="text" class="form-control" placeholder="EX: Anshul Sehgal" name="team" value="{{isset($data->team)?$data->team:'' }}" required="" autocomplete="on|off" />
 
                                                     </div>
                                                     <div class="col-lg-6">
@@ -950,4 +950,5 @@ Toast::message('message', 'level', 'title');
 
     });
 </script>
+@endsection
 @endsection

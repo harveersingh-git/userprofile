@@ -88,3 +88,4 @@ Add Skills Education
     });
 </script>
 @endsection
+@endsection

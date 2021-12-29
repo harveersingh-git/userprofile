@@ -149,15 +149,11 @@ $(document).ready(function() {
             success: function(result) {
 
                 result.data.forEach(element =>{
-                 
-                    typee += "<option value="+element.id+">"+element.value+"</option>"
-                
+                  typee += "<option value="+element.id+">"+element.value+"</option>"
                 } );
                 result.course.forEach(element =>{
-                 
-                    course += "<option value="+element.id+">"+element.value+"</option>"
-                
-                } );
+                  course += "<option value="+element.id+">"+element.value+"</option>"
+                 } );
              var fieldHTML ='<div class="row"><div class="col-lg-3"><label><i class="fa fa-arrows" aria-hidden="true"></i>Type</label>';
                 fieldHTML += '<select class="form-control" aria-label="Default select example" name="edu_type[]"><option selected>--please select--</option>'+typee+'</select></div>';
                 fieldHTML += '<div class="col-lg-3"><label>Title</label> <select class="form-control" name="edu_title[]" aria-label="Default select example"><option selected>'+course+'</select>';

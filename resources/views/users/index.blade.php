@@ -1,9 +1,8 @@
 @extends('admin.layout.head')
-@section('title')
-Users
-@endsection
+
 @section('content')
 @include('admin.layout.header')
+
 Toast::message('message', 'level', 'title');
 <div id="page-wrapper" style="min-height: 183px;">
     <div class="container-fluid">
@@ -12,25 +11,17 @@ Toast::message('message', 'level', 'title');
                 <h1 class="page-header">Users</h1>
             </div>
 
-            
-
-
-
-            <!-- /.col-lg-12 -->
         </div>
         <div class="row">
-        <div class="col-lg-3">
+            <div class="col-lg-3">
                 <a class="btn btn-info mb-20" href="{{ url('information') }}" class="active"><i class="fa fa-plus fa-fw"></i>
                     <i class="fa fa-user fa-fw"></i> Add User
                 </a>
             </div>
-         </div>
-        
-         <!-- /.row -->
-        
-        
-        
-         <div class="row">
+        </div>
+
+        <!-- /.row -->
+        <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -83,7 +74,7 @@ Toast::message('message', 'level', 'title');
                                 <td>{{ $value->team }}</td>
 
                                 <td>
-                                    <a  class="btn btn-warning" href="{{url('/information')}}/{{$value->id}}"><i class="fa fa-edit"></i> Edit</button>
+                                    <a class="btn btn-warning" href="{{url('/information')}}/{{$value->id}}"><i class="fa fa-edit"></i> Edit</button>
 
                                         <a class="delete btn btn-danger" id="{{$value->id}}"> <i class="fa fa-trash"></i> Delete</button>
                                             <a class=" btn btn-info" href="{{url('/resume')}}/{{$value->id}}"><i class="fa fa-cloud-download" aria-hidden="true"></i> Download</button>
@@ -98,22 +89,20 @@ Toast::message('message', 'level', 'title');
                             @endif
                         </tbody>
                     </table>
-                  
+
                     <div class="pagination-wrapper">
                         {{ $data->links() }}
                     </div>
-                   
+
                     <!-- /.panel-body -->
                 </div>
                 <!-- /.panel -->
             </div>
             <!-- /.col-lg-12 -->
         </div>
-</div>
-
-        <!-- /.row -->
     </div>
-    <!-- /.container-fluid -->
+
+    <!-- /.row -->
 </div>
 
 @section('script')
@@ -155,4 +144,6 @@ Toast::message('message', 'level', 'title');
 
     });
 </script>
+
+@endsection
 @endsection

@@ -123,4 +123,6 @@ Toast::message('message', 'level', 'title');
 
     });
 </script>
+
+@endsection
 @endsection
