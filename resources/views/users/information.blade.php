@@ -26,6 +26,7 @@ Toast::message('message', 'level', 'title');
                                     <!-- progressbar -->
                                     <ul id="progressbar">
                                         <li class="active" id="account"><strong>Personal Infromation</strong></li>
+                                        <li id="skills"><strong>Skills</strong></li>
                                         <li id="personal"><strong>Skills & Education</strong></li>
                                         <li id="payment"><strong>Experience</strong></li>
                                         <li id="confirm"><strong>Projects</strong></li>
@@ -118,6 +119,22 @@ Toast::message('message', 'level', 'title');
                                         <input type="button" name="next" style="display: none;" class="next btn btn-info  action-button col-md-3" value="Next Step" id="genral_info_button" />
 
                                     </fieldset>
+
+                           <fieldset>
+                                <div class="form-card">
+                                    <h2 class="fs-title">skills</h2> <input type="email" name="email" placeholder="Email Id" /> <input type="text" name="uname" placeholder="UserName" /> <input type="password" name="pwd" placeholder="Password" /> <input type="password" name="cpwd" placeholder="Confirm Password" />
+                                </div> 
+                                <input type="button" id="" name="previous" class="previous action-button-previous  pull-right btn btn-warning" value="Previous" />
+
+
+                                <input type="button" name="next" class="next action-button btn btn-primary  col-md-3" value="Next Step" />
+                                
+                            </fieldset>
+
+
+
+
+
                                     <fieldset>
                                         <form action="{{url('add-user-skills')}}" id="skillsForm">
                                             <input type="hidden" value="" name="user_id" class="user_id">
