@@ -115,15 +115,15 @@
                                 </div>
                                 <!-- /input-group -->
                             </li>
-                            <li>
-                                <a href="{{route('home')}}" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <li >
+                                <a href="{{route('home')}}" class="{{ Request::segment(1) === 'home' ? 'active' : null }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
                           
                             <li>
-                                <a href="{{route('users')}}"><i class="fa fa-users"></i> Users</a>
+                                <a href="{{route('users')}}" class="{{ Request::segment(1) === 'users' ? 'active' : null }}"><i class="fa fa-users"></i> Users</a>
                             </li>
                             <li>
-                                <a href="{{route('skills-education')}}"><i class="fa fa-book"></i> Skills/education</a>
+                                <a href="{{route('skills-education')}}" class="{{ Request::segment(1) === 'skills-education' ? 'active' : null }}"><i class="fa fa-book"></i> Skills/education</a>
                             </li>
                            
                           
