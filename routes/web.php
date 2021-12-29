@@ -23,8 +23,8 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 
 
 Auth::routes();
-Route::get('/changePassword',[App\Http\Controllers\UserController::class, 'showChangePasswordGet'])->name('changePasswordGet');
-Route::post('/changePassword',[App\Http\Controllers\UserController::class, 'changePasswordPost'])->name('changePasswordPost');
+Route::get('/changePassword',[ForgotPasswordController::class, 'showChangePasswordGet'])->name('changePasswordGet');
+Route::post('/changePassword',[ForgotPasswordController::class, 'changePasswordPost'])->name('changePasswordPost');
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
