@@ -30,8 +30,8 @@ Toast::message('message', 'level', 'title');
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                    Teams
+                    <div class="panel-heading mypnl_heading">
+                      <span>Teams<span>
                     </div>
                     <!-- /.panel-heading -->
                     <table class="table table-bordered table-responsive" >

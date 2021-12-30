@@ -760,7 +760,11 @@
 
                 </TABLE>
 
-            </DIV>
+                </DIV>
+
+
+            </div>
+
 
         </div>
         <div class="col" style="width: 50%; float:right">
