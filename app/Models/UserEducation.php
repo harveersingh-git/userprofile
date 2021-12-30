@@ -22,4 +22,8 @@ class UserEducation extends Model
         return $this->belongsTo(SkillsEducation::class, 'degree_type_id', 'id');
 
     }
+    public function course(){
+        return $this->belongsTo(SkillsEducation::class, 'education_title_id', 'id');
+
+    }
 }

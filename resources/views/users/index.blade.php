@@ -47,8 +47,8 @@ Toast::message('message', 'level', 'title');
                         <thead>
                             <tr>
                                 <th class="text-center">Emp Id</th>
-                                <th class="text-center">First Name</th>
-                                <th class="text-center">Last Name</th>
+                                <th class="text-center"> Name</th>
+                                
                                 <th class="text-center">Email</th>
                                 <th class="text-center">Mobile</th>
                                 <th class="text-center">Resume Title</th>
@@ -65,8 +65,8 @@ Toast::message('message', 'level', 'title');
                             @foreach($data as $key => $value)
                             <tr class="text-center">
                                 <td>{{ $value->employee_id }}</td>
-                                <td>{{ $value->name }}</td>
-                                <td>{{ $value->last_name }}</td>
+                                <td>{{ $value->name }} {{ $value->last_name }}</td>
+                                
                                 <td>{{ $value->email  }}</td>
                                 <td>{{ $value->mobile  }}</td>
                                 <td>{{ $value->resume_title }}</td>
@@ -77,7 +77,8 @@ Toast::message('message', 'level', 'title');
                                     <a class="btn btn-warning" href="{{url('/information')}}/{{$value->id}}"><i class="fa fa-edit"></i> Edit</button>
 
                                         <a class="delete btn btn-danger" id="{{$value->id}}"> <i class="fa fa-trash"></i> Delete</button>
-                                            <a class="delete btn btn-info" href="{{url('/resume')}}/{{$value->id}}"><i class="fa fa-cloud-download" aria-hidden="true"></i> Download</button>
+                                            <a class="btn btn-info" href="{{url('/resume')}}/{{$value->id}}"><i class="fa fa-cloud-download" aria-hidden="true"></i> Download</button>
+                                            <a class="btn btn-info" href="{{url('/view-resume')}}/{{$value->id}}"><i class="fa fa-cloud-download" aria-hidden="true"></i> View</button>
 
                                 </td>
                             </tr>

@@ -460,6 +460,23 @@ class UserController extends Controller
             'course' => $course
         ]);
     }
+    public function viewResume(Request $request, $id = null)
+    {
+
+        $data = User::where('id', '=', $id)->first();
+        $data['project'] =  UserProject::where('user_id', '=', $id)->get();
+        $data['certificate'] =  Certification::where('user_id', '=', $id)->get();
+        $data['skills'] =  UserSkills::with('skills_details')->where('user_id', '=', $id)->orderBy('order', 'asc')->get();
+        $data['education'] =  UserEducation::with('education_details','course')->where('user_id', '=', $id)->orderBy('order', 'asc')->get();
+
+        // dd($data['education']->toArray());
+
+
+       
+
+        return view('pdf.view_pdf', compact('data'));
+    }
+
 
     public function resume(Request $request, $id = null)
     {
@@ -468,7 +485,7 @@ class UserController extends Controller
         $data['project'] =  UserProject::where('user_id', '=', $id)->get();
         $data['certificate'] =  Certification::where('user_id', '=', $id)->get();
         $data['skills'] =  UserSkills::with('skills_details')->where('user_id', '=', $id)->orderBy('order', 'asc')->get();
-        $data['education'] =  UserEducation::with('education_details')->where('user_id', '=', $id)->orderBy('order', 'asc')->get();
+        $data['education'] =  UserEducation::with('education_details','course')->where('user_id', '=', $id)->orderBy('order', 'asc')->get();
 
         // dd($data['education']->toArray());
 
