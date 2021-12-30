@@ -14,7 +14,7 @@ class AddTypeToLearningSkillsTable extends Migration
     public function up()
     {
         Schema::table('user_skills', function (Blueprint $table) {
-            $table->enum('type', ['1', '2']);
+            $table->enum('type', ['1', '2','3']);
         });
     }
 

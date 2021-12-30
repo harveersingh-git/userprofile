@@ -490,6 +490,7 @@
             padding-left: 72px;
             margin-top: 21px;
             margin-bottom: 0px;
+            margin-left: -56px;
         }
 
         .p38 {
@@ -497,6 +498,7 @@
             padding-left: 71px;
             margin-top: 10px;
             margin-bottom: 0px;
+            margin-left: -56px;
         }
 
         .p39 {
@@ -774,7 +776,7 @@
             <P class="p37 ft8">ABOUT PROJECTS</P>
             @forelse ($data['project'] as $show)
             <P class="p38 ft9">{{$show['project_name']}}</P>
-            <div>
+            <div style="padding: 17px;text-align: justify;">
                 <P class="p39 ft17">{!!html_entity_decode($show['project_description'])!!}</P>
             </div>
             @empty

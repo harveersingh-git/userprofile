@@ -57,6 +57,10 @@ Route::any('/add-team', [App\Http\Controllers\TeamController::class, 'create'])-
 Route::any('/team/edit/{id}', [App\Http\Controllers\TeamController::class,'view']);
 Route::post('/update-team', [App\Http\Controllers\TeamController::class, 'update']);
 Route::post('/delete_team', [App\Http\Controllers\TeamController::class, 'destroy']);
+Route::post('/remove_skills', [App\Http\Controllers\UserController::class, 'removeSkill']);
+Route::post('/remove_education', [App\Http\Controllers\UserController::class, 'removeEducation']);
+
+
 
 
 

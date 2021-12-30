@@ -105,8 +105,8 @@
         }
 
         .ft1 {
-            font: 15px 'Arial';
-            color: #000000;
+            font: bold 13px 'Arial';
+            color: #ffffff;
             line-height: 16px;
         }
 
@@ -491,6 +491,7 @@
             padding-left: 72px;
             margin-top: 21px;
             margin-bottom: 0px;
+            margin-left: -56px;
         }
 
         .p38 {
@@ -498,6 +499,7 @@
             padding-left: 71px;
             margin-top: 10px;
             margin-bottom: 0px;
+            margin-left: -56px;
         }
 
         .p39 {
@@ -684,7 +686,7 @@
 
         div#id1_1 {
 
-            top: 72px;
+            top: 17px;
 
             padding-top: 384px;
 
@@ -709,7 +711,7 @@
         p.p1.ft1 {
             text-align: justify;
             width: 50%;
-            text-justify: inter-word;
+            /* text-justify: inter-word; */
         }
 
         #p2dimg1 {
@@ -818,9 +820,9 @@
     </div>
 
     <DIV id="page_2">
-        <div id="p2dimg1">
-            <IMG src="{{public_path('pdf/img-2.jpg')}}">
-        </div>
+           <!-- <DIV id="p2dimg1">
+                <IMG src="{{public_path('pdf/img-2.jpg')}}" id="p2img1">
+            </DIV> -->
 
 
 
@@ -830,7 +832,9 @@
         <P class="p37 ft8">ABOUT PROJECTS</P>
         @forelse ($data['project'] as $show)
         <P class="p38 ft9">{{$show['project_name']}}</P>
+        <div style="padding: 17px;text-align: justify;">
         <P class="p39 ft17">{!!html_entity_decode($show['project_description'])!!}</P>
+        </div>
         @empty
         <p>No Project Found</p>
         @endforelse

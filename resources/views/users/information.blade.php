@@ -27,7 +27,7 @@ Toast::message('message', 'level', 'title');
                                     <ul id="progressbar">
                                         <li class="active" id="account"><strong>Personal Infromation</strong></li>
                                         <li id="skills"><strong>Skills</strong></li>
-                                        <li id="personal"><strong>Skills & Education</strong></li>
+                                        <li id="personal"><strong>Education</strong></li>
 
                                         <li id="payment"><strong>Experience</strong></li>
                                         <li id="confirm"><strong>Projects</strong></li>
@@ -163,7 +163,7 @@ Toast::message('message', 'level', 'title');
                                                         <div class="card-header"><i class="fa fa-star-o"></i>&nbsp;&nbsp;Primary Skills</div>
                                                         <div class="card-body well"> 
                                                             <ul id="primary_sortable" name="in_primary_fields" class="sortable-list secondaryDropzone fixed-panel" data-fieldtype="secondary"> @forelse ($selectedPrimarySkills as $skill)
-                                                                <li class="sortable-item  allowSecondary allowExport" id="{{$skill->skills_details['id']}}">{{$skill->skills_details['value']}}</li> @empty
+                                                                <li class="sortable-item  allowSecondary allowExport" id="{{$skill->skills_details['id']}}">{{$skill->skills_details['value']}} <i class="fa fa-close skill_delete" style="color:red;float: right;  cursor: pointer;"></i></li> @empty
                                                                 <div class="alert alert-warning small">
                                                                     <center>No Fields Selected</center>
                                                                 </div> @endforelse </ul>
@@ -177,7 +177,7 @@ Toast::message('message', 'level', 'title');
                                                             <ul id="sortable" name="in_secondary_fields" class="sortable-list secondaryDropzone fixed-panel" data-fieldtype="secondary">
 
                                                                 @forelse ($selectedSecondrySkills as $skill)
-                                                                <li class="sortable-item  allowSecondary allowExport" id="{{$skill->skills_details['id']}}">{{$skill->skills_details['value']}}</li>
+                                                                <li class="sortable-item  allowSecondary allowExport" id="{{$skill->skills_details['id']}}">{{$skill->skills_details['value']}} <i class="fa fa-close skill_delete" style="color:red;float: right;  cursor: pointer;"></i></li>
 
                                                                 @empty
                                                                 <div class="alert alert-warning small">
@@ -194,7 +194,7 @@ Toast::message('message', 'level', 'title');
                                                        
                                                             <ul id="sortable_lerning" name="in_export_fields" class="sortable-list exportDropzone fixed-panel">
                                                             @forelse ($selectedLearningSkills as $skill)
-                                                                <li class="sortable-item  allowSecondary allowExport" id="{{$skill->skills_details['id']}}">{{$skill->skills_details['value']}}</li>
+                                                                <li class="sortable-item  allowSecondary allowExport" id="{{$skill->skills_details['id']}}">{{$skill->skills_details['value']}} <i class="fa fa-close skill_delete" style="color:red;float: right; cursor: pointer;"></i></li>
 
                                                                 @empty
                                                                 <div class="alert alert-warning small">
@@ -272,15 +272,16 @@ Toast::message('message', 'level', 'title');
                                                             <div class="col-lg-3 datepicker-wrap">
                                                                 <label>To</label>
                                                                 <input type="text" class="form-control edu_from" placeholder="2021-02-27" name="edu_to[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="off" />
-
+                                                              
                                                             </div>
                                                         </div>
                                                         @if(isset($data->education) && (count($data->education)>0))
                                                         @foreach($data->education as $key=>$value)
-                                                        <div class="row" order="{{$value['order']}}">
+                                                        <div class="row" order="{{$value['order']}}" id="{{$value['id']}}" >
+                                                       
                                                             <div class="col-lg-3">
-                                                                <label><i class="fa fa-arrows" aria-hidden="true"></i>Type</label>
-                                                                <select class="form-control" aria-label="Default select example" name="edu_type[]" required="">
+                                                                <label> <i class="fa fa-close education_delete" style="color:red;  cursor: pointer;"></i><i class="fa fa-arrows" aria-hidden="true"></i>Type</label>
+                                                               <select class="form-control" aria-label="Default select example" name="edu_type[]" required="">
 
                                                                     @forelse($education as $key=>$dat)
 
@@ -325,6 +326,7 @@ Toast::message('message', 'level', 'title');
                                                                 <input type="text" class="form-control edu_from" placeholder="12-17-2021" name="edu_to[]" value="{{ isset($value['to'])?$value['to']:''}}" required="" autocomplete="off" />
 
                                                             </div>
+                                                            
                                                         </div>
                                                         @endforeach
                                                         @endif
@@ -649,6 +651,93 @@ Toast::message('message', 'level', 'title');
 </div>
 
 <script>
+$('.education_delete').on('click', function () {
+var id = $(this).closest('.row').attr('id');
+
+
+var token = $('input[name="_token"]').attr('value');
+
+
+var option="";
+var data = {
+          user_id: $('.user_id').val(),
+          id:id
+          // _token: token
+      };
+      $(this).closest('.row').remove();
+$.ajax({
+          type: 'POST',
+          url: base_url + '/remove_education',
+          contentType: 'application/json',
+          dataType: 'json',
+          data: JSON.stringify(data),
+          headers: {
+              'X-CSRF-Token': token
+          },
+
+          success: function(data) {
+             
+              console.log('test', data);
+              if (data.status = "true") {
+
+                
+              } else {
+                  toastr.error(data.message);
+              }
+
+          }
+      })
+
+
+});
+
+//////////////////
+    $('.skill_delete').on('click', function () {
+
+  var token = $('input[name="_token"]').attr('value');
+  $(this).closest("li").remove();
+  var id= $(this).closest("li").attr('id');
+  var option="";
+  var data = {
+            user_id: $('.user_id').val(),
+            id:id
+            // _token: token
+        };
+
+  $.ajax({
+            type: 'POST',
+            url: base_url + '/remove_skills',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify(data),
+            headers: {
+                'X-CSRF-Token': token
+            },
+
+            success: function(data) {
+               
+                console.log('test', data);
+                if (data.status = "true") {
+
+                    $('#in_available_fields > li').remove();
+                    data.data.forEach(element =>{
+                 
+                 option += '<li class="sortable-item  allowSecondary allowExport" id='+element.id+'>'+element.value+'</li>';
+             } );
+              $('#in_available_fields').append(option);
+             
+                    toastr.success("Skill Update successfully");
+
+                    // $('#exprince_button').trigger('click');
+                } else {
+                    toastr.error(data.message);
+                }
+
+            }
+        })
+ 
+
+})
     $(document).on("click", "#genral_info_submit", function() {
         $('#genralInfo').submit(function(e) {
             e.preventDefault();
@@ -859,20 +948,21 @@ Toast::message('message', 'level', 'title');
             cursor: 'move',
             opacity: 0.6,
             update: function(event, ui) {
-
+                var type = 3;
                 var order = new Array();
                 $('#sortable_lerning>li').each(function(index, element) {
 
                     order.push({
                             id: $(this).attr("id"),
                             position: index + 1,
+                            type: 3
 
                         }
 
                     );
                 });
-
-                updateOrderLerning(order);
+                updateOrder(order, type);
+                // updateOrderLerning(order);
 
             }
         });
