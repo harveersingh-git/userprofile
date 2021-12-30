@@ -5,7 +5,7 @@
     <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <TITLE>CV</TITLE>
     <META name="generator" content="BCL easyConverter SDK 5.0.252">
-   
+    <META name="title" content="HS_AS_TK10827">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <STYLE type="text/css">
         body {
@@ -488,14 +488,14 @@
 
         .p37 {
             text-align: left;
-            /* padding-left: 72px; */
+            padding-left: 72px;
             margin-top: 21px;
             margin-bottom: 0px;
         }
 
         .p38 {
             text-align: left;
-            /* padding-left: 71px; */
+            padding-left: 71px;
             margin-top: 10px;
             margin-bottom: 0px;
         }
@@ -760,11 +760,7 @@
 
                 </TABLE>
 
-                </DIV>
-
-
-            </div>
-
+            </DIV>
 
         </div>
         <div class="col" style="width: 50%; float:right">
