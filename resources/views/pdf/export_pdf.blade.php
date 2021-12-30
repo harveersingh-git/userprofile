@@ -5,7 +5,7 @@
     <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <TITLE>CV</TITLE>
     <META name="generator" content="BCL easyConverter SDK 5.0.252">
-    <META name="title" content="HS_AS_TK10827">
+   
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <STYLE type="text/css">
         body {
@@ -488,14 +488,14 @@
 
         .p37 {
             text-align: left;
-            padding-left: 72px;
+            /* padding-left: 72px; */
             margin-top: 21px;
             margin-bottom: 0px;
         }
 
         .p38 {
             text-align: left;
-            padding-left: 71px;
+            /* padding-left: 71px; */
             margin-top: 10px;
             margin-bottom: 0px;
         }
@@ -731,7 +731,7 @@
 
         <div class="col" style="width: 50%; float:left">
             <div id="p1dimg1">
-                <IMG src="{{asset('pdf/img-1.jpg')}}" id="p1img1">
+                <IMG src="{{public_path('pdf/img-1.jpg')}}" id="p1img1">
             </div>
             <DIV id="id1_1">
 
