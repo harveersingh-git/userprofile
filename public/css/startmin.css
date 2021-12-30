@@ -720,3 +720,7 @@ label {
     margin-top: -7px;
     padding: 0
 }
+.myac_btn {
+    padding: 6px 4px !important;
+    margin: 4px 3px;
+}

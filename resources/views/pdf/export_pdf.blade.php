@@ -731,7 +731,7 @@
 
         <div class="col" style="width: 50%; float:left">
             <div id="p1dimg1">
-                <IMG src="{{asset('pdf/img-1.jpg')}}" id="p1img1">
+                <IMG src="{{public_path('pdf/img-1.jpg')}}" id="p1img1">
             </div>
             <DIV id="id1_1">
 

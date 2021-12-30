@@ -63,11 +63,11 @@
         #page_2 {
             position: relative;
             overflow: hidden;
-            margin: 0px 0px 0px 0px;
-            padding: 0px;
+            margin: 0;
             border: none;
-            width: 864px;
+            width: 784px;
             height: 1209px;
+            padding: 0 40px;
             box-shadow: 1px 1px 6px rgb(0 0 0 / 50%);
             background: #fff;
 
@@ -671,6 +671,13 @@
             height: 6px;
             vertical-align: middle;
         }
+        .about_employe{
+                    width: 83%;
+            text-align: center;
+            color: #fff;
+            margin: auto 12px;
+        }
+
     </STYLE>
 </HEAD>
 
@@ -686,7 +693,7 @@
             <DIV>
                 <DIV id="id1_1">
                     <P class="p0 ft0" style="color:#fff;">ABOUT ME</P>
-                    <div style="width:75%; text-align: justify; margin-left:10px">
+                    <div class="about_employe">
                         <P class="p1 ft1" style="color:#000;">{!!html_entity_decode($data->about_employee)!!}</P>
                     </div>
                     <TABLE cellpadding=0 cellspacing=0 class="t0">
@@ -771,9 +778,9 @@
             <P class="p36 ft5" style="margin-top:0px;">ISO 27001:2013</P>
             <P class="p36 ft5" style="margin-top:0px;">ISO 9001:2015</P>
 
-            <P class="p37 ft8">ABOUT PROJECTS</P>
+            <P class="ft8">ABOUT PROJECTS</P>
             @forelse ($data['project'] as $show)
-            <P class="p38 ft9">{{$show['project_name']}}</P>
+            <P class="ft9">{{$show['project_name']}}</P>
             <div>
                 <P class="p39 ft17">{!!html_entity_decode($show['project_description'])!!}</P>
             </div>
