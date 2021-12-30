@@ -676,7 +676,7 @@
         }
 
         #p1dimg1 {
-            position: fixed;
+            position: relative;
             /* opacity: 0.5; */
             margin-left: -50px;
         }
@@ -731,7 +731,7 @@
 
         <div class="col" style="width: 50%; float:left">
             <div id="p1dimg1">
-                <IMG src="{{public_path('pdf/img-1.jpg')}}" id="p1img1">
+                <IMG src="{{asset('pdf/img-1.jpg')}}" id="p1img1">
             </div>
             <DIV id="id1_1">
 
@@ -825,11 +825,10 @@
 
 
         <DIV class="dclr"></DIV>
-
-
-        <P class="p37 ft8">ABOUT PROJECTS</P>
+        
+        <P class="ft8">ABOUT PROJECTS</P>
         @forelse ($data['project'] as $show)
-        <P class="p38 ft9">{{$show['project_name']}}</P>
+        <P class="ft9">{{$show['project_name']}}</P>
         <P class="p39 ft17">{!!html_entity_decode($show['project_description'])!!}</P>
         @empty
         <p>No Project Found</p>
