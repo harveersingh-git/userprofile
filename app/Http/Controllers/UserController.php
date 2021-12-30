@@ -45,7 +45,7 @@ class UserController extends Controller
         }
 
 
-        $query = User::where('id', '!=', 1);
+        $query = User::with('myTeam')->where('id', '!=', 1);
 
         if (isset($skills) && $skills->count() > 0) {
 
@@ -68,7 +68,7 @@ class UserController extends Controller
         }
 
         $data = $query->orderBy('id', 'DESC')->paginate(10);
-
+        // dd($data);
         return view('users.index', compact('data'));
     }
 
@@ -78,21 +78,21 @@ class UserController extends Controller
         if ($request->isMethod('post')) {
             $input = $request->all();
 
-            UserSkills::where(['user_id' => $input['user_id']])->delete();
-            for ($i = 0; $i < count($input['skill_value_id']); $i++) {
+            // UserSkills::where(['user_id' => $input['user_id']])->delete();
+            // for ($i = 0; $i < count($input['skill_value_id']); $i++) {
 
-                $inpu['order'] =  $i + 1;
-                $inpu['user_id'] =  $input['user_id'];
-                $inpu['skill_value_id'] =  $input['skill_value_id'][$i];
-                $skills = UserSkills::create($inpu);
-            }
-            LearningSkills::where(['user_id' => $input['user_id']])->delete();
-            for ($i = 0; $i < count($input['learning_skills']); $i++) {
-                $inpu['order'] =  $i + 1;
-                $inpu['user_id'] =  $input['user_id'];
-                $inpu['learning_skill_value_id'] =  $input['learning_skills'][$i];
-                $learningSkills = LearningSkills::create($inpu);
-            }
+            //     $inpu['order'] =  $i + 1;
+            //     $inpu['user_id'] =  $input['user_id'];
+            //     $inpu['skill_value_id'] =  $input['skill_value_id'][$i];
+            //     $skills = UserSkills::create($inpu);
+            // }
+            // LearningSkills::where(['user_id' => $input['user_id']])->delete();
+            // for ($i = 0; $i < count($input['learning_skills']); $i++) {
+            //     $inpu['order'] =  $i + 1;
+            //     $inpu['user_id'] =  $input['user_id'];
+            //     $inpu['learning_skill_value_id'] =  $input['learning_skills'][$i];
+            //     $learningSkills = LearningSkills::create($inpu);
+            // }
             UserEducation::where(['user_id' => $input['user_id']])->delete();
             for ($i = 0; $i < count($input['edu_type']); $i++) {
                 if (isset($input['edu_type'][$i])) {
@@ -319,64 +319,129 @@ class UserController extends Controller
         $course = SkillsEducation::where('category', '=', 'course')->get();
         $team = Teams::get();
 
+        $selectedPrimarySkills = [];
+        $selectedSecondrySkills = [];
+        $selectedLearningSkills = [];
         $data = [];
         if (isset($id)) {
 
-
-            $data = User::with(['education', 'exprince', 'certification', 'learning_skills', 'achievement', 'project','myTeam'])->with('skills', function ($q) {
+            $allskills = SkillsEducation::doesntHave('checkSkills','or', function ($q) use ($id) {
+                $q->where(['user_id'=>$id]);
+            })->where('category', '=', 'skill')->get();
+            // dd($allskills->toArray());
+            $data = User::with(['education', 'exprince', 'certification', 'learning_skills', 'achievement', 'project', 'myTeam'])->with('skills', function ($q) {
                 $q->orderBy('order', 'asc');
             })->where('id', '=', $id)->first();
             // dd($data->myTeam['id']);
             // dd($data->toArray());
-            $selectedSkills = UserSkills::where('user_id', '=', $id)->pluck('skill_value_id');
-            $selectedLearningSkills = LearningSkills::where('user_id', '=', $id)->pluck('learning_skill_value_id');
+            $selectedPrimarySkills = UserSkills::with('skills_details')->where(['user_id' => $id, 'type' => 1])->get();
+            $selectedSecondrySkills = UserSkills::with('skills_details')->where(['user_id' => $id, 'type' => 2])->get();
+
+            $selectedLearningSkills = LearningSkills::with('skills_details')->where('user_id', '=', $id)->get();
             $selectedEducationType = UserEducation::where('user_id', '=', $id)->pluck('degree_type_id');
 
-            $selectedSkills = $selectedSkills->toArray();
-            $selectedLearningSkills = $selectedLearningSkills->toArray();
+            // $selectedPrimarySkills = $selectedPrimarySkill->toArray();
+            // dd(  $selectedPrimarySkills);
+            // $selectedSecondrySkills = $selectedPrimarySkill->toArray();
+
+            // $selectedLearningSkills = $selectedLearningSkills->toArray();
             $selectedEducationType = $selectedEducationType->toArray();
             // dd($education );
 
-            return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'selectedSkills', 'selectedLearningSkills', 'selectedEducationType', 'course','team'));
+            return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills', 'selectedEducationType', 'course', 'team'));
         }
 
-        return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'course','team'));
+        return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'course', 'team', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills'));
     }
 
 
     public function skillsSorting(Request $request)
     {
-        $skills = UserSkills::where(['user_id' => $request['user_id']])->get();
+        $input = $request->all();
 
-        foreach ($skills as $skill) {
+
+        if ($request['type'] == 2) {
+            $skills = UserSkills::where(['user_id' => $request['user_id']])->get();
+
+            UserSkills::where(['user_id' => $input['user_id'], 'type' => 2])->delete();
+
+
             foreach ($request['order'] as $order) {
-                if ($order['id'] == $skill->id) {
-                    $updated = UserSkills::where(['id' => $skill['id']])->first();
-                    $updated->update(['order' => $order['position']]);
+                $inpu['order'] = $order['position'];
+                $inpu['user_id'] =  $input['user_id'];
+                $inpu['type'] =  $order['type'];
+                $inpu['skill_value_id'] =  $order['id'];
+                $alreadyExist =   UserSkills::where(['user_id' => $input['user_id'], 'type' => 2, 'skill_value_id' => $order['id']])->first();
+                if ($alreadyExist == "") {
+                    $skills = UserSkills::create($inpu);
+                }
+            }
+        } else {
+            $skills = UserSkills::where(['user_id' => $request['user_id']])->get();
+
+            UserSkills::where(['user_id' => $input['user_id'], 'type' => 1])->delete();
+
+
+            foreach ($request['order'] as $order) {
+                $inpu['order'] = $order['position'];
+                $inpu['user_id'] =  $input['user_id'];
+                $inpu['type'] =  $order['type'];
+                $inpu['skill_value_id'] =  $order['id'];
+                $alreadyExist =   UserSkills::where(['user_id' => $input['user_id'], 'type' => 1, 'skill_value_id' => $order['id']])->first();
+                if ($alreadyExist == "") {
+                    $skills = UserSkills::create($inpu);
                 }
             }
         }
+
+        // foreach ($skills as $skill) {
+        //     foreach ($request['order'] as $order) {
+        //         if ($order['id'] == $skill->id) {
+        //             $updated = UserSkills::where(['id' => $skill['id']])->first();
+        //             $updated->update(['order' => $order['position']]);
+        //         }
+        //     }
+        // }
         return response()->json([
             'status' => true,
-            'last_insert_id' => $updated
+            // 'last_insert_id' => $skills
         ]);
     }
 
     public function learningSkillsSorting(Request $request)
     {
+
+        $input = $request->all();
         $skills = LearningSkills::where(['user_id' => $request['user_id']])->get();
 
-        foreach ($skills as $skill) {
-            foreach ($request['order'] as $order) {
-                if ($order['id'] == $skill->id) {
-                    $updated = LearningSkills::where(['id' => $skill['id']])->first();
-                    $updated->update(['order' => $order['position']]);
-                }
+        LearningSkills::where(['user_id' => $input['user_id']])->delete();
+
+
+        foreach ($request['order'] as $order) {
+            $inpu['order'] = $order['position'];
+            $inpu['user_id'] =  $input['user_id'];
+            // $inpu['type'] =  $order['type'];
+            $inpu['learning_skill_value_id'] =  $order['id'];
+            $alreadyExist =   LearningSkills::where(['user_id' => $input['user_id'], 'learning_skill_value_id' => $order['id']])->first();
+            if ($alreadyExist == "") {
+                $skills = LearningSkills::create($inpu);
             }
+            // $skills = LearningSkills::create($inpu);
+
         }
+        // $skills = LearningSkills::where(['user_id' => $request['user_id']])->get();
+
+        // foreach ($skills as $skill) {
+        //     foreach ($request['order'] as $order) {
+        //         if ($order['id'] == $skill->id) {
+        //             $updated = LearningSkills::where(['id' => $skill['id']])->first();
+        //             $updated->update(['order' => $order['position']]);
+        //         }
+        //     }
+        // }
         return response()->json([
             'status' => true,
-            'last_insert_id' => $updated
+            // 'last_insert_id' => $updated
         ]);
     }
 

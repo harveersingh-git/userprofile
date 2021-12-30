@@ -13,6 +13,7 @@ class UserSkills extends Model
         'skill_value_id',
         'order',
         'user_id',
+        'type'
         
     ];
     // protected $visible = ['id', 'skill_value_id','order','skills_details'];
