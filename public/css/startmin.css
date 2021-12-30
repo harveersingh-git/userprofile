@@ -712,3 +712,7 @@ label {
 .mypnl_heading span {
     font-weight: bold;
 }
+.my_usearch {
+    margin-top: -7px;
+    padding: 0
+}

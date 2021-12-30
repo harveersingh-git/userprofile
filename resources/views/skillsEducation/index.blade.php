@@ -31,7 +31,7 @@ Toast::message('message', 'level', 'title');
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading mypnl_heading">
-                        Skills-Education
+                       <span>Skills-Education</span>
                     </div>
                     <!-- /.panel-heading -->
                     <table class="table table-bordered table-responsive" >

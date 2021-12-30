@@ -26,7 +26,7 @@ Toast::message('message', 'level', 'title');
                 <div class="panel panel-default">
                     <div class="panel-heading mypnl_heading">
                         <span>Users</span>
-                        <div class="col-sm-3 pull-right" style="margin-top: -7px;">
+                        <div class="col-sm-3 pull-right my_usearch">
                             <form action="{{url('users')}}" method="GET" role="search">
                                 {{ csrf_field() }}
                                 <div class="input-group">
@@ -77,7 +77,7 @@ Toast::message('message', 'level', 'title');
                                     <a class="btn btn-warning" href="{{url('/information')}}/{{$value->id}}"><i class="fa fa-edit"></i> Edit</button>
 
                                         <a class="delete btn btn-danger" id="{{$value->id}}"> <i class="fa fa-trash"></i> Delete</button>
-                                            <a class=" btn btn-info" href="{{url('/resume')}}/{{$value->id}}"><i class="fa fa-cloud-download" aria-hidden="true"></i> Download</button>
+                                            <a class="delete btn btn-info" href="{{url('/resume')}}/{{$value->id}}"><i class="fa fa-cloud-download" aria-hidden="true"></i> Download</button>
 
                                 </td>
                             </tr>
