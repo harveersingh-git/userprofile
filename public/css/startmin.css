@@ -709,6 +709,10 @@ label {
 }
 
 /* nitin css */
+.mypnl_heading {
+    background-color: #337ab7 !important;
+    color: #fff !important;
+}
 .mypnl_heading span {
     font-weight: bold;
 }

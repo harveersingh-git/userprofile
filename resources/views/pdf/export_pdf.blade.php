@@ -677,7 +677,6 @@
 
         #p1dimg1 {
             position: fixed;
-            opacity: 0.5;
             margin-left: -50px;
         }
 
@@ -725,9 +724,9 @@
 
         <div class="col" style="width: 50%; float:left">
             <div id="p1dimg1">
-                <IMG src="{{public_path('pdf/img-1.jpg')}}" id="p1img1">
-            </div>
-            <DIV id="id1_1">
+                <img src="{{asset('pdf/img-1.jpg')}}" id="p1img1">
+
+                                <DIV id="id1_1">
 
                 <P class="p0 ft0" style="color:#000;">ABOUT ME</P>
                 <div style="width:75%; text-align: justify; margin-left:10px">
@@ -754,7 +753,11 @@
 
                 </TABLE>
 
-            </DIV>
+                </DIV>
+
+
+            </div>
+
 
         </div>
         <div class="col" style="width: 50%; float:right">

@@ -473,14 +473,14 @@ class UserController extends Controller
         // dd($data['education']->toArray());
 
 
-        if ($data) {
+        // if ($data) {
 
-            view()->share('data', $data);
+        //     view()->share('data', $data);
 
-            $pdf_doc = PDF::loadView('pdf.export_pdf', $data->toArray());
+        //     $pdf_doc = PDF::loadView('pdf.export_pdf', $data->toArray());
 
-            return $pdf_doc->download('pdf.pdf');
-        }
+        //     return $pdf_doc->download('pdf.pdf');
+        // }
 
 
         return view('pdf.export_pdf', compact('data'));
