@@ -71,7 +71,7 @@ Toast::message('message', 'level', 'title');
                                 <td>{{ $value->mobile  }}</td>
                                 <td>{{ $value->resume_title }}</td>
 
-                                <td>{{ $value->team }}</td>
+                                <td>{{ isset($value['myTeam']->name)? $value['myTeam']->name : ''}}</td>
 
                                 <td>
                                     <a class="btn btn-warning" href="{{url('/information')}}/{{$value->id}}"><i class="fa fa-edit"></i> Edit</button>

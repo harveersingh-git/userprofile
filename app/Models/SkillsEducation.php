@@ -21,7 +21,15 @@ class SkillsEducation extends Model
     {
         return strtoupper($value);
     }
+    public function checkSkills(){
+        return $this->hasOne(UserSkills::class, 'skill_value_id', 'id');
 
-   
+    }
+
+    
+    public function checkLearningSkills(){
+        return $this->hasOne(LearningSkills::class, 'learning_skill_value_id', 'id');
+
+    }
 
 }

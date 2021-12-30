@@ -58,7 +58,7 @@ Add Skills Education
 
 
 
-                                    <button type="submit" class="btn btn-info submit_info">Add</button>
+                                    <button type="submit" class="btn btn-info submit_info">Update</button>
 
 
 

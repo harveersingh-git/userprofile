@@ -51,6 +51,13 @@ Route::get('/resume/{id}', [App\Http\Controllers\UserController::class,'resume']
 Route::any('/education_type', [App\Http\Controllers\UserController::class, 'educationType']);
 Route::any('/learning_skills_sorting', [App\Http\Controllers\UserController::class, 'learningSkillsSorting']);
 
+Route::any('/team', [App\Http\Controllers\TeamController::class, 'index'])->name('team');
+Route::any('/add-team', [App\Http\Controllers\TeamController::class, 'create'])->name('add-team');
+Route::any('/team/edit/{id}', [App\Http\Controllers\TeamController::class,'view']);
+Route::post('/update-team', [App\Http\Controllers\TeamController::class, 'update']);
+Route::post('/delete_team', [App\Http\Controllers\TeamController::class, 'destroy']);
+
+
 
 
 

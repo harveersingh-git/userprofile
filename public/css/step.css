@@ -104,7 +104,7 @@ select.list-dt:focus {
 }
 
 .card {
-    z-index: 0;
+    /* z-index: 1; */
     border: none;
     border-radius: 0.5rem;
     position: relative
@@ -257,3 +257,93 @@ a.remove_button{
     border-radius: 3px;
 }
 .cke_4{ margin-bottom: 25px;}
+
+
+
+
+
+
+
+
+/* // Card style */
+.card {
+	border: 0 solid #edf2f9;
+	border-radius: .375rem;
+  -webkit-box-shadow: 0 7px 14px 0 rgba(59,65,94,.1), 0 3px 6px 0 rgba(0,0,0,.07);
+  box-shadow: 0 7px 14px 0 rgba(59,65,94,.1), 0 3px 6px 0 rgba(0,0,0,.07);
+}
+.card-body {
+	padding: .5rem;
+  background-color: #f9fafd !important;
+}
+.card-header {
+	padding: 1rem 1.25rem;
+	background-color: #fff;
+	border-bottom: 0 solid #edf2f9
+}
+
+
+/* // Sortable items */
+.dragableMultiselect {
+  display: none;
+}
+
+.dragSortableItems .sortable-item{background-color: #fff;
+    border: 1px solid #ddd;
+    display: block;
+    margin-bottom: -1px;
+    padding: 10px;
+    cursor: move;
+    position: relative;
+    padding-left: 30px;}
+
+    .dragSortableItems .placeholder {
+        border: 1px dashed #666;
+        height: 45px;
+        margin-bottom: 5px;
+      }
+
+      .dragSortableItems .fixed-panel {
+        max-height: 500px;
+        overflow-y: auto;
+        padding-bottom: 1px;
+      }
+
+      .dragSortableItems .sortable-item .icon-drag {
+        color: #ccc;
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .dragSortableItems .sortable-item .sortable-item-input {
+        visibility: hidden;
+        pointer-events: none;
+        position: absolute;
+      }
+
+
+
+/* // Scrollbar Style */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 7px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #888;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  /* // background: transparent; */
+  border-radius: 5px; 
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+
+
+
+ 

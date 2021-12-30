@@ -28,6 +28,7 @@ Toast::message('message', 'level', 'title');
                                         <li class="active" id="account"><strong>Personal Infromation</strong></li>
                                         <li id="skills"><strong>Skills</strong></li>
                                         <li id="personal"><strong>Skills & Education</strong></li>
+
                                         <li id="payment"><strong>Experience</strong></li>
                                         <li id="confirm"><strong>Projects</strong></li>
                                     </ul> <!-- fieldsets -->
@@ -96,7 +97,20 @@ Toast::message('message', 'level', 'title');
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <label>Team</label>
-                                                        <input type="text" class="form-control" placeholder="EX: Anshul Sehgal" name="team" value="{{isset($data->team)?$data->team:'' }}" required="" autocomplete="on|off" />
+                                                        <select class="form-control" name="team" {{ isset($data->id)  ? '' : 'required=""'}}>
+
+                                                            @forelse($team as $key=>$res)
+                                                            @if(isset($data->myTeam['id'] ) && $res['id']== $data->myTeam['id'])
+                                                            <option value="{{$res['id']}}" selected>{{$res['name']}} </option>
+
+                                                            @else
+                                                            <option value="{{$res['id']}}">{{$res['name']}}</option>
+
+                                                            @endif
+                                                            @empty
+                                                            <p>Team not found</p>
+                                                            @endforelse
+                                                        </select>
 
                                                     </div>
                                                     <div class="col-lg-6">
@@ -120,16 +134,98 @@ Toast::message('message', 'level', 'title');
 
                                     </fieldset>
 
-                           <fieldset>
-                                <div class="form-card">
-                                    <h2 class="fs-title">skills</h2> <input type="email" name="email" placeholder="Email Id" /> <input type="text" name="uname" placeholder="UserName" /> <input type="password" name="pwd" placeholder="Password" /> <input type="password" name="cpwd" placeholder="Confirm Password" />
-                                </div> 
-                                <input type="button" id="" name="previous" class="previous action-button-previous  pull-right btn btn-warning" value="Previous" />
+                                    <fieldset>
+                                        <div class="form-card">
+                                            <input type="hidden" name="drag_user_id" id="drag_user_id" value="{{isset($data->id)?$data->id:'' }}">
+
+                                            <div class="alert alert-info small"><i class="fa fa-comment"></i>&nbsp;&nbsp;Drag &amp; Drop fields from the left (Available Skills) over to the right side in the desired location on your dashboard.</div>
+                                            <span name="el_validationErrorFields"></span>
+                                            <br />
+                                            <div class="row dragSortableItems">
+                                                <div class="col-md-6">
+                                                    <div class="card">
+                                                        <div class="card-header"><i class="fa fa-folder-open"></i>&nbsp;&nbsp;Available Skills</div>
+                                                        <div class="card-body well">
+                                                            <ul id="in_available_fields" name="in_available_fields" class="custom-scrollbar in_available_fields sortable-list fixed-panel ui-sortable">
+                                                                @forelse ($allskills as $skill)
+                                                                <li class="sortable-item  allowSecondary allowExport" id="{{$skill['id']}}">{{$skill['value']}}</li>
+
+                                                                @empty
+                                                                <p>No Skills</p>
+                                                                @endforelse
+
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                <div class="card primaryPanel">
+                                                        <div class="card-header"><i class="fa fa-star-o"></i>&nbsp;&nbsp;Primary Skills</div>
+                                                        <div class="card-body well"> @if(empty($selectedPrimarySkills))
+                                                            <div class="alert alert-warning small">
+                                                                <center>No Fields Selectedd</center>
+                                                            </div> @endif
+                                                            <ul id="primary_sortable" name="in_primary_fields" class="sortable-list secondaryDropzone fixed-panel" data-fieldtype="secondary"> @forelse ($selectedPrimarySkills as $skill)
+                                                                <li class="sortable-item  allowSecondary allowExport" id="{{$skill->skills_details['id']}}">{{$skill->skills_details['value']}}</li> @empty
+                                                                <div class="alert alert-warning small">
+                                                                    <center>No Fields Selected</center>
+                                                                </div> @endforelse </ul>
+                                                        </div>
+                                                    </div>
+                                                    <br />
+                                                    <div class="card secondaryPanel">
+                                                        <div class="card-header"><i class="fa fa-star-o"></i>&nbsp;&nbsp;Secondary Skills</div>
+                                                        <div class="card-body well">
+                                                            @if(empty($selectedSecondrySkills))
+                                                            <div class="alert alert-warning small">
+                                                                <center>No Fields Selected</center>
+                                                            </div>
+                                                            @endif
+                                                            <ul id="sortable" name="in_secondary_fields" class="sortable-list secondaryDropzone fixed-panel" data-fieldtype="secondary">
+
+                                                                @forelse ($selectedSecondrySkills as $skill)
+                                                                <li class="sortable-item  allowSecondary allowExport" id="{{$skill->skills_details['id']}}">{{$skill->skills_details['value']}}</li>
+
+                                                                @empty
+                                                                <div class="alert alert-warning small">
+                                                                <center>No Fields Selected</center>
+                                                            </div>
+                                                                @endforelse
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <br />
+                                                    <div class="card exportPanel">
+                                                        <div class="card-header"><i class="fa fa-download"></i>&nbsp;&nbsp;Learning Skills</div>
+                                                        <div class="card-body well">
+                                                        @if(empty($selectedLearningSkills))
+                                                            <div class="alert alert-warning small">
+                                                                <center>No Fields Selected</center>
+                                                            </div>
+                                                            @endif
+                                                            <ul id="sortable_lerning" name="in_export_fields" class="sortable-list exportDropzone fixed-panel">
+                                                            @forelse ($selectedLearningSkills as $skill)
+                                                                <li class="sortable-item  allowSecondary allowExport" id="{{$skill->skills_details['id']}}">{{$skill->skills_details['value']}}</li>
+
+                                                                @empty
+                                                                <div class="alert alert-warning small">
+                                                                <center>No Fields Selected</center>
+                                                            </div>
+                                                                @endforelse
+
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <input type="button" id="" name="previous" class="previous action-button-previous  pull-right btn btn-warning" value="Previous" />
 
 
-                                <input type="button" name="next" class="next action-button btn btn-primary  col-md-3" value="Next Step" />
-                                
-                            </fieldset>
+                                        <input type="button" name="next" class="next action-button btn btn-primary  col-md-3" value="Next Step" />
+
+                                    </fieldset>
 
 
 
@@ -141,77 +237,7 @@ Toast::message('message', 'level', 'title');
                                             <div class="form-card">
 
 
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <h2 class="fs-title">Skills</h2>
-                                                        <div class="row">
-                                                            <div class="col-lg-6">
 
-                                                                <select class="selectpicker" multiple data-live-search="true" data-style="form-control" name="skill_value_id[]" {{ isset($data->id)  ? '' : 'required=""'}}>
-                                                                    @forelse($allskills as $key=>$dat)
-                                                                    @if(isset($selectedSkills) && in_array($dat['id'],$selectedSkills))
-                                                                    <option value="{{$dat['id']}}" selected>{{$dat['value']}}</option>
-                                                                    @else
-                                                                    <option value="{{$dat['id']}}">{{$dat['value']}}</option>
-                                                                    @endif
-                                                                    @empty
-                                                                    <p>No replies</p>
-                                                                    @endforelse
-
-                                                                </select>
-
-                                                            </div>
-                                                            <div class="col-lg-6">
-                                                                <input type="hidden" name="drag_user_id" id="drag_user_id" value="{{isset($data->id)?$data->id:'' }}">
-                                                                <ul id="sortable">
-                                                                    @if(isset($data->skills))
-                                                                    @forelse($data->skills as $key=>$dat)
-                                                                    <li class="ui-state-default" style="margin: 4px;" id="{{$dat['id']}}"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span> {{$dat['skills_details']['value']}}</li>
-                                                                    @empty
-                                                                    <p>No Skills</p>
-                                                                    @endforelse
-                                                                    @endif
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <h2 class="fs-title">Learning Skills</h2>
-                                                        <div class="row">
-                                                            <div class="col-lg-6">
-
-                                                                <select class="selectpicker" multiple data-live-search="true" data-style="form-control" name="learning_skills[]" {{ isset($data->id)  ? '' : 'required=""'}}>
-                                                                    @forelse($allskills as $key=>$dat)
-                                                                    @if(isset($selectedLearningSkills) && in_array($dat['id'],$selectedLearningSkills))
-                                                                    <option value="{{$dat['id']}}" selected>{{$dat['value']}}</option>
-                                                                    @else
-                                                                    <option value="{{$dat['id']}}">{{$dat['value']}}</option>
-                                                                    @endif
-                                                                    @empty
-                                                                    <p>No replies</p>
-                                                                    @endforelse
-
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-lg-6">
-                                                                <input type="hidden" name="drag_user_id" id="drag_user_id" value="{{isset($data->id)?$data->id:'' }}">
-                                                                <ul id="sortable_lerning">
-                                                                    @if(isset($data->learning_skills))
-                                                                    @forelse($data->learning_skills as $key=>$dat)
-
-                                                                    <li class="ui-state-default" style="margin: 4px;" id="{{$dat['id']}}"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span> {{$dat['skills_details']['value']}}</li>
-
-                                                                    @empty
-                                                                    <p>No Skills</p>
-                                                                    @endforelse
-                                                                    @endif
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
                                                 <h2 class="fs-title">Education</h2>
                                                 <div class="row">
                                                     <div class="education_more col-lg-12">
@@ -234,6 +260,7 @@ Toast::message('message', 'level', 'title');
                                                             <div class="col-lg-3">
                                                                 <label>Title</label>
                                                                 <select class="form-control" aria-label="Default select example" name="edu_title[]" {{ isset($data->id)  ? '' : 'required=""'}}>
+                                                                    <option value="">--Please select--</option>
                                                                     @forelse($course as $key=>$res)
 
                                                                     @if($res['id']==$res['education_title_id'])
@@ -283,7 +310,7 @@ Toast::message('message', 'level', 'title');
                                                             <div class="col-lg-3">
                                                                 <label>Title</label>
                                                                 <select class="form-control" aria-label="Default select example" name="edu_title[]" {{ isset($data->id)  ? '' : 'required=""'}}>
-                                                                @forelse($course as $key=>$datt)
+                                                                    @forelse($course as $key=>$datt)
 
                                                                     @if($datt['id']==$value['education_title_id'])
                                                                     <option value="{{$datt['id']}}" selected>{{$datt['value']}} </option>
@@ -293,8 +320,8 @@ Toast::message('message', 'level', 'title');
                                                                     @empty
                                                                     <p>No replies</p>
                                                                     @endforelse
-                                                                    
-                                                                <!-- <option value="1" {{ isset($value['education_title_id']) == '1'  ? 'selected' : ''}}>BBA</option>
+
+                                                                    <!-- <option value="1" {{ isset($value['education_title_id']) == '1'  ? 'selected' : ''}}>BBA</option>
                                                                     <option value="2" {{ isset($value['education_title_id']) == '2'  ? 'selected' : ''}}>BCA</option>
                                                                     <option value="3" {{ isset($value['education_title_id']) == '3'  ? 'selected' : ''}}>B.Come</option> -->
                                                                 </select>
@@ -761,8 +788,8 @@ Toast::message('message', 'level', 'title');
                 success: function(data) {
                     if (data.status = "success") {
                         toastr.success("Record insert successfully");
-                        window.location.href = {!! json_encode(url('/')) !!}+"/users";
-                      
+                        window.location.href = {!!json_encode(url('/')) !!} + "/users";
+
                     }
 
                 }
@@ -785,20 +812,50 @@ Toast::message('message', 'level', 'title');
             cursor: 'move',
             opacity: 0.6,
             update: function(event, ui) {
-
+                var type = 2;
                 var order = new Array();
                 $('#sortable>li').each(function(index, element) {
                     console.log('idddd', $(this).attr("id"));
                     order.push({
                             id: $(this).attr("id"),
                             position: index + 1,
+                            type: 2
 
                         }
 
                     );
                 });
 
-                updateOrder(order);
+                updateOrder(order, type);
+
+            }
+        });
+        $("#primary_sortable").sortable({
+            connectWith: '.container',
+            placeholder: "ui-state-highlight",
+            beforeStop: function(event, ui) {
+                draggedItem = ui.item;
+            },
+            iteams: "li",
+            cursor: 'move',
+            opacity: 0.6,
+            update: function(event, ui) {
+
+                var orderr = new Array();
+                $('#primary_sortable>li').each(function(index, element) {
+                    console.log('idddd', $(this).attr("id"));
+                    var type = 1;
+                    orderr.push({
+                            id: $(this).attr("id"),
+                            position: index + 1,
+                            type: 1
+
+                        }
+
+                    );
+                });
+
+                updateOrder(orderr, type);
 
             }
         });
@@ -871,6 +928,42 @@ Toast::message('message', 'level', 'title');
 
     });
 
+    function updateOrder(order, type) {
+        var token = $('input[name="_token"]').attr('value');
+        // var token = $('meta[name="csrf-token"]').attr('content');
+        var data = {
+            user_id: $('#drag_user_id').val(),
+            order: order,
+            type: type
+            // _token: token
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: base_url + '/skills_sorting',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify(data),
+            headers: {
+                'X-CSRF-Token': token
+            },
+
+            success: function(data) {
+
+                console.log('test', data);
+                if (data.status = "success") {
+                    toastr.success("Record insert successfully");
+
+                    // $('#exprince_button').trigger('click');
+                } else {
+                    toastr.error(data.message);
+                }
+
+            }
+        })
+
+    }
+
     function updateOrderLerning(order) {
         var token = $('input[name="_token"]').attr('value');
         // var token = $('meta[name="csrf-token"]').attr('content');
@@ -906,40 +999,7 @@ Toast::message('message', 'level', 'title');
 
     }
 
-    function updateOrder(order) {
-        var token = $('input[name="_token"]').attr('value');
-        // var token = $('meta[name="csrf-token"]').attr('content');
-        var data = {
-            user_id: $('#drag_user_id').val(),
-            order: order,
-            // _token: token
-        };
 
-        $.ajax({
-            type: 'POST',
-            url: base_url + '/skills_sorting',
-            contentType: 'application/json',
-            dataType: 'json',
-            data: JSON.stringify(data),
-            headers: {
-                'X-CSRF-Token': token
-            },
-
-            success: function(data) {
-
-                console.log('test', data);
-                if (data.status = "success") {
-                    toastr.success("Record insert successfully");
-
-                    // $('#exprince_button').trigger('click');
-                } else {
-                    toastr.error(data.message);
-                }
-
-            }
-        })
-
-    }
 
 
 

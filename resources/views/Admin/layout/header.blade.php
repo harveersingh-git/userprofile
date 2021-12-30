@@ -125,6 +125,10 @@
                             <li>
                                 <a href="{{route('skills-education')}}" class="{{ Request::segment(1) === 'skills-education' ? 'active' : null }}"><i class="fa fa-book"></i> Skills/education</a>
                             </li>
+                            <li>
+                                <a href="{{route('team')}}" class="{{ Request::segment(1) === 'team' ? 'active' : null }}"><i class="fa fa-users"></i> Team Mgmt</a>
+                            </li>
+                           
                            
                           
                         </ul>

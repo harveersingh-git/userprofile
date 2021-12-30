@@ -9,32 +9,37 @@ Toast::message('message', 'level', 'title');
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Skills-Education</h1>
+                <h1 class="page-header">Teams</h1>
             </div>
 
-            <div class="pull-right">
-                <a href="{{ url('add-skills-education') }}" class="active"><i class="fa fa-plus fa-fw"></i>
-                    <i class="fa fa-book fa-fw"></i> Add Skills-Education
-                </a>
-            </div>
+           
 
 
             <!-- /.col-lg-12 -->
         </div>
+
+        <div class="row">
+        <div class="col-lg-3">
+                <a class="btn btn-info mb-20" href="{{ url('add-team') }}" class="active"><i class="fa fa-plus fa-fw"></i>
+                    <i class="fa fa-book fa-fw"></i> Add Team
+                </a>
+            </div>
+
+</div>
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Skills-Education
+                    Teams
                     </div>
                     <!-- /.panel-heading -->
                     <table class="table table-bordered table-responsive" >
                         <thead>
                             <tr>
                                 <th class="text-center">Sr. No.</th>
-                                <th class="text-center">value</th>
-                                <th class="text-center">category</th>
+                                <th class="text-center">Name</th>
+                               
 
 
 
@@ -45,14 +50,14 @@ Toast::message('message', 'level', 'title');
                             @if(!empty($data) && $data->count())
                             @foreach($data as $key => $value)
                             <tr>
-                                <td class="text-center">{{ $value->value }}</td>
-                                <td class="text-center">{{ $value->value }}</td>
-                                <td class="text-center">{{ $value->category }}</td>
+                                   <td class="text-center">{{ $key+1 }}</td>
+                                <td class="text-center">{{ $value->name }}</td>
+                                
 
                                 <td class="text-center">
-                                    <a href="{{url('/skills-education/edit')}}/{{$value->id}}">Edit</button>
+                                    <a  class="btn btn-warning" href="{{url('/team/edit')}}/{{$value->id}}"><i class="fa fa-edit"></i> Edit</button>
 
-                                        <a class="delete" id="{{$value->id}}">Delete</button>
+                                    <a class="delete btn btn-danger" id="{{$value->id}}"> <i class="fa fa-trash"></i> Delete</button>
 
                                 </td>
                             </tr>
@@ -93,7 +98,7 @@ Toast::message('message', 'level', 'title');
             if (willDelete) {
                 $.ajax({
                     type: "POST",
-                    url: "{{url('delete_skills_education')}}",
+                    url: "{{url('delete_team')}}",
                     data: {
                         _token: '{{csrf_token()}}',
                         id: id
@@ -105,12 +110,7 @@ Toast::message('message', 'level', 'title');
                         window.location.reload();
                     }
                 })
-                //   axios.get(`/api/move_to_trash/${id}`).then(() => {
-                //      this.$router.push("/users");
-                //     let i = this.users.map((data) => data.id).indexOf(id);
-                //     this.users.splice(i, 1);
-                //      this.$toaster.success('Record delete successfully.')
-                //   });
+
             } else {
                 swal("Your Record safe now!");
             }
@@ -118,4 +118,6 @@ Toast::message('message', 'level', 'title');
 
     });
 </script>
+
+@endsection
 @endsection
