@@ -6,7 +6,6 @@
     <TITLE>CV</TITLE>
     <META name="generator" content="BCL easyConverter SDK 5.0.252">
     <META name="title" content="HS_AS_TK10827">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <STYLE type="text/css">
         body {
             margin-top: 0px;
@@ -62,28 +61,30 @@
 
 
         #page_2 {
-            /* position: relative; */
+            position: relative;
             overflow: hidden;
             margin: 0px 0px 0px 0px;
             padding: 0px;
             border: none;
-            /* width: 864px; */
-            /* height: 1209px; */
+            width: 864px;
+            height: 1209px;
             box-shadow: 1px 1px 6px rgb(0 0 0 / 50%);
+            background: #fff;
+
         }
 
         #page_2 #p2dimg1 {
-            /* position: absolute;
+            position: absolute;
             top: 0px;
             left: 0px;
             z-index: -1;
             width: 864px;
-            height: 1209px; */
+            height: 1209px;
         }
 
         #page_2 #p2dimg1 #p2img1 {
-            /* width: 864px;
-            height: 1209px; */
+            width: 864px;
+            height: 1209px;
         }
 
 
@@ -100,35 +101,35 @@
 
         .ft0 {
             font: bold 22px 'Arial';
-            color: #000000;
+            color: #ffffff;
             line-height: 26px;
         }
 
         .ft1 {
-            font: 15px 'Arial';
-            color: #000000;
+            font: bold 13px 'Arial';
+            color: #ffffff;
             line-height: 16px;
         }
 
         .ft2 {
             font: 7px 'Arial';
-            color: #000000;
+            color: #ffffff;
             line-height: 7px;
             width: 6px;
             height: 6px;
-            background: #000;
+            background: #fff;
             border-radius: 50px;
         }
 
         .ft3 {
             font: bold 12px 'Arial';
-            color: #000000;
+            color: #ffffff;
             line-height: 15px;
         }
 
         .ft4 {
             font: bold 12px 'Arial';
-            color: #000000;
+            color: #ffffff;
             line-height: 21px;
         }
 
@@ -139,13 +140,13 @@
         }
 
         .ft6 {
-            font: bold 39px 'Impact';
+            font: bold 47px 'Impact';
             color: #ea4335;
             line-height: 59px;
         }
 
         .ft7 {
-            font: bold 17px 'Arial';
+            font: bold 20px 'Arial';
             line-height: 24px;
         }
 
@@ -162,7 +163,7 @@
         }
 
         .ft10 {
-            font: 16px 'Arial';
+            font: 17px 'Arial';
             color: #333333;
             line-height: 19px;
         }
@@ -274,7 +275,7 @@
         .p7 {
             text-align: left;
             padding-left: 43px;
-            margin-top: 10px;
+            margin-top: 76px;
             margin-bottom: 0px;
         }
 
@@ -323,7 +324,7 @@
 
         .p14 {
             text-align: left;
-            padding-left: 291px;
+            padding-left: 378px;
             margin-top: 0px;
             margin-bottom: 0px;
         }
@@ -344,29 +345,27 @@
 
         .p17 {
             text-align: left;
-            margin-top: 32px;
+            margin-top: 33px;
             margin-bottom: 0px;
-            margin-left: 30px;
-
         }
 
         .p18 {
             text-align: left;
-            padding-left: 30px;
+            padding-left: 2px;
             margin-top: 19px;
             margin-bottom: 0px;
         }
 
         .p19 {
             text-align: left;
-            padding-left: 30px;
-            margin-top: 15px;
+            padding-left: 3px;
+            margin-top: 30px;
             margin-bottom: 0px;
         }
 
         .p20 {
             text-align: left;
-            padding-left: 30px;
+            padding-left: 2px;
             margin-top: 24px;
             margin-bottom: 0px;
         }
@@ -381,28 +380,28 @@
 
         .p22 {
             text-align: left;
-            padding-left: 30px;
-            margin-top: 15px;
+            padding-left: 2px;
+            margin-top: 33px;
             margin-bottom: 0px;
         }
 
         .p23 {
             text-align: left;
-            padding-left: 30px;
+            padding-left: 2px;
             margin-top: 23px;
             margin-bottom: 0px;
         }
 
         .p24 {
             text-align: left;
-            padding-left: 30px;
+            padding-left: 2px;
             margin-top: 8px;
             margin-bottom: 0px;
         }
 
         .p25 {
             text-align: left;
-            padding-left: 31px;
+            padding-left: 3px;
             padding-right: 140px;
             margin-top: 19px;
             margin-bottom: 0px;
@@ -410,14 +409,14 @@
 
         .p26 {
             text-align: left;
-            padding-left: 30px;
+            padding-left: 3px;
             margin-top: 32px;
             margin-bottom: 0px;
         }
 
         .p27 {
             text-align: left;
-            padding-left: 32px;
+            padding-left: 3px;
             padding-right: 128px;
             margin-top: 19px;
             margin-bottom: 0px;
@@ -425,49 +424,49 @@
 
         .p28 {
             text-align: left;
-            padding-left: 30px;
-            margin-top: 15px;
+            padding-left: 2px;
+            margin-top: 35px;
             margin-bottom: 0px;
         }
 
         .p29 {
             text-align: left;
-            padding-left: 30px;
+            padding-left: 2px;
             margin-top: 14px;
             margin-bottom: 0px;
         }
 
         .p30 {
             text-align: left;
-            padding-left: 30px;
+            padding-left: 2px;
             margin-top: 4px;
             margin-bottom: 0px;
         }
 
         .p31 {
             text-align: left;
-            padding-left: 30px;
+            padding-left: 3px;
             margin-top: 14px;
             margin-bottom: 0px;
         }
 
         .p32 {
             text-align: left;
-            padding-left: 30px;
-            margin-top: 15px;
+            padding-left: 3px;
+            margin-top: 52px;
             margin-bottom: 0px;
         }
 
         .p33 {
             text-align: left;
-            padding-left: 30px;
+            padding-left: 4px;
             margin-top: 18px;
             margin-bottom: 0px;
         }
 
         .p34 {
             text-align: left;
-            padding-left: 681px;
+            padding-left: 768px;
             margin-top: 34px;
             margin-bottom: 0px;
         }
@@ -607,7 +606,7 @@
         .td5 {
             padding: 0px;
             margin: 0px;
-            /* width: 246px; */
+            width: 246px;
         }
 
         .tr0 {
@@ -643,14 +642,12 @@
             width: 271px;
             margin-top: 39px;
             font: 7px 'Arial';
-            color: #000000;
-            margin-left: 55px;
-
+            color: #ffffff;
         }
 
         .t1 {
-            width: 394px;
-            margin-left: 20px;
+            width: 428px;
+            margin-left: 2px;
             margin-top: 2px;
             font: 17px 'Arial';
             color: #333333;
@@ -658,7 +655,7 @@
 
         .page-container {
             background-color: #9e9e9e;
-            background-image: url('../../../pdf/download.svg');
+            background-image: url('images/download.svg');
             -webkit-transition: left 500ms;
             transition: left 500ms;
         }
@@ -674,173 +671,118 @@
             height: 6px;
             vertical-align: middle;
         }
-
-        #p1dimg1 {
-            position: fixed;
-            /* opacity: 0.5; */
-            margin-left: -50px;
-        }
-
-
-        div#id1_1 {
-
-            top: 72px;
-
-            padding-top: 384px;
-
-            padding-left: 2px;
-
-            position: absolute;
-
-
-
-
-        }
-
-        .logo_div {
-            margin-left: 68%;
-            margin-top: 28px;
-        }
-
-        .page-break {
-            page-break-after: always;
-        }
-
-        p.p1.ft1 {
-            text-align: justify;
-            width: 50%;
-            text-justify: inter-word;
-        }
-
-        #p2dimg1 {
-            position: fixed;
-            opacity: 0.5;
-            margin-left: -50px;
-            margin-top: 100px;
-            z-index: -1;
-            /* z-index:-1;
-            width: 864px;
-            height: 1209px;  */
-        }
     </STYLE>
 </HEAD>
 
-<BODY>
-
-    <div class="row page-break">
-
-        <div class="col" style="width: 50%; float:left">
-            <div id="p1dimg1">
+<BODY class="page-container">
+    <div class="center" style="width:800px; margin: 0 auto;">
+        <DIV id="page_1">
+            <DIV id="p1dimg1">
                 <IMG src="{{asset('pdf/img-1.jpg')}}" id="p1img1">
-            </div>
-            <DIV id="id1_1">
-
-                <P class="p0 ft0" style="color:#000;">ABOUT ME</P>
-                <div style="width:75%; text-align: justify; margin-left:10px">
-                    <P class="p1 ft1" style="color:#000;">{!!html_entity_decode($data->about_employee)!!}</P>
-                </div>
-                <p class="p7 ft0" style="color:#fff;">SKILLS, LANGUAGES</p>
-                <p class="p8 ft0" style="color:#fff;">AND TOOLS</p>
-                <TABLE cellpadding=0 cellspacing=0 class="t0">
+            </DIV>
 
 
-                    @forelse ($data['skills'] as $skill)
-                    <TR>
-                        <TD class="tr0 td0">
-                            <P class="p9 ft2" style="color:#000;">○</P>
-                        </TD>
-                        <TD class="tr0 td1">
-                            <P class="p9 ft1" style="color:#000;">{{$skill['skills_details']['value']}}</P>
-                        </TD>
+            <DIV class="dclr"></DIV>
+            <DIV>
+                <DIV id="id1_1">
+                    <P class="p0 ft0" style="color:#fff;">ABOUT ME</P>
+                    <div style="width:75%; text-align: justify; margin-left:10px">
+                        <P class="p1 ft1" style="color:#000;">{!!html_entity_decode($data->about_employee)!!}</P>
+                    </div>
+                    <TABLE cellpadding=0 cellspacing=0 class="t0">
+                        @forelse ($data['skills'] as $skill)
+                        <TR>
+                            <TD class="tr0 td0">
+                                <P class="p9 ft2" style="color:#000;">○</P>
+                            </TD>
+                            <TD class="tr0 td1">
+                                <P class="p9 ft1" style="color:#000;">{{$skill['skills_details']['value']}}</P>
+                            </TD>
 
-                    </TR>
-                    @empty
-                    <p>No skills Found</p>
-                    @endforelse
-
-                </TABLE>
+                        </TR>
+                        @empty
+                        <p>No skills Found</p>
+                        @endforelse
+                    </TABLE>
 
                 </DIV>
+                <DIV id="id1_2">
+                    <P class="ft4" style="width:371px; height: 51px; float:left; margin:0; padding: 0; margin-top:-8px;"><img src="{{asset('pdf/logo.jpg')}}"></P>
+                    <P class="p14 ft5">CMMI L3 SCV</P>
+                    <P class="p14 ft5">ISO 27001:2013</P>
+                    <P class="p14 ft5">ISO 9001:2015</P>
+                    <P class="p17 ft6" style="margin-top:50px;">{{$data->employee_id}}</P>
+                    <p class="p18 ft7" style="color:#222;">{{$data->resume_title}}</p>
+                    <P class="p19 ft8">WORK EXPERIENCE</P>
+                    <P class="p20 ft9">{{$data->resume_title}}</P>
+                    <TABLE cellpadding=0 cellspacing=0 class="t1">
+                        <TR>
+                            <TD class="tr2 td4">
+                                <P class="p21 ft10">Virtual Employee</P>
+                            </TD>
+                            <TD class="tr2 td5">
+                                <P class="p9 ft10">CMMI L3 SCV</P>
+                            </TD>
+                        </TR>
+                        <TR>
+                            <TD rowspan=2 class="tr3 td4">
+                                <P class="p9 ft11">{{ \Carbon\Carbon::parse($data['joining_date'])->format('M Y')}} - Present</P>
+                            </TD>
+                            <TD class="tr4 td5">
+                                <P class="p9 ft10">ISO 27001:2013/ISO 9001:2015</P>
+                            </TD>
+                        </TR>
+                        <TR>
+                            <TD class="tr5 td5">
+                                <P class="p9 ft12">&nbsp;</P>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                    <P class="p22 ft8">EDUCATION</P>
+                    @forelse ($data['education'] as $education)
+                    <P class="p23 ft9">{{$education['education_details']['value']}}</P>
+                   
+                    <P class="p24 ft11">{{$education['course']['value']}} | {{ \Carbon\Carbon::parse($education['from'])->format('Y')}} - {{ \Carbon\Carbon::parse($education['to'])->format('Y')}}</P>
+                  
 
 
+
+                    @empty
+                    <p>No EDUCATION Found</p>
+                    @endforelse
+                    <P class="p32 ft8">CERTIFICATIONS</P>
+                    @forelse ($data['certificate'] as $res)
+                    <P class="p33 ft16"><SPAN class="ft15">{!!html_entity_decode($res['certification'])!!}</SPAN></P>
+                    @empty
+                    <p>No Certification Found</p>
+                    @endforelse
+                </DIV>
+            </DIV>
+        </DIV>
+        <DIV id="page_2">
+            <!-- <DIV id="p2dimg1">
+                <IMG src="{{asset('pdf/img-2.jpg')}}" id="p2img1">
+            </DIV> -->
+
+
+            <DIV class="dclr"></DIV>
+            <p class="ft4 p34" style="width:371px;height:51px;float:left; padding-left: 390px; margin-top:25px;"><img src="{{asset('pdf/logo.jpg')}}"></p>
+            <P class="p34 ft5">CMMI L3 SCV</P>
+            <P class="p36 ft5" style="margin-top:0px;">ISO 27001:2013</P>
+            <P class="p36 ft5" style="margin-top:0px;">ISO 9001:2015</P>
+
+            <P class="p37 ft8">ABOUT PROJECTS</P>
+            @forelse ($data['project'] as $show)
+            <P class="p38 ft9">{{$show['project_name']}}</P>
+            <div>
+                <P class="p39 ft17">{!!html_entity_decode($show['project_description'])!!}</P>
             </div>
-
-
-        </div>
-        <div class="col" style="width: 50%; float:right">
-            <P class="ft4" style="width:300px; height: 51px; float:left; margin:0; padding: 0; margin-top:-8px;"><img style="width:90%" src="{{ public_path('pdf/logo.jpg') }}"></P>
-            <P class="p14 ft5">CMMI L3 SCV</P>
-            <P class="p14 ft5">ISO 27001:2013</P>
-            <P class="p14 ft5">ISO 9001:2015</P>
-            <P class="p17 ft6" style="margin-top: 33px;">{{$data->employee_id}}</P>
-            <p class="p18 ft7" style="color:#222;">{{$data->resume_title}}</p>
-            <P class="p19 ft8">WORK EXPERIENCE</P>
-            <P class="p20 ft9">{{$data->resume_title}}</P>
-            <TABLE cellpadding=0 cellspacing=0 class="t1">
-                <TR>
-                    <TD class="tr2 td4">
-                        <P class="p21 ft10">Virtual Employee</P>
-                    </TD>
-                    <TD class="tr2 td5">
-                        <P class="p9 ft10">CMMI L3 SCV</P>
-                    </TD>
-                </TR>
-                <TR>
-                    <TD rowspan=2 class="tr3 td4">
-                        <P class="p9 ft11">{{ \Carbon\Carbon::parse($data['joining_date'])->format('M Y')}} - Present</P>
-                    </TD>
-                    <TD class="tr4 td5">
-                        <P class="p9 ft10">ISO 27001:2013/ISO 9001:2015</P>
-                    </TD>
-                </TR>
-                <TR>
-                    <TD class="tr5 td5">
-                        <P class="p9 ft12">&nbsp;</P>
-                    </TD>
-                </TR>
-            </TABLE>
-            <P class="p22 ft8">EDUCATION</P>
-
-            @forelse ($data['education'] as $education)
-            <P class="p23 ft9">{{$education['education_details']['value']}}</P>
-
-            <P class="p24 ft11">{{$education['course']['value']}} | {{ \Carbon\Carbon::parse($education['from'])->format('Y')}} - {{ \Carbon\Carbon::parse($education['to'])->format('Y')}}</P>
             @empty
-            <p>No EDUCATION Found</p>
+            <p>No Project Found</p>
             @endforelse
-            <!-- <P class="p28 ft8">INTERNSHIP</P>
-            <P class="p29 ft9">TECHMENTRO,</P>
-            <P class="p30 ft9">INDIA, NOIDA</P>
-            <P class="p31 ft11">Jan 2016</P>-->
-            <P class="p32 ft8">CERTIFICATIONS</P>
-            @forelse ($data['certificate'] as $res)
-            <P class="p33 ft16"><SPAN class="ft15">{!!html_entity_decode($res['certification'])!!}</SPAN></P>
-            @empty
-            <p>No Certification Found</p>
-            @endforelse
-        </div>
+        </DIV>
+
     </div>
-
-    <DIV id="page_2">
-        <div id="p2dimg1">
-            <IMG src="{{public_path('pdf/img-2.jpg')}}">
-        </div>
-
-
-
-        <DIV class="dclr"></DIV>
-
-
-        <P class="p37 ft8">ABOUT PROJECTS</P>
-        @forelse ($data['project'] as $show)
-        <P class="p38 ft9">{{$show['project_name']}}</P>
-        <P class="p39 ft17">{!!html_entity_decode($show['project_description'])!!}</P>
-        @empty
-        <p>No Project Found</p>
-        @endforelse
-    </DIV>
-
-
 </BODY>
 
 </HTML>

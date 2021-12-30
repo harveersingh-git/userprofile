@@ -48,6 +48,7 @@ Route::any('/information', [App\Http\Controllers\UserController::class, 'informa
 Route::any('/information/{id}', [App\Http\Controllers\UserController::class,'information']);
 Route::any('/skills_sorting', [App\Http\Controllers\UserController::class, 'skillsSorting']);
 Route::get('/resume/{id}', [App\Http\Controllers\UserController::class,'resume']);
+Route::get('/view-resume/{id}', [App\Http\Controllers\UserController::class,'viewResume']);
 Route::any('/education_type', [App\Http\Controllers\UserController::class, 'educationType']);
 Route::any('/learning_skills_sorting', [App\Http\Controllers\UserController::class, 'learningSkillsSorting']);
 

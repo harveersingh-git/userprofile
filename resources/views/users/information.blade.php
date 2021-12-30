@@ -136,7 +136,7 @@ Toast::message('message', 'level', 'title');
 
                                     <fieldset>
                                         <div class="form-card">
-                                            <input type="hidden" name="drag_user_id" id="drag_user_id" value="{{isset($data->id)?$data->id:'' }}">
+                                            <input type="hidden" name="drag_user_id" id="drag_user_id" class="user_id" value="{{isset($data->id)?$data->id:'' }}">
 
                                             <div class="alert alert-info small"><i class="fa fa-comment"></i>&nbsp;&nbsp;Drag &amp; Drop fields from the left (Available Skills) over to the right side in the desired location on your dashboard.</div>
                                             <span name="el_validationErrorFields"></span>
@@ -161,10 +161,7 @@ Toast::message('message', 'level', 'title');
                                                 <div class="col-md-6">
                                                 <div class="card primaryPanel">
                                                         <div class="card-header"><i class="fa fa-star-o"></i>&nbsp;&nbsp;Primary Skills</div>
-                                                        <div class="card-body well"> @if(empty($selectedPrimarySkills))
-                                                            <div class="alert alert-warning small">
-                                                                <center>No Fields Selectedd</center>
-                                                            </div> @endif
+                                                        <div class="card-body well"> 
                                                             <ul id="primary_sortable" name="in_primary_fields" class="sortable-list secondaryDropzone fixed-panel" data-fieldtype="secondary"> @forelse ($selectedPrimarySkills as $skill)
                                                                 <li class="sortable-item  allowSecondary allowExport" id="{{$skill->skills_details['id']}}">{{$skill->skills_details['value']}}</li> @empty
                                                                 <div class="alert alert-warning small">
@@ -176,11 +173,7 @@ Toast::message('message', 'level', 'title');
                                                     <div class="card secondaryPanel">
                                                         <div class="card-header"><i class="fa fa-star-o"></i>&nbsp;&nbsp;Secondary Skills</div>
                                                         <div class="card-body well">
-                                                            @if(empty($selectedSecondrySkills))
-                                                            <div class="alert alert-warning small">
-                                                                <center>No Fields Selected</center>
-                                                            </div>
-                                                            @endif
+                                                          
                                                             <ul id="sortable" name="in_secondary_fields" class="sortable-list secondaryDropzone fixed-panel" data-fieldtype="secondary">
 
                                                                 @forelse ($selectedSecondrySkills as $skill)
@@ -198,11 +191,7 @@ Toast::message('message', 'level', 'title');
                                                     <div class="card exportPanel">
                                                         <div class="card-header"><i class="fa fa-download"></i>&nbsp;&nbsp;Learning Skills</div>
                                                         <div class="card-body well">
-                                                        @if(empty($selectedLearningSkills))
-                                                            <div class="alert alert-warning small">
-                                                                <center>No Fields Selected</center>
-                                                            </div>
-                                                            @endif
+                                                       
                                                             <ul id="sortable_lerning" name="in_export_fields" class="sortable-list exportDropzone fixed-panel">
                                                             @forelse ($selectedLearningSkills as $skill)
                                                                 <li class="sortable-item  allowSecondary allowExport" id="{{$skill->skills_details['id']}}">{{$skill->skills_details['value']}}</li>
@@ -932,7 +921,7 @@ Toast::message('message', 'level', 'title');
         var token = $('input[name="_token"]').attr('value');
         // var token = $('meta[name="csrf-token"]').attr('content');
         var data = {
-            user_id: $('#drag_user_id').val(),
+            user_id: $('.user_id').val(),
             order: order,
             type: type
             // _token: token
@@ -968,7 +957,7 @@ Toast::message('message', 'level', 'title');
         var token = $('input[name="_token"]').attr('value');
         // var token = $('meta[name="csrf-token"]').attr('content');
         var data = {
-            user_id: $('#drag_user_id').val(),
+            user_id: $('.user_id').val(),
             order: order,
             // _token: token
         };
