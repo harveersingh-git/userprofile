@@ -678,7 +678,7 @@
         }
 
         #p1dimg1 {
-            position: relative;
+            position: fixed;
             /* opacity: 0.5; */
             margin-left: -50px;
             margin-top: -50px;
@@ -828,8 +828,9 @@
 
 
         <DIV class="dclr"></DIV>
-        
-        <P class="ft8">ABOUT PROJECTS</P>
+
+
+        <P class="p37 ft8">ABOUT PROJECTS</P>
         @forelse ($data['project'] as $show)
         <P class="p38 ft9">{{$show['project_name']}}</P>
         <div style="padding: 17px;text-align: justify;">
