@@ -26,11 +26,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data['current_month'] = User::whereMonth(
+        $data['current_month'] = User::where('id', '!=', 1)->whereMonth(
             'created_at', '=', Carbon::now()->month
         )->count();
         $data['exprince'] = User::select('experience', DB::raw('count(*) as total'))
-        ->groupBy('experience')->get();
+        ->groupBy('experience')->where('id', '!=', 1)->get();
 
         // dd($data['exprince']->toArray());
         return view('home',compact('data'));
