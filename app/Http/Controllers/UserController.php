@@ -230,7 +230,7 @@ class UserController extends Controller
                 'experience' => 'required',
                 // 'employee_id' => [
                    
-                //     Rule::in(['tk','TK']),
+                //     Rule::requiredIf('tk'),
                 // ], 
 
             ]);
