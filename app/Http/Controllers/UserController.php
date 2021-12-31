@@ -214,17 +214,17 @@ class UserController extends Controller
             $input = $request->all();
             // dd( $input); 
             $validator = Validator::make($request->all(), [
-                'first_name' => 'required',
-                'email' => 'required|email|unique:users,email,' . $input['id'] . ',id',
-                'last_name' => 'required',
-                'employee_id' => 'required|unique:users,employee_id,' . $input['id'] . ',id',
-                'resume_title' => 'required',
-                'mobile' =>  'required|unique:users,mobile,' . $input['id'] . ',id',
+                'first_name' => 'required|min:2|max:50',
+                'email' => 'required|min:2|max:50|email|unique:users,email,' . $input['id'] . ',id',
+                'last_name' => 'required|min:2|max:50',
+                'employee_id' => 'required|min:2|max:50|unique:users,employee_id,' . $input['id'] . ',id',
+                'resume_title' => 'required|min:2|max:50',
+                'mobile' =>  'required||max:11|unique:users,mobile,' . $input['id'] . ',id',
                 'joining_date' => 'required',
                 'shift_start' => 'required',
                 'shift_end' => 'required',
                 'team' => 'required',
-                'about_employee' => 'required',
+                'about_employee' => 'required|min:2|max:200',
                 'experience' => 'required'
 
             ]);

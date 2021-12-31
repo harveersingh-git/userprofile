@@ -11,15 +11,18 @@ $(function() {
     $("#joining_date").datepicker(
         {
             dateFormat: 'yy-mm-dd',
+            maxDate: new Date()
            
         }
 
     );
     $(".edu_to").datepicker({
-        dateFormat: 'yy-mm-dd'
+        dateFormat: 'yy-mm-dd',
+        maxDate: new Date()
     });
     $(".edu_from").datepicker({
-        dateFormat: 'yy-mm-dd'
+        dateFormat: 'yy-mm-dd',
+        maxDate: new Date()
     });
     $(".exp_from").datepicker(
         {
@@ -307,11 +310,19 @@ $(document).ready(function() {
     });
 
     
-    $(document).on('click', '#skills_prev', function(e) {
+    $(document).on('click', '#new_skills_prev', function(e) {
         e.preventDefault();
-       $('#genral_info_button').hide();
+       $('#genral_info_button_two').hide();
        $('#genral_info_submit').show();
     });
+
+    
+
+    // $(document).on('click', '#edu_prev', function(e) {
+    //     e.preventDefault();
+    //    $('#skill_submit').hide();
+    //    $('#genral_info_submit').show();
+    // });
 
     $(document).on('click', '#exprince_prev', function(e) {
         e.preventDefault();

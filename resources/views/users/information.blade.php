@@ -131,6 +131,7 @@ Toast::message('message', 'level', 'title');
 
                                         </form>
                                         <input type="button" name="next" style="display: none;" class="next btn btn-info  action-button col-md-3" value="Next Step" id="genral_info_button" />
+                                        <input type="button" name="next" style="display: none;" class="next btn btn-info  action-button col-md-3" value="Next Step" id="genral_info_button_two" />
 
                                     </fieldset>
 
@@ -210,7 +211,7 @@ Toast::message('message', 'level', 'title');
                                             </div>
 
                                         </div>
-                                        <input type="button" id="" name="previous" class="previous action-button-previous  pull-right btn btn-warning" value="Previous" />
+                                        <input type="button" id="new_skills_prev" name="previous" class="previous action-button-previous  pull-right btn btn-warning" value="Previous" />
 
 
                                         <input type="button" name="next" class="next action-button btn btn-primary  col-md-3" value="Next Step" />
@@ -897,8 +898,8 @@ Toast::message('message', 'level', 'title');
                         toastr.success("Record insert successfully");
                         $('.user_id').val(data.last_insert_id);
                         $('#genral_info_submit').hide();
-                        $('#genral_info_button').show();
-                        $('#genral_info_button').trigger('click');
+                        $('#genral_info_button_two').show();
+                        $('#genral_info_button_two').trigger('click');
                     } else {
                         toastr.error(data.message);
                     }
