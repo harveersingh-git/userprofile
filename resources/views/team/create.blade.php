@@ -19,11 +19,12 @@ Add Skills Education
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
+                    
+                        <div class="panel-heading mypnl_heading">
+                            <span class="back_btn"><a type="reset" href="{{url('team')}}}">
+                            <i class="fa fa-arrow-left"></i> Back </a></span> <span>Add Team</span>
+                        </div>
 
-                    <div class="panel-heading">
-                     <a class="btn btn-outline btn-primary" type="reset" href="{{url('team')}}"><i class="fa fa-arrow-left"></i> Back </a> Add Team
-
-                    </div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12">

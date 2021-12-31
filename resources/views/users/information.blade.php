@@ -12,13 +12,14 @@ Toast::message('message', 'level', 'title');
 <div id="page-wrapper" style="min-height: 183px;">
     <div class="container-fluid">
         <div class="panel-heading">
-            <a class="btn btn-outline btn-primary" type="reset" href="{{ url('users')}}"><i class="fa fa-arrow-left"></i> Back </a>
+            <span class="pull-right"><a class="btn btn-outline btn-primary" type="reset" href="{{ url('users')}}"><i class="fa fa-arrow-left"></i> Back </a>
+</span>
         </div>
         <!-- MultiStep Form -->
         <div class="container-fluid" id="">
             <div class="row justify-content-center mt-0">
                 <div class="">
-                    <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                    <div class="px-0 pt-4 pb-0 mt-3 mb-3">
 
                         <div class="row">
                             <div class="col-md-12 mx-0">
@@ -73,10 +74,10 @@ Toast::message('message', 'level', 'title');
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-lg-6">
+                                                    <div class="col-lg-6 join_cld">
                                                         <label>Joining Date</label>
                                                         <input type="text" class="form-control" placeholder="2021-01-02" name="joining_date" id="joining_date" value="{{isset($data->joining_date)?$data->joining_date:'' }}" required="" autocomplete="on|off" />
-
+                                                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
                                                     </div>
 
                                                     <div class="col-lg-6">

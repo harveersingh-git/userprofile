@@ -11,9 +11,6 @@ Users
             <div class="col-lg-12">
                 <h1 class="page-header"> Change Password</h1>
             </div>
-
-
-
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
@@ -21,15 +18,13 @@ Users
             <div class="col-lg-12">
                 <div class="panel panel-default">
 
-                    <div class="panel-heading">
-                        <a type="reset" href="{{ url('home') }}"> Back </a> Change Password 
+                    <div class="panel-heading mypnl_heading">
+                     <span class="back_btn"><a type="reset" href="{{ url('home') }}"><i class="fa fa-arrow-left"></i> Back</a></span><span> Change Password</span> 
                     </div>
                     <div class="panel-body">
                         
-                       
-
-                                <div class="col-md-10 offset-2">
-                                    <div class="panel panel-default">
+                                <div class="panel_box">
+                                    <div class="panel panel-default my_panel">
 
 
                                      
@@ -52,7 +47,7 @@ Users
                                                 {{ csrf_field() }}
 
                                                 <div class="form-group{{ $errors->has('current-password') ? ' has-error' : '' }}">
-                                                    <label for="new-password" class="col-md-4 control-label">Current Password</label>
+                                                    <label for="new-password" class="col-md-4">Current Password</label>
 
                                                     <div class="col-md-6">
                                                         <input id="current-password" type="password" class="form-control" name="current-password" required>
@@ -66,7 +61,7 @@ Users
                                                 </div>
 
                                                 <div class="form-group{{ $errors->has('new-password') ? ' has-error' : '' }}">
-                                                    <label for="new-password" class="col-md-4 control-label">New Password</label>
+                                                    <label for="new-password" class="col-md-4">New Password</label>
 
                                                     <div class="col-md-6">
                                                         <input id="new-password" type="password" class="form-control" name="new-password" required>
@@ -80,7 +75,7 @@ Users
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="new-password-confirm" class="col-md-4 control-label">Confirm New Password</label>
+                                                    <label for="new-password-confirm" class="col-md-4">Confirm New Password</label>
 
                                                     <div class="col-md-6">
                                                         <input id="new-password-confirm" type="password" class="form-control" name="new-password_confirmation" required>

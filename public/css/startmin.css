@@ -724,3 +724,29 @@ label {
     padding: 6px 4px !important;
     margin: 4px 3px;
 }
+.back_btn {
+    float: right;
+}
+
+.back_btn a {
+    padding: 8px 15px;
+    font-weight: normal;
+    text-decoration: none;
+    background-color: #fff;
+}
+
+.back_btn a:hover {
+    background-color: #585858;
+    color: #fff;
+}
+
+.panel_box {
+    margin: auto;
+    width: 60%;
+}
+
+.my_panel {
+    border: none;
+    background: #eee;
+    padding: 30px;
+}

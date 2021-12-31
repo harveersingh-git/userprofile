@@ -49,7 +49,13 @@ Login-Admin
                                 <button type="submit" class="btn btn-info w-100 px-3 mb-2 mt-2 text-uppercase">
                                     {{ __('Send Password Reset Link') }}
                                 </button>
+
+                                <a class="login_back_btn d-block mt-2 font-14" type="" href="{{ url('home') }}"> Back</a>
+
                             </div>
+        
+                          
+                       
                         
                     </form>
                 </div>

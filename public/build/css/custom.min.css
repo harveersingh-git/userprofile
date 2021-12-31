@@ -10108,3 +10108,15 @@ width: 40%;
   background: #fff;
   color: #000;
 }
+
+/* nitin css */
+
+.login_back_btn {
+    background: #cdcdcd;
+    width: 80px;
+    text-align: center;
+    padding: 5px 0px;
+    border-radius: 3px;
+    margin-left: auto;
+    color: #333 !important;
+}
