@@ -105,8 +105,8 @@
         }
 
         .ft1 {
-            font: 15px 'Arial';
-            color: #000000;
+            font: bold 13px 'Arial';
+            color: #ffffff;
             line-height: 16px;
         }
 
@@ -491,6 +491,7 @@
             padding-left: 72px;
             margin-top: 21px;
             margin-bottom: 0px;
+            margin-left: -56px;
         }
 
         .p38 {
@@ -498,6 +499,7 @@
             padding-left: 71px;
             margin-top: 10px;
             margin-bottom: 0px;
+            margin-left: -56px;
         }
 
         .p39 {
@@ -679,14 +681,15 @@
             position: relative;
             /* opacity: 0.5; */
             margin-left: -50px;
+            margin-top: -50px;
         }
 
 
         div#id1_1 {
 
-            top: 72px;
+            top: 17px;
 
-            padding-top: 384px;
+            padding-top: 322px;
 
             padding-left: 2px;
 
@@ -709,7 +712,7 @@
         p.p1.ft1 {
             text-align: justify;
             width: 50%;
-            text-justify: inter-word;
+            /* text-justify: inter-word; */
         }
 
         #p2dimg1 {
@@ -735,7 +738,7 @@
             </div>
             <DIV id="id1_1">
 
-                <P class="p0 ft0" style="color:#000;">ABOUT ME</P>
+                <P class="p0 ft0" style="color:#fff;">ABOUT ME</P>
                 <div style="width:75%; text-align: justify; margin-left:10px">
                     <P class="p1 ft1" style="color:#000;">{!!html_entity_decode($data->about_employee)!!}</P>
                 </div>
@@ -768,7 +771,7 @@
             <P class="p14 ft5">CMMI L3 SCV</P>
             <P class="p14 ft5">ISO 27001:2013</P>
             <P class="p14 ft5">ISO 9001:2015</P>
-            <P class="p17 ft6" style="margin-top: 33px;">{{$data->employee_id}}</P>
+            <P class="p17 ft6" style="margin-top: 33px;">{{strtoupper($data->resume_emp_id)}}</P>
             <p class="p18 ft7" style="color:#222;">{{$data->resume_title}}</p>
             <P class="p19 ft8">WORK EXPERIENCE</P>
             <P class="p20 ft9">{{$data->resume_title}}</P>
@@ -818,9 +821,9 @@
     </div>
 
     <DIV id="page_2">
-        <div id="p2dimg1">
-            <IMG src="{{public_path('pdf/img-2.jpg')}}">
-        </div>
+           <!-- <DIV id="p2dimg1">
+                <IMG src="{{public_path('pdf/img-2.jpg')}}" id="p2img1">
+            </DIV> -->
 
 
 
@@ -828,8 +831,10 @@
         
         <P class="ft8">ABOUT PROJECTS</P>
         @forelse ($data['project'] as $show)
-        <P class="ft9">{{$show['project_name']}}</P>
+        <P class="p38 ft9">{{$show['project_name']}}</P>
+        <div style="padding: 17px;text-align: justify;">
         <P class="p39 ft17">{!!html_entity_decode($show['project_description'])!!}</P>
+        </div>
         @empty
         <p>No Project Found</p>
         @endforelse

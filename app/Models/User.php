@@ -43,7 +43,8 @@ class User extends Authenticatable
         'shift_end',
         'team',
         'about_employee',
-        'experience'
+        'experience',
+        'resume_emp_id'
     ];
 
     /**

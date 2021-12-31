@@ -21,7 +21,7 @@ Users
                 <div class="panel panel-default">
 
                     <div class="panel-heading">
-                        <a class="btn btn-outline btn-primary" type="reset" href="/users"><i class="fa fa-arrow-back"></i> Back </a> Add User
+                        <a class="btn btn-outline btn-primary" type="reset" href="{{url('users')}}"><i class="fa fa-arrow-back"></i> Back </a> Add User
                     </div>
                     <div class="panel-body">
                         <div class="row">

@@ -28,7 +28,7 @@ Toast::message('message', 'level', 'title');
                         <span>Users</span>
                         <div class="col-sm-3 pull-right my_usearch">
                             <form action="{{url('users')}}" method="GET" role="search">
-                                {{ csrf_field() }}
+                             
                                 <div class="input-group">
                                     <input type="text" value="{{ Request::get('search') }}" class="form-control" name="search" placeholder="Search users"> <span class="input-group-btn">
                                         <button type="submit" class="btn btn-default">
@@ -53,7 +53,7 @@ Toast::message('message', 'level', 'title');
                                 <th class="text-center">Mobile</th>
                                 <th class="text-center">Resume Title</th>
 
-                                <th class="text-center">Team</th>
+                                <th class="text-center">Skills</th>
 
 
 
@@ -71,7 +71,16 @@ Toast::message('message', 'level', 'title');
                                 <td>{{ $value->mobile  }}</td>
                                 <td>{{ $value->resume_title }}</td>
 
-                                <td>{{ isset($value['myTeam']->name)? $value['myTeam']->name : ''}}</td>
+                                <td>
+                                    @if($value->skills->count()>0)
+                                    @foreach($value->skills as $key=>$res)
+                                    {{$res->skills_details['value']}}
+                                    @endforeach
+
+                                    @endif
+
+
+                                </td>
 
                                 <td>
                                     <a class="btn btn-warning myac_btn" href="{{url('/information')}}/{{$value->id}}"><i class="fa fa-edit"></i> Edit</button>

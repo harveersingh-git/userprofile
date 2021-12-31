@@ -490,6 +490,7 @@
             padding-left: 72px;
             margin-top: 21px;
             margin-bottom: 0px;
+            margin-left: -56px;
         }
 
         .p38 {
@@ -497,6 +498,7 @@
             padding-left: 71px;
             margin-top: 10px;
             margin-bottom: 0px;
+            margin-left: -56px;
         }
 
         .p39 {
@@ -682,7 +684,11 @@
 </HEAD>
 
 <BODY class="page-container">
+   
     <div class="center" style="width:800px; margin: 0 auto;">
+    <a class="btn btn-outline btn-primary" type="reset" href="{{url('users')}}" style=""><i class="fa fa-arrow-left"></i> Back </a>
+    <a class="btn btn-outline btn-primary" type="reset" href="{{url('/resume')}}/{{$data->id}}"><i class="fa fa-arrow-left"></i> Download </a>
+
         <DIV id="page_1">
             <DIV id="p1dimg1">
                 <IMG src="{{asset('pdf/img-1.jpg')}}" id="p1img1">
@@ -696,6 +702,7 @@
                     <div class="about_employe">
                         <P class="p1 ft1" style="color:#000;">{!!html_entity_decode($data->about_employee)!!}</P>
                     </div>
+                    <p class="p7 ft0" style="color:#fff;">SKILLS, LANGUAGES</p>
                     <TABLE cellpadding=0 cellspacing=0 class="t0">
                         @forelse ($data['skills'] as $skill)
                         <TR>
@@ -718,7 +725,7 @@
                     <P class="p14 ft5">CMMI L3 SCV</P>
                     <P class="p14 ft5">ISO 27001:2013</P>
                     <P class="p14 ft5">ISO 9001:2015</P>
-                    <P class="p17 ft6" style="margin-top:50px;">{{$data->employee_id}}</P>
+                    <P class="p17 ft6" style="margin-top:50px;">{{strtoupper($data->resume_emp_id)}}</P>
                     <p class="p18 ft7" style="color:#222;">{{$data->resume_title}}</p>
                     <P class="p19 ft8">WORK EXPERIENCE</P>
                     <P class="p20 ft9">{{$data->resume_title}}</P>
@@ -780,8 +787,8 @@
 
             <P class="ft8">ABOUT PROJECTS</P>
             @forelse ($data['project'] as $show)
-            <P class="ft9">{{$show['project_name']}}</P>
-            <div>
+            <P class="p38 ft9">{{$show['project_name']}}</P>
+            <div style="padding: 17px;text-align: justify;">
                 <P class="p39 ft17">{!!html_entity_decode($show['project_description'])!!}</P>
             </div>
             @empty

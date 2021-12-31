@@ -28,7 +28,7 @@ Toast::message('message', 'level', 'title');
                                     <ul id="progressbar">
                                         <li class="active" id="account"><strong>Personal Infromation</strong></li>
                                         <li id="skills"><strong>Skills</strong></li>
-                                        <li id="personal"><strong>Skills & Education</strong></li>
+                                        <li id="personal"><strong>Education</strong></li>
 
                                         <li id="payment"><strong>Experience</strong></li>
                                         <li id="confirm"><strong>Projects</strong></li>
@@ -39,43 +39,43 @@ Toast::message('message', 'level', 'title');
                                             <div class="form-card">
                                                 <div class="row">
                                                     <div class="col-lg-6">
-                                                        <label>First Name</label>
+                                                        <label>First Name<span style="color: red;">*</span></label>
                                                         <input class="form-control" placeholder="Ex:Jackson" name="first_name" value="{{isset($data->name)?$data->name:'' }}" required="" autocomplete="off" />
 
                                                     </div>
                                                     <div class="col-lg-6">
-                                                        <label>Last Name</label>
+                                                        <label>Last Name <span style="color: red;">*</span></label>
                                                         <input class="form-control" placeholder="Ex: roi" name="last_name" value="{{isset($data->last_name)?$data->last_name:'' }}" required="" autocomplete="off" />
 
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-lg-6">
-                                                        <label>Employee id</label>
+                                                        <label>Employee id<span style="color: red;">*</span></label>
                                                         <input class="form-control" placeholder="Ex:TK0001" name="employee_id" value="{{isset($data->employee_id)?$data->employee_id:'' }}" required="" autocomplete="off" />
 
                                                     </div>
                                                     <div class="col-lg-6">
-                                                        <label>Email</label>
+                                                        <label>Email <span style="color: red;">*</span></label>
                                                         <input type="email" class="form-control" placeholder="Ex:Jackson@temporary-mail.net" name="email" value="{{isset($data->email)?$data->email:'' }}" required="" autocomplete="off" />
 
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-lg-6">
-                                                        <label>Mobile</label>
+                                                        <label>Mobile<span style="color: red;">*</span></label>
                                                         <input type="number" class="form-control" placeholder="Ex:968565472" name="mobile" value="{{isset($data->mobile)?$data->mobile:'' }}" required="" autocomplete="off" />
 
                                                     </div>
                                                     <div class="col-lg-6">
-                                                        <label>Resume title</label>
+                                                        <label>Resume title<span style="color: red;">*</span></label>
                                                         <input class="form-control" placeholder="Ex:***" name="resume_title" value="{{isset($data->resume_title)?$data->resume_title:'' }}" required="" autocomplete="off" />
 
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-lg-6 join_cld">
-                                                        <label>Joining Date</label>
+                                                    <div class="col-lg-6">
+                                                        <label>Joining Date<span style="color: red;">*</span></label>
                                                         <input type="text" class="form-control" placeholder="2021-01-02" name="joining_date" id="joining_date" value="{{isset($data->joining_date)?$data->joining_date:'' }}" required="" autocomplete="on|off" />
                                                         <i class="fa fa-calendar-o" aria-hidden="true"></i>
                                                     </div>
@@ -83,7 +83,7 @@ Toast::message('message', 'level', 'title');
                                                     <div class="col-lg-6">
                                                         <div class="row">
                                                             <div class="col-lg-6">
-                                                                <label>Shift Time</label>
+                                                                <label>Shift Time<span style="color: red;">*</span></label>
                                                                 <input type="time" class="form-control" placeholder="" name="shift_start" value="{{isset($data->shift_start)?$data->shift_start:'' }}" required="" autocomplete="on|off" />
 
                                                             </div>
@@ -97,7 +97,7 @@ Toast::message('message', 'level', 'title');
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-lg-6">
-                                                        <label>Team</label>
+                                                        <label>Team<span style="color: red;">*</span></label>
                                                         <select class="form-control" name="team" {{ isset($data->id)  ? '' : 'required=""'}}>
 
                                                             @forelse($team as $key=>$res)
@@ -115,13 +115,13 @@ Toast::message('message', 'level', 'title');
 
                                                     </div>
                                                     <div class="col-lg-6">
-                                                        <label>Total EXP(in year)</label>
-                                                        <input type="text" class="form-control" placeholder="EX:3.5" name="experience" value="{{isset($data->experience)?$data->experience:'' }}" required="" autocomplete="on|off" />
+                                                        <label>Total EXP(in year)<span style="color: red;">*</span></label>
+                                                        <input type="number" class="form-control" placeholder="EX:3.5" name="experience" value="{{isset($data->experience)?$data->experience:'' }}" required="" autocomplete="off" />
 
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>About Employee </label>
+                                                    <label>About Employee<span style="color: red;">*</span></label>
                                                     <textarea class="form-control" rows="3" name="about_employee">{{isset($data->about_employee)?$data->about_employee:'' }}</textarea>
 
 
@@ -132,6 +132,7 @@ Toast::message('message', 'level', 'title');
 
                                         </form>
                                         <input type="button" name="next" style="display: none;" class="next btn btn-info  action-button col-md-3" value="Next Step" id="genral_info_button" />
+                                        <input type="button" name="next" style="display: none;" class="next btn btn-info  action-button col-md-3" value="Next Step" id="genral_info_button_two" />
 
                                     </fieldset>
 
@@ -145,7 +146,7 @@ Toast::message('message', 'level', 'title');
                                             <div class="row dragSortableItems">
                                                 <div class="col-md-6">
                                                     <div class="card">
-                                                        <div class="card-header"><i class="fa fa-folder-open"></i>&nbsp;&nbsp;Available Skills</div>
+                                                        <div class="card-header"><i class="fa fa-folder-open"></i>&nbsp;&nbsp;Available Skills<span style="color: red;">*</span> </div>
                                                         <div class="card-body well">
                                                             <ul id="in_available_fields" name="in_available_fields" class="custom-scrollbar in_available_fields sortable-list fixed-panel ui-sortable">
                                                                 @forelse ($allskills as $skill)
@@ -160,30 +161,31 @@ Toast::message('message', 'level', 'title');
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                <div class="card primaryPanel">
+                                                    <div class="card primaryPanel">
                                                         <div class="card-header"><i class="fa fa-star-o"></i>&nbsp;&nbsp;Primary Skills</div>
-                                                        <div class="card-body well"> 
+                                                        <div class="card-body well">
                                                             <ul id="primary_sortable" name="in_primary_fields" class="sortable-list secondaryDropzone fixed-panel" data-fieldtype="secondary"> @forelse ($selectedPrimarySkills as $skill)
-                                                                <li class="sortable-item  allowSecondary allowExport" id="{{$skill->skills_details['id']}}">{{$skill->skills_details['value']}}</li> @empty
+                                                                <li class="sortable-item  allowSecondary allowExport" id="{{$skill->skills_details['id']}}">{{$skill->skills_details['value']}} <i class="fa fa-close skill_delete" style="color:red;float: right;  cursor: pointer;"></i></li> @empty
                                                                 <div class="alert alert-warning small">
                                                                     <center>No Fields Selected</center>
-                                                                </div> @endforelse </ul>
+                                                                </div> @endforelse
+                                                            </ul>
                                                         </div>
                                                     </div>
                                                     <br />
                                                     <div class="card secondaryPanel">
                                                         <div class="card-header"><i class="fa fa-star-o"></i>&nbsp;&nbsp;Secondary Skills</div>
                                                         <div class="card-body well">
-                                                          
+
                                                             <ul id="sortable" name="in_secondary_fields" class="sortable-list secondaryDropzone fixed-panel" data-fieldtype="secondary">
 
                                                                 @forelse ($selectedSecondrySkills as $skill)
-                                                                <li class="sortable-item  allowSecondary allowExport" id="{{$skill->skills_details['id']}}">{{$skill->skills_details['value']}}</li>
+                                                                <li class="sortable-item  allowSecondary allowExport" id="{{$skill->skills_details['id']}}">{{$skill->skills_details['value']}} <i class="fa fa-close skill_delete" style="color:red;float: right;  cursor: pointer;"></i></li>
 
                                                                 @empty
                                                                 <div class="alert alert-warning small">
-                                                                <center>No Fields Selected</center>
-                                                            </div>
+                                                                    <center>No Fields Selected</center>
+                                                                </div>
                                                                 @endforelse
                                                             </ul>
                                                         </div>
@@ -192,15 +194,15 @@ Toast::message('message', 'level', 'title');
                                                     <div class="card exportPanel">
                                                         <div class="card-header"><i class="fa fa-download"></i>&nbsp;&nbsp;Learning Skills</div>
                                                         <div class="card-body well">
-                                                       
+
                                                             <ul id="sortable_lerning" name="in_export_fields" class="sortable-list exportDropzone fixed-panel">
-                                                            @forelse ($selectedLearningSkills as $skill)
-                                                                <li class="sortable-item  allowSecondary allowExport" id="{{$skill->skills_details['id']}}">{{$skill->skills_details['value']}}</li>
+                                                                @forelse ($selectedLearningSkills as $skill)
+                                                                <li class="sortable-item  allowSecondary allowExport" id="{{$skill->skills_details['id']}}">{{$skill->skills_details['value']}} <i class="fa fa-close skill_delete" style="color:red;float: right; cursor: pointer;"></i></li>
 
                                                                 @empty
                                                                 <div class="alert alert-warning small">
-                                                                <center>No Fields Selected</center>
-                                                            </div>
+                                                                    <center>No Fields Selected</center>
+                                                                </div>
                                                                 @endforelse
 
                                                             </ul>
@@ -210,7 +212,7 @@ Toast::message('message', 'level', 'title');
                                             </div>
 
                                         </div>
-                                        <input type="button" id="" name="previous" class="previous action-button-previous  pull-right btn btn-warning" value="Previous" />
+                                        <input type="button" id="new_skills_prev" name="previous" class="previous action-button-previous  pull-right btn btn-warning" value="Previous" />
 
 
                                         <input type="button" name="next" class="next action-button btn btn-primary  col-md-3" value="Next Step" />
@@ -237,7 +239,13 @@ Toast::message('message', 'level', 'title');
 
 
                                                                 <!-- <input type="hidden" name="order[]" value="1"> -->
-                                                                <label><i class="fa fa-arrows" aria-hidden="true"></i>Type</label>
+                                                                <label><i class="fa fa-arrows" aria-hidden="true"></i>Type
+                                                                    @if(isset($data->id))
+
+                                                                    @else
+                                                                    <span style="color: red;">*</span>
+
+                                                                    @endif </label>
                                                                 <select class="form-control" aria-label="Default select example" name="edu_type[]" {{ isset($data->id)  ? '' : 'required=""'}}>
                                                                     <option value="">--Please select--</option>
                                                                     @forelse($education as $key=>$dat)
@@ -248,7 +256,14 @@ Toast::message('message', 'level', 'title');
                                                                 </select>
                                                             </div>
                                                             <div class="col-lg-3">
-                                                                <label>Title</label>
+                                                                <label>Title
+                                                                    @if(isset($data->id))
+
+                                                                    @else
+                                                                    <span style="color: red;">*</span>
+
+                                                                    @endif
+                                                                </label>
                                                                 <select class="form-control" aria-label="Default select example" name="edu_title[]" {{ isset($data->id)  ? '' : 'required=""'}}>
                                                                     <option value="">--Please select--</option>
                                                                     @forelse($course as $key=>$res)
@@ -265,22 +280,37 @@ Toast::message('message', 'level', 'title');
                                                             </div>
 
                                                             <div class="col-lg-3 datepicker-wrap">
-                                                                <label>From</label>
+                                                                <label>From
+                                                                    @if(isset($data->id))
+
+                                                                    @else
+                                                                    <span style="color: red;">*</span>
+
+                                                                    @endif
+                                                                </label>
 
                                                                 <input type="text" class="form-control edu_to" placeholder="2021-02-27" name="edu_from[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="off" />
 
                                                             </div>
                                                             <div class="col-lg-3 datepicker-wrap">
-                                                                <label>To</label>
+                                                                <label>To
+                                                                    @if(isset($data->id))
+
+                                                                    @else
+                                                                    <span style="color: red;">*</span>
+
+                                                                    @endif
+                                                                </label>
                                                                 <input type="text" class="form-control edu_from" placeholder="2021-02-27" name="edu_to[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="off" />
 
                                                             </div>
                                                         </div>
                                                         @if(isset($data->education) && (count($data->education)>0))
                                                         @foreach($data->education as $key=>$value)
-                                                        <div class="row" order="{{$value['order']}}">
+                                                        <div class="row" order="{{$value['order']}}" id="{{$value['id']}}">
+
                                                             <div class="col-lg-3">
-                                                                <label><i class="fa fa-arrows" aria-hidden="true"></i>Type</label>
+                                                                <label> <i class="fa fa-close education_delete" style="color:red;  cursor: pointer;"></i><i class="fa fa-arrows" aria-hidden="true"></i>Type<span style="color: red;">*</span> </label>
                                                                 <select class="form-control" aria-label="Default select example" name="edu_type[]" required="">
 
                                                                     @forelse($education as $key=>$dat)
@@ -298,7 +328,7 @@ Toast::message('message', 'level', 'title');
                                                             </div>
 
                                                             <div class="col-lg-3">
-                                                                <label>Title</label>
+                                                                <label>Title <span style="color: red;">*</span> </label>
                                                                 <select class="form-control" aria-label="Default select example" name="edu_title[]" {{ isset($data->id)  ? '' : 'required=""'}}>
                                                                     @forelse($course as $key=>$datt)
 
@@ -317,15 +347,16 @@ Toast::message('message', 'level', 'title');
                                                                 </select>
                                                             </div>
                                                             <div class="col-lg-3 datepicker-wrap">
-                                                                <label>From</label>
+                                                                <label>From<span style="color: red;">*</span> </label>
                                                                 <input type="text" class="form-control edu_to" placeholder="12-17-2021" name="edu_from[]" value="{{ isset($value['from'])?$value['from']:''}}" required="" autocomplete="off" />
 
                                                             </div>
                                                             <div class="col-lg-3 datepicker-wrap">
-                                                                <label>To</label>
+                                                                <label>To<span style="color: red;">*</span> </label>
                                                                 <input type="text" class="form-control edu_from" placeholder="12-17-2021" name="edu_to[]" value="{{ isset($value['to'])?$value['to']:''}}" required="" autocomplete="off" />
 
                                                             </div>
+
                                                         </div>
                                                         @endforeach
                                                         @endif
@@ -357,23 +388,52 @@ Toast::message('message', 'level', 'title');
                                                     <div>
                                                         <div class="row">
                                                             <div class="col-lg-3">
-                                                                <label><i class="fa fa-arrows" aria-hidden="true"></i>Companay Name</label>
+                                                                <label><i class="fa fa-arrows" aria-hidden="true"></i>Companay Name
+                                                                    @if(isset($data->id))
+
+                                                                    @else
+                                                                    <span style="color: red;">*</span>
+
+                                                                    @endif
+                                                                </label>
                                                                 <input type="text" class="form-control" placeholder="XYZ" name="company_name[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
                                                             </div>
                                                             <div class="col-lg-3 ">
-                                                                <label>Designation</label>
+                                                                <label>Designation
+                                                                    @if(isset($data->id))
+
+                                                                    @else
+                                                                    <span style="color: red;">*</span>
+
+                                                                    @endif
+
+                                                                </label>
                                                                 <input type="text" class="form-control" placeholder="Team leader" name="designation[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
                                                             </div>
 
                                                             <div class="col-lg-3 datepicker-wrap">
-                                                                <label>From</label>
+                                                                <label>From
+                                                                    @if(isset($data->id))
+
+                                                                    @else
+                                                                    <span style="color: red;">*</span>
+
+                                                                    @endif
+                                                                </label>
                                                                 <input type="text" class="form-control exp_from" placeholder="2021-12-19" name="exp_from[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
                                                             </div>
                                                             <div class="col-lg-3 datepicker-wrap">
-                                                                <label>To</label>
+                                                                <label>To
+                                                                @if(isset($data->id))
+
+                                                                @else
+                                                                <span style="color: red;">*</span>
+
+                                                                @endif
+                                                                </label>
                                                                 <input type="text" class="form-control exp_to" placeholder="2021-12-19" name="exp_to[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
                                                             </div>
@@ -381,7 +441,14 @@ Toast::message('message', 'level', 'title');
                                                         <div class="row">
                                                             <div class="col-lg-12">
                                                                 <div class="form-group">
-                                                                    <label>Role and Responsibilities </label>
+                                                                    <label>Role and Responsibilities
+                                                                    @if(isset($data->id))
+
+                                                                    @else
+                                                                    <span style="color: red;">*</span>
+
+                                                                    @endif        
+                                                                </label>
                                                                     <textarea class="form-control" rows="3" name="role_res[]" {{ isset($data->id)  ? '' : 'required=""'}}></textarea>
                                                                 </div>
                                                             </div>
@@ -393,29 +460,29 @@ Toast::message('message', 'level', 'title');
                                                     @foreach($data->exprince as $key=>$value)
                                                     <div class="row">
                                                         <div class="col-lg-3">
-                                                            <label><i class="fa fa-arrows" aria-hidden="true"></i>Companay Name</label>
+                                                            <label><i class="fa fa-arrows" aria-hidden="true"></i>Companay Name<span style="color: red;">*</span> </label>
                                                             <input type="text" class="form-control" placeholder="XYZ" name="company_name[]" value="{{ isset($value['company_name'])?$value['company_name']:''}}" required="" autocomplete="off" />
 
                                                         </div>
                                                         <div class="col-lg-3">
-                                                            <label>Designation</label>
+                                                            <label>Designation<span style="color: red;">*</span> </label>
                                                             <input type="text" class="form-control" placeholder="Team leader" name="designation[]" value="{{ isset($value['designation'])?$value['designation']:''}}" required="" autocomplete="on" />
 
                                                         </div>
                                                         <div class="col-lg-3 datepicker-wrap">
-                                                            <label>From</label>
+                                                            <label>From<span style="color: red;">*</span> </label>
                                                             <input type="text" class="form-control exp_from" placeholder="2021-12-19" name="exp_from[]" value="{{ isset($value['from'])?$value['from']:''}}" required="" autocomplete="on" />
 
                                                         </div>
                                                         <div class="col-lg-3 datepicker-wrap">
-                                                            <label>To</label>
+                                                            <label>To<span style="color: red;">*</span> </label>
                                                             <input type="text" class="form-control exp_to" placeholder="2021-12-19" name="exp_to[]" value="{{ isset($value['to'])?$value['to']:''}}" required="" autocomplete="on|off" />
 
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-lg-12">
                                                                 <div class="form-group">
-                                                                    <label>Role and Responsibilities </label>
+                                                                    <label>Role and Responsibilities<span style="color: red;">*</span> </label>
                                                                     <textarea class="form-control ckeditor" rows="3" name="role_res[]" required="">{{ isset($value['role_responsibilitie'])?$value['role_responsibilitie']:''}}</textarea>
                                                                 </div>
                                                             </div>
@@ -436,7 +503,14 @@ Toast::message('message', 'level', 'title');
                                                     <div>
                                                         <div class="row">
                                                             <div class="col-lg-4">
-                                                                <label><i class="fa fa-arrows" aria-hidden="true"></i>Type</label>
+                                                                <label><i class="fa fa-arrows" aria-hidden="true"></i>Type
+                                                                @if(isset($data->id))
+
+                                                            @else
+                                                            <span style="color: red;">*</span>
+
+                                                            @endif
+                                                            </label>
                                                                 <select class="form-control" aria-label="Default select example" name="certification_type[]" {{ isset($data->id)  ? '' : 'required=""'}}>
                                                                     <option value="">--Please select--</option>
                                                                     @forelse($certificate as $key=>$dat)
@@ -451,7 +525,12 @@ Toast::message('message', 'level', 'title');
                                                             <div class="col-lg-12">
                                                                 <div class="form-group">
                                                                     <label><i class="fa fa-arrows" aria-hidden="true"></i>
-                                                                        Certification </label>
+                                                                        Certification         @if(isset($data->id))
+
+                                                                    @else
+                                                                    <span style="color: red;">*</span>
+
+                                                                    @endif</label>
                                                                     <textarea class="form-control" rows="3" name="certification[]" {{ isset($data->id)  ? '' : 'required=""'}}></textarea>
                                                                 </div>
                                                             </div>
@@ -462,7 +541,7 @@ Toast::message('message', 'level', 'title');
                                                     <div>
                                                         <div class="row">
                                                             <div class="col-lg-4">
-                                                                <label><i class="fa fa-arrows" aria-hidden="true"></i>Type</label>
+                                                                <label><i class="fa fa-arrows" aria-hidden="true"></i>Type<span style="color: red;">*</span> </label>
                                                                 <select class="form-control" aria-label="Default select example" name="certification_type[]" {{ isset($data->id)  ? '' : 'required=""'}}>
                                                                     <option value="">--Please select--</option>
                                                                     @forelse($certificate as $key=>$dat)
@@ -481,7 +560,7 @@ Toast::message('message', 'level', 'title');
                                                             <div class="col-lg-12">
                                                                 <div class="form-group">
                                                                     <label><i class="fa fa-arrows" aria-hidden="true"></i>
-                                                                        Certification </label>
+                                                                        Certification <span style="color: red;">*</span> </label>
                                                                     <textarea class="form-control ckeditor" rows="3" name="certification[]">{{ isset($value['certification'])?$value['certification']:''}} </textarea>
                                                                 </div>
                                                             </div>
@@ -516,7 +595,14 @@ Toast::message('message', 'level', 'title');
 
                                                 <div class="row ach_more form-group">
                                                     <div class="col-lg-12">
-                                                        <h2 class="fs-title">Achievement</h2>
+                                                        <h2 class="fs-title">Achievement
+                                                        @if(isset($data->id))
+
+                                                        @else
+                                                        <span style="color: red;">*</span>
+
+                                                        @endif
+                                                        </h2>
                                                         <div class="row">
                                                             <div class="col-lg-12">
                                                                 <label><i class="fa fa-arrows" aria-hidden="true"></i>Title </label>
@@ -524,7 +610,14 @@ Toast::message('message', 'level', 'title');
 
                                                             </div>
                                                             <div class="col-lg-12">
-                                                                <label>Achievement Description </label>
+                                                                <label>Achievement Description
+                                                                @if(isset($data->id))
+
+                                                            @else
+                                                            <span style="color: red;">*</span>
+
+                                                            @endif        
+                                                            </label>
                                                                 <textarea class="form-control " rows="3" name="description[]" {{ isset($data->id)  ? '' : 'required=""'}}></textarea>
 
                                                             </div>
@@ -533,12 +626,12 @@ Toast::message('message', 'level', 'title');
                                                         @foreach($data->achievement as $key=>$value)
                                                         <div class="row">
                                                             <div class="col-lg-12">
-                                                                <label>Title </label>
+                                                                <label>Title <span style="color: red;">*</span> </label>
                                                                 <input type="text" class="form-control" placeholder="EX:abc" name="title[]" value="{{ isset($value['title'])?$value['title']:''}}" required="" autocomplete="on" />
 
                                                             </div>
                                                             <div class="col-lg-12">
-                                                                <label>Achievement Description </label>
+                                                                <label>Achievement Description<span style="color: red;">*</span> </label>
                                                                 <textarea class="form-control ckeditor" rows="3" name="description[]">{{ isset($value['description'])?$value['description']:''}}</textarea>
 
                                                             </div>
@@ -556,34 +649,77 @@ Toast::message('message', 'level', 'title');
 
 
                                                 <div class="project_more">
-                                                    <h2 class="fs-title">Project</h2>
+                                                    <h2 class="fs-title">Project
+                                                    @if(isset($data->id))
+
+                                                    @else
+                                                    <span style="color: red;">*</span>
+
+                                                    @endif
+                                                    </h2>
                                                     <div class="row form-group">
 
                                                         <div class="col-lg-3">
-                                                            <label>Project Name</label>
+                                                            <label>Project Name
+                                                            @if(isset($data->id))
+
+                                                        @else
+                                                        <span style="color: red;">*</span>
+
+                                                        @endif
+                                                            </label>
                                                             <input type="text" class="form-control" placeholder="XYZ" name="project_name[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
                                                         </div>
                                                         <div class="col-lg-3">
-                                                            <label>Project Skills</label>
+                                                            <label>Project Skills
+                                                            @if(isset($data->id))
+
+                                                            @else
+                                                            <span style="color: red;">*</span>
+
+                                                            @endif
+                                                            </label>
                                                             <input type="text" class="form-control" placeholder="php,node etc" name="project_skills[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
                                                         </div>
 
 
                                                         <div class="col-lg-3">
-                                                            <label>Team Size</label>
+                                                            <label>Team Size
+                                                            @if(isset($data->id))
+
+                                                        @else
+                                                        <span style="color: red;">*</span>
+
+                                                        @endif
+                                                            </label>
                                                             <input type="text" class="form-control" placeholder="1" name="team_size[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
                                                         </div>
                                                         <div class="col-lg-3">
-                                                            <label>Url</label>
+                                                            <label>Url
+                                                            @if(isset($data->id))
+
+                                                                    @else
+                                                                    <span style="color: red;">*</span>
+
+                                                                    @endif
+
+                                                            </label>
                                                             <input type="text" class="form-control" placeholder="https://github.com/" name="url[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
                                                         </div>
                                                         <div class="r ow">
                                                             <div class="col-md-12">
-                                                                <label>Project Description</label>
+                                                                <label>Project Description
+                                                                @if(isset($data->id))
+
+                                                                @else
+                                                                <span style="color: red;">*</span>
+
+                                                                @endif
+                                                                </label>
                                                                 <textarea class="form-control" rows="3" name="project_description[]" {{ isset($data->id)  ? '' : 'required=""'}}></textarea>
 
                                                             </div>
@@ -595,28 +731,28 @@ Toast::message('message', 'level', 'title');
                                                     @foreach($data->project as $key=>$value)
                                                     <div class="row form-group">
                                                         <div class="col-lg-3">
-                                                            <label>Project Name</label>
+                                                            <label>Project Name<span style="color: red;">*</span> </label>
                                                             <input type="text" class="form-control" placeholder="XYZ" name="project_name[]" value="{{ isset($value['project_name'])?$value['project_name']:''}}" required="" autocomplete="on|off" />
 
                                                         </div>
                                                         <div class="col-lg-3">
-                                                            <label>Project Skills</label>
+                                                            <label>Project Skills<span style="color: red;">*</span> </label>
                                                             <input type="text" class="form-control" placeholder="php,node etc" name="project_skills[]" value="{{ isset($value['project_skills'])?$value['project_skills']:''}}" required="" autocomplete="on|off" />
 
                                                         </div>
                                                         <div class="col-lg-3">
-                                                            <label>Team Size</label>
+                                                            <label>Team Size<span style="color: red;">*</span> </label>
                                                             <input type="text" class="form-control" placeholder="1" name="team_size[]" value="{{ isset($value['team_size'])?$value['team_size']:''}}" required="" autocomplete="on|off" />
 
                                                         </div>
                                                         <div class="col-lg-3">
-                                                            <label>Url</label>
+                                                            <label>Url<span style="color: red;">*</span> </label>
                                                             <input type="text" class="form-control" placeholder="1" name="url[]" value="{{ isset($value['url'])?$value['url']:''}}" required="" autocomplete="on|off" />
 
 
                                                         </div>
                                                         <div class="row">
-                                                            <label>Project Description</label>
+                                                            <label>Project Description<span style="color: red;">*</span> </label>
                                                             <textarea class="form-control ckeditor" rows="3" name="project_description[]" required="">{{ isset($value['project_description'])?$value['project_description']:''}}</textarea>
 
 
@@ -650,8 +786,98 @@ Toast::message('message', 'level', 'title');
 </div>
 
 <script>
-    $(document).on("click", "#genral_info_submit", function() {
+    $('.education_delete').on('click', function() {
+        var id = $(this).closest('.row').attr('id');
+
+
+        var token = $('input[name="_token"]').attr('value');
+
+
+        var option = "";
+        var data = {
+            user_id: $('.user_id').val(),
+            id: id
+            // _token: token
+        };
+        $(this).closest('.row').remove();
+        $.ajax({
+            type: 'POST',
+            url: base_url + '/remove_education',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify(data),
+            headers: {
+                'X-CSRF-Token': token
+            },
+
+            success: function(data) {
+
+                console.log('test', data);
+                if (data.status = "true") {
+
+
+                } else {
+                    toastr.error(data.message);
+                }
+
+            }
+        })
+
+
+    });
+
+    //////////////////
+    $('.skill_delete').on('click', function() {
+
+        var token = $('input[name="_token"]').attr('value');
+        $(this).closest("li").remove();
+        var id = $(this).closest("li").attr('id');
+        var option = "";
+        var data = {
+            user_id: $('.user_id').val(),
+            id: id
+            // _token: token
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: base_url + '/remove_skills',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify(data),
+            headers: {
+                'X-CSRF-Token': token
+            },
+
+            success: function(data) {
+
+                console.log('test', data);
+                if (data.status = "true") {
+
+                    $('#in_available_fields > li').remove();
+                    data.data.forEach(element => {
+
+                        option += '<li class="sortable-item  allowSecondary allowExport" id=' + element.id + '>' + element.value + '</li>';
+                    });
+                    $('#in_available_fields').append(option);
+
+                    toastr.success("Skill Update successfully");
+
+                    // $('#exprince_button').trigger('click');
+                } else {
+                    toastr.error(data.message);
+                }
+
+            }
+        })
+
+
+    })
+
+    $("#genral_info_submit").click(function(){
+    // $(document).on("click", "#genral_info_submit", function() {
         $('#genralInfo').submit(function(e) {
+            e.stopImmediatePropagation();
             e.preventDefault();
 
 
@@ -671,13 +897,13 @@ Toast::message('message', 'level', 'title');
                 processData: false,
                 data: new FormData(this),
                 success: function(data) {
-                    console.log('test', data);
+                  
                     if (data.status == true) {
                         toastr.success("Record insert successfully");
                         $('.user_id').val(data.last_insert_id);
                         $('#genral_info_submit').hide();
-                        $('#genral_info_button').show();
-                        $('#genral_info_button').trigger('click');
+                        $('#genral_info_button_two').show();
+                        $('#genral_info_button_two').trigger('click');
                     } else {
                         toastr.error(data.message);
                     }
@@ -689,6 +915,7 @@ Toast::message('message', 'level', 'title');
 
     $(document).on("click", "#skills_submit", function() {
         $('#skillsForm').submit(function(e) {
+            e.stopImmediatePropagation();
             e.preventDefault();
             var token = $('input[name="_token"]').attr('value');
             var form = $(this);
@@ -726,6 +953,7 @@ Toast::message('message', 'level', 'title');
 
     $(document).on("click", "#exprince_submit", function() {
         $('#exprinceForm').submit(function(e) {
+            e.stopImmediatePropagation();
             e.preventDefault();
             var token = $('input[name="_token"]').attr('value');
             var form = $(this);
@@ -759,6 +987,7 @@ Toast::message('message', 'level', 'title');
 
     $(document).on("click", "#project_submit", function() {
         $('#projectForm').submit(function(e) {
+            e.stopImmediatePropagation();
             e.preventDefault();
             var token = $('input[name="_token"]').attr('value');
             var form = $(this);
@@ -860,20 +1089,21 @@ Toast::message('message', 'level', 'title');
             cursor: 'move',
             opacity: 0.6,
             update: function(event, ui) {
-
+                var type = 3;
                 var order = new Array();
                 $('#sortable_lerning>li').each(function(index, element) {
 
                     order.push({
                             id: $(this).attr("id"),
                             position: index + 1,
+                            type: 3
 
                         }
 
                     );
                 });
-
-                updateOrderLerning(order);
+                updateOrder(order, type);
+                // updateOrderLerning(order);
 
             }
         });

@@ -16,6 +16,8 @@ use App\Models\UserProject;
 use App\Models\Teams;
 use Validator;
 use PDF;
+use Illuminate\Validation\Rule;
+
 
 
 
@@ -48,11 +50,13 @@ class UserController extends Controller
         $query = User::with('myTeam')->where('id', '!=', 1);
 
         if (isset($skills) && $skills->count() > 0) {
+            $query = User::with('myTeam')->where('id', '!=', 1);
 
             $query->whereHas('skills', function ($q) use ($skills) {
                 $q->whereIn('skill_value_id', $skills->toArray());
             });
         } else {
+            $query = User::with(['myTeam','skills'])->where('id', '!=', 1);
             if (isset($request['search'])) {
                 $query->where('mobile', 'like', '%' . $request['search'] . '%');
             }
@@ -68,7 +72,7 @@ class UserController extends Controller
         }
 
         $data = $query->orderBy('id', 'DESC')->paginate(10);
-        // dd($data);
+        // dd($data->toArray());
         return view('users.index', compact('data'));
     }
 
@@ -217,15 +221,20 @@ class UserController extends Controller
                 'last_name' => 'required',
                 'employee_id' => 'required|unique:users,employee_id,' . $input['id'] . ',id',
                 'resume_title' => 'required',
-                'mobile' =>  'required|unique:users,mobile,' . $input['id'] . ',id',
+                'mobile' =>  'required||max:11|unique:users,mobile,' . $input['id'] . ',id',
                 'joining_date' => 'required',
                 'shift_start' => 'required',
                 'shift_end' => 'required',
                 'team' => 'required',
                 'about_employee' => 'required',
-                'experience' => 'required'
+                'experience' => 'required',
+                // 'employee_id' => [
+                   
+                //     Rule::in(['tk','TK']),
+                // ], 
 
             ]);
+            
 
             if ($validator->fails()) {
                 return response()->json([
@@ -235,9 +244,10 @@ class UserController extends Controller
                     'Status_code' => "401"
                 ]);
             }
-            if (empty($input['id'])) {
-                $input['employee_id'] = substr($input['first_name'], 0, 1) . substr($input['last_name'], 0, 1) . '_' . substr($input['team'], 0, 2) . '_' . $input['employee_id'];
-            }
+            $getTeam=Teams::where('id','=',$input['team'])->first();
+            
+                $input['resume_emp_id'] = substr($input['first_name'], 0, 1) . substr($input['last_name'], 0, 1) . '_' . substr($getTeam['name'], 0, 2) . '_' . $input['employee_id'];
+          
 
             $input['password'] = bcrypt('welcome');
             $input['name'] =  $input['first_name'];
@@ -325,28 +335,22 @@ class UserController extends Controller
         $data = [];
         if (isset($id)) {
 
-            $allskills = SkillsEducation::doesntHave('checkSkills','or', function ($q) use ($id) {
-                $q->where(['user_id'=>$id]);
+            $allskills = SkillsEducation::doesntHave('checkSkills', 'or', function ($q) use ($id) {
+                $q->where(['user_id' => $id]);
             })->where('category', '=', 'skill')->get();
             // dd($allskills->toArray());
             $data = User::with(['education', 'exprince', 'certification', 'learning_skills', 'achievement', 'project', 'myTeam'])->with('skills', function ($q) {
                 $q->orderBy('order', 'asc');
             })->where('id', '=', $id)->first();
             // dd($data->myTeam['id']);
-            // dd($data->toArray());
+            // dd($data);
             $selectedPrimarySkills = UserSkills::with('skills_details')->where(['user_id' => $id, 'type' => 1])->get();
             $selectedSecondrySkills = UserSkills::with('skills_details')->where(['user_id' => $id, 'type' => 2])->get();
 
-            $selectedLearningSkills = LearningSkills::with('skills_details')->where('user_id', '=', $id)->get();
+            $selectedLearningSkills = UserSkills::with('skills_details')->where(['user_id' => $id, 'type' => 3])->get();
             $selectedEducationType = UserEducation::where('user_id', '=', $id)->pluck('degree_type_id');
 
-            // $selectedPrimarySkills = $selectedPrimarySkill->toArray();
-            // dd(  $selectedPrimarySkills);
-            // $selectedSecondrySkills = $selectedPrimarySkill->toArray();
-
-            // $selectedLearningSkills = $selectedLearningSkills->toArray();
             $selectedEducationType = $selectedEducationType->toArray();
-            // dd($education );
 
             return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills', 'selectedEducationType', 'course', 'team'));
         }
@@ -376,6 +380,22 @@ class UserController extends Controller
                     $skills = UserSkills::create($inpu);
                 }
             }
+        } else if ($request['type'] == 3) {
+            $skills = UserSkills::where(['user_id' => $request['user_id']])->get();
+
+            UserSkills::where(['user_id' => $input['user_id'], 'type' => 2])->delete();
+
+
+            foreach ($request['order'] as $order) {
+                $inpu['order'] = $order['position'];
+                $inpu['user_id'] =  $input['user_id'];
+                $inpu['type'] =  $order['type'];
+                $inpu['skill_value_id'] =  $order['id'];
+                $alreadyExist =   UserSkills::where(['user_id' => $input['user_id'], 'type' => 3, 'skill_value_id' => $order['id']])->first();
+                if ($alreadyExist == "") {
+                    $skills = UserSkills::create($inpu);
+                }
+            }
         } else {
             $skills = UserSkills::where(['user_id' => $request['user_id']])->get();
 
@@ -394,17 +414,10 @@ class UserController extends Controller
             }
         }
 
-        // foreach ($skills as $skill) {
-        //     foreach ($request['order'] as $order) {
-        //         if ($order['id'] == $skill->id) {
-        //             $updated = UserSkills::where(['id' => $skill['id']])->first();
-        //             $updated->update(['order' => $order['position']]);
-        //         }
-        //     }
-        // }
+
         return response()->json([
             'status' => true,
-            // 'last_insert_id' => $skills
+
         ]);
     }
 
@@ -426,19 +439,8 @@ class UserController extends Controller
             if ($alreadyExist == "") {
                 $skills = LearningSkills::create($inpu);
             }
-            // $skills = LearningSkills::create($inpu);
-
         }
-        // $skills = LearningSkills::where(['user_id' => $request['user_id']])->get();
 
-        // foreach ($skills as $skill) {
-        //     foreach ($request['order'] as $order) {
-        //         if ($order['id'] == $skill->id) {
-        //             $updated = LearningSkills::where(['id' => $skill['id']])->first();
-        //             $updated->update(['order' => $order['position']]);
-        //         }
-        //     }
-        // }
         return response()->json([
             'status' => true,
             // 'last_insert_id' => $updated
@@ -467,12 +469,12 @@ class UserController extends Controller
         $data['project'] =  UserProject::where('user_id', '=', $id)->get();
         $data['certificate'] =  Certification::where('user_id', '=', $id)->get();
         $data['skills'] =  UserSkills::with('skills_details')->where('user_id', '=', $id)->orderBy('order', 'asc')->get();
-        $data['education'] =  UserEducation::with('education_details','course')->where('user_id', '=', $id)->orderBy('order', 'asc')->get();
+        $data['education'] =  UserEducation::with('education_details', 'course')->where('user_id', '=', $id)->orderBy('order', 'asc')->get();
 
         // dd($data['education']->toArray());
 
 
-       
+
 
         return view('pdf.view_pdf', compact('data'));
     }
@@ -485,7 +487,7 @@ class UserController extends Controller
         $data['project'] =  UserProject::where('user_id', '=', $id)->get();
         $data['certificate'] =  Certification::where('user_id', '=', $id)->get();
         $data['skills'] =  UserSkills::with('skills_details')->where('user_id', '=', $id)->orderBy('order', 'asc')->get();
-        $data['education'] =  UserEducation::with('education_details','course')->where('user_id', '=', $id)->orderBy('order', 'asc')->get();
+        $data['education'] =  UserEducation::with('education_details', 'course')->where('user_id', '=', $id)->orderBy('order', 'asc')->get();
 
         // dd($data['education']->toArray());
 
@@ -533,5 +535,33 @@ class UserController extends Controller
     {
 
         return view('auth.passwords.change-password');
+    }
+
+
+    public function removeSkill(Request $request)
+    {
+        $id = $request['user_id'];
+        $remove =   UserSkills::where(['skill_value_id' => $request['id'], 'user_id' => $request['user_id']])->delete();
+        if ($remove) {
+
+            $allskills = SkillsEducation::doesntHave('checkSkills', 'or', function ($q) use ($id) {
+                $q->where(['user_id' => $id]);
+            })->where('category', '=', 'skill')->get();
+            return response()->json([
+                'status' => true,
+                'data' => $allskills
+            ]);
+        }
+    }
+    public function removeEducation(Request $request)
+    {
+        $id = $request['user_id'];
+        $remove =   UserEducation::where(['id' => $request['id'], 'user_id' => $request['user_id']])->delete();
+        if ($remove) {
+
+            return response()->json([
+                'status' => true
+            ]);
+        }
     }
 }
