@@ -28,7 +28,7 @@ Toast::message('message', 'level', 'title');
                         <span>Users</span>
                         <div class="col-sm-3 pull-right my_usearch">
                             <form action="{{url('users')}}" method="GET" role="search">
-                                {{ csrf_field() }}
+                             
                                 <div class="input-group">
                                     <input type="text" value="{{ Request::get('search') }}" class="form-control" name="search" placeholder="Search users"> <span class="input-group-btn">
                                         <button type="submit" class="btn btn-default">
