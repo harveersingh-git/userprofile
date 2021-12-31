@@ -872,8 +872,11 @@ Toast::message('message', 'level', 'title');
 
 
     })
-    $(document).on("click", "#genral_info_submit", function() {
+
+    $("#genral_info_submit").click(function(){
+    // $(document).on("click", "#genral_info_submit", function() {
         $('#genralInfo').submit(function(e) {
+            e.stopImmediatePropagation();
             e.preventDefault();
 
 
@@ -893,7 +896,7 @@ Toast::message('message', 'level', 'title');
                 processData: false,
                 data: new FormData(this),
                 success: function(data) {
-                    console.log('test', data);
+                  
                     if (data.status == true) {
                         toastr.success("Record insert successfully");
                         $('.user_id').val(data.last_insert_id);
@@ -911,6 +914,7 @@ Toast::message('message', 'level', 'title');
 
     $(document).on("click", "#skills_submit", function() {
         $('#skillsForm').submit(function(e) {
+            e.stopImmediatePropagation();
             e.preventDefault();
             var token = $('input[name="_token"]').attr('value');
             var form = $(this);
@@ -948,6 +952,7 @@ Toast::message('message', 'level', 'title');
 
     $(document).on("click", "#exprince_submit", function() {
         $('#exprinceForm').submit(function(e) {
+            e.stopImmediatePropagation();
             e.preventDefault();
             var token = $('input[name="_token"]').attr('value');
             var form = $(this);
@@ -981,6 +986,7 @@ Toast::message('message', 'level', 'title');
 
     $(document).on("click", "#project_submit", function() {
         $('#projectForm').submit(function(e) {
+            e.stopImmediatePropagation();
             e.preventDefault();
             var token = $('input[name="_token"]').attr('value');
             var form = $(this);
