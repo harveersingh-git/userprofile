@@ -677,7 +677,11 @@
 </HEAD>
 
 <BODY class="page-container">
+   
     <div class="center" style="width:800px; margin: 0 auto;">
+    <a class="btn btn-outline btn-primary" type="reset" href="{{url('users')}}" style=""><i class="fa fa-arrow-left"></i> Back </a>
+    <a class="btn btn-outline btn-primary" type="reset" href="{{url('/resume')}}/{{$data->id}}"><i class="fa fa-arrow-left"></i> Download </a>
+
         <DIV id="page_1">
             <DIV id="p1dimg1">
                 <IMG src="{{asset('pdf/img-1.jpg')}}" id="p1img1">
@@ -713,7 +717,7 @@
                     <P class="p14 ft5">CMMI L3 SCV</P>
                     <P class="p14 ft5">ISO 27001:2013</P>
                     <P class="p14 ft5">ISO 9001:2015</P>
-                    <P class="p17 ft6" style="margin-top:50px;">{{$data->employee_id}}</P>
+                    <P class="p17 ft6" style="margin-top:50px;">{{strtoupper($data->resume_emp_id)}}</P>
                     <p class="p18 ft7" style="color:#222;">{{$data->resume_title}}</p>
                     <P class="p19 ft8">WORK EXPERIENCE</P>
                     <P class="p20 ft9">{{$data->resume_title}}</P>

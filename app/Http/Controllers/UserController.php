@@ -48,11 +48,13 @@ class UserController extends Controller
         $query = User::with('myTeam')->where('id', '!=', 1);
 
         if (isset($skills) && $skills->count() > 0) {
+            $query = User::with('myTeam')->where('id', '!=', 1);
 
             $query->whereHas('skills', function ($q) use ($skills) {
                 $q->whereIn('skill_value_id', $skills->toArray());
             });
         } else {
+            $query = User::with(['myTeam','skills'])->where('id', '!=', 1);
             if (isset($request['search'])) {
                 $query->where('mobile', 'like', '%' . $request['search'] . '%');
             }
@@ -68,7 +70,7 @@ class UserController extends Controller
         }
 
         $data = $query->orderBy('id', 'DESC')->paginate(10);
-        // dd($data);
+        // dd($data->toArray());
         return view('users.index', compact('data'));
     }
 
@@ -226,6 +228,7 @@ class UserController extends Controller
                 'experience' => 'required'
 
             ]);
+            
 
             if ($validator->fails()) {
                 return response()->json([
@@ -235,9 +238,10 @@ class UserController extends Controller
                     'Status_code' => "401"
                 ]);
             }
-            if (empty($input['id'])) {
-                $input['employee_id'] = substr($input['first_name'], 0, 1) . substr($input['last_name'], 0, 1) . '_' . substr($input['team'], 0, 2) . '_' . $input['employee_id'];
-            }
+            $getTeam=Teams::where('id','=',$input['team'])->first();
+            
+                $input['resume_emp_id'] = substr($input['first_name'], 0, 1) . substr($input['last_name'], 0, 1) . '_' . substr($getTeam['name'], 0, 2) . '_' . $input['employee_id'];
+          
 
             $input['password'] = bcrypt('welcome');
             $input['name'] =  $input['first_name'];
@@ -333,7 +337,7 @@ class UserController extends Controller
                 $q->orderBy('order', 'asc');
             })->where('id', '=', $id)->first();
             // dd($data->myTeam['id']);
-            // dd($data->toArray());
+            // dd($data);
             $selectedPrimarySkills = UserSkills::with('skills_details')->where(['user_id' => $id, 'type' => 1])->get();
             $selectedSecondrySkills = UserSkills::with('skills_details')->where(['user_id' => $id, 'type' => 2])->get();
 

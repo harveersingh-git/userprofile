@@ -80,19 +80,19 @@ $(document).ready(function() {
             x++; //Increment field counter
 
             var projectFieldHTML = '<div class="row">';
-            projectFieldHTML += '<div class="col-lg-3"><label>Project Name</label>';
+            projectFieldHTML += '<div class="col-lg-3"><label>Project Name<span style="color: red;">*</span></label>';
             projectFieldHTML += '<input type="text" class="form-control" placeholder="XYZ" name="project_name[]" value="" required="" autocomplete="on|off">';
-            projectFieldHTML += '</div><div class="col-lg-3"><label>Project Skills</label>';
+            projectFieldHTML += '</div><div class="col-lg-3"><label>Project Skills<span style="color: red;">*</span></label>';
             projectFieldHTML += '<input type="text" class="form-control" placeholder="php,node etc" name="project_skills[]" value="" required="" autocomplete="on|off">';
             projectFieldHTML += '</div>';
-            projectFieldHTML += '<div class="col-lg-3"><label>Team Size</label>';
+            projectFieldHTML += '<div class="col-lg-3"><label>Team Size<span style="color: red;">*</span></label>';
             projectFieldHTML += '<input type="text" class="form-control" placeholder="1" name="team_size[]" value="" required="" autocomplete="on|off">';
             projectFieldHTML += '</div>'
-            projectFieldHTML += '<div class="col-lg-3"><label>Url</label>';
+            projectFieldHTML += '<div class="col-lg-3"><label>Url<span style="color: red;">*</span></label>';
             projectFieldHTML += '<input type="text" class="form-control" placeholder="https://github.com/" name="url[]" value=""required="" autocomplete="on" />';
 			 projectFieldHTML += '</div>';
             
-            projectFieldHTML += '<div class="row"><label>Project Description</label>';
+            projectFieldHTML += '<div class="row"><label>Project Description<span style="color: red;">*</span></label>';
             projectFieldHTML += '<textarea class="form-control ckeditor" rows="3" name="project_description[]" id="project_description'+x+'" required=""></textarea>';
            
             projectFieldHTML += '</div>';
@@ -115,9 +115,9 @@ $(document).ready(function() {
         if (x < maxField) {
             x++; //Increment field counter
 
-            var achFieldHTML = '<div class="row"><div class="col-lg-12"><label><i class="fa fa-arrows" aria-hidden="true"></i>Title </label>';
+            var achFieldHTML = '<div class="row"><div class="col-lg-12"><label><i class="fa fa-arrows" aria-hidden="true"></i>Title <span style="color: red;">*</span></label>';
             achFieldHTML +='<input type="text" class="form-control" placeholder="EX:abc" name="title[]" value="" required="" autocomplete="on|off">';
-            achFieldHTML +='</div><div class="col-lg-12"><label>Achievement Description </label>';
+            achFieldHTML +='</div><div class="col-lg-12"><label>Achievement Description<span style="color: red;">*</span> </label>';
             achFieldHTML +='<textarea class="form-control ckeditor" rows="3" name="description[]" id="description'+x+'"></textarea></div>';
             achFieldHTML +='<a href="javascript:void(0);" class="ach_remove_button btn btn-danger"><i class="fa fa-minus" aria-hidden="true"></i> Remove</a></div>';
            
@@ -154,11 +154,11 @@ $(document).ready(function() {
                 result.course.forEach(element =>{
                   course += "<option value="+element.id+">"+element.value+"</option>"
                  } );
-             var fieldHTML ='<div class="row"><div class="col-lg-3"><label><i class="fa fa-arrows" aria-hidden="true"></i>Type</label>';
+             var fieldHTML ='<div class="row"><div class="col-lg-3"><label><i class="fa fa-arrows" aria-hidden="true"></i>Type<span style="color: red;">*</span></label>';
                 fieldHTML += '<select class="form-control" aria-label="Default select example" name="edu_type[]"><option selected>--please select--</option>'+typee+'</select></div>';
-                fieldHTML += '<div class="col-lg-3"><label>Title</label> <select class="form-control" name="edu_title[]" aria-label="Default select example"><option selected>'+course+'</select>';
-                fieldHTML += '</div><div class="col-lg-3 datepicker-wrap"><label>From</label><input type="text" class="form-control edu_from" placeholder="2021-01-01" name="edu_to[]" value="" required="" autocomplete="on|off">';
-                fieldHTML += '</div><div class="col-lg-3 datepicker-wrap"><label>To</label><input type="text" class="form-control edu_to" placeholder="2021-02-01" name="edu_from[]" value="" required="" autocomplete="on|off">';
+                fieldHTML += '<div class="col-lg-3"><label>Title<span style="color: red;">*</span></label> <select class="form-control" name="edu_title[]" aria-label="Default select example"><option selected>'+course+'</select>';
+                fieldHTML += '</div><div class="col-lg-3 datepicker-wrap"><label>From<span style="color: red;">*</span></label><input type="text" class="form-control edu_from" placeholder="2021-01-01" name="edu_to[]" value="" required="" autocomplete="on|off">';
+                fieldHTML += '</div><div class="col-lg-3 datepicker-wrap"><label>To<span style="color: red;">*</span></label><input type="text" class="form-control edu_to" placeholder="2021-02-01" name="edu_from[]" value="" required="" autocomplete="on|off">';
                 fieldHTML += '</div><a href="javascript:void(0);" class="remove_button btn btn-danger"><i class="fa fa-minus" aria-hidden="true"></i> Remove</a></div>'; //New input field html 
    
         //Check maximum number of input fields
@@ -212,14 +212,14 @@ $(document).ready(function() {
         if (x < maxField) {
             
             x++; //Increment field counter
-            var certificationFieldHTML = '<div><div class="row"><div class="col-lg-3"><label>Type</label>';
+            var certificationFieldHTML = '<div><div class="row"><div class="col-lg-3"><label>Type<span style="color: red;">*</span></label>';
             certificationFieldHTML += '<select class="form-control" aria-label="Default select example" name="certification_type[]"><option selected>--please select--</option>'+type+'</select></div>';
 
           
             // certificationFieldHTML += '</div>';
             certificationFieldHTML += '</div>';
             certificationFieldHTML += '<div class="row"><div class="col-lg-12"><div class="form-group">';
-            certificationFieldHTML += '<label><i class="fa fa-arrows" aria-hidden="true"></i>Certification </label>';
+            certificationFieldHTML += '<label><i class="fa fa-arrows" aria-hidden="true"></i>Certification<span style="color: red;">*</span></label>';
             certificationFieldHTML += '<textarea class="form-control" rows="3" name="certification[]" id="certification'+x+'"></textarea>';
             certificationFieldHTML += '</div></div></div> <a href="javascript:void(0);" class="certification_remove_button btn btn-danger"><i class="fa fa-minus" aria-hidden="true"></i>Remove</a></div>';
         
@@ -243,11 +243,11 @@ $(document).ready(function() {
         if (x < maxField) {
            
             x++; //Increment field counter
-            var expFieldHTML = '<div><div class="row"><div class="col-lg-3"><label><i class="fa fa-arrows" aria-hidden="true"></i>Companay Name</label>';
+            var expFieldHTML = '<div><div class="row"><div class="col-lg-3"><label><i class="fa fa-arrows" aria-hidden="true"></i>Companay Name<span style="color: red;">*</span></label>';
             expFieldHTML += '<input type="text" class="form-control" placeholder="XYZ" name="company_name[]" value="" required="" autocomplete="on|off">';
-            expFieldHTML += '</div><div class="col-lg-3"><label>Designation</label><input type="text" class="form-control" placeholder="Team leader" name="designation[]" value="" required="" autocomplete="on|off">';
-            expFieldHTML += '</div><div class="col-lg-3 datepicker-wrap"><label>From</label><input type="text" class="form-control exp_from" placeholder="2021-01-01" name="exp_from[]" value="" required="" autocomplete="on|off" id="dp1639739620183">';
-            expFieldHTML += '</div><div class="col-lg-3 datepicker-wrap"><label>To</label><input type="text" class="form-control exp_to" placeholder="2021-01-01" name="exp_to[]" value="" required="" autocomplete="on|off" id="dp1639739620184">';
+            expFieldHTML += '</div><div class="col-lg-3"><label>Designation<span style="color: red;">*</span></label><input type="text" class="form-control" placeholder="Team leader" name="designation[]" value="" required="" autocomplete="on|off">';
+            expFieldHTML += '</div><div class="col-lg-3 datepicker-wrap"><label>From<span style="color: red;">*</span></label><input type="text" class="form-control exp_from" placeholder="2021-01-01" name="exp_from[]" value="" required="" autocomplete="on|off" id="dp1639739620183">';
+            expFieldHTML += '</div><div class="col-lg-3 datepicker-wrap"><label>To<span style="color: red;">*</span></label><input type="text" class="form-control exp_to" placeholder="2021-01-01" name="exp_to[]" value="" required="" autocomplete="on|off" id="dp1639739620184">';
             expFieldHTML += '</div></div>';
             expFieldHTML += '<div class="row">';
             expFieldHTML += '<div class="col-lg-12">';

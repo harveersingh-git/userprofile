@@ -53,7 +53,7 @@ Toast::message('message', 'level', 'title');
                                 <th class="text-center">Mobile</th>
                                 <th class="text-center">Resume Title</th>
 
-                                <th class="text-center">Team</th>
+                                <th class="text-center">Skills</th>
 
 
 
@@ -71,7 +71,16 @@ Toast::message('message', 'level', 'title');
                                 <td>{{ $value->mobile  }}</td>
                                 <td>{{ $value->resume_title }}</td>
 
-                                <td>{{ isset($value['myTeam']->name)? $value['myTeam']->name : ''}}</td>
+                                <td>
+                                    @if($value->skills->count()>0)
+                                    @foreach($value->skills as $key=>$res)
+                                    {{$res->skills_details['value']}}
+                                    @endforeach
+
+                                    @endif
+
+
+                                </td>
 
                                 <td>
                                     <a class="btn btn-warning" href="{{url('/information')}}/{{$value->id}}"><i class="fa fa-edit"></i> Edit</button>

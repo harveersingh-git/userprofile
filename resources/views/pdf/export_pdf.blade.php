@@ -770,7 +770,7 @@
             <P class="p14 ft5">CMMI L3 SCV</P>
             <P class="p14 ft5">ISO 27001:2013</P>
             <P class="p14 ft5">ISO 9001:2015</P>
-            <P class="p17 ft6" style="margin-top: 33px;">{{$data->employee_id}}</P>
+            <P class="p17 ft6" style="margin-top: 33px;">{{strtoupper($data->resume_emp_id)}}</P>
             <p class="p18 ft7" style="color:#222;">{{$data->resume_title}}</p>
             <P class="p19 ft8">WORK EXPERIENCE</P>
             <P class="p20 ft9">{{$data->resume_title}}</P>
