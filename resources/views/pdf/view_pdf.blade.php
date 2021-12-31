@@ -695,6 +695,7 @@
                     <div style="width:75%; text-align: justify; margin-left:10px">
                         <P class="p1 ft1" style="color:#000;">{!!html_entity_decode($data->about_employee)!!}</P>
                     </div>
+                    <p class="p7 ft0" style="color:#fff;">SKILLS, LANGUAGES</p>
                     <TABLE cellpadding=0 cellspacing=0 class="t0">
                         @forelse ($data['skills'] as $skill)
                         <TR>

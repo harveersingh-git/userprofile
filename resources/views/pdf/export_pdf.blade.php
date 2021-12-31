@@ -681,6 +681,7 @@
             position: fixed;
             /* opacity: 0.5; */
             margin-left: -50px;
+            margin-top: -50px;
         }
 
 
@@ -688,7 +689,7 @@
 
             top: 17px;
 
-            padding-top: 384px;
+            padding-top: 322px;
 
             padding-left: 2px;
 
