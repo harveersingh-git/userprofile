@@ -81,7 +81,7 @@ class UserController extends Controller
     {
         if ($request->isMethod('post')) {
             $input = $request->all();
-
+            // dd($input );
             // UserSkills::where(['user_id' => $input['user_id']])->delete();
             // for ($i = 0; $i < count($input['skill_value_id']); $i++) {
 
@@ -107,6 +107,7 @@ class UserController extends Controller
                     $inp['education_title_id'] =  $input['edu_title'][$i];
                     $inp['from'] =  $input['edu_from'][$i];
                     $inp['to'] =  $input['edu_to'][$i];
+                    
                     $skills = UserEducation::create($inp);
                 }
             }
