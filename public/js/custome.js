@@ -401,6 +401,17 @@ $(document).ready(function() {
        $('#exprince_button').hide();
        $('#exprince_submit').show();
     });
+    $(document).on('click', '#achievement_prev', function(e) {
+        e.preventDefault();
+       $('#certificate_button').hide();
+       $('#certificate_submit').show();
+    });
+    $(document).on('click', '#project_previous', function(e) {
+        e.preventDefault();
+       $('#achievement_button').hide();
+       $('#achievement_submit').show();
+    });
+
 
     
     
