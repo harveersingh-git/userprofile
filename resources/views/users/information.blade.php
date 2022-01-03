@@ -414,7 +414,7 @@ Toast::message('message', 'level', 'title');
 
                                                             </div>
 
-                                                            <div class="col-lg-3 datepicker-wrap">
+                                                            <div class="col-lg-2 datepicker-wrap">
                                                                 <label>From
                                                                     @if(isset($data->id))
 
@@ -426,7 +426,7 @@ Toast::message('message', 'level', 'title');
                                                                 <input type="text" class="form-control exp_from" placeholder="2021-12" name="exp_from[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
                                                             </div>
-                                                            <div class="col-lg-3 datepicker-wrap">
+                                                            <div class="col-lg-2 datepicker-wrap">
                                                                 <label>To
                                                                     @if(isset($data->id))
 
@@ -434,10 +434,13 @@ Toast::message('message', 'level', 'title');
                                                                     <span style="color: red;">*</span>
 
                                                                     @endif
-                                                                    <input type="checkbox" style="position: absolute;" name="present" class="pull-right present" id="present">
                                                                 </label>
                                                                 <input type="text" class="form-control exp_to" placeholder="2021-12" name="exp_to[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on" />
 
+                                                            </div>
+                                                            <div class="col-lg-2">
+                                                            <label>Present</label>
+                                                            <input type="checkbox"  name="present" class="present " id="present">
                                                             </div>
 
 
@@ -473,16 +476,20 @@ Toast::message('message', 'level', 'title');
                                                             <input type="text" class="form-control" placeholder="Team leader" name="designation[]" value="{{ isset($value['designation'])?$value['designation']:''}}" required="" autocomplete="on" />
 
                                                         </div>
-                                                        <div class="col-lg-3 datepicker-wrap">
+                                                        <div class="col-lg-2 datepicker-wrap">
                                                             <label>From<span style="color: red;">*</span> </label>
                                                             <input type="text" class="form-control exp_from" placeholder="2021-12" name="exp_from[]" value="{{ isset($value['from'])?$value['from']:''}}" required="" autocomplete="on" />
 
                                                         </div>
-                                                        <div class="col-lg-3 datepicker-wrap">
+                                                        <div class="col-lg-2 datepicker-wrap">
                                                             <label>To<span style="color: red;">*</span> </label>
                                                             <input type="text" class="form-control exp_to" placeholder="2021-12" name="exp_to[]" value="{{ isset($value['to'])?$value['to']:''}}" required="" autocomplete="on|off" />
 
                                                         </div>
+                                                        <div class="col-lg-2">
+                                                            <label>Present</label>
+                                                            <input type="checkbox"  name="present" class="present " id="present" {{isset($value->present) == 1 ? 'checked' : ''}}>
+                                                            </div>
                                                         <div class="row">
                                                             <div class="col-lg-12">
                                                                 <div class="form-group">
