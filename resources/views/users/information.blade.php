@@ -491,7 +491,7 @@ Toast::message('message', 'level', 'title');
                                                         <div class="col-lg-2">
                                                         <label>Present</label>
                                                         <input type="hidden" name="present_checked[]" value="" class="present_checked">
-                                                        <input type="checkbox" name="present" class="present " id="present" value="" {{isset($value['present'])=='1'?'checked':''}}>
+                                                        <input type="checkbox" name="present" class="present " id="present" value="" {{$value['present']=='1'?'checked':''}}>
                                                         </div>
 
                                                     </div>
