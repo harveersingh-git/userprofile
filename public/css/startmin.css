@@ -721,8 +721,12 @@ label {
     padding: 0
 }
 .myac_btn {
-    padding: 6px 4px !important;
+    padding: 6px !important;
     margin: 4px 3px;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    font-size: 16px !important;
 }
 .back_btn {
     float: right;
@@ -749,4 +753,14 @@ label {
     border: none;
     background: #eee;
     padding: 30px;
+}
+.datepicker-prsonal:before {
+    content: "\f073";
+    font-family: "Font Awesome 5 Free";
+    position: absolute;
+    right: 28px;
+    top: 50%;
+    font-weight: 400;
+    transform: translateY(-50%);
+    z-index: 444;
 }

@@ -148,11 +148,11 @@ $(document).ready(function() {
         if (x < maxField) {
             x++; //Increment field counter
 
-            var achFieldHTML = '<div class="row"><div class="col-lg-12"><label><i class="fa fa-arrows" aria-hidden="true"></i>Title <span style="color: red;">*</span></label>';
+            var achFieldHTML = '<div class=""><div class="col-lg-12"><label><i class="fa fa-arrows" aria-hidden="true"></i>Title <span style="color: red;">*</span></label>';
             achFieldHTML +='<input type="text" class="form-control" placeholder="EX:abc" name="title[]" value="" required="" autocomplete="on|off">';
             achFieldHTML +='</div><div class="col-lg-12"><label>Achievement Description<span style="color: red;">*</span> </label>';
             achFieldHTML +='<textarea class="form-control ckeditor" rows="3" name="description[]" id="description'+x+'"></textarea></div>';
-            achFieldHTML +='<a href="javascript:void(0);" class="ach_remove_button btn btn-danger"><i class="fa fa-minus" aria-hidden="true"></i> Remove</a></div>';
+            achFieldHTML +='<div class="col-lg-12"><a href="javascript:void(0);" class="ach_remove_button btn btn-danger"><i class="fa fa-minus" aria-hidden="true"></i> Remove</a></div></div>';
            
             $(ach_wrapper).append(achFieldHTML); //Add field html
           

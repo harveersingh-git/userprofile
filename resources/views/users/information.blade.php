@@ -75,10 +75,10 @@ Toast::message('message', 'level', 'title');
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-lg-6">
+                                                    <div class="col-lg-6 datepicker-prsonal">
                                                         <label>Joining Date<span style="color: red;">*</span></label>
                                                         <input type="text" class="form-control" placeholder="2021-01-02" name="joining_date" id="joining_date" value="{{isset($data->joining_date)?$data->joining_date:'' }}" required="" autocomplete="on|off" />
-                                                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                                                       
                                                     </div>
 
                                                     <div class="col-lg-6">
@@ -486,10 +486,8 @@ Toast::message('message', 'level', 'title');
                                                             <input type="text" class="form-control exp_to" placeholder="2021-12" name="exp_to[]" value="{{ isset($value['to'])?$value['to']:''}}" required="" autocomplete="on|off" />
 
                                                         </div>
-                                                        <div class="col-lg-2">
-                                                            <label>Present</label>
-                                                            <input type="checkbox"  name="present" class="present " id="present" {{isset($value->present) == 1 ? 'checked' : ''}}>
-                                                            </div>
+
+                                                    </div>
                                                         <div class="row">
                                                             <div class="col-lg-12">
                                                                 <div class="form-group">
@@ -500,7 +498,7 @@ Toast::message('message', 'level', 'title');
                                                         </div>
 
 
-                                                    </div>
+                                                    
 
                                                     @endforeach
 
@@ -572,7 +570,7 @@ Toast::message('message', 'level', 'title');
 
                                                     @if(isset($data->certification) && count($data->certification)>0)
                                                     @foreach($data->certification as $key=>$value)
-                                                    <div class="row">
+                                                    <div>
                                                         <div class="row">
                                                             <div class="col-lg-4">
                                                                 <label><i class="fa fa-arrows" aria-hidden="true"></i>Type<span style="color: red;">*</span> </label>
