@@ -57,7 +57,7 @@ Toast::message('message', 'level', 'title');
 
 
 
-                                <th class="text-center" style="width: 22%;">Action</th>
+                                <th class="text-center" style="width: 30%;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
