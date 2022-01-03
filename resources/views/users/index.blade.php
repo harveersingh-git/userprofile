@@ -75,12 +75,12 @@ Toast::message('message', 'level', 'title');
                                     @if($value->skills->count()>0)
                                     @foreach($value->skills as $key=>$res)
                                     @if($res->type=='1')
-                                    <a class="btn btn-success btn-xs mr-1"> {{$res->skills_details['value']}}</a>
+                                    <a class="btn btn-success btn-xs " style="margin-bottom: 4px;"> {{$res->skills_details['value']}}</a>
                                     @elseif($res->type=='2')
-                                    <a class="btn btn-warning btn-xs mr-1"> {{$res->skills_details['value']}}</a>
+                                    <a class="btn btn-warning btn-xs" style="margin-bottom: 4px;"> {{$res->skills_details['value']}}</a>
 
                                     @elseif ($res->type=='3')
-                                    <a class="btn btn-default btn-xs mr-1"> {{$res->skills_details['value']}}</a>
+                                    <a class="btn btn-default btn-xs" style="margin-bottom: 4px;"> {{$res->skills_details['value']}}</a>
 
                                     @endif
                                     @endforeach
