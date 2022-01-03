@@ -56,7 +56,7 @@ class UserController extends Controller
                 $q->whereIn('skill_value_id', $skills->toArray());
             });
         } else {
-            $query = User::with(['myTeam','skills'])->where('id', '!=', 1);
+            $query = User::with(['myTeam', 'skills'])->where('id', '!=', 1);
             if (isset($request['search'])) {
                 $query->where('mobile', 'like', '%' . $request['search'] . '%');
             }
@@ -137,7 +137,13 @@ class UserController extends Controller
                     $value['designation'] =  $input['designation'][$i];
                     $value['role_responsibilitie'] =  $input['role_res'][$i];
                     $value['from'] =  $input['exp_from'][$i];
-                    $value['to'] =  $input['exp_to'][$i];
+                    if (isset($input['present'])) {
+                        $value['to'] =  date("Y");
+                        $value['present'] =  1;
+                    } else {
+                        $value['to'] =  $input['exp_to'][$i];
+                    }
+
                     UserExperince::create($value);
                 }
             }
@@ -229,12 +235,12 @@ class UserController extends Controller
                 'about_employee' => 'required',
                 'experience' => 'required',
                 // 'employee_id' => [
-                   
+
                 //     Rule::requiredIf('tk'),
                 // ], 
 
             ]);
-            
+
 
             if ($validator->fails()) {
                 return response()->json([
@@ -244,10 +250,10 @@ class UserController extends Controller
                     'Status_code' => "401"
                 ]);
             }
-            $getTeam=Teams::where('id','=',$input['team'])->first();
-            
-                $input['resume_emp_id'] = substr($input['first_name'], 0, 1) . substr($input['last_name'], 0, 1) . '_' . substr($getTeam['name'], 0, 2) . '_' . $input['employee_id'];
-          
+            $getTeam = Teams::where('id', '=', $input['team'])->first();
+
+            $input['resume_emp_id'] = substr($input['first_name'], 0, 1) . substr($input['last_name'], 0, 1) . '_' . substr($getTeam['name'], 0, 2) . '_' . $input['employee_id'];
+
 
             $input['password'] = bcrypt('welcome');
             $input['name'] =  $input['first_name'];
@@ -561,6 +567,26 @@ class UserController extends Controller
 
             return response()->json([
                 'status' => true
+            ]);
+        }
+    }
+    public function checkPresent(Request $request)
+    {
+
+        $data =   UserExperince::where(['present' =>1, 'user_id' => $request['user_id']])->first();
+  
+        if ($data) {
+
+            return response()->json([
+                'status' => true,
+                'data' => $data
+
+            ]);
+        } else {
+            return response()->json([
+                'status' => true,
+                'data' => ''
+
             ]);
         }
     }

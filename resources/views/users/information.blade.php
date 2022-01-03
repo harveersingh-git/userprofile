@@ -289,7 +289,7 @@ Toast::message('message', 'level', 'title');
                                                                     @endif
                                                                 </label>
 
-                                                                <input type="text" class="form-control edu_to" placeholder="2021-02-27" name="edu_from[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="off" />
+                                                                <input type="text" class="form-control edu_to" placeholder="YYYY" name="edu_from[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="off" />
 
                                                             </div>
                                                             <div class="col-lg-3 datepicker-wrap">
@@ -301,7 +301,7 @@ Toast::message('message', 'level', 'title');
 
                                                                     @endif
                                                                 </label>
-                                                                <input type="text" class="form-control edu_from" placeholder="2021-02-27" name="edu_to[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="off" />
+                                                                <input type="text" class="form-control edu_from" placeholder="YYYY" name="edu_to[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="off" />
 
                                                             </div>
                                                         </div>
@@ -422,7 +422,7 @@ Toast::message('message', 'level', 'title');
 
                                                                     @endif
                                                                 </label>
-                                                                <input type="text" class="form-control exp_from" placeholder="2021-12-19" name="exp_from[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
+                                                                <input type="text" class="form-control exp_from" placeholder="2021-12" name="exp_from[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
                                                             </div>
                                                             <div class="col-lg-3 datepicker-wrap">
@@ -433,10 +433,13 @@ Toast::message('message', 'level', 'title');
                                                                 <span style="color: red;">*</span>
 
                                                                 @endif
+                                                             <input type="checkbox" style="position: absolute;" name="present" class="pull-right present" id="present">
                                                                 </label>
-                                                                <input type="text" class="form-control exp_to" placeholder="2021-12-19" name="exp_to[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
-
+                                                                <input type="text" class="form-control exp_to" placeholder="2021-12" name="exp_to[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on" />
+                                                               
                                                             </div>
+                                                            
+                                                           
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-lg-12">
@@ -471,12 +474,12 @@ Toast::message('message', 'level', 'title');
                                                         </div>
                                                         <div class="col-lg-3 datepicker-wrap">
                                                             <label>From<span style="color: red;">*</span> </label>
-                                                            <input type="text" class="form-control exp_from" placeholder="2021-12-19" name="exp_from[]" value="{{ isset($value['from'])?$value['from']:''}}" required="" autocomplete="on" />
+                                                            <input type="text" class="form-control exp_from" placeholder="2021-12" name="exp_from[]" value="{{ isset($value['from'])?$value['from']:''}}" required="" autocomplete="on" />
 
                                                         </div>
                                                         <div class="col-lg-3 datepicker-wrap">
                                                             <label>To<span style="color: red;">*</span> </label>
-                                                            <input type="text" class="form-control exp_to" placeholder="2021-12-19" name="exp_to[]" value="{{ isset($value['to'])?$value['to']:''}}" required="" autocomplete="on|off" />
+                                                            <input type="text" class="form-control exp_to" placeholder="2021-12" name="exp_to[]" value="{{ isset($value['to'])?$value['to']:''}}" required="" autocomplete="on|off" />
 
                                                         </div>
                                                         <div class="row">
@@ -1227,12 +1230,23 @@ Toast::message('message', 'level', 'title');
 
 
     $(window).on('load', function() {
-        CKEDITOR.replace('about_employee');
+        CKEDITOR.replace('about_employee',{toolbar: [
+            // { name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
+        {name: 'editing', items: ['Format', 'Font', 'FontSize', 'TextColor', 'BGColor' , 'Bold', 'Italic','NumberedList','BulletedList'] }
+    ]});
 
-        CKEDITOR.replace('role_res[]');
-        CKEDITOR.replace('certification[]');
-        CKEDITOR.replace('description[]');
-        CKEDITOR.replace('project_description[]');
+        CKEDITOR.replace('role_res[]',{toolbar: [
+        {name: 'editing', items: ['Format', 'Font', 'FontSize', 'TextColor', 'BGColor' , 'Bold', 'Italic','NumberedList','BulletedList'] }
+    ]});
+        CKEDITOR.replace('certification[]',{toolbar: [
+        {name: 'editing', items: ['Format', 'Font', 'FontSize', 'TextColor', 'BGColor' , 'Bold', 'Italic','NumberedList','BulletedList'] }
+    ]});
+        CKEDITOR.replace('description[]',{toolbar: [
+        {name: 'editing', items: ['Format', 'Font', 'FontSize', 'TextColor', 'BGColor' , 'Bold', 'Italic','NumberedList','BulletedList'] }
+    ]});
+        CKEDITOR.replace('project_description[]',{toolbar: [
+        {name: 'editing', items: ['Format', 'Font', 'FontSize', 'TextColor', 'BGColor' , 'Bold', 'Italic','NumberedList','BulletedList'] }
+    ]});
         CKEDITOR.instances['about_employee'].updateElement();
 
 

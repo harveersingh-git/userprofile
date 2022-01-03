@@ -16,21 +16,49 @@ $(function() {
         }
 
     );
-    $(".edu_to").datepicker({
-        dateFormat: 'yy-mm-dd',
-        maxDate: new Date()
+    $(".edu_to").datepicker( {
+        changeMonth: false,
+        changeYear: true,
+        showButtonPanel: true,
+        dateFormat: 'yy',
+        onClose: function(dateText, inst) { 
+          var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+            $(this).datepicker('setDate', new Date(year));
+        }
     });
     $(".edu_from").datepicker({
-        dateFormat: 'yy-mm-dd',
-        maxDate: new Date()
+        changeMonth: true,
+        changeYear: true,
+        showButtonPanel: true,
+        dateFormat: 'yy',
+        onClose: function(dateText, inst) { 
+          var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+            $(this).datepicker('setDate', new Date(year));
+        }
     });
     $(".exp_from").datepicker(
         {
-            dateFormat: 'yy-mm-dd'
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            dateFormat: 'yy-mm',
+            onClose: function(dateText, inst) { 
+              var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+              var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                $(this).datepicker('setDate', new Date(year,month, 1));
+            }
         }
     );
     $(".exp_to").datepicker({
-        dateFormat: 'yy-mm-dd'
+        changeMonth: true,
+        changeYear: true,
+        showButtonPanel: true,
+        dateFormat: 'yy-mm',
+        onClose: function(dateText, inst) { 
+          var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+		  var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+            $(this).datepicker('setDate', new Date(year,month, 1));
+        }
     });
 });
 
@@ -106,7 +134,9 @@ $(document).ready(function() {
           
         }
         setTimeout(function(){
-            CKEDITOR.replace('project_description'+x);
+            CKEDITOR.replace('project_description'+x,{toolbar: [
+                {name: 'editing', items: ['Format', 'Font', 'FontSize', 'TextColor', 'BGColor' , 'Bold', 'Italic','NumberedList','BulletedList'] }
+            ]});
 
     }, 2000);
 
@@ -128,7 +158,9 @@ $(document).ready(function() {
           
         }
         setTimeout(function(){
-            CKEDITOR.replace('description'+x);
+            CKEDITOR.replace('description'+x,{toolbar: [
+                {name: 'editing', items: ['Format', 'Font', 'FontSize', 'TextColor', 'BGColor' , 'Bold', 'Italic','NumberedList','BulletedList'] }
+            ]});
 
     }, 2000);
 
@@ -160,8 +192,8 @@ $(document).ready(function() {
              var fieldHTML ='<div class="row"><div class="col-lg-3"><label><i class="fa fa-arrows" aria-hidden="true"></i>Type<span style="color: red;">*</span></label>';
                 fieldHTML += '<select class="form-control" aria-label="Default select example" name="edu_type[]"><option selected>--please select--</option>'+typee+'</select></div>';
                 fieldHTML += '<div class="col-lg-3"><label>Title<span style="color: red;">*</span></label> <select class="form-control" name="edu_title[]" aria-label="Default select example"><option selected>'+course+'</select>';
-                fieldHTML += '</div><div class="col-lg-3 datepicker-wrap"><label>From<span style="color: red;">*</span></label><input type="text" class="form-control edu_from" placeholder="2021-01-01" name="edu_to[]" value="" required="" autocomplete="on|off">';
-                fieldHTML += '</div><div class="col-lg-3 datepicker-wrap"><label>To<span style="color: red;">*</span></label><input type="text" class="form-control edu_to" placeholder="2021-02-01" name="edu_from[]" value="" required="" autocomplete="on|off">';
+                fieldHTML += '</div><div class="col-lg-3 datepicker-wrap"><label>From<span style="color: red;">*</span></label><input type="text" class="form-control edu_from" placeholder="YYYY" name="edu_to[]" value="" required="" autocomplete="on|off">';
+                fieldHTML += '</div><div class="col-lg-3 datepicker-wrap"><label>To<span style="color: red;">*</span></label><input type="text" class="form-control edu_to" placeholder="YYYY" name="edu_from[]" value="" required="" autocomplete="off">';
                 fieldHTML += '</div><a href="javascript:void(0);" class="remove_button btn btn-danger"><i class="fa fa-minus" aria-hidden="true"></i> Remove</a></div>'; //New input field html 
    
         //Check maximum number of input fields
@@ -169,10 +201,24 @@ $(document).ready(function() {
             x++; //Increment field counter
             $(wrapper).append(fieldHTML); //Add field html
             $('.education_more').find(".edu_to").datepicker({
-                dateFormat: 'yy-mm-dd'
+                changeMonth: false,
+                changeYear: true,
+                showButtonPanel: true,
+                dateFormat: 'yy',
+                onClose: function(dateText, inst) { 
+                  var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                    $(this).datepicker('setDate', new Date(year));
+                }
             });
             $('.education_more').find(".edu_from").datepicker({
-                dateFormat: 'yy-mm-dd'
+                changeMonth: false,
+                changeYear: true,
+                showButtonPanel: true,
+                dateFormat: 'yy',
+                onClose: function(dateText, inst) { 
+                  var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                    $(this).datepicker('setDate', new Date(year));
+                }
             });
         }
         addediter()
@@ -228,7 +274,9 @@ $(document).ready(function() {
         
             $(certification_wrapper).append(certificationFieldHTML); //Add field html
             setTimeout(function(){
-                CKEDITOR.replace('certification'+x);
+                CKEDITOR.replace('certification'+x,{toolbar: [
+                    {name: 'editing', items: ['Format', 'Font', 'FontSize', 'TextColor', 'BGColor' , 'Bold', 'Italic','NumberedList','BulletedList'] }
+                ]});
     
         }, 2000);
         }
@@ -249,8 +297,8 @@ $(document).ready(function() {
             var expFieldHTML = '<div><div class="row"><div class="col-lg-3"><label><i class="fa fa-arrows" aria-hidden="true"></i>Companay Name<span style="color: red;">*</span></label>';
             expFieldHTML += '<input type="text" class="form-control" placeholder="XYZ" name="company_name[]" value="" required="" autocomplete="on|off">';
             expFieldHTML += '</div><div class="col-lg-3"><label>Designation<span style="color: red;">*</span></label><input type="text" class="form-control" placeholder="Team leader" name="designation[]" value="" required="" autocomplete="on|off">';
-            expFieldHTML += '</div><div class="col-lg-3 datepicker-wrap"><label>From<span style="color: red;">*</span></label><input type="text" class="form-control exp_from" placeholder="2021-01-01" name="exp_from[]" value="" required="" autocomplete="on|off" id="dp1639739620183">';
-            expFieldHTML += '</div><div class="col-lg-3 datepicker-wrap"><label>To<span style="color: red;">*</span></label><input type="text" class="form-control exp_to" placeholder="2021-01-01" name="exp_to[]" value="" required="" autocomplete="on|off" id="dp1639739620184">';
+            expFieldHTML += '</div><div class="col-lg-3 datepicker-wrap"><label>From<span style="color: red;">*</span></label><input type="text" class="form-control exp_from" placeholder="2021-01" name="exp_from[]" value="" required="" autocomplete="on|off" id="dp1639739620183">';
+            expFieldHTML += '</div><div class="col-lg-3 datepicker-wrap"><label>To<span style="color: red;">*</span></label><input type="text" class="form-control exp_to" placeholder="2021-01" name="exp_to[]" value="" required="" autocomplete="on|off" id="dp1639739620184">';
             expFieldHTML += '</div></div>';
             expFieldHTML += '<div class="row">';
             expFieldHTML += '<div class="col-lg-12">';
@@ -263,15 +311,33 @@ $(document).ready(function() {
         
          $(exp_wrapper).append(expFieldHTML); //Add field html
             $('.exp_more').find(".exp_to").datepicker({
-                dateFormat: 'yy-mm-dd'
+                changeMonth: true,
+                changeYear: true,
+                showButtonPanel: true,
+                dateFormat: 'yy-mm',
+                onClose: function(dateText, inst) { 
+                  var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                  var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                    $(this).datepicker('setDate', new Date(year,month, 1));
+                }
             });
             $('.exp_more').find(".exp_from").datepicker({
-                dateFormat: 'yy-mm-dd'
+                changeMonth: true,
+                changeYear: true,
+                showButtonPanel: true,
+                dateFormat: 'yy-mm',
+                onClose: function(dateText, inst) { 
+                  var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                  var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                    $(this).datepicker('setDate', new Date(year,month, 1));
+                }
             });
         }
  
         setTimeout(function(){
-                CKEDITOR.replace('role_ress'+x);
+                CKEDITOR.replace('role_ress'+x,{toolbar: [
+                    {name: 'editing', items: ['Format', 'Font', 'FontSize', 'TextColor', 'BGColor' , 'Bold', 'Italic','NumberedList','BulletedList'] }
+                ]});
    
         }, 2000);
        
@@ -338,11 +404,40 @@ $(document).ready(function() {
 
     
     
-//   function  addediter(){
-   
-//     }
 
 
+    $('.present').on('click', function() {
+        var current = $(this);
+     
+	    var token = $('input[name="_token"]').attr('value');
+		var data = {
+            user_id: $('.user_id').val()
+        };
+		
+		  $.ajax({
+            type: 'POST',
+            url: base_url + '/check_present',
+            contentType: 'application/json',
+            dataType: 'json',
+            data:JSON.stringify(data),
+            headers: {
+                'X-CSRF-Token': token
+            },
+
+            success: function(data) {   
+                console.log('test',);
+            //    console.log('present',);
+            if(data.data.length!=0){
+                toastr.success("This check box check only once.");
+                $(current).prop('checked', false);
+
+            }
+
+            }
+        })
+
+
+    });
 
 });
 
