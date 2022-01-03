@@ -21,7 +21,7 @@ Add Skills Education
                 <div class="panel panel-default">
 
                     <div class="panel-heading mypnl_heading">
-                    <span class="back_btn"><a type="reset" href="{{url('skills-education')}}">
+                        <span class="back_btn"><a type="reset" href="{{url('skills-education')}}">
                         <i class="fa fa-arrow-left"></i> Back </a></span> <span>Add Skills Education</span>
 
                     </div>

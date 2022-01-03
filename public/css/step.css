@@ -131,7 +131,7 @@ select.list-dt:focus {
 #progressbar li {
     list-style-type: none;
     font-size: 12px;
-    width: 20%;
+    width: 14%;
     float: left;
     position: relative
 }
@@ -139,6 +139,16 @@ select.list-dt:focus {
 #progressbar #account:before {
     font-family: FontAwesome;
     content: "\f023"
+}
+
+#progressbar #certificate:before {
+    font-family: FontAwesome;
+    content: "\f007"
+}
+
+#progressbar #achievement:before {
+    font-family: FontAwesome;
+    content: "\f007"
 }
 
 #progressbar #skills:before {
