@@ -13,7 +13,7 @@ Toast::message('message', 'level', 'title');
     <div class="container-fluid">
         <div class="panel-heading">
             <span class="pull-right"><a class="btn btn-outline btn-primary" type="reset" href="{{ url('users')}}"><i class="fa fa-arrow-left"></i> Back </a>
-</span>
+            </span>
         </div>
         <!-- MultiStep Form -->
         <div class="container-fluid" id="">
@@ -290,7 +290,7 @@ Toast::message('message', 'level', 'title');
                                                                     @endif
                                                                 </label>
 
-                                                                <input type="text" class="form-control edu_to" placeholder="2021-02-27" name="edu_from[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="off" />
+                                                                <input type="text" class="form-control edu_to" placeholder="YYYY" name="edu_from[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="off" />
 
                                                             </div>
                                                             <div class="col-lg-3 datepicker-wrap">
@@ -302,7 +302,7 @@ Toast::message('message', 'level', 'title');
 
                                                                     @endif
                                                                 </label>
-                                                                <input type="text" class="form-control edu_from" placeholder="2021-02-27" name="edu_to[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="off" />
+                                                                <input type="text" class="form-control edu_from" placeholder="YYYY" name="edu_to[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="off" />
 
                                                             </div>
                                                         </div>
@@ -423,33 +423,36 @@ Toast::message('message', 'level', 'title');
 
                                                                     @endif
                                                                 </label>
-                                                                <input type="text" class="form-control exp_from" placeholder="2021-12-19" name="exp_from[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
+                                                                <input type="text" class="form-control exp_from" placeholder="2021-12" name="exp_from[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
                                                             </div>
                                                             <div class="col-lg-3 datepicker-wrap">
                                                                 <label>To
-                                                                @if(isset($data->id))
-
-                                                                @else
-                                                                <span style="color: red;">*</span>
-
-                                                                @endif
-                                                                </label>
-                                                                <input type="text" class="form-control exp_to" placeholder="2021-12-19" name="exp_to[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-lg-12">
-                                                                <div class="form-group">
-                                                                    <label>Role and Responsibilities
                                                                     @if(isset($data->id))
 
                                                                     @else
                                                                     <span style="color: red;">*</span>
 
-                                                                    @endif        
+                                                                    @endif
+                                                                    <input type="checkbox" style="position: absolute;" name="present" class="pull-right present" id="present">
                                                                 </label>
+                                                                <input type="text" class="form-control exp_to" placeholder="2021-12" name="exp_to[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on" />
+
+                                                            </div>
+
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="form-group">
+                                                                    <label>Role and Responsibilities
+                                                                        @if(isset($data->id))
+
+                                                                        @else
+                                                                        <span style="color: red;">*</span>
+
+                                                                        @endif
+                                                                    </label>
                                                                     <textarea class="form-control" rows="3" name="role_res[]" {{ isset($data->id)  ? '' : 'required=""'}}></textarea>
                                                                 </div>
                                                             </div>
@@ -472,12 +475,12 @@ Toast::message('message', 'level', 'title');
                                                         </div>
                                                         <div class="col-lg-3 datepicker-wrap">
                                                             <label>From<span style="color: red;">*</span> </label>
-                                                            <input type="text" class="form-control exp_from" placeholder="2021-12-19" name="exp_from[]" value="{{ isset($value['from'])?$value['from']:''}}" required="" autocomplete="on" />
+                                                            <input type="text" class="form-control exp_from" placeholder="2021-12" name="exp_from[]" value="{{ isset($value['from'])?$value['from']:''}}" required="" autocomplete="on" />
 
                                                         </div>
                                                         <div class="col-lg-3 datepicker-wrap">
                                                             <label>To<span style="color: red;">*</span> </label>
-                                                            <input type="text" class="form-control exp_to" placeholder="2021-12-19" name="exp_to[]" value="{{ isset($value['to'])?$value['to']:''}}" required="" autocomplete="on|off" />
+                                                            <input type="text" class="form-control exp_to" placeholder="2021-12" name="exp_to[]" value="{{ isset($value['to'])?$value['to']:''}}" required="" autocomplete="on|off" />
 
                                                         </div>
                                                         <div class="row">
@@ -500,18 +503,38 @@ Toast::message('message', 'level', 'title');
 
                                                 </div>
 
+
+
+
+                                            </div>
+                                            <input type="submit" value="Next Step" class="  action-button btn btn-primary  col-md-3 pull-right" id="exprince_submit" />
+
+                                        </form>
+                                        <input type="button" name="previous" id="exprince_prev" class="previous action-button-previous  pull-left btn btn-warning" value="Previous" />
+
+                                        <input type="button" name="make_payment" style="display:none" class="next action-button pull-right" value="Next Step" id="exprince_button" />
+                                    </fieldset>
+
+
+
+                                    <fieldset>
+                                        <form action="{{url('add-user-certificate')}}" id="certificateForm">
+                                            <input type="hidden" value="" name="user_id" class="user_id">
+                                            <div class="form-card">
+                                                <h2 class="fs-title">Certification</h2>
+
                                                 <div class="certification_more">
                                                     <div>
                                                         <div class="row">
                                                             <div class="col-lg-4">
                                                                 <label><i class="fa fa-arrows" aria-hidden="true"></i>Type
-                                                                @if(isset($data->id))
+                                                                    @if(isset($data->id))
 
-                                                            @else
-                                                            <span style="color: red;">*</span>
+                                                                    @else
+                                                                    <span style="color: red;">*</span>
 
-                                                            @endif
-                                                            </label>
+                                                                    @endif
+                                                                </label>
                                                                 <select class="form-control" aria-label="Default select example" name="certification_type[]" {{ isset($data->id)  ? '' : 'required=""'}}>
                                                                     <option value="">--Please select--</option>
                                                                     @forelse($certificate as $key=>$dat)
@@ -521,25 +544,28 @@ Toast::message('message', 'level', 'title');
                                                                     @endforelse
                                                                 </select>
                                                             </div>
+
+
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-lg-12">
                                                                 <div class="form-group">
                                                                     <label><i class="fa fa-arrows" aria-hidden="true"></i>
-                                                                        Certification         @if(isset($data->id))
+                                                                        Certification @if(isset($data->id))
 
-                                                                    @else
-                                                                    <span style="color: red;">*</span>
+                                                                        @else
+                                                                        <span style="color: red;">*</span>
 
-                                                                    @endif</label>
+                                                                        @endif</label>
                                                                     <textarea class="form-control" rows="3" name="certification[]" {{ isset($data->id)  ? '' : 'required=""'}}></textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                     @if(isset($data->certification) && count($data->certification)>0)
                                                     @foreach($data->certification as $key=>$value)
-                                                    <div>
+                                                    <div class="row">
                                                         <div class="row">
                                                             <div class="col-lg-4">
                                                                 <label><i class="fa fa-arrows" aria-hidden="true"></i>Type<span style="color: red;">*</span> </label>
@@ -566,7 +592,10 @@ Toast::message('message', 'level', 'title');
                                                                 </div>
                                                             </div>
                                                         </div>
+
+
                                                     </div>
+
                                                     @endforeach
 
 
@@ -576,66 +605,48 @@ Toast::message('message', 'level', 'title');
                                                 </div>
 
 
+
+
                                             </div>
-                                            <input type="submit" value="Next Step" class="  action-button btn btn-primary  col-md-3 pull-right" id="exprince_submit" />
+                                            <input type="submit" name="certificate_submit" class="action-button pull-right btn btn-primary" value="Next Step" id="certificate_submit" />
 
                                         </form>
-                                        <input type="button" name="previous" id="exprince_prev" class="previous action-button-previous  pull-left btn btn-warning" value="Previous" />
+                                        <input type="button" name="previous" id="certificate_prev" class="previous action-button-previous  pull-left btn btn-warning" value="Previous" />
 
-                                        <input type="button" name="make_payment" style="display:none" class="next action-button pull-right" value="Next Step" id="exprince_button" />
+                                        <input type="button" name="certificate_button" style="display:none" class="next action-button pull-right" value="Next Step" id="certificate_button" />
+
+
                                     </fieldset>
-                                    
 
-
-                            <fieldset>
-                                <div class="form-card">
-                                    <h2 class="fs-title">nitin1</h2> <input type="email" name="email" placeholder="Email Id" /> <input type="text" name="uname" placeholder="UserName" /> <input type="password" name="pwd" placeholder="Password" /> <input type="password" name="cpwd" placeholder="Confirm Password" />
-                                </div> <input type="button" name="next" class="next action-button" value="Next Step" />
-                            </fieldset>
-                            
-                            <fieldset>
-                                <div class="form-card">
-                                    <h2 class="fs-title">nitin2</h2> <input type="text" name="fname" placeholder="First Name" /> <input type="text" name="lname" placeholder="Last Name" /> <input type="text" name="phno" placeholder="Contact No." /> <input type="text" name="phno_2" placeholder="Alternate Contact No." />
-                                </div> <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> <input type="button" name="next" class="next action-button" value="Next Step" />
-                            </fieldset>
-
-
-                                    
                                     <fieldset>
-                                        <form action="{{url('add-user-project')}}" id="projectForm">
+                                    <form action="{{url('add-user-achievement')}}" id="achievementForm">
 
-                                            <input type="hidden" value="" name="user_id" class="user_id">
-
-                                            <div class="form-card">
-
-
-
-
+                                    <div class="form-card">
+                                            <h2 class="fs-title">Achievement</h2>
+                                                <input type="hidden" value="" name="user_id" class="user_id">
                                                 <div class="row ach_more form-group">
                                                     <div class="col-lg-12">
-                                                        <h2 class="fs-title">Achievement
-                                                        @if(isset($data->id))
 
-                                                        @else
-                                                        <span style="color: red;">*</span>
-
-                                                        @endif
-                                                        </h2>
                                                         <div class="row">
                                                             <div class="col-lg-12">
-                                                                <label><i class="fa fa-arrows" aria-hidden="true"></i>Title </label>
+                                                                <label><i class="fa fa-arrows" aria-hidden="true"></i>Title @if(isset($data->id))
+
+                                                                    @else
+                                                                    <span style="color: red;">*</span>
+
+                                                                    @endif </label>
                                                                 <input type="text" class="form-control" placeholder="EX:abc" name="title[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
                                                             </div>
                                                             <div class="col-lg-12">
                                                                 <label>Achievement Description
-                                                                @if(isset($data->id))
+                                                                    @if(isset($data->id))
 
-                                                            @else
-                                                            <span style="color: red;">*</span>
+                                                                    @else
+                                                                    <span style="color: red;">*</span>
 
-                                                            @endif        
-                                                            </label>
+                                                                    @endif
+                                                                </label>
                                                                 <textarea class="form-control " rows="3" name="description[]" {{ isset($data->id)  ? '' : 'required=""'}}></textarea>
 
                                                             </div>
@@ -662,41 +673,63 @@ Toast::message('message', 'level', 'title');
                                                     </div>
                                                 </div>
 
+                                        </div>
+                                        <input type="submit" name="achivment_submit" class="action-button pull-right btn-primary" value="Next Step" id="achivment_submit" />
+
+                                        </form>
+                                        <input type="button" name="previous" class="previous action-button-previous btn btn-warning pull-left " value="Previous" id="achievement_prev" />
+                                        <input type="button" style="display:none" name="next" class="next action-button pull-right btn-primary" value="Next Step" id="achievement_button" />
+                                   
+                                    </fieldset>
+
+
+
+                                    <fieldset>
+                                        <form action="{{url('add-user-project')}}" id="projectForm">
+
+                                            <input type="hidden" value="" name="user_id" class="user_id">
+
+                                            <div class="form-card">
+
+
+
+
+
 
 
 
 
                                                 <div class="project_more">
                                                     <h2 class="fs-title">Project
-                                                    @if(isset($data->id))
-
-                                                    @else
-                                                    <span style="color: red;">*</span>
-
-                                                    @endif
-                                                    </h2>
-                                                    <div class="row form-group">
-
-                                                        <div class="col-lg-3">
-                                                            <label>Project Name
-                                                            @if(isset($data->id))
+                                                        @if(isset($data->id))
 
                                                         @else
                                                         <span style="color: red;">*</span>
 
                                                         @endif
+                                                    </h2>
+                                                    <div class="row form-group">
+
+                                                        <div class="col-lg-3">
+                                                            <label>Project Name
+                                                                @if(isset($data->id))
+
+                                                                @else
+                                                                <span style="color: red;">*</span>
+
+                                                                @endif
                                                             </label>
                                                             <input type="text" class="form-control" placeholder="XYZ" name="project_name[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
                                                         </div>
                                                         <div class="col-lg-3">
                                                             <label>Project Skills
-                                                            @if(isset($data->id))
+                                                                @if(isset($data->id))
 
-                                                            @else
-                                                            <span style="color: red;">*</span>
+                                                                @else
+                                                                <span style="color: red;">*</span>
 
-                                                            @endif
+                                                                @endif
                                                             </label>
                                                             <input type="text" class="form-control" placeholder="php,node etc" name="project_skills[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
@@ -705,24 +738,24 @@ Toast::message('message', 'level', 'title');
 
                                                         <div class="col-lg-3">
                                                             <label>Team Size
-                                                            @if(isset($data->id))
+                                                                @if(isset($data->id))
 
-                                                        @else
-                                                        <span style="color: red;">*</span>
+                                                                @else
+                                                                <span style="color: red;">*</span>
 
-                                                        @endif
+                                                                @endif
                                                             </label>
                                                             <input type="text" class="form-control" placeholder="1" name="team_size[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
                                                         </div>
                                                         <div class="col-lg-3">
                                                             <label>Url
-                                                            @if(isset($data->id))
+                                                                @if(isset($data->id))
 
-                                                                    @else
-                                                                    <span style="color: red;">*</span>
+                                                                @else
+                                                                <span style="color: red;">*</span>
 
-                                                                    @endif
+                                                                @endif
 
                                                             </label>
                                                             <input type="text" class="form-control" placeholder="https://github.com/" name="url[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
@@ -731,12 +764,12 @@ Toast::message('message', 'level', 'title');
                                                         <div class="r ow">
                                                             <div class="col-md-12">
                                                                 <label>Project Description
-                                                                @if(isset($data->id))
+                                                                    @if(isset($data->id))
 
-                                                                @else
-                                                                <span style="color: red;">*</span>
+                                                                    @else
+                                                                    <span style="color: red;">*</span>
 
-                                                                @endif
+                                                                    @endif
                                                                 </label>
                                                                 <textarea class="form-control" rows="3" name="project_description[]" {{ isset($data->id)  ? '' : 'required=""'}}></textarea>
 
@@ -892,8 +925,8 @@ Toast::message('message', 'level', 'title');
 
     })
 
-    $("#genral_info_submit").click(function(){
-    // $(document).on("click", "#genral_info_submit", function() {
+    $("#genral_info_submit").click(function() {
+        // $(document).on("click", "#genral_info_submit", function() {
         $('#genralInfo').submit(function(e) {
             e.stopImmediatePropagation();
             e.preventDefault();
@@ -915,7 +948,7 @@ Toast::message('message', 'level', 'title');
                 processData: false,
                 data: new FormData(this),
                 success: function(data) {
-                  
+
                     if (data.status == true) {
                         toastr.success("Record insert successfully");
                         $('.user_id').val(data.last_insert_id);
@@ -967,8 +1000,72 @@ Toast::message('message', 'level', 'title');
             })
         })
     });
+    $(document).on("click", "#achivment_submit", function() {
+        $('#achievementForm').submit(function(e) {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+            var token = $('input[name="_token"]').attr('value');
+            var form = $(this);
+            var url = form.attr('action');
 
+            var formData = new FormData(this);
 
+            $.ajax({
+                type: "POST",
+                url: url,
+                headers: {
+                    'X-CSRF-Token': token
+                },
+                contentType: false,
+                processData: false,
+                data: new FormData(this),
+                success: function(data) {
+                    if (data.status = "success") {
+                        toastr.success("Record insert successfully");
+                        $('#achievement_submit').hide();
+                        $('#achievement_button').show();
+                        $('#achievement_button').trigger('click');
+                    } else {
+                        toastr.error(data.message);
+                    }
+
+                }
+            })
+        })
+    });
+    $(document).on("click", "#certificate_submit", function() {
+        $('#certificateForm').submit(function(e) {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+            var token = $('input[name="_token"]').attr('value');
+            var form = $(this);
+            var url = form.attr('action');
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                headers: {
+                    'X-CSRF-Token': token
+                },
+                contentType: false,
+                processData: false,
+                data: new FormData(this),
+                success: function(data) {
+                    if (data.status = "success") {
+                        toastr.success("Record insert successfully");
+                        $('#certificate_submit').hide();
+                        $('#certificate_button').show();
+                        $('#certificate_button').trigger('click');
+                    } else {
+                        toastr.error(data.message);
+                    }
+
+                }
+            })
+        })
+    });
     $(document).on("click", "#exprince_submit", function() {
         $('#exprinceForm').submit(function(e) {
             e.stopImmediatePropagation();
@@ -1245,12 +1342,40 @@ Toast::message('message', 'level', 'title');
 
 
     $(window).on('load', function() {
-        CKEDITOR.replace('about_employee');
+        CKEDITOR.replace('about_employee', {
+            toolbar: [
+                // { name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
+                {
+                    name: 'editing',
+                    items: ['Format', 'Font', 'FontSize', 'TextColor', 'BGColor', 'Bold', 'Italic', 'NumberedList', 'BulletedList']
+                }
+            ]
+        });
 
-        CKEDITOR.replace('role_res[]');
-        CKEDITOR.replace('certification[]');
-        CKEDITOR.replace('description[]');
-        CKEDITOR.replace('project_description[]');
+        CKEDITOR.replace('role_res[]', {
+            toolbar: [{
+                name: 'editing',
+                items: ['Format', 'Font', 'FontSize', 'TextColor', 'BGColor', 'Bold', 'Italic', 'NumberedList', 'BulletedList']
+            }]
+        });
+        CKEDITOR.replace('certification[]', {
+            toolbar: [{
+                name: 'editing',
+                items: ['Format', 'Font', 'FontSize', 'TextColor', 'BGColor', 'Bold', 'Italic', 'NumberedList', 'BulletedList']
+            }]
+        });
+        CKEDITOR.replace('description[]', {
+            toolbar: [{
+                name: 'editing',
+                items: ['Format', 'Font', 'FontSize', 'TextColor', 'BGColor', 'Bold', 'Italic', 'NumberedList', 'BulletedList']
+            }]
+        });
+        CKEDITOR.replace('project_description[]', {
+            toolbar: [{
+                name: 'editing',
+                items: ['Format', 'Font', 'FontSize', 'TextColor', 'BGColor', 'Bold', 'Italic', 'NumberedList', 'BulletedList']
+            }]
+        });
         CKEDITOR.instances['about_employee'].updateElement();
 
 
