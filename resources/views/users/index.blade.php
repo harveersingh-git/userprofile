@@ -28,7 +28,7 @@ Toast::message('message', 'level', 'title');
                         <span>Users</span>
                         <div class="col-sm-3 pull-right my_usearch">
                             <form action="{{url('users')}}" method="GET" role="search">
-                             
+
                                 <div class="input-group">
                                     <input type="text" value="{{ Request::get('search') }}" class="form-control" name="search" placeholder="Search users"> <span class="input-group-btn">
                                         <button type="submit" class="btn btn-default">
@@ -48,7 +48,7 @@ Toast::message('message', 'level', 'title');
                             <tr>
                                 <th class="text-center">Emp Id</th>
                                 <th class="text-center"> Name</th>
-                                
+
                                 <th class="text-center">Email</th>
                                 <th class="text-center">Mobile</th>
                                 <th class="text-center">Resume Title</th>
@@ -66,7 +66,7 @@ Toast::message('message', 'level', 'title');
                             <tr class="text-center">
                                 <td>{{ $value->employee_id }}</td>
                                 <td>{{ $value->name }} {{ $value->last_name }}</td>
-                                
+
                                 <td>{{ $value->email  }}</td>
                                 <td>{{ $value->mobile  }}</td>
                                 <td>{{ $value->resume_title }}</td>
@@ -74,7 +74,15 @@ Toast::message('message', 'level', 'title');
                                 <td>
                                     @if($value->skills->count()>0)
                                     @foreach($value->skills as $key=>$res)
-                                    {{$res->skills_details['value']}}
+                                    @if($res->type=='1')
+                                    <a class="btn btn-danger"> {{$res->skills_details['value']}}</a>
+                                    @elseif($res->type=='2')
+                                    <a class="btn btn-success"> {{$res->skills_details['value']}}</a>
+
+                                    @elseif ($res->type=='3')
+                                    <a class="btn btn-info"> {{$res->skills_details['value']}}</a>
+
+                                    @endif
                                     @endforeach
 
                                     @endif
@@ -83,11 +91,11 @@ Toast::message('message', 'level', 'title');
                                 </td>
 
                                 <td>
-                                    <a class="btn btn-warning myac_btn" href="{{url('/information')}}/{{$value->id}}"><i class="fa fa-edit"></i> Edit</button>
+                                    <a class="btn btn-warning myac_btn" href="{{url('/information')}}/{{$value->id}}"><i class="fa fa-edit"></i> Edit</a>
 
-                                        <a class="delete btn btn-danger myac_btn" id="{{$value->id}}"> <i class="fa fa-trash"></i> Delete</button>
-                                            <a class=" btn btn-info myac_btn" href="{{url('/resume')}}/{{$value->id}}"><i class="fa fa-cloud-download" aria-hidden="true"></i> Download</button>
-                                            <a class="btn btn-info myac_btn" href="{{url('/view-resume')}}/{{$value->id}}"><i class="fa fa-cloud-download" aria-hidden="true"></i> View</button>
+                                    <a class="delete btn btn-danger myac_btn" id="{{$value->id}}"> <i class="fa fa-trash"></i> Delete</a>
+                                    <a class=" btn btn-info myac_btn" href="{{url('/resume')}}/{{$value->id}}"><i class="fa fa-cloud-download" aria-hidden="true"></i> Download</a>
+                                    <a class="btn btn-info myac_btn" href="{{url('/view-resume')}}/{{$value->id}}"><i class="fa fa-cloud-download" aria-hidden="true"></i> View</a>
 
                                 </td>
                             </tr>

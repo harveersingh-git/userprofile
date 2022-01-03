@@ -297,9 +297,9 @@ $(document).ready(function() {
             var expFieldHTML = '<div><div class="row"><div class="col-lg-3"><label><i class="fa fa-arrows" aria-hidden="true"></i>Companay Name<span style="color: red;">*</span></label>';
             expFieldHTML += '<input type="text" class="form-control" placeholder="XYZ" name="company_name[]" value="" required="" autocomplete="on|off">';
             expFieldHTML += '</div><div class="col-lg-3"><label>Designation<span style="color: red;">*</span></label><input type="text" class="form-control" placeholder="Team leader" name="designation[]" value="" required="" autocomplete="on|off">';
-            expFieldHTML += '</div><div class="col-lg-3 datepicker-wrap"><label>From<span style="color: red;">*</span></label><input type="text" class="form-control exp_from" placeholder="2021-01" name="exp_from[]" value="" required="" autocomplete="on|off" id="dp1639739620183">';
-            expFieldHTML += '</div><div class="col-lg-3 datepicker-wrap"><label>To<span style="color: red;">*</span></label><input type="text" class="form-control exp_to" placeholder="2021-01" name="exp_to[]" value="" required="" autocomplete="on|off" id="dp1639739620184">';
-            expFieldHTML += '</div></div>';
+            expFieldHTML += '</div><div class="col-lg-2 datepicker-wrap"><label>From<span style="color: red;">*</span></label><input type="text" class="form-control exp_from" placeholder="2021-01" name="exp_from[]" value="" required="" autocomplete="on|off" id="dp1639739620183">';
+            expFieldHTML += '</div><div class="col-lg-2 datepicker-wrap"><label>To<span style="color: red;">*</span></label><input type="text" class="form-control exp_to" placeholder="2021-01" name="exp_to[]" value=""  autocomplete="on|off" id="dp1639739620184">';
+            expFieldHTML += '</div><div class="col-lg-2"><label>Present</label><input type="checkbox"  name="present" class="present " id="present"></div></div>';
             expFieldHTML += '<div class="row">';
             expFieldHTML += '<div class="col-lg-12">';
             expFieldHTML += '<div class="form-group">';
@@ -413,11 +413,20 @@ $(document).ready(function() {
     });
 
 
-    
+    $(document).ready(function() {
+        $('.present').click(function() {
+            var current = $(this);
+            var checkboxes = $('input:checkbox:checked').length;
+            if(checkboxes>1){
+                toastr.error("This check box check only once.");
+                $(current).prop('checked', false);
+            }
+        })
+    });
     
 
-
-    $('.present').on('click', function() {
+    $(document).on("click",".present",function() {
+    // $('.present').on('click', function() {
         var current = $(this);
      
 	    var token = $('input[name="_token"]').attr('value');

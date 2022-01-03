@@ -81,7 +81,7 @@ class UserController extends Controller
     {
         if ($request->isMethod('post')) {
             $input = $request->all();
-
+            // dd($input );
             // UserSkills::where(['user_id' => $input['user_id']])->delete();
             // for ($i = 0; $i < count($input['skill_value_id']); $i++) {
 
@@ -107,6 +107,7 @@ class UserController extends Controller
                     $inp['education_title_id'] =  $input['edu_title'][$i];
                     $inp['from'] =  $input['edu_from'][$i];
                     $inp['to'] =  $input['edu_to'][$i];
+                    
                     $skills = UserEducation::create($inp);
                 }
             }
@@ -219,7 +220,7 @@ class UserController extends Controller
         if ($request->isMethod('post')) {
 
             $input = $request->all();
-            // dd($input);
+         
 
             // userAchievement::where(['user_id' => $input['user_id']])->delete();
             // for ($i = 0; $i < count($input['title']); $i++) {
@@ -240,6 +241,7 @@ class UserController extends Controller
                     $inp['project_skills'] =  $input['project_skills'][$i];
                     $inp['team_size'] =  $input['team_size'][$i];
                     $inp['url'] =  $input['url'][$i];
+                    $inp['user_id'] =  $input['user_id'];
                     $inp['project_description'] =  $input['project_description'][$i];
                     $userProject = UserProject::create($inp);
                 }
@@ -388,10 +390,11 @@ class UserController extends Controller
             })->where('category', '=', 'skill')->get();
             // dd($allskills->toArray());
             $data = User::with(['education', 'exprince', 'certification', 'learning_skills', 'achievement', 'project', 'myTeam'])->with('skills', function ($q) {
+              
                 $q->orderBy('order', 'asc');
             })->where('id', '=', $id)->first();
             // dd($data->myTeam['id']);
-            // dd($data);
+            // dd($data->toArray());
             $selectedPrimarySkills = UserSkills::with('skills_details')->where(['user_id' => $id, 'type' => 1])->get();
             $selectedSecondrySkills = UserSkills::with('skills_details')->where(['user_id' => $id, 'type' => 2])->get();
 

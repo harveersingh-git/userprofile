@@ -803,7 +803,7 @@
             @forelse ($data['education'] as $education)
             <P class="p23 ft9">{{$education['education_details']['value']}}</P>
 
-            <P class="p24 ft11">{{$education['course']['value']}} | {{ \Carbon\Carbon::parse($education['from'])->format('Y')}} - {{ \Carbon\Carbon::parse($education['to'])->format('Y')}}</P>
+            <P class="p24 ft11">{{$education['course']['value']}} | {{ $education['from']}} - {{ $education['to']}}</P>
             @empty
             <p>No EDUCATION Found</p>
             @endforelse
