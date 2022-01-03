@@ -148,7 +148,7 @@ $(document).ready(function() {
         if (x < maxField) {
             x++; //Increment field counter
 
-            var achFieldHTML = '<div class=""><div class="col-lg-12"><label><i class="fa fa-arrows" aria-hidden="true"></i>Title <span style="color: red;">*</span></label>';
+            var achFieldHTML = '<div class="row"><div class="col-lg-12"><label><i class="fa fa-arrows" aria-hidden="true"></i>Title <span style="color: red;">*</span></label>';
             achFieldHTML +='<input type="text" class="form-control" placeholder="EX:abc" name="title[]" value="" required="" autocomplete="on|off">';
             achFieldHTML +='</div><div class="col-lg-12"><label>Achievement Description<span style="color: red;">*</span> </label>';
             achFieldHTML +='<textarea class="form-control ckeditor" rows="3" name="description[]" id="description'+x+'"></textarea></div>';
@@ -299,7 +299,7 @@ $(document).ready(function() {
             expFieldHTML += '</div><div class="col-lg-3"><label>Designation<span style="color: red;">*</span></label><input type="text" class="form-control" placeholder="Team leader" name="designation[]" value="" required="" autocomplete="on|off">';
             expFieldHTML += '</div><div class="col-lg-2 datepicker-wrap"><label>From<span style="color: red;">*</span></label><input type="text" class="form-control exp_from" placeholder="2021-01" name="exp_from[]" value="" required="" autocomplete="on|off" id="dp1639739620183">';
             expFieldHTML += '</div><div class="col-lg-2 datepicker-wrap"><label>To<span style="color: red;">*</span></label><input type="text" class="form-control exp_to" placeholder="2021-01" name="exp_to[]" value=""  autocomplete="on|off" id="dp1639739620184">';
-            expFieldHTML += '</div><div class="col-lg-2"><label>Present</label><input type="checkbox"  name="present" class="present " id="present"></div></div>';
+            expFieldHTML += '</div><div class="col-lg-2"><label>Present</label><input type="hidden" name="present_checked[]" value="" class="present_checked">            <input type="checkbox"  name="present[]" class="present " id="present"></div></div>';
             expFieldHTML += '<div class="row">';
             expFieldHTML += '<div class="col-lg-12">';
             expFieldHTML += '<div class="form-group">';
@@ -416,16 +416,25 @@ $(document).ready(function() {
     $(document).ready(function() {
         $('.present').click(function() {
             var current = $(this);
+            if ($(this).is(
+                ":checked")) {
+                    $(this).siblings('.present_checked').val('1');
+              } else {
+                $(this).siblings('.present_checked').val('');
+              }
             var checkboxes = $('input:checkbox:checked').length;
             if(checkboxes>1){
+                $(this).siblings('.present_checked').val('');
                 toastr.error("This check box check only once.");
                 $(current).prop('checked', false);
+            }else{
+                
             }
         })
     });
     
 
-    $(document).on("click",".present",function() {
+    $(document).on("click",".presentt",function() {
     // $('.present').on('click', function() {
         var current = $(this);
      

@@ -440,7 +440,8 @@ Toast::message('message', 'level', 'title');
                                                             </div>
                                                             <div class="col-lg-2">
                                                             <label>Present</label>
-                                                            <input type="checkbox"  name="present" class="present " id="present">
+                                                            <input type="hidden" name="present_checked[]" value="" class="present_checked">
+                                                            <input type="checkbox"  name="present" class="present " id="present" value="">
                                                             </div>
 
 
@@ -465,6 +466,7 @@ Toast::message('message', 'level', 'title');
                                                     @if(isset($data->exprince) && count($data->exprince)>0)
 
                                                     @foreach($data->exprince as $key=>$value)
+                                                    <div>
                                                     <div class="row">
                                                         <div class="col-lg-3">
                                                             <label><i class="fa fa-arrows" aria-hidden="true"></i>Companay Name<span style="color: red;">*</span> </label>
@@ -486,6 +488,11 @@ Toast::message('message', 'level', 'title');
                                                             <input type="text" class="form-control exp_to" placeholder="2021-12" name="exp_to[]" value="{{ isset($value['to'])?$value['to']:''}}" required="" autocomplete="on|off" />
 
                                                         </div>
+                                                        <div class="col-lg-2">
+                                                        <label>Present</label>
+                                                        <input type="hidden" name="present_checked[]" value="" class="present_checked">
+                                                        <input type="checkbox" name="present" class="present " id="present" value="" {{isset($value['present'])=='1'?'checked':''}}>
+                                                        </div>
 
                                                     </div>
                                                         <div class="row">
@@ -496,7 +503,7 @@ Toast::message('message', 'level', 'title');
                                                                 </div>
                                                             </div>
                                                         </div>
-
+                                                        </div>
 
                                                     
 
@@ -555,7 +562,7 @@ Toast::message('message', 'level', 'title');
                                                         <div class="row">
                                                             <div class="col-lg-12">
                                                                 <div class="form-group">
-                                                                    <label><i class="fa fa-arrows" aria-hidden="true"></i>
+                                                                    <label>
                                                                         Certification @if(isset($data->id))
 
                                                                         @else
@@ -591,7 +598,7 @@ Toast::message('message', 'level', 'title');
                                                         <div class="row">
                                                             <div class="col-lg-12">
                                                                 <div class="form-group">
-                                                                    <label><i class="fa fa-arrows" aria-hidden="true"></i>
+                                                                    <label>
                                                                         Certification <span style="color: red;">*</span> </label>
                                                                     <textarea class="form-control ckeditor" rows="3" name="certification[]">{{ isset($value['certification'])?$value['certification']:''}} </textarea>
                                                                 </div>
@@ -629,10 +636,9 @@ Toast::message('message', 'level', 'title');
                                     <div class="form-card">
                                             <h2 class="fs-title">Achievement</h2>
                                                 <input type="hidden" value="" name="user_id" class="user_id">
-                                                <div class="row ach_more form-group">
-                                                    <div class="col-lg-12">
-
-                                                        <div class="row">
+                                                
+                                                    <div class="ach_more">
+                                                        <div class="row ">
                                                             <div class="col-lg-12">
                                                                 <label><i class="fa fa-arrows" aria-hidden="true"></i>Title @if(isset($data->id))
 
@@ -674,11 +680,10 @@ Toast::message('message', 'level', 'title');
 
                                                         @endif
                                                         <a href="javascript:void(0);" class="ach_add_button btn btn-info" title="Add field"><i class="fa fa-plus" aria-hidden="true"></i> Add more</a>
-
                                                     </div>
-                                                </div>
+                                                   
 
-                                        </div>
+                                    </div>
                                         <input type="submit" name="achivment_submit" class="action-button pull-right btn-primary" value="Next Step" id="achivment_submit" />
 
                                         </form>

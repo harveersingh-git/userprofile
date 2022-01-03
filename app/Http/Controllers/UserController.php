@@ -127,7 +127,8 @@ class UserController extends Controller
         if ($request->isMethod('post')) {
 
             $input = $request->all();
-
+            // dd( $input );
+        //    dd( $input['present_checked'][1]);
             UserExperince::where(['user_id' => $input['user_id']])->delete();
             for ($i = 0; $i < count($input['company_name']); $i++) {
                 if (isset($input['company_name'][$i])) {
@@ -138,11 +139,13 @@ class UserController extends Controller
                     $value['designation'] =  $input['designation'][$i];
                     $value['role_responsibilitie'] =  $input['role_res'][$i];
                     $value['from'] =  $input['exp_from'][$i];
-                    if (isset($input['present'])) {
+                //   dd($input['present_checked'][$i]);
+                    if ($input['present_checked'][$i]=="1") {
                         $value['to'] =  date("Y");
                         $value['present'] =  1;
                     } else {
                         $value['to'] =  $input['exp_to'][$i];
+                        $value['present'] =  '';
                     }
 
                     UserExperince::create($value);
