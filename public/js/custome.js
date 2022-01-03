@@ -396,7 +396,7 @@ $(document).ready(function() {
        $('#skills_submit').show();
     });
 
-    $(document).on('click', '#project_previous', function(e) {
+    $(document).on('click', '#certificate_prev', function(e) {
         e.preventDefault();
        $('#exprince_button').hide();
        $('#exprince_submit').show();

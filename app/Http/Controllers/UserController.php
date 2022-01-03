@@ -147,16 +147,7 @@ class UserController extends Controller
                     UserExperince::create($value);
                 }
             }
-            Certification::where(['user_id' => $input['user_id']])->delete();
-            for ($i = 0; $i < count($input['certification']); $i++) {
-                if (isset($input['certification'][$i])) {
-                    $inpu['order'] = $i + 1;
-                    $inpu['certification'] =  $input['certification'][$i];
-                    $inpu['certifications_value_id'] =  $input['certification_type'][$i];
-                    $inpu['user_id'] =  $input['user_id'];
-                    $skills = Certification::create($inpu);
-                }
-            }
+
 
 
 
@@ -168,9 +159,30 @@ class UserController extends Controller
             ]);
         }
     }
+    public function addCertificate(Request $request)
+    {
+        if ($request->isMethod('post')) {
 
+            $input = $request->all();
 
-    public function addProject(Request $request)
+            Certification::where(['user_id' => $input['user_id']])->delete();
+            for ($i = 0; $i < count($input['certification']); $i++) {
+                if (isset($input['certification'][$i])) {
+                    $inpu['order'] = $i + 1;
+                    $inpu['certification'] =  $input['certification'][$i];
+                    $inpu['certifications_value_id'] =  $input['certification_type'][$i];
+                    $inpu['user_id'] =  $input['user_id'];
+                    $skills = Certification::create($inpu);
+                }
+            }
+      
+            return response()->json([
+                'status' => 'success',
+
+            ]);
+        }
+    }
+    public function addAchievement(Request $request)
     {
 
 
@@ -189,6 +201,36 @@ class UserController extends Controller
                     userAchievement::create($inp);
                 }
             }
+           
+
+
+
+            return response()->json([
+                'status' => 'success',
+
+            ]);
+        }
+    }
+
+    public function addProject(Request $request)
+    {
+
+
+        if ($request->isMethod('post')) {
+
+            $input = $request->all();
+            // dd($input);
+
+            // userAchievement::where(['user_id' => $input['user_id']])->delete();
+            // for ($i = 0; $i < count($input['title']); $i++) {
+            //     if (isset($input['title'][$i])) {
+            //         $inp['order'] = $i + 1;
+            //         $inp['user_id'] =  $input['user_id'];
+            //         $inp['title'] =  $input['title'][$i];
+            //         $inp['description'] =  $input['description'][$i];
+            //         userAchievement::create($inp);
+            //     }
+            // }
             UserProject::where(['user_id' => $input['user_id']])->delete();
             for ($i = 0; $i < count($input['project_name']); $i++) {
                 if (isset($input['project_name'][$i])) {
@@ -573,8 +615,8 @@ class UserController extends Controller
     public function checkPresent(Request $request)
     {
 
-        $data =   UserExperince::where(['present' =>1, 'user_id' => $request['user_id']])->first();
-  
+        $data =   UserExperince::where(['present' => 1, 'user_id' => $request['user_id']])->first();
+
         if ($data) {
 
             return response()->json([
