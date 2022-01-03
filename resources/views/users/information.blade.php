@@ -29,8 +29,9 @@ Toast::message('message', 'level', 'title');
                                         <li class="active" id="account"><strong>Personal Infromation</strong></li>
                                         <li id="skills"><strong>Skills</strong></li>
                                         <li id="personal"><strong>Education</strong></li>
-
                                         <li id="payment"><strong>Experience</strong></li>
+                                        <li id="certificate"><strong>Certificate</strong></li>
+                                        <li id="achievement"><strong>Achievement</strong></li>
                                         <li id="confirm"><strong>Projects</strong></li>
                                     </ul> <!-- fieldsets -->
                                     <fieldset>
@@ -128,7 +129,7 @@ Toast::message('message', 'level', 'title');
                                                 </div>
 
                                             </div>
-                                            <input type="submit" value="Next Step" class=" action-button btn btn-primary  col-md-3 " id="genral_info_submit" />
+                                            <input type="submit" value="Next Step" class=" action-button btn btn-primary  col-md-3 pull-right" id="genral_info_submit" />
 
                                         </form>
                                         <input type="button" name="next" style="display: none;" class="next btn btn-info  action-button col-md-3" value="Next Step" id="genral_info_button" />
@@ -212,10 +213,10 @@ Toast::message('message', 'level', 'title');
                                             </div>
 
                                         </div>
-                                        <input type="button" id="new_skills_prev" name="previous" class="previous action-button-previous  pull-right btn btn-warning" value="Previous" />
+                                        <input type="button" id="new_skills_prev" name="previous" class="previous action-button-previous  pull-left btn btn-warning" value="Previous" />
 
 
-                                        <input type="button" name="next" class="next action-button btn btn-primary  col-md-3" value="Next Step" />
+                                        <input type="button" name="next" class="next action-button btn btn-primary  col-md-3 pull-right" value="Next Step" />
 
                                     </fieldset>
 
@@ -370,12 +371,12 @@ Toast::message('message', 'level', 'title');
                                                 </div>
                                             </div>
 
-                                            <input type="submit" value="Next Step" class=" action-button btn btn-primary  col-md-3" id="skills_submit" />
+                                            <input type="submit" value="Next Step" class=" action-button btn btn-primary  col-md-3 pull-right" id="skills_submit" />
 
                                         </form>
-                                        <input type="button" id="skills_prev" name="previous" class="previous action-button-previous  pull-right btn btn-warning" value="Previous" />
+                                        <input type="button" id="skills_prev" name="previous" class="previous action-button-previous  pull-left btn btn-warning" value="Previous" />
 
-                                        <input type="button" style="display:none" name="next" class="next action-button btn btn-primary  col-md-3" value="Next Stepp" id="skills_button" />
+                                        <input type="button" style="display:none" name="next" class="next action-button btn btn-primary  col-md-3 pull-right" value="Next Stepp" id="skills_button" />
 
                                     </fieldset>
                                     <fieldset>
@@ -579,13 +580,30 @@ Toast::message('message', 'level', 'title');
 
 
                                             </div>
-                                            <input type="submit" value="Next Step" class="  action-button btn btn-primary  col-md-3" id="exprince_submit" />
+                                            <input type="submit" value="Next Step" class="  action-button btn btn-primary  col-md-3 pull-right" id="exprince_submit" />
 
                                         </form>
-                                        <input type="button" name="previous" id="exprince_prev" class="previous action-button-previous  pull-right btn btn-warning" value="Previous" />
+                                        <input type="button" name="previous" id="exprince_prev" class="previous action-button-previous  pull-left btn btn-warning" value="Previous" />
 
-                                        <input type="button" name="make_payment" style="display:none" class="next action-button" value="Next Step" id="exprince_button" />
+                                        <input type="button" name="make_payment" style="display:none" class="next action-button pull-right" value="Next Step" id="exprince_button" />
                                     </fieldset>
+                                    
+
+
+                            <fieldset>
+                                <div class="form-card">
+                                    <h2 class="fs-title">nitin1</h2> <input type="email" name="email" placeholder="Email Id" /> <input type="text" name="uname" placeholder="UserName" /> <input type="password" name="pwd" placeholder="Password" /> <input type="password" name="cpwd" placeholder="Confirm Password" />
+                                </div> <input type="button" name="next" class="next action-button" value="Next Step" />
+                            </fieldset>
+                            
+                            <fieldset>
+                                <div class="form-card">
+                                    <h2 class="fs-title">nitin2</h2> <input type="text" name="fname" placeholder="First Name" /> <input type="text" name="lname" placeholder="Last Name" /> <input type="text" name="phno" placeholder="Contact No." /> <input type="text" name="phno_2" placeholder="Alternate Contact No." />
+                                </div> <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> <input type="button" name="next" class="next action-button" value="Next Step" />
+                            </fieldset>
+
+
+                                    
                                     <fieldset>
                                         <form action="{{url('add-user-project')}}" id="projectForm">
 
@@ -772,7 +790,7 @@ Toast::message('message', 'level', 'title');
                                             </div>
                                             <input type="submit" value="Confirm" class="action-button btn btn-success col-md-3" id="project_submit" />
                                         </form>
-                                        <input type="button" id="project_previous" name="previous" class="previous action-button-previous  pull-right btn btn-warning" value="Previous" />
+                                        <input type="button" id="project_previous" name="previous" class="previous action-button-previous  pull-left btn btn-warning" value="Previous" />
                                     </fieldset>
                                     </fieldset>
                                 </div>
