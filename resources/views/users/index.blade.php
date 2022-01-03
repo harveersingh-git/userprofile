@@ -57,7 +57,7 @@ Toast::message('message', 'level', 'title');
 
 
 
-                                <th class="text-center" style="width: 30%;">Action</th>
+                                <th class="text-center" style="width: 25%;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -83,11 +83,11 @@ Toast::message('message', 'level', 'title');
                                 </td>
 
                                 <td>
-                                    <a class="btn btn-warning myac_btn" href="{{url('/information')}}/{{$value->id}}"><i class="fa fa-edit"></i> Edit</button>
+                                    <a class="btn btn-warning myac_btn" href="{{url('/information')}}/{{$value->id}}"><i class="fa fa-edit"></i></button>
 
-                                        <a class="delete btn btn-danger myac_btn" id="{{$value->id}}"> <i class="fa fa-trash"></i> Delete</button>
-                                            <a class=" btn btn-info myac_btn" href="{{url('/resume')}}/{{$value->id}}"><i class="fa fa-cloud-download" aria-hidden="true"></i> Download</button>
-                                            <a class="btn btn-info myac_btn" href="{{url('/view-resume')}}/{{$value->id}}"><i class="fa fa-cloud-download" aria-hidden="true"></i> View</button>
+                                        <a class="delete btn btn-danger myac_btn" id="{{$value->id}}"> <i class="fa fa-trash"></i></button>
+                                            <a class=" btn btn-info myac_btn" href="{{url('/resume')}}/{{$value->id}}"><i class="fa fa-cloud-download" aria-hidden="true"></i></button>
+                                            <a class="btn btn-info myac_btn" href="{{url('/view-resume')}}/{{$value->id}}"><i class="fa fa-info" aria-hidden="true"></i></button>
 
                                 </td>
                             </tr>

@@ -143,22 +143,22 @@ select.list-dt:focus {
 
 #progressbar #certificate:before {
     font-family: FontAwesome;
-    content: "\f007"
+    content: "\f0a3"
 }
 
 #progressbar #achievement:before {
     font-family: FontAwesome;
-    content: "\f007"
+    content: "\f091"
 }
 
 #progressbar #skills:before {
     font-family: FontAwesome;
-    content: "\f007"
+    content: "\f044"
 }
 
 #progressbar #personal:before {
     font-family: FontAwesome;
-    content: "\f007"
+    content: "\f19d"
 }
 
 #progressbar #payment:before {
