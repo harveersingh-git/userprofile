@@ -468,6 +468,180 @@ $(document).ready(function() {
 
     });
 
+
+    $('.exp_delete').on('click', function() {
+        var current = $(this);
+        var token = $('input[name="_token"]').attr('value');
+       
+        var id = $(this).attr('id');
+   
+      
+        var data = {
+            user_id: $('.user_id').val(),
+            id: id
+            // _token: token
+        };
+
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover !",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+               $.ajax({
+                        type: 'POST',
+                        url: base_url + '/remove_exp',
+                        contentType: 'application/json',
+                        dataType: 'json',
+                        data: JSON.stringify(data),
+                        headers: {
+                            'X-CSRF-Token': token
+                        },
+
+                        success: function(data) {
+
+                       
+                            if (data.status = "true") {
+                                $(current).closest(".row").parent().remove();
+      
+                             toastr.success("Experience Update successfully");
+
+                            
+                            } else {
+                                toastr.error(data.message);
+                            }
+
+                        }
+        })
+            } else {
+                swal("Your Record safe now!");
+            }
+        });
+
+        
+
+
+    })
+
+    
+    $('.skill_delete').on('click', function() {
+        var current = $(this);
+        var token = $('input[name="_token"]').attr('value');
+     
+        var id = $(this).closest("li").attr('id');
+        var option = "";
+        var data = {
+            user_id: $('.user_id').val(),
+            id: id
+            // _token: token
+        };
+
+        
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover !",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+              $.ajax({
+            type: 'POST',
+            url: base_url + '/remove_skills',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify(data),
+            headers: {
+                'X-CSRF-Token': token
+            },
+
+            success: function(data) {
+
+         
+                if (data.status = "true") {
+                    $(current).closest("li").remove();
+                    $('#in_available_fields > li').remove();
+                    data.data.forEach(element => {
+
+                        option += '<li class="sortable-item  allowSecondary allowExport" id=' + element.id + '>' + element.value + '</li>';
+                    });
+                    $('#in_available_fields').append(option);
+
+                    toastr.success("Skill Update successfully");
+
+                    // $('#exprince_button').trigger('click');
+                } else {
+                    toastr.error(data.message);
+                }
+
+            }
+        })
+            } else {
+                swal("Your Record safe now!");
+            }
+        });
+
+    });
+
+
+    $('.education_delete').on('click', function() {
+        var id = $(this).closest('.row').attr('id');
+
+
+        var token = $('input[name="_token"]').attr('value');
+
+        var current =   $(this);
+        var option = "";
+        var data = {
+            user_id: $('.user_id').val(),
+            id: id
+            // _token: token
+        };
+      
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover !",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+           $.ajax({
+            type: 'POST',
+            url: base_url + '/remove_education',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify(data),
+            headers: {
+                'X-CSRF-Token': token
+            },
+
+            success: function(data) {
+
+               
+                if (data.status = "true") {
+                    toastr.success("Education remove successfully");
+                    $(current).closest('.row').remove();
+
+
+                } else {
+                    toastr.error(data.message);
+                }
+
+            }
+        })
+            } else {
+                swal("Your Record safe now!");
+            }
+        });
+        
+
+
+    });
+
+
 });
 
  

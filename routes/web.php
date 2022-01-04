@@ -63,6 +63,7 @@ Route::post('/delete_team', [App\Http\Controllers\TeamController::class, 'destro
 Route::post('/remove_skills', [App\Http\Controllers\UserController::class, 'removeSkill']);
 Route::post('/remove_education', [App\Http\Controllers\UserController::class, 'removeEducation']);
 Route::post('/check_present', [App\Http\Controllers\UserController::class, 'checkPresent']);
+Route::post('/remove_exp', [App\Http\Controllers\UserController::class, 'removeExp']);
 
 
 

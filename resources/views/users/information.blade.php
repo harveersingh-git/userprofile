@@ -461,6 +461,7 @@ Toast::message('message', 'level', 'title');
                                                                 </div>
                                                             </div>
                                                         </div>
+                       
                                                     </div>
 
                                                     @if(isset($data->exprince) && count($data->exprince)>0)
@@ -469,7 +470,8 @@ Toast::message('message', 'level', 'title');
                                                     <div>
                                                     <div class="row">
                                                         <div class="col-lg-3">
-                                                            <label><i class="fa fa-arrows" aria-hidden="true"></i>Companay Name<span style="color: red;">*</span> </label>
+                                                            
+                                                            <label><i class="fa fa-arrows" aria-hidden="true"></i>Companay Name <span style="color: red;">*</span> </label>
                                                             <input type="text" class="form-control" placeholder="XYZ" name="company_name[]" value="{{ isset($value['company_name'])?$value['company_name']:''}}" required="" autocomplete="off" />
 
                                                         </div>
@@ -492,7 +494,8 @@ Toast::message('message', 'level', 'title');
                                                         <label>Present</label>
                                                         <input type="hidden" name="present_checked[]" value="" class="present_checked">
                                                         <input type="checkbox" name="present" class="present " id="present" value="" {{$value['present']=='1'?'checked':''}}>
-                                                        </div>
+                                                        <i class="fa fa-close exp_delete" style="color:red;float: right; cursor: pointer;" id="{{ isset($value['id'])?$value['id']:''}}"></i>    
+                                                    </div>
 
                                                     </div>
                                                         <div class="row">
@@ -503,6 +506,7 @@ Toast::message('message', 'level', 'title');
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        
                                                         </div>
 
                                                     
@@ -847,93 +851,9 @@ Toast::message('message', 'level', 'title');
 </div>
 
 <script>
-    $('.education_delete').on('click', function() {
-        var id = $(this).closest('.row').attr('id');
-
-
-        var token = $('input[name="_token"]').attr('value');
-
-
-        var option = "";
-        var data = {
-            user_id: $('.user_id').val(),
-            id: id
-            // _token: token
-        };
-        $(this).closest('.row').remove();
-        $.ajax({
-            type: 'POST',
-            url: base_url + '/remove_education',
-            contentType: 'application/json',
-            dataType: 'json',
-            data: JSON.stringify(data),
-            headers: {
-                'X-CSRF-Token': token
-            },
-
-            success: function(data) {
-
-                console.log('test', data);
-                if (data.status = "true") {
-
-
-                } else {
-                    toastr.error(data.message);
-                }
-
-            }
-        })
-
-
-    });
-
+  
     //////////////////
-    $('.skill_delete').on('click', function() {
 
-        var token = $('input[name="_token"]').attr('value');
-        $(this).closest("li").remove();
-        var id = $(this).closest("li").attr('id');
-        var option = "";
-        var data = {
-            user_id: $('.user_id').val(),
-            id: id
-            // _token: token
-        };
-
-        $.ajax({
-            type: 'POST',
-            url: base_url + '/remove_skills',
-            contentType: 'application/json',
-            dataType: 'json',
-            data: JSON.stringify(data),
-            headers: {
-                'X-CSRF-Token': token
-            },
-
-            success: function(data) {
-
-                console.log('test', data);
-                if (data.status = "true") {
-
-                    $('#in_available_fields > li').remove();
-                    data.data.forEach(element => {
-
-                        option += '<li class="sortable-item  allowSecondary allowExport" id=' + element.id + '>' + element.value + '</li>';
-                    });
-                    $('#in_available_fields').append(option);
-
-                    toastr.success("Skill Update successfully");
-
-                    // $('#exprince_button').trigger('click');
-                } else {
-                    toastr.error(data.message);
-                }
-
-            }
-        })
-
-
-    })
 
     $("#genral_info_submit").click(function() {
         // $(document).on("click", "#genral_info_submit", function() {

@@ -107,7 +107,7 @@ class UserController extends Controller
                     $inp['education_title_id'] =  $input['edu_title'][$i];
                     $inp['from'] =  $input['edu_from'][$i];
                     $inp['to'] =  $input['edu_to'][$i];
-                    
+
                     $skills = UserEducation::create($inp);
                 }
             }
@@ -128,7 +128,7 @@ class UserController extends Controller
 
             $input = $request->all();
             // dd( $input );
-        //    dd( $input['present_checked'][1]);
+            //    dd( $input['present_checked'][1]);
             UserExperince::where(['user_id' => $input['user_id']])->delete();
             for ($i = 0; $i < count($input['company_name']); $i++) {
                 if (isset($input['company_name'][$i])) {
@@ -139,8 +139,8 @@ class UserController extends Controller
                     $value['designation'] =  $input['designation'][$i];
                     $value['role_responsibilitie'] =  $input['role_res'][$i];
                     $value['from'] =  $input['exp_from'][$i];
-                //   dd($input['present_checked'][$i]);
-                    if ($input['present_checked'][$i]=="1") {
+                    //   dd($input['present_checked'][$i]);
+                    if ($input['present_checked'][$i] == "1") {
                         $value['to'] =  date("Y");
                         $value['present'] =  1;
                     } else {
@@ -179,7 +179,7 @@ class UserController extends Controller
                     $skills = Certification::create($inpu);
                 }
             }
-      
+
             return response()->json([
                 'status' => 'success',
 
@@ -205,7 +205,7 @@ class UserController extends Controller
                     userAchievement::create($inp);
                 }
             }
-           
+
 
 
 
@@ -223,7 +223,7 @@ class UserController extends Controller
         if ($request->isMethod('post')) {
 
             $input = $request->all();
-         
+
 
             // userAchievement::where(['user_id' => $input['user_id']])->delete();
             // for ($i = 0; $i < count($input['title']); $i++) {
@@ -393,7 +393,7 @@ class UserController extends Controller
             })->where('category', '=', 'skill')->get();
             // dd($allskills->toArray());
             $data = User::with(['education', 'exprince', 'certification', 'learning_skills', 'achievement', 'project', 'myTeam'])->with('skills', function ($q) {
-              
+
                 $q->orderBy('order', 'asc');
             })->where('id', '=', $id)->first();
             // dd($data->myTeam['id']);
@@ -607,6 +607,26 @@ class UserController extends Controller
             ]);
         }
     }
+
+
+    public function removeExp(Request $request)
+    {
+
+     
+
+        $id = $request['id'];
+        $exp = UserExperince::find($id);
+     
+        if ($exp) {
+            $exp->delete();
+            return response()->json(['status' => 'success']);
+        }
+
+     
+    }
+
+
+
     public function removeEducation(Request $request)
     {
         $id = $request['user_id'];
