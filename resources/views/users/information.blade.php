@@ -308,10 +308,12 @@ Toast::message('message', 'level', 'title');
                                                         </div>
                                                         @if(isset($data->education) && (count($data->education)>0))
                                                         @foreach($data->education as $key=>$value)
-                                                        <div class="row" order="{{$value['order']}}" id="{{$value['id']}}">
+                                                        <div class="row for_position" order="{{$value['order']}}" id="{{$value['id']}}">
+
+                                                           <span class="educt_close"><i class="fa fa-close education_delete" style="color:red;  cursor: pointer;"></i></span>
 
                                                             <div class="col-lg-3">
-                                                                <label> <i class="fa fa-close education_delete" style="color:red;  cursor: pointer;"></i><i class="fa fa-arrows" aria-hidden="true"></i>Type<span style="color: red;">*</span> </label>
+                                                                <label> <i class="fa fa-arrows" aria-hidden="true"></i>Type<span style="color: red;">*</span> </label>
                                                                 <select class="form-control" aria-label="Default select example" name="edu_type[]" required="">
 
                                                                     @forelse($education as $key=>$dat)
@@ -477,6 +479,7 @@ Toast::message('message', 'level', 'title');
 
 
                                                         </div>
+
                                                         <div class="row">
                                                             <div class="col-lg-12">
                                                                 <div class="form-group">
@@ -499,6 +502,9 @@ Toast::message('message', 'level', 'title');
 
                                                     @foreach($data->exprince as $key=>$value)
                                                     <div>
+                                                    <div class="my_separator"></div>
+
+
                                                     <div class="row">
                                                         <div class="col-lg-3">
                                                             
@@ -699,6 +705,9 @@ Toast::message('message', 'level', 'title');
 
                                                             </div>
                                                         </div>
+
+<div class="my_separator"></div>
+
                                                         @if(isset($data->achievement) && count($data->achievement)>0)
                                                         @foreach($data->achievement as $key=>$value)
                                                         <div class="row">
