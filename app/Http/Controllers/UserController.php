@@ -611,19 +611,39 @@ class UserController extends Controller
 
     public function removeExp(Request $request)
     {
-
-     
-
         $id = $request['id'];
         $exp = UserExperince::find($id);
-     
+
         if ($exp) {
             $exp->delete();
             return response()->json(['status' => 'success']);
         }
-
-     
     }
+
+    public function removeCertificate(Request $request)
+    {
+        $id = $request['id'];
+        $certificate = Certification::find($id);
+
+        if ($certificate) {
+            $certificate->delete();
+            return response()->json(['status' => 'success']);
+        }
+    }
+
+
+    
+    public function removeAchievement(Request $request)
+    {
+        $id = $request['id'];
+        $ach = userAchievement::find($id);
+
+        if ($ach) {
+            $ach->delete();
+            return response()->json(['status' => 'success']);
+        }
+    }
+
 
 
 

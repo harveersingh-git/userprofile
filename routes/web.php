@@ -64,6 +64,10 @@ Route::post('/remove_skills', [App\Http\Controllers\UserController::class, 'remo
 Route::post('/remove_education', [App\Http\Controllers\UserController::class, 'removeEducation']);
 Route::post('/check_present', [App\Http\Controllers\UserController::class, 'checkPresent']);
 Route::post('/remove_exp', [App\Http\Controllers\UserController::class, 'removeExp']);
+Route::post('/remove_certificate', [App\Http\Controllers\UserController::class, 'removeCertificate']);
+Route::post('/remove_achievement', [App\Http\Controllers\UserController::class, 'removeAchievement']);
+
+
 
 
 

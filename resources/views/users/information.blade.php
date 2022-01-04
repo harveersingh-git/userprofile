@@ -502,7 +502,7 @@ Toast::message('message', 'level', 'title');
                                                             <div class="col-lg-12">
                                                                 <div class="form-group">
                                                                     <label>Role and Responsibilities<span style="color: red;">*</span> </label>
-                                                                    <textarea class="form-control ckeditor" rows="3" name="role_res[]" required="">{{ isset($value['role_responsibilitie'])?$value['role_responsibilitie']:''}}</textarea>
+                                                                    <textarea class="form-control ckeditor" rows="3" name="role_res[]" required="" id="{{$value['id']}}">{{ isset($value['role_responsibilitie'])?$value['role_responsibilitie']:''}}</textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -598,6 +598,8 @@ Toast::message('message', 'level', 'title');
                                                                     @endforelse
                                                                 </select>
                                                             </div>
+                                                            <i class="fa fa-close exp_certificate" style="color:red;float: right; cursor: pointer;" id="{{$value['id']}}"></i>
+
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-lg-12">
@@ -672,13 +674,15 @@ Toast::message('message', 'level', 'title');
                                                             <div class="col-lg-12">
                                                                 <label>Title <span style="color: red;">*</span> </label>
                                                                 <input type="text" class="form-control" placeholder="EX:abc" name="title[]" value="{{ isset($value['title'])?$value['title']:''}}" required="" autocomplete="on" />
+                                                                <i class="fa fa-close remove_achievement" style="color:red;float: right; cursor: pointer;" id="{{$value['id']}}"></i>
 
                                                             </div>
                                                             <div class="col-lg-12">
                                                                 <label>Achievement Description<span style="color: red;">*</span> </label>
                                                                 <textarea class="form-control ckeditor" rows="3" name="description[]">{{ isset($value['description'])?$value['description']:''}}</textarea>
-
                                                             </div>
+                                                           
+
                                                         </div>
                                                         @endforeach
 
@@ -851,9 +855,7 @@ Toast::message('message', 'level', 'title');
 </div>
 
 <script>
-  
-    //////////////////
-
+ 
 
     $("#genral_info_submit").click(function() {
         // $(document).on("click", "#genral_info_submit", function() {
@@ -1281,7 +1283,13 @@ Toast::message('message', 'level', 'title');
                 }
             ]
         });
-
+    
+        // CKEDITOR.replace('.ckeditor', {
+        //     toolbar: [{
+        //         name: 'editing',
+        //         items: ['Format', 'Font', 'FontSize', 'TextColor', 'BGColor', 'Bold', 'Italic', 'NumberedList', 'BulletedList']
+        //     }]
+        // });
         CKEDITOR.replace('role_res[]', {
             toolbar: [{
                 name: 'editing',
