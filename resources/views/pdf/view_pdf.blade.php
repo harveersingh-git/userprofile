@@ -718,26 +718,22 @@
                    
                  <div class="skill_box">
                     <div class="skills_list">
-                        <ul>
-                            <li>Photoshop</li>
-                            <li>Photoshop</li>
-                            <li>Photoshop</li>
-                            <li>Photoshop</li>
-                            <li>Photoshop</li>
-                            <li>Photoshop</li>
-                            <li>Photoshop</li>
+                        <ul> 
+                             @forelse ($data['primary_skills'] as $primary)
+                            <li>{{$primary['skills_details']['value']}}</li>
+                            @empty
+                        
+                              @endforelse
                          </ul>
                     </div>
 
                     <div class="skills_list">
                         <ul>
-                            <li>Photoshop</li>
-                            <li>Photoshop</li>
-                            <li>Photoshop</li>
-                            <li>Photoshop</li>
-                            <li>Photoshop</li>
-                            <li>Photoshop</li>
-                            <li>Photoshop</li>
+                        @forelse($data['secondry_skills'] as $second)
+                            <li>{{$second['skills_details']['value']}}</li>
+                            @empty
+                         
+                              @endforelse
                          </ul>
                     </div>
                  </div>

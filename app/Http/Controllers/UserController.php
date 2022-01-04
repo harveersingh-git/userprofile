@@ -537,7 +537,9 @@ class UserController extends Controller
         $data = User::where('id', '=', $id)->first();
         $data['project'] =  UserProject::where('user_id', '=', $id)->get();
         $data['certificate'] =  Certification::where('user_id', '=', $id)->get();
-        $data['skills'] =  UserSkills::with('skills_details')->where('user_id', '=', $id)->orderBy('order', 'asc')->get();
+        $data['primary_skills'] =  UserSkills::with('skills_details')->where(['user_id'=>$id,'type'=>'1'])->orderBy('order', 'asc')->get();
+        $data['secondry_skills'] =  UserSkills::with('skills_details')->where(['user_id'=>$id,'type'=>'2'])->orderBy('order', 'asc')->get();
+     
         $data['education'] =  UserEducation::with('education_details', 'course')->where('user_id', '=', $id)->orderBy('order', 'asc')->get();
         $data['portfolio'] =  UserPortfolio::where('user_id', '=', $id)->get();
         // dd($data['education']->toArray());
@@ -555,11 +557,10 @@ class UserController extends Controller
         $data = User::where('id', '=', $id)->first();
         $data['project'] =  UserProject::where('user_id', '=', $id)->get();
         $data['certificate'] =  Certification::where('user_id', '=', $id)->get();
-        $data['skills'] =  UserSkills::with('skills_details')->where('user_id', '=', $id)->orderBy('order', 'asc')->get();
+        $data['primary_skills'] =  UserSkills::with('skills_details')->where(['user_id'=>$id,'type'=>'1'])->orderBy('order', 'asc')->get();
+        $data['secondry_skills'] =  UserSkills::with('skills_details')->where(['user_id'=>$id,'type'=>'2'])->orderBy('order', 'asc')->get();
+     
         $data['education'] =  UserEducation::with('education_details', 'course')->where('user_id', '=', $id)->orderBy('order', 'asc')->get();
-
-        // dd($data['education']->toArray());
-
 
         if ($data) {
 
