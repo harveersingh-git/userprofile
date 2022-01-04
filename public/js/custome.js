@@ -189,7 +189,7 @@ $(document).ready(function() {
                 result.course.forEach(element =>{
                   course += "<option value="+element.id+">"+element.value+"</option>"
                  } );
-             var fieldHTML ='<div class="row"><div class="col-lg-3"><label><i class="fa fa-arrows" aria-hidden="true"></i>Type<span style="color: red;">*</span></label>';
+             var fieldHTML ='<div class="row"><div class="my_separator"></div><div class="col-lg-3"><label><i class="fa fa-arrows" aria-hidden="true"></i>Type<span style="color: red;">*</span></label>';
                 fieldHTML += '<select class="form-control" aria-label="Default select example" name="edu_type[]"><option selected>--please select--</option>'+typee+'</select></div>';
                 fieldHTML += '<div class="col-lg-3"><label>Title<span style="color: red;">*</span></label> <select class="form-control" name="edu_title[]" aria-label="Default select example"><option selected>'+course+'</select>';
                 fieldHTML += '</div><div class="col-lg-3 datepicker-wrap"><label>From<span style="color: red;">*</span></label><input type="text" class="form-control edu_from" placeholder="YYYY" name="edu_to[]" value="" required="" autocomplete="on|off">';
@@ -294,7 +294,7 @@ $(document).ready(function() {
         if (x < maxField) {
            
             x++; //Increment field counter
-            var expFieldHTML = '<div><div class="row"><div class="col-lg-3"><label><i class="fa fa-arrows" aria-hidden="true"></i>Companay Name<span style="color: red;">*</span></label>';
+            var expFieldHTML = '<div><div class="my_separator"></div><div class="row"><div class="col-lg-3"><label><i class="fa fa-arrows" aria-hidden="true"></i>Companay Name<span style="color: red;">*</span></label>';
             expFieldHTML += '<input type="text" class="form-control" placeholder="XYZ" name="company_name[]" value="" required="" autocomplete="on|off">';
             expFieldHTML += '</div><div class="col-lg-3"><label>Designation<span style="color: red;">*</span></label><input type="text" class="form-control" placeholder="Team leader" name="designation[]" value="" required="" autocomplete="on|off">';
             expFieldHTML += '</div><div class="col-lg-2 datepicker-wrap"><label>From<span style="color: red;">*</span></label><input type="text" class="form-control exp_from" placeholder="2021-01" name="exp_from[]" value="" required="" autocomplete="on|off" id="dp1639739620183">';
