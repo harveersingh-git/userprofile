@@ -66,7 +66,7 @@ Route::post('/check_present', [App\Http\Controllers\UserController::class, 'chec
 Route::post('/remove_exp', [App\Http\Controllers\UserController::class, 'removeExp']);
 Route::post('/remove_certificate', [App\Http\Controllers\UserController::class, 'removeCertificate']);
 Route::post('/remove_achievement', [App\Http\Controllers\UserController::class, 'removeAchievement']);
-
+Route::post('/remove_project', [App\Http\Controllers\UserController::class, 'removeProject']);
 
 
 

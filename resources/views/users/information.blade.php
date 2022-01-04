@@ -709,14 +709,6 @@ Toast::message('message', 'level', 'title');
 
                                             <div class="form-card">
 
-
-
-
-
-
-
-
-
                                                 <div class="project_more">
                                                     <h2 class="fs-title">Project
                                                         @if(isset($data->id))
@@ -801,6 +793,8 @@ Toast::message('message', 'level', 'title');
                                                     <div class="row form-group">
                                                         <div class="col-lg-3">
                                                             <label>Project Name<span style="color: red;">*</span> </label>
+                                                            <i class="fa fa-close remove_project" style="color:red;float: right; cursor: pointer;" id="{{$value['id']}}"></i>
+
                                                             <input type="text" class="form-control" placeholder="XYZ" name="project_name[]" value="{{ isset($value['project_name'])?$value['project_name']:''}}" required="" autocomplete="on|off" />
 
                                                         </div>

@@ -643,8 +643,17 @@ class UserController extends Controller
             return response()->json(['status' => 'success']);
         }
     }
+    
+    public function removeProject(Request $request)
+    {
+        $id = $request['id'];
+        $ach = UserProject::find($id);
 
-
+        if ($ach) {
+            $ach->delete();
+            return response()->json(['status' => 'success']);
+        }
+    }
 
 
     public function removeEducation(Request $request)

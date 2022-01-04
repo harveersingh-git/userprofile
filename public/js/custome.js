@@ -751,6 +751,61 @@ $(document).ready(function() {
 
     });
 
+
+    
+    $('.remove_project').on('click', function() {
+ 
+        var id = $(this).attr('id');
+        var token = $('input[name="_token"]').attr('value');
+        var current =   $(this);
+       
+        var data = {
+            user_id: $('.user_id').val(),
+            id: id
+
+        };
+      
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover !",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+           $.ajax({
+            type: 'POST',
+            url: base_url + '/remove_project',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify(data),
+            headers: {
+                'X-CSRF-Token': token
+            },
+
+            success: function(data) {
+
+               
+                if (data.status = "true") {
+                    toastr.success("Project remove successfully");
+                    $(current).closest('.row').remove();
+
+
+                } else {
+                    toastr.error(data.message);
+                }
+
+            }
+        })
+            } else {
+                swal("Your Record safe now!");
+            }
+        });
+        
+
+
+    });
+
 });
 
  
