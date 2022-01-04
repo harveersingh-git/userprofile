@@ -442,8 +442,10 @@ Toast::message('message', 'level', 'title');
                                                             </div>
                                                             <div class="col-lg-2">
                                                             <label>Present</label>
+                                                            <span class="chec_box">
                                                             <input type="hidden" name="present_checked[]" value="" class="present_checked">
-                                                            <input type="checkbox"  name="present" class="present " id="present" value="">
+                                                              <input type="checkbox"  name="present" class="present " id="present" value="">
+                                                            </span>
                                                             </div>
 
 
@@ -499,8 +501,12 @@ Toast::message('message', 'level', 'title');
                                                         <div class="col-lg-2">
                                                         <label>Present</label>
                                                         <input type="hidden" name="present_checked[]" value="" class="present_checked">
-                                                        <input type="checkbox" name="present" class="present " id="present" value="" {{$value['present']=='1'?'checked':''}}>
-                                                        <i class="fa fa-close exp_delete" style="color:red;float: right; cursor: pointer;" id="{{ isset($value['id'])?$value['id']:''}}"></i>    
+                                                        <span class="chec_box">
+                                                        <input type="checkbox" name="present" class="present " id="present" value="" {{$value['present']=='1'?'checked':''}}> 
+                                                        </span>  
+                                                        <span class="educt_close"> 
+                                                        <i class="fa fa-close exp_delete" style="color:red;float: right; cursor: pointer;" id="{{ isset($value['id'])?$value['id']:''}}"></i>
+                                                        </span>
                                                     </div>
 
                                                     </div>
@@ -587,7 +593,7 @@ Toast::message('message', 'level', 'title');
 
                                                     @if(isset($data->certification) && count($data->certification)>0)
                                                     @foreach($data->certification as $key=>$value)
-                                                    <div>
+                                                    <div class="for_position">
                                                         <div class="row">
                                                             <div class="col-lg-4">
                                                                 <label><i class="fa fa-arrows" aria-hidden="true"></i>Type<span style="color: red;">*</span> </label>
@@ -604,7 +610,9 @@ Toast::message('message', 'level', 'title');
                                                                     @endforelse
                                                                 </select>
                                                             </div>
+                                                            <span class="certfi_close"> 
                                                             <i class="fa fa-close exp_certificate" style="color:red;float: right; cursor: pointer;" id="{{$value['id']}}"></i>
+                                                            </span>
 
                                                         </div>
                                                         <div class="row">
@@ -650,7 +658,7 @@ Toast::message('message', 'level', 'title');
                                                 <input type="hidden" value="" name="user_id" class="user_id">
                                                 
                                                     <div class="ach_more">
-                                                        <div class="row ">
+                                                        <div class="row">
                                                             <div class="col-lg-12">
                                                                 <label><i class="fa fa-arrows" aria-hidden="true"></i>Title @if(isset($data->id))
 
@@ -679,11 +687,13 @@ Toast::message('message', 'level', 'title');
 
                                                         @if(isset($data->achievement) && count($data->achievement)>0)
                                                         @foreach($data->achievement as $key=>$value)
-                                                        <div class="row">
+                                                        <div class="row for_position">
                                                             <div class="col-lg-12">
                                                                 <label>Title <span style="color: red;">*</span> </label>
                                                                 <input type="text" class="form-control" placeholder="EX:abc" name="title[]" value="{{ isset($value['title'])?$value['title']:''}}" required="" autocomplete="on" />
+                                                                <span class="educt_close"> 
                                                                 <i class="fa fa-close remove_achievement" style="color:red;float: right; cursor: pointer;" id="{{$value['id']}}"></i>
+                                                                </span>
 
                                                             </div>
                                                             <div class="col-lg-12">
@@ -696,7 +706,7 @@ Toast::message('message', 'level', 'title');
                                                         @endforeach
 
                                                         @endif
-                                                        <a href="javascript:void(0);" class="ach_add_button btn btn-info" title="Add field"><i class="fa fa-plus" aria-hidden="true"></i> Add more</a>
+                                                        <a href="javascript:void(0);" class="ach_add_button btn btn-info mt-15" title="Add field"><i class="fa fa-plus" aria-hidden="true"></i> Add more</a>
                                                     </div>
                                                    
 
@@ -780,7 +790,7 @@ Toast::message('message', 'level', 'title');
                                                             <input type="text" class="form-control" placeholder="https://github.com/" name="url[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
 
                                                         </div>
-                                                        <div class="r ow">
+                                                        <div>
                                                             <div class="col-md-12">
                                                                 <label>Project Description
                                                                     @if(isset($data->id))
@@ -799,11 +809,15 @@ Toast::message('message', 'level', 'title');
                                                     <a href="javascript:void(0);" class="project_add_button btn btn-info" title="Add field"><i class="fa fa-plus" aria-hidden="true"></i> Add more</a>
                                                     @if(isset($data->project) && count($data->project)>0)
                                                     @foreach($data->project as $key=>$value)
-                                                    <div class="row form-group">
+                                                    <div class="row form-group for_position">
+
+                                                    <span class="certfi_close"> 
+                                                            <i class="fa fa-close remove_project" style="color:red;float: right; cursor: pointer;" id="{{$value['id']}}"></i>
+                                                    </span>
+                                                    
                                                         <div class="col-lg-3">
                                                             <label>Project Name<span style="color: red;">*</span> </label>
-                                                            <i class="fa fa-close remove_project" style="color:red;float: right; cursor: pointer;" id="{{$value['id']}}"></i>
-
+                                                            
                                                             <input type="text" class="form-control" placeholder="XYZ" name="project_name[]" value="{{ isset($value['project_name'])?$value['project_name']:''}}" required="" autocomplete="on|off" />
 
                                                         </div>
@@ -823,7 +837,7 @@ Toast::message('message', 'level', 'title');
 
 
                                                         </div>
-                                                        <div class="row">
+                                                        <div class="col-lg-12">
                                                             <label>Project Description<span style="color: red;">*</span> </label>
                                                             <textarea class="form-control ckeditor" rows="3" name="project_description[]" required="">{{ isset($value['project_description'])?$value['project_description']:''}}</textarea>
 
@@ -839,7 +853,7 @@ Toast::message('message', 'level', 'title');
 
 
                                             </div>
-                                            <input type="submit" value="Confirm" class="action-button btn btn-success col-md-3" id="project_submit" />
+                                            <input type="submit" value="Confirm" class="action-button btn btn-success col-md-3 pull-right" id="project_submit" />
                                         </form>
                                         <input type="button" id="project_previous" name="previous" class="previous action-button-previous  pull-left btn btn-warning" value="Previous" />
                                     </fieldset>

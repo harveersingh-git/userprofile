@@ -780,3 +780,18 @@ label {
     z-index: 1;
     top: 40%;
 }
+.chec_box {
+    position: relative;
+    right: 74px;
+}
+
+.certfi_close {
+    position: absolute;
+    right: 0%;
+    z-index: 1;
+    top: 10%;
+}
+
+.mt-15 {
+    margin-top: 15px;
+}
