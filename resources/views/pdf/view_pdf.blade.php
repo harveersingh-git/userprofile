@@ -718,7 +718,15 @@
                         <p>No skills Found</p>
                         @endforelse
                     </TABLE>
-
+                    @if($data['portfolio']->count()>0)
+                        <p class="p10 ft0" style="color:#fff;">VISIT PORTFOLIO</p>
+                    @endif
+                   
+                    @forelse ($data['portfolio'] as $portf)
+                    <p class="p11 ft1"><a style="color:#fff; text-decoration: none" href="{{$portf['name']}}">{{$portf['name']}}</a></p>
+                    @empty
+                    <p></p>
+                    @endforelse
                 </DIV>
                 <DIV id="id1_2">
                     <P class="ft4" style="width:371px; height: 51px; float:left; margin:0; padding: 0; margin-top:-8px;"><img src="{{asset('pdf/logo.jpg')}}"></P>

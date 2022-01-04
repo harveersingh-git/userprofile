@@ -539,7 +539,7 @@ class UserController extends Controller
         $data['certificate'] =  Certification::where('user_id', '=', $id)->get();
         $data['skills'] =  UserSkills::with('skills_details')->where('user_id', '=', $id)->orderBy('order', 'asc')->get();
         $data['education'] =  UserEducation::with('education_details', 'course')->where('user_id', '=', $id)->orderBy('order', 'asc')->get();
-
+        $data['portfolio'] =  UserPortfolio::where('user_id', '=', $id)->get();
         // dd($data['education']->toArray());
 
 
