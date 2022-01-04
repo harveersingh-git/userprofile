@@ -779,25 +779,21 @@
                 <div class="skill_box">
                     <div class="skills_list" style="width:50%; flot:left;">
                         <ul>
-                            <li>Photoshop</li>
-                            <li>Photoshop</li>
-                            <li>Photoshop</li>
-                            <li>Photoshop</li>
-                            <li>Photoshop</li>
-                            <li>Photoshop</li>
-                            <li>Photoshop</li>
+                        @forelse ($data['primary_skills'] as $primary)
+                            <li>{{$primary['skills_details']['value']}}</li>
+                            @empty
+                        
+                              @endforelse
                          </ul>
                     </div>
 
                     <div class="skills_list" style="width:50%; float:right;">
                         <ul>
-                            <li>asdasd</li>
-                            <li>Photoshop</li>
-                            <li>Photoshop</li>
-                            <li>Photoshop</li>
-                            <li>Photoshop</li>
-                            <li>Photoshop</li>
-                            <li>Photoshop</li>
+                        @forelse($data['secondry_skills'] as $second)
+                            <li>{{$second['skills_details']['value']}}</li>
+                            @empty
+                         
+                              @endforelse
                          </ul>
                     </div>
     </div>
@@ -821,6 +817,15 @@
                     @endforelse
 
                 </TABLE> -->
+                @if($data['portfolio']->count()>0)
+                        <p class="p10 ft0" style="color:#fff;">VISIT PORTFOLIO</p>
+                    @endif
+                   
+                    @forelse ($data['portfolio'] as $portf)
+                    <p class="p11 ft1"><a style="color:#fff; text-decoration: none" href="{{$portf['name']}}">{{$portf['name']}}</a></p>
+                    @empty
+                    <p></p>
+                    @endforelse
 
             </DIV>
 
