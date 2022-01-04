@@ -610,6 +610,7 @@ Toast::message('message', 'level', 'title');
 
 
                                                         </div>
+                                                        
                                                         <div class="row">
                                                             <div class="col-lg-12">
                                                                 <div class="form-group">
@@ -628,6 +629,9 @@ Toast::message('message', 'level', 'title');
 
                                                     @if(isset($data->certification) && count($data->certification)>0)
                                                     @foreach($data->certification as $key=>$value)
+                                                    
+                                                    <div class="my_separator"></div>
+
                                                     <div class="for_position">
                                                         <div class="row">
                                                             <div class="col-lg-4">

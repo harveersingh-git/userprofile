@@ -702,7 +702,7 @@
         }
 
         .logo_div {
-            margin-left: 68%;
+            margin-left: %;
             margin-top: 28px;
         }
 
@@ -729,7 +729,8 @@
 /* nitin css */
 
 .aboutme_text{
-    width:75%; text-align: center; margin-left:10px
+    width:70%; text-align: center; margin-left:10px;
+    margin-top:5px;line-height: 21px;
 }
 
 .skill_box{
@@ -744,6 +745,16 @@
             margin: 0px;
         }
 
+ .employe_compny{
+    display:flex; 
+ }   
+ .employe_compny ul{
+            padding: 15px;
+            margin: 15px;
+            list-style:none;
+            font-size:13px;
+        }    
+
 
     </STYLE>
 </HEAD>
@@ -752,7 +763,7 @@
 
     <div class="row page-break">
 
-        <div class="col" style="width: 50%; float:left">
+        <div class="col" style="width: 51%; float:left">
             <div id="p1dimg1">
                 <IMG src="{{public_path('pdf/img-1.jpg')}}" id="p1img1">
             </div>
@@ -814,8 +825,8 @@
             </DIV>
 
         </div>
-        <div class="col" style="width: 50%; float:right">
-            <P class="ft4" style="width:300px; height: 51px; float:left; margin:0; padding: 0; margin-top:-8px;"><img style="width:90%" src="{{ public_path('pdf/logo.jpg') }}"></P>
+        <div class="col" style="width: 52%; float:right">
+            <P class="ft4" style="width:300px; height: 51px; float:left; margin:0; padding: 0; margin-top:-8px;margin-left:18px;"><img style="width:90%" src="{{ public_path('pdf/logo.jpg') }}"></P>
             <P class="p14 ft5">CMMI L3 SCV</P>
             <P class="p14 ft5">ISO 27001:2013</P>
             <P class="p14 ft5">ISO 9001:2015</P>
@@ -823,29 +834,46 @@
             <p class="p18 ft7" style="color:#222;">{{$data->resume_title}}</p>
             <P class="p19 ft8">WORK EXPERIENCE</P>
             <P class="p20 ft9">{{$data->resume_title}}</P>
-            <TABLE cellpadding=0 cellspacing=0 class="t1">
+            <!-- <TABLE cellpadding=0 cellspacing=0 class="t1">
                 <TR>
                     <TD class="tr2 td4">
-                        <P class="p21 ft10">Virtual Employee</P>
+                        <P class="">Virtual Employee</P>
                     </TD>
                     <TD class="tr2 td5">
-                        <P class="p9 ft10">CMMI L3 SCV</P>
+                        <P class="">CMMI L3 SCV</P>
                     </TD>
                 </TR>
                 <TR>
                     <TD rowspan=2 class="tr3 td4">
-                        <P class="p9 ft11">{{ \Carbon\Carbon::parse($data['joining_date'])->format('M Y')}} - Present</P>
+                        <P class="">{{ \Carbon\Carbon::parse($data['joining_date'])->format('M Y')}} - Present</P>
                     </TD>
                     <TD class="tr4 td5">
-                        <P class="p9 ft10">ISO 27001:2013/ISO 9001:2015</P>
+                        <P class="">ISO 27001:2013/ISO 9001:2015</P>
                     </TD>
                 </TR>
                 <TR>
                     <TD class="tr5 td5">
-                        <P class="p9 ft12">&nbsp;</P>
+                        <P class="">&nbsp;</P>
                     </TD>
                 </TR>
-            </TABLE>
+            </TABLE> -->
+
+                 <div class="employe_compny">
+                    <div class="skills_list" style="width:46%; flot:left;">
+                        <ul>
+                            <li>Virtual Employee</li>
+                            <li>{{ \Carbon\Carbon::parse($data['joining_date'])->format('M Y')}} - Present</li>
+                         </ul>
+                    </div>
+
+                    <div class="skills_list" style="width:56%; float:right; white-space: nowrap;">
+                        <ul>
+                            <li>CMMI L3 SCV</li>
+                            <li>ISO 27001:2013/ISO 9001:2015</li>
+                    </div>
+                 </div>
+
+
             <P class="p22 ft8">EDUCATION</P>
 
             @forelse ($data['education'] as $education)

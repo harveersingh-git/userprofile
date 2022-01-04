@@ -147,11 +147,11 @@ $(document).ready(function() {
         if (x < maxField) {
             x++; //Increment field counter
 
-            var achFieldHTML = '<div class="row"><div class="col-lg-12"><label><i class="fa fa-arrows" aria-hidden="true"></i>Title <span style="color: red;">*</span></label>';
+            var achFieldHTML = '<div class="row"><div class="my_separator"></div><div class="col-lg-12"><label><i class="fa fa-arrows" aria-hidden="true"></i>Title <span style="color: red;">*</span></label>';
             achFieldHTML +='<input type="text" class="form-control" placeholder="EX:abc" name="title[]" value="" required="" autocomplete="on|off">';
             achFieldHTML +='</div><div class="col-lg-12"><label>Achievement Description<span style="color: red;">*</span> </label>';
             achFieldHTML +='<textarea class="form-control ckeditor" rows="3" name="description[]" id="description'+x+'"></textarea></div>';
-            achFieldHTML +='<div class="col-lg-12"><a href="javascript:void(0);" class="ach_remove_button btn btn-danger"><i class="fa fa-minus" aria-hidden="true"></i> Remove</a></div></div>';
+            achFieldHTML +='<span class="col-lg-12"><a href="javascript:void(0);" class="ach_remove_button btn btn-danger mt-15"><i class="fa fa-minus" aria-hidden="true"></i> Remove</a></span></div>';
            
             $(ach_wrapper).append(achFieldHTML); //Add field html
           
@@ -260,7 +260,7 @@ $(document).ready(function() {
         if (x < maxField) {
             
             x++; //Increment field counter
-            var certificationFieldHTML = '<div><div class="row"><div class="col-lg-3"><label>Type<span style="color: red;">*</span></label>';
+            var certificationFieldHTML = '<div><div class="my_separator"></div><div class="row"><div class="col-lg-3"><label>Type<span style="color: red;">*</span></label>';
             certificationFieldHTML += '<select class="form-control" aria-label="Default select example" name="certification_type[]"><option selected>--please select--</option>'+type+'</select></div>';
 
           
@@ -371,7 +371,7 @@ $(document).ready(function() {
     });
     $(ach_wrapper).on('click', '.ach_remove_button', function(e) {
         e.preventDefault();
-        $(this).parent('div').remove(); //Remove field html
+        $(this).closest('span').parent('div').remove(); //Remove field html
         x--; //Decrement field counter
     });
     
