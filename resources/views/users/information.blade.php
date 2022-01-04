@@ -369,6 +369,37 @@ Toast::message('message', 'level', 'title');
                                                     </div>
 
                                                 </div>
+                                                <div class="row ">
+                                                        <div class="col-lg-6 portfolio_more">
+                                                            <div class="form-group">
+                                                                <label>
+                                                                Portfolio </label>
+                                                                <input type="text" name="portfolio[]" class="form-control" placeholder="https://test.com">
+                                                                <i class="fa fa-plus add_more_portfolio" id="add_more_portfolio" style="color:green;    margin-top: 7px; margin-right: -36px;  cursor: pointer;"></i>
+
+
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    @if(isset($data->portfolio) && (count($data->portfolio)>0))
+                                                    @foreach($data->portfolio as $key=>$portfolio)
+                                                    <div class="row ">
+                                                        <div class="col-lg-6 portfolio_more">
+                                                            <div class="form-group">
+                                                                <label>
+                                                                Portfolio </label>
+                                                                <input type="text" name="portfolio[]" class="form-control" placeholder="https://test.com" value="{{$portfolio->name}}">
+                                                                <i class="fa fa-minus remove_curent_portfolio" id="{{$portfolio->id}}" style="color:red;    margin-top: 7px; margin-right: -36px;  cursor: pointer;"></i>
+
+
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>               
+                                                    @endforeach               
+                                                    @endif
+
                                             </div>
 
                                             <input type="submit" value="Next Step" class=" action-button btn btn-primary  col-md-3 pull-right" id="skills_submit" />

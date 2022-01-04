@@ -71,6 +71,7 @@ $(document).ready(function() {
     var certificationAddButton = $('.certification_add_button'); //Add button selector
     var achAddButton = $('.ach_add_button'); //Add button selector
     var projectAddButton = $('.project_add_button'); //Add button selector
+    var addPortfolio = $('.add_more_portfolio');
 
     
     
@@ -79,30 +80,28 @@ $(document).ready(function() {
     var ach_wrapper = $('.ach_more'); //Input field wrapper
     var exp_wrapper = $('.exp_more'); //Input field wrapper
     var certification_wrapper = $('.certification_more'); //Input field wrapper
+    var portfolio_wrapper = $('.portfolio_more'); //Input field wrapper
 
-
-    // var fieldHTML ='<div class="row"><div class="col-lg-3"><label>Type</label>';
-    // fieldHTML += '<select class="form-control" aria-label="Default select example" name="edu_type[]"><option selected>--please select--</option>'+type+'</select></div>';
-    // fieldHTML += '<div class="col-lg-3"><label>Title</label> <select class="form-control" name="edu_title[]" aria-label="Default select example"><option selected>--please select--</option><option value="1">BBA</option><option value="2">BCA</option><option value="3">B.Come</option></select>';
-    // fieldHTML += '</div><div class="col-lg-3"><label>From</label><input type="text" class="form-control edu_from" placeholder="2021-01-01" name="edu_to[]" value="" required="" autocomplete="on|off">';
-    // fieldHTML += '</div><div class="col-lg-3"><label>To</label><input type="text" class="form-control edu_to" placeholder="2021-02-01" name="edu_from[]" value="" required="" autocomplete="on|off">';
-    // fieldHTML += '</div><a href="javascript:void(0);" class="remove_button"><i class="fa fa-minus" aria-hidden="true"></i></a></div>'; //New input field html 
-   
-
-
-
-
-
-
-
-    
-
-
-  
-
- 
     var x = 1; //Initial field counter is 1
-  
+    //Once add button is clicked
+    $(addPortfolio).click(function() {
+        //Check maximum number of input fields
+        if (x < maxField) {
+            x++; //Increment field counter
+
+            var PortfolioFieldHTML = '<div class="row"> <div class="col-lg-12"><div class="form-group">';
+            PortfolioFieldHTML += '<label>';
+            PortfolioFieldHTML += 'Portfolio </label>';
+            PortfolioFieldHTML += '<input type="text" name="portfolio[]" class="form-control" placeholder="https://test.com">';
+            PortfolioFieldHTML += '<i class="fa fa-minus remove_more_portfolio" id="" style="color:red;margin-top: 7px; margin-right: -36px;  cursor: pointer;"></i>';
+
+
+            PortfolioFieldHTML += '</div>';
+            PortfolioFieldHTML += '</div></div>';
+            $(portfolio_wrapper).append(PortfolioFieldHTML);
+        }
+
+    });
 
      //Once add button is clicked
      $(projectAddButton).click(function() {
@@ -375,7 +374,12 @@ $(document).ready(function() {
         $(this).parent('div').remove(); //Remove field html
         x--; //Decrement field counter
     });
-
+    
+    $(portfolio_wrapper).on('click', '.remove_more_portfolio', function(e) {
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        x--; //Decrement field counter
+    });
     
     $(document).on('click', '#new_skills_prev', function(e) {
         e.preventDefault();
@@ -805,6 +809,60 @@ $(document).ready(function() {
 
 
     });
+
+    $('.remove_curent_portfolio').on('click', function() {
+ 
+        var id = $(this).attr('id');
+        var token = $('input[name="_token"]').attr('value');
+        var current =   $(this);
+       
+        var data = {
+            user_id: $('.user_id').val(),
+            id: id
+
+        };
+      
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover !",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+           $.ajax({
+            type: 'POST',
+            url: base_url + '/remove_portfolio',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify(data),
+            headers: {
+                'X-CSRF-Token': token
+            },
+
+            success: function(data) {
+
+               
+                if (data.status = "true") {
+                    toastr.success("Portfolio remove successfully");
+                    $(current).closest('.row').remove();
+
+
+                } else {
+                    toastr.error(data.message);
+                }
+
+            }
+        })
+            } else {
+                swal("Your Record safe now!");
+            }
+        });
+        
+
+
+    });
+
 
 });
 
