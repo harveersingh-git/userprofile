@@ -93,7 +93,7 @@ $(document).ready(function() {
             PortfolioFieldHTML += '<label>';
             PortfolioFieldHTML += 'Portfolio </label>';
             PortfolioFieldHTML += '<input type="text" name="portfolio[]" class="form-control" placeholder="https://test.com">';
-            PortfolioFieldHTML += '<i class="fa fa-minus remove_more_portfolio" id="" style="color:red;margin-top: 7px; margin-right: -36px;  cursor: pointer;"></i>';
+            PortfolioFieldHTML += '<span class="portfolio_add_remove"><i class="fa fa-minus remove_more_portfolio" id="" style="color:red;margin-top: 7px; margin-right: -36px;  cursor: pointer;"></i></span>';
 
 
             PortfolioFieldHTML += '</div>';
@@ -109,7 +109,7 @@ $(document).ready(function() {
         if (x < maxField) {
             x++; //Increment field counter
 
-            var projectFieldHTML = '<div class="row">';
+            var projectFieldHTML = '<div class="row"><div class="my_separator"></div>';
             projectFieldHTML += '<div class="col-lg-3"><label>Project Name<span style="color: red;">*</span></label>';
             projectFieldHTML += '<input type="text" class="form-control" placeholder="XYZ" name="project_name[]" value="" required="" autocomplete="on|off">';
             projectFieldHTML += '</div><div class="col-lg-3"><label>Project Skills<span style="color: red;">*</span></label>';
@@ -122,12 +122,12 @@ $(document).ready(function() {
             projectFieldHTML += '<input type="text" class="form-control" placeholder="https://github.com/" name="url[]" value=""required="" autocomplete="on" />';
 			 projectFieldHTML += '</div>';
             
-            projectFieldHTML += '<div class="row"><label>Project Description<span style="color: red;">*</span></label>';
+            projectFieldHTML += '<div class="col-lg-12"><label>Project Description<span style="color: red;">*</span></label>';
             projectFieldHTML += '<textarea class="form-control ckeditor" rows="3" name="project_description[]" id="project_description'+x+'" required=""></textarea>';
            
             projectFieldHTML += '</div>';
         
-            projectFieldHTML += '<a href="javascript:void(0);" class="project_remove_button btn btn danger  btn-danger"><i class="fa fa-minus" aria-hidden="true"></i> Remove</a></div>';
+            projectFieldHTML += '<span class="col-lg-12"><a href="javascript:void(0);" class="project_remove_button btn btn danger  btn-danger mt-15"><i class="fa fa-minus" aria-hidden="true"></i> Remove</a></span></div>';
         
             $(project_wrapper).append(projectFieldHTML); //Add field html
           
@@ -350,7 +350,7 @@ $(document).ready(function() {
     $(project_wrapper).on('click', '.project_remove_button', function(e) {
      
         e.preventDefault();
-        $(this).parent('div').remove(); //Remove field html
+        $(this).closest('span').parent('div').remove(); //Remove field html
         x--; //Decrement field counter
     });
     $(wrapper).on('click', '.remove_button', function(e) {
@@ -377,7 +377,7 @@ $(document).ready(function() {
     
     $(portfolio_wrapper).on('click', '.remove_more_portfolio', function(e) {
         e.preventDefault();
-        $(this).parent('div').remove(); //Remove field html
+        $(this).closest('span').parent('div').remove(); //Remove field html
         x--; //Decrement field counter
     });
     

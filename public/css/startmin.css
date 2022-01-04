@@ -795,3 +795,8 @@ label {
 .mt-15 {
     margin-top: 15px;
 }
+.portfolio_add_remove {
+    position: absolute;
+    right: 0;
+    top: 30px;
+}

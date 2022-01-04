@@ -26,7 +26,7 @@
         #page_1 #id1_1 {
             float: left;
             border: none;
-            margin: 375px 0px 0px 47px;
+            margin: 385px 0px 0px 44px;
             padding: 0px;
             border: none;
             width: 348px;
@@ -680,6 +680,18 @@
             margin: auto 12px;
         }
 
+        /* nitin */
+
+        .skill_box{
+            display:flex;
+            color:#fff;
+        }
+
+        .skills_list ul{
+            padding: 15px;
+            margin: 15px;
+        }
+
     </STYLE>
 </HEAD>
 
@@ -703,7 +715,37 @@
                         <P class="p1 ft1" style="color:#000;">{!!html_entity_decode($data->about_employee)!!}</P>
                     </div>
                     <p class="p7 ft0" style="color:#fff;">SKILLS, LANGUAGES</p>
-                    <TABLE cellpadding=0 cellspacing=0 class="t0">
+                   
+                 <div class="skill_box">
+                    <div class="skills_list">
+                        <ul>
+                            <li>Photoshop</li>
+                            <li>Photoshop</li>
+                            <li>Photoshop</li>
+                            <li>Photoshop</li>
+                            <li>Photoshop</li>
+                            <li>Photoshop</li>
+                            <li>Photoshop</li>
+                         </ul>
+                    </div>
+
+                    <div class="skills_list">
+                        <ul>
+                            <li>Photoshop</li>
+                            <li>Photoshop</li>
+                            <li>Photoshop</li>
+                            <li>Photoshop</li>
+                            <li>Photoshop</li>
+                            <li>Photoshop</li>
+                            <li>Photoshop</li>
+                         </ul>
+                    </div>
+                 </div>
+
+
+
+
+                    <!-- <TABLE cellpadding=0 cellspacing=0 class="t0">
                         @forelse ($data['skills'] as $skill)
                         <TR>
                             <TD class="tr0 td0">
@@ -717,7 +759,7 @@
                         @empty
                         <p>No skills Found</p>
                         @endforelse
-                    </TABLE>
+                    </TABLE> -->
                     @if($data['portfolio']->count()>0)
                         <p class="p10 ft0" style="color:#fff;">VISIT PORTFOLIO</p>
                     @endif
@@ -795,12 +837,12 @@
 
             <P class="ft8">ABOUT PROJECTS</P>
             @forelse ($data['project'] as $show)
-            <P class="p38 ft9">{{$show['project_name']}}</P>
-            <div style="padding: 17px;text-align: justify;">
+            <P class="p30 ft9">{{$show['project_name']}}</P>
+            <div style="text-align: justify;">
                 <P class="p39 ft17">{!!html_entity_decode($show['project_description'])!!}</P>
             </div>
             @empty
-            <p>No Project Found</p>
+            <p class="p30 ft17">No Project Found</p>
             @endforelse
         </DIV>
 

@@ -377,7 +377,9 @@ Toast::message('message', 'level', 'title');
                                                                 <label>
                                                                 Portfolio </label>
                                                                 <input type="text" name="portfolio[]" class="form-control" placeholder="https://test.com">
+                                                               <span class="portfolio_add_remove">     
                                                                 <i class="fa fa-plus add_more_portfolio" id="add_more_portfolio" style="color:green;    margin-top: 7px; margin-right: -36px;  cursor: pointer;"></i>
+                                                                </span>
 
 
                                                             </div>
@@ -392,8 +394,10 @@ Toast::message('message', 'level', 'title');
                                                                 <label>
                                                                 Portfolio </label>
                                                                 <input type="text" name="portfolio[]" class="form-control" placeholder="https://test.com" value="{{$portfolio->name}}">
+                                                               <span class="portfolio_add_remove">
                                                                 <i class="fa fa-minus remove_curent_portfolio" id="{{$portfolio->id}}" style="color:red;    margin-top: 7px; margin-right: -36px;  cursor: pointer;"></i>
 
+                                                                </span>
 
                                                             </div>
                                                         </div>

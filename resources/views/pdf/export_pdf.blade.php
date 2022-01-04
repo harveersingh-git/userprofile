@@ -694,6 +694,7 @@
             padding-left: 2px;
 
             position: absolute;
+            color:#fff;
 
 
 
@@ -725,6 +726,25 @@
             width: 864px;
             height: 1209px;  */
         }
+/* nitin css */
+
+.aboutme_text{
+    width:75%; text-align: center; margin-left:10px
+}
+
+.skill_box{
+            display:flex;
+            color:#fff;
+        }
+        /* .skills_list{
+            width:50%;
+        } */
+        .skills_list ul{
+            padding: 15px;
+            margin: 0px;
+        }
+
+
     </STYLE>
 </HEAD>
 
@@ -739,12 +759,40 @@
             <DIV id="id1_1">
 
                 <P class="p0 ft0" style="color:#fff;">ABOUT ME</P>
-                <div style="width:75%; text-align: justify; margin-left:10px">
+                <div class="aboutme_text">
                     <P class="p1 ft1" style="color:#000;">{!!html_entity_decode($data->about_employee)!!}</P>
                 </div>
                 <p class="p7 ft0" style="color:#fff;">SKILLS, LANGUAGES</p>
                 <p class="p8 ft0" style="color:#fff;">AND TOOLS</p>
-                <TABLE cellpadding=0 cellspacing=0 class="t0">
+                
+                <div class="skill_box">
+                    <div class="skills_list" style="width:50%; flot:left;">
+                        <ul>
+                            <li>Photoshop</li>
+                            <li>Photoshop</li>
+                            <li>Photoshop</li>
+                            <li>Photoshop</li>
+                            <li>Photoshop</li>
+                            <li>Photoshop</li>
+                            <li>Photoshop</li>
+                         </ul>
+                    </div>
+
+                    <div class="skills_list" style="width:50%; float:right;">
+                        <ul>
+                            <li>asdasd</li>
+                            <li>Photoshop</li>
+                            <li>Photoshop</li>
+                            <li>Photoshop</li>
+                            <li>Photoshop</li>
+                            <li>Photoshop</li>
+                            <li>Photoshop</li>
+                         </ul>
+                    </div>
+    </div>
+                
+                
+                <!-- <TABLE cellpadding=0 cellspacing=0 class="t0">
 
 
                     @forelse ($data['skills'] as $skill)
@@ -761,16 +809,7 @@
                     <p>No skills Found</p>
                     @endforelse
 
-                </TABLE>
-                @if($data['portfolio']->count()>0)
-                        <p class="p10 ft0" style="color:#fff;">VISIT PORTFOLIO</p>
-                    @endif
-                   
-                    @forelse ($data['portfolio'] as $portf)
-                    <p class="p11 ft1"><a style="color:#fff; text-decoration: none" href="{{$portf['name']}}">{{$portf['name']}}</a></p>
-                    @empty
-                    <p></p>
-                    @endforelse
+                </TABLE> -->
 
             </DIV>
 
