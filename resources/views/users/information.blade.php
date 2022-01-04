@@ -1318,12 +1318,10 @@ Toast::message('message', 'level', 'title');
             ]
         });
     
-        // CKEDITOR.replace('.ckeditor', {
-        //     toolbar: [{
-        //         name: 'editing',
-        //         items: ['Format', 'Font', 'FontSize', 'TextColor', 'BGColor', 'Bold', 'Italic', 'NumberedList', 'BulletedList']
-        //     }]
-        // });
+        CKEDITOR.config.toolbar = [
+            ['Format', 'Font', 'FontSize', 'TextColor', 'BGColor', 'Bold', 'Italic', 'NumberedList', 'BulletedList'],
+            ] ;
+
         CKEDITOR.replace('role_res[]', {
             toolbar: [{
                 name: 'editing',
