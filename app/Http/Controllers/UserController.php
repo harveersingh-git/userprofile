@@ -12,6 +12,8 @@ use App\Models\UserExperince;
 use App\Models\Certification;
 use App\Models\LearningSkills;
 use App\Models\userAchievement;
+use App\Models\UserPortfolio;
+
 use App\Models\UserProject;
 use App\Models\Teams;
 use Validator;
@@ -112,6 +114,19 @@ class UserController extends Controller
                 }
             }
 
+
+            UserPortfolio::where(['user_id' => $input['user_id']])->delete();
+            for ($i = 0; $i < count($input['portfolio']); $i++) {
+                if (isset($input['portfolio'][$i])) {
+
+                    // $inp['order'] = $i + 1;
+                    $inp['user_id'] =  $input['user_id'];
+                    $inp['name'] =  $input['portfolio'][$i];
+                  
+
+                   UserPortfolio::create($inp);
+                }
+            }
 
 
 
@@ -392,7 +407,7 @@ class UserController extends Controller
                 $q->where(['user_id' => $id]);
             })->where('category', '=', 'skill')->get();
             // dd($allskills->toArray());
-            $data = User::with(['education', 'exprince', 'certification', 'learning_skills', 'achievement', 'project', 'myTeam'])->with('skills', function ($q) {
+            $data = User::with(['portfolio','education', 'exprince', 'certification', 'learning_skills', 'achievement', 'project', 'myTeam'])->with('skills', function ($q) {
 
                 $q->orderBy('order', 'asc');
             })->where('id', '=', $id)->first();
@@ -524,7 +539,7 @@ class UserController extends Controller
         $data['certificate'] =  Certification::where('user_id', '=', $id)->get();
         $data['skills'] =  UserSkills::with('skills_details')->where('user_id', '=', $id)->orderBy('order', 'asc')->get();
         $data['education'] =  UserEducation::with('education_details', 'course')->where('user_id', '=', $id)->orderBy('order', 'asc')->get();
-
+        $data['portfolio'] =  UserPortfolio::where('user_id', '=', $id)->get();
         // dd($data['education']->toArray());
 
 
@@ -651,6 +666,16 @@ class UserController extends Controller
 
         if ($ach) {
             $ach->delete();
+            return response()->json(['status' => 'success']);
+        }
+    }
+    public function removePortfolio(Request $request)
+    {
+        $id = $request['id'];
+        $portfolio = UserPortfolio::find($id);
+
+        if ($portfolio) {
+            $portfolio->delete();
             return response()->json(['status' => 'success']);
         }
     }

@@ -85,6 +85,13 @@ class User extends Authenticatable
 
     }
 
+    
+    
+    public function portfolio(){
+        return $this->hasMany(UserPortfolio::class, 'user_id', 'id');
+
+    }
+
     public function education(){
         return $this->hasMany(UserEducation::class, 'user_id', 'id');
 
