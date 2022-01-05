@@ -819,11 +819,11 @@
 
                 </TABLE> -->
                 @if($data['portfolio']->count()>0)
-                        <p class="p10 ft0" style="color:#fff;">VISIT PORTFOLIO</p>
+                        <p class="p10 ft0" style="color:#fff;margin-top:40px;">VISIT PORTFOLIO</p>
                     @endif
                    
                     @forelse ($data['portfolio'] as $portf)
-                    <p class="p11 ft1"><a style="color:#fff; text-decoration: none" href="{{$portf['name']}}">{{$portf['name']}}</a></p>
+                    <p class="p12 ft1"><a style="color:#fff; text-decoration: none" href="{{$portf['name']}}">{{$portf['name']}}</a></p>
                     @empty
                     <p></p>
                     @endforelse

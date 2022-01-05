@@ -117,7 +117,7 @@ Toast::message('message', 'level', 'title');
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <label>Total EXP(in year)<span style="color: red;">*</span></label>
-                                                        <input type="text" class="form-control" placeholder="EX:3.5" name="experience" value="{{isset($data->experience)?$data->experience:'' }}" required="" autocomplete="off" />
+                                                        <input type="number" class="form-control" placeholder="EX:3.5" name="experience" value="{{isset($data->experience)?$data->experience:'' }}" required="" autocomplete="off" />
 
                                                     </div>
                                                 </div>
@@ -723,7 +723,9 @@ Toast::message('message', 'level', 'title');
                                                         </div>
 
                                                         @if(isset($data->achievement) && count($data->achievement)>0)
+                                                        <div class="my_separator"></div>
                                                         @foreach($data->achievement as $key=>$value)
+                                                        
                                                         <div class="row for_position">
                                                             <div class="col-lg-12">
                                                                 <label>Title <span style="color: red;">*</span> </label>
@@ -777,7 +779,7 @@ Toast::message('message', 'level', 'title');
                                                     <div class="row form-group">
 
                                                         <div class="col-lg-3">
-                                                            <label>Project Name
+                                                            <label><i class="fa fa-arrows" aria-hidden="true"></i> Project Name
                                                                 @if(isset($data->id))
 
                                                                 @else
@@ -845,6 +847,7 @@ Toast::message('message', 'level', 'title');
 
                                                     <a href="javascript:void(0);" class="project_add_button btn btn-info" title="Add field"><i class="fa fa-plus" aria-hidden="true"></i> Add more</a>
                                                     @if(isset($data->project) && count($data->project)>0)
+                                                    <div class="my_separator"></div>
                                                     @foreach($data->project as $key=>$value)
                                                     <div class="row form-group for_position">
 
@@ -853,7 +856,7 @@ Toast::message('message', 'level', 'title');
                                                     </span>
                                                     
                                                         <div class="col-lg-3">
-                                                            <label>Project Name<span style="color: red;">*</span> </label>
+                                                            <label><i class="fa fa-arrows" aria-hidden="true"></i> Project Name<span style="color: red;">*</span> </label>
                                                             
                                                             <input type="text" class="form-control" placeholder="XYZ" name="project_name[]" value="{{ isset($value['project_name'])?$value['project_name']:''}}" required="" autocomplete="on|off" />
 
@@ -970,7 +973,7 @@ Toast::message('message', 'level', 'title');
                 processData: false,
                 data: new FormData(this),
                 success: function(data) {
-                    if (data.status ==true) {
+                    if (data.status = "success") {
                         toastr.success("Record insert successfully");
                         $('#skills_submit').hide();
                         $('#skills_button').show();
