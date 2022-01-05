@@ -763,6 +763,7 @@ label {
     font-weight: 400;
     transform: translateY(-50%);
     z-index: 444;
+    font-family: 'FontAwesome';
 }
 .my_separator {
     width: 100%;
