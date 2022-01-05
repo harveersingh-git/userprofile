@@ -723,8 +723,9 @@ Toast::message('message', 'level', 'title');
                                                         </div>
 
                                                         @if(isset($data->achievement) && count($data->achievement)>0)
-                                                        <div class="my_separator"></div>
+                                                       
                                                         @foreach($data->achievement as $key=>$value)
+                                                        <div class="my_separator"></div>
                                                         
                                                         <div class="row for_position">
                                                             <div class="col-lg-12">
@@ -847,8 +848,9 @@ Toast::message('message', 'level', 'title');
 
                                                     <a href="javascript:void(0);" class="project_add_button btn btn-info" title="Add field"><i class="fa fa-plus" aria-hidden="true"></i> Add more</a>
                                                     @if(isset($data->project) && count($data->project)>0)
-                                                    <div class="my_separator"></div>
+                                                    
                                                     @foreach($data->project as $key=>$value)
+                                                    <div class="my_separator"></div>
                                                     <div class="row form-group for_position">
 
                                                     <span class="certfi_close"> 
