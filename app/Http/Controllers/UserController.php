@@ -83,22 +83,24 @@ class UserController extends Controller
     {
         if ($request->isMethod('post')) {
             $input = $request->all();
-            // dd($input );
-            // UserSkills::where(['user_id' => $input['user_id']])->delete();
-            // for ($i = 0; $i < count($input['skill_value_id']); $i++) {
 
-            //     $inpu['order'] =  $i + 1;
-            //     $inpu['user_id'] =  $input['user_id'];
-            //     $inpu['skill_value_id'] =  $input['skill_value_id'][$i];
-            //     $skills = UserSkills::create($inpu);
+            // $validator = Validator::make($request->all(), [
+            //     'edu_type.*' => 'required',
+            //     'edu_title.*' => 'required',
+            //     // 'edu_from.*' => 'required|date',
+            //     // 'edu_to.*' => 'required|date|after_or_equal:edu_from',
+ 
+            // ]);
+
+            // if ($validator->fails()) {
+            //     return response()->json([
+            //         'status' =>
+            //         false, 'message' => $validator->errors()->first(),
+            //         'Data' => '',
+            //         'Status_code' => "401"
+            //     ]);
             // }
-            // LearningSkills::where(['user_id' => $input['user_id']])->delete();
-            // for ($i = 0; $i < count($input['learning_skills']); $i++) {
-            //     $inpu['order'] =  $i + 1;
-            //     $inpu['user_id'] =  $input['user_id'];
-            //     $inpu['learning_skill_value_id'] =  $input['learning_skills'][$i];
-            //     $learningSkills = LearningSkills::create($inpu);
-            // }
+        
             UserEducation::where(['user_id' => $input['user_id']])->delete();
             for ($i = 0; $i < count($input['edu_type']); $i++) {
                 if (isset($input['edu_type'][$i])) {
@@ -131,7 +133,7 @@ class UserController extends Controller
 
 
             return response()->json([
-                'status' => 'success',
+                'status' => true,
                 'last_insert_id' => $skills
             ]);
         }
@@ -240,16 +242,7 @@ class UserController extends Controller
             $input = $request->all();
 
 
-            // userAchievement::where(['user_id' => $input['user_id']])->delete();
-            // for ($i = 0; $i < count($input['title']); $i++) {
-            //     if (isset($input['title'][$i])) {
-            //         $inp['order'] = $i + 1;
-            //         $inp['user_id'] =  $input['user_id'];
-            //         $inp['title'] =  $input['title'][$i];
-            //         $inp['description'] =  $input['description'][$i];
-            //         userAchievement::create($inp);
-            //     }
-            // }
+
             UserProject::where(['user_id' => $input['user_id']])->delete();
             for ($i = 0; $i < count($input['project_name']); $i++) {
                 if (isset($input['project_name'][$i])) {
@@ -285,9 +278,9 @@ class UserController extends Controller
             // dd( $input); 
             $validator = Validator::make($request->all(), [
                 'first_name' => 'required',
-                'email' => 'required|email|unique:users,email,' . $input['id'] . ',id',
+                'email' =>	'required|email|max:255|ends_with:virtualemployee.com,teckvalley.com|unique:users,email,' . $input['id'] . ',id',
                 'last_name' => 'required',
-                'employee_id' => 'required|unique:users,employee_id,' . $input['id'] . ',id',
+                'employee_id' => 'required|starts_with:tk,TK|unique:users,employee_id,' . $input['id'] . ',id',
                 'resume_title' => 'required',
                 'mobile' =>  'required||max:11|unique:users,mobile,' . $input['id'] . ',id',
                 'joining_date' => 'required',
@@ -295,14 +288,11 @@ class UserController extends Controller
                 'shift_end' => 'required',
                 'team' => 'required',
                 'about_employee' => 'required',
-                'experience' => 'required',
-                // 'employee_id' => [
-
-                //     Rule::requiredIf('tk'),
-                // ], 
+                'experience' => 'required|numeric',
+                
 
             ]);
-
+           
 
             if ($validator->fails()) {
                 return response()->json([
@@ -312,6 +302,9 @@ class UserController extends Controller
                     'Status_code' => "401"
                 ]);
             }
+
+    
+
             $getTeam = Teams::where('id', '=', $input['team'])->first();
 
             $input['resume_emp_id'] = substr($input['first_name'], 0, 1) . substr($input['last_name'], 0, 1) . '_' . substr($getTeam['name'], 0, 2) . '_' . $input['employee_id'];
