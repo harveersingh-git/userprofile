@@ -301,15 +301,7 @@ class UserController extends Controller
                 ]);
             }
 
-        //  $tk =str_starts_with($input['employee_id'],'TK');
-        //  if(!$tk){
-        //     return response()->json([
-        //         'status' =>false, 
-        //         'message' => "Please check the employee id. It should be start with the TK ",
-        //         'Data' => '',
-        //         'Status_code' => "401"
-        //     ]);
-        //  }
+    
 
             $getTeam = Teams::where('id', '=', $input['team'])->first();
 

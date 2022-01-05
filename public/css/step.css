@@ -361,5 +361,8 @@ a.remove_button{
     right: 30px;
     top: 35px;
 }
+div#ui-datepicker-div{
+    z-index: 9999 !important;
 
+}
  
