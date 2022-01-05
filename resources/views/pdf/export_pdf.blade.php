@@ -27,7 +27,7 @@
         #page_1 #id1_1 {
             float: left;
             border: none;
-            margin: 375px 0px 0px 47px;
+            margin: 385px 0px 0px 44px;
             padding: 0px;
             border: none;
             width: 348px;
@@ -736,6 +736,7 @@
 .skill_box{
             display:flex;
             color:#fff;
+            width: 90%;
         }
         /* .skills_list{
             width:50%;
@@ -787,7 +788,7 @@
                          </ul>
                     </div>
 
-                    <div class="skills_list" style="width:50%; float:right;">
+                    <div class="skills_list" style="width:50%; float:right; padding-right: 20px;">
                         <ul>
                         @forelse($data['secondry_skills'] as $second)
                             <li>{{$second['skills_details']['value']}}</li>
@@ -831,7 +832,7 @@
 
         </div>
         <div class="col" style="width: 52%; float:right">
-            <P class="ft4" style="width:300px; height: 51px; float:left; margin:0; padding: 0; margin-top:-8px;margin-left:18px;"><img style="width:90%" src="{{ public_path('pdf/logo.jpg') }}"></P>
+            <P class="ft4" style="width:300px; height: 51px; float:left; margin:0;padding-top:5px; margin-top:-8px;margin-left:18px;"><img style="width:90%" src="{{ public_path('pdf/logo.jpg') }}"></P>
             <P class="p14 ft5">CMMI L3 SCV</P>
             <P class="p14 ft5">ISO 27001:2013</P>
             <P class="p14 ft5">ISO 9001:2015</P>
@@ -909,8 +910,12 @@
 
 
         <DIV class="dclr"></DIV>
-
-
+     <div style="float:right;width:54%">
+        <P class="ft4" style="width:300px; height: 51px; float:left; margin:0; padding-top:5px; margin-top:-8px;margin-left:18px;"><img style="width:90%" src="{{ public_path('pdf/logo.jpg') }}"></P>
+            <P class="p14 ft5" style="white-space: nowrap;">CMMI L3 SCV</P>
+            <P class="p14 ft5" style="white-space: nowrap;">ISO 27001:2013</P>
+            <P class="p14 ft5" style="white-space: nowrap;">ISO 9001:2015</P>
+    </div>
         <P class="p37 ft8">ABOUT PROJECTS</P>
         @forelse ($data['project'] as $show)
         <P class="p38 ft9">{{$show['project_name']}}</P>

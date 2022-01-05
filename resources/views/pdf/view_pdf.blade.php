@@ -826,10 +826,10 @@
 
 
             <DIV class="dclr"></DIV>
-            <p class="ft4 p34" style="width:371px;height:51px;float:left; padding-left: 390px; margin-top:25px;"><img src="{{asset('pdf/logo.jpg')}}"></p>
-            <P class="p34 ft5">CMMI L3 SCV</P>
-            <P class="p36 ft5" style="margin-top:0px;">ISO 27001:2013</P>
-            <P class="p36 ft5" style="margin-top:0px;">ISO 9001:2015</P>
+            <p class="ft4 p34" style="width:371px;height:51px;float:left; padding-left: 360px; margin-top:25px;  padding-right: 6px;"><img src="{{asset('pdf/logo.jpg')}}"></p>
+            <P class="p33 ft5" style="white-space: nowrap;margin-top: 33px;">CMMI L3 SCV</P>
+            <P class="p33 ft5" style="margin-top:0px;white-space: nowrap;">ISO 27001:2013</P>
+            <P class="p33 ft5" style="margin-top:0px;white-space: nowrap;">ISO 9001:2015</P>
 
             <P class="ft8">ABOUT PROJECTS</P>
             @forelse ($data['project'] as $show)

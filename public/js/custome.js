@@ -298,7 +298,7 @@ $(document).ready(function() {
             expFieldHTML += '</div><div class="col-lg-3"><label>Designation<span style="color: red;">*</span></label><input type="text" class="form-control" placeholder="Team leader" name="designation[]" value="" required="" autocomplete="on|off">';
             expFieldHTML += '</div><div class="col-lg-2 datepicker-wrap"><label>From<span style="color: red;">*</span></label><input type="text" class="form-control exp_from" placeholder="2021-01" name="exp_from[]" value="" required="" autocomplete="on|off" id="dp1639739620183">';
             expFieldHTML += '</div><div class="col-lg-2 datepicker-wrap"><label>To<span style="color: red;">*</span></label><input type="text" class="form-control exp_to" placeholder="2021-01" name="exp_to[]" value=""  autocomplete="on|off" id="dp1639739620184">';
-            expFieldHTML += '</div><div class="col-lg-2"><label>Present</label><input type="hidden" name="present_checked[]" value="" class="present_checked">            <input type="checkbox"  name="present[]" class="present " id="present"></div></div>';
+            expFieldHTML += '</div><div class="col-lg-2"><label>Present</label><input type="hidden" name="present_checked[]" value="" class="present_checked"> <span class="chec_box"> <input type="checkbox"  name="present[]" class="present " id="present"></span></div></div>';
             expFieldHTML += '<div class="row">';
             expFieldHTML += '<div class="col-lg-12">';
             expFieldHTML += '<div class="form-group">';

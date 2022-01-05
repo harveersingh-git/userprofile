@@ -722,8 +722,6 @@ Toast::message('message', 'level', 'title');
                                                             </div>
                                                         </div>
 
-<div class="my_separator"></div>
-
                                                         @if(isset($data->achievement) && count($data->achievement)>0)
                                                         @foreach($data->achievement as $key=>$value)
                                                         <div class="row for_position">
@@ -750,7 +748,7 @@ Toast::message('message', 'level', 'title');
                                                    
 
                                     </div>
-                                        <input type="submit" name="achivment_submit" class="action-button pull-right btn-primary" value="Next Step" id="achivment_submit" />
+                                        <input type="submit" name="achivment_submit" class="btn action-button pull-right btn-primary" value="Next Step" id="achivment_submit" />
 
                                         </form>
                                         <input type="button" name="previous" class="previous action-button-previous btn btn-warning pull-left " value="Previous" id="achievement_prev" />
