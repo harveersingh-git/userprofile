@@ -278,7 +278,7 @@ class UserController extends Controller
                 'first_name' => 'required',
                 'email' =>	'required|email|max:255|ends_with:virtualemployee.com,teckvalley.com|unique:users,email,' . $input['id'] . ',id',
                 'last_name' => 'required',
-                'employee_id' => 'required|unique:users,employee_id,' . $input['id'] . ',id',
+                'employee_id' => 'required|starts_with:tk,TK|unique:users,employee_id,' . $input['id'] . ',id',
                 'resume_title' => 'required',
                 'mobile' =>  'required||max:11|unique:users,mobile,' . $input['id'] . ',id',
                 'joining_date' => 'required',
@@ -301,15 +301,15 @@ class UserController extends Controller
                 ]);
             }
 
-         $tk =str_starts_with($input['employee_id'],'TK');
-         if(!$tk){
-            return response()->json([
-                'status' =>false, 
-                'message' => "Please check the employee id. It should be start with the TK ",
-                'Data' => '',
-                'Status_code' => "401"
-            ]);
-         }
+        //  $tk =str_starts_with($input['employee_id'],'TK');
+        //  if(!$tk){
+        //     return response()->json([
+        //         'status' =>false, 
+        //         'message' => "Please check the employee id. It should be start with the TK ",
+        //         'Data' => '',
+        //         'Status_code' => "401"
+        //     ]);
+        //  }
 
             $getTeam = Teams::where('id', '=', $input['team'])->first();
 
