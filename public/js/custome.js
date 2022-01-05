@@ -269,7 +269,7 @@ $(document).ready(function() {
           
             // certificationFieldHTML += '</div>';
             certificationFieldHTML += '</div>';
-            certificationFieldHTML += '<div class="row"><div class="col-lg-12"><div class="form-group">';
+            certificationFieldHTML += '<div class="row"><div class="col-lg-12 mt-15"><div class="form-group">';
             certificationFieldHTML += '<label><i class="fa fa-arrows" aria-hidden="true"></i>Certification<span style="color: red;">*</span></label>';
             certificationFieldHTML += '<textarea class="form-control" rows="3" name="certification[]" id="certification'+x+'"></textarea>';
             certificationFieldHTML += '</div></div></div> <a href="javascript:void(0);" class="certification_remove_button btn btn-danger"><i class="fa fa-minus" aria-hidden="true"></i>Remove</a></div>';

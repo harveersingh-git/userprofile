@@ -612,7 +612,7 @@ Toast::message('message', 'level', 'title');
                                                         </div>
                                                         
                                                         <div class="row">
-                                                            <div class="col-lg-12">
+                                                            <div class="col-lg-12 mt-15">
                                                                 <div class="form-group">
                                                                     <label>
                                                                         Certification @if(isset($data->id))
@@ -655,7 +655,7 @@ Toast::message('message', 'level', 'title');
 
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-12">
+                                                            <div class="col-lg-12 mt-15">
                                                                 <div class="form-group">
                                                                     <label>
                                                                         Certification <span style="color: red;">*</span> </label>
