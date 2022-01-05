@@ -92,7 +92,7 @@ $(document).ready(function() {
             var PortfolioFieldHTML = '<div class="row"> <div class="col-lg-12"><div class="form-group">';
             PortfolioFieldHTML += '<label>';
             PortfolioFieldHTML += 'Portfolio </label>';
-            PortfolioFieldHTML += '<input type="text" name="portfolio[]" class="form-control" placeholder="https://test.com">';
+            PortfolioFieldHTML += '<input type="text" name="portfolio[]" class="form-control" placeholder="https://test.com" autocomplete="off">';
             PortfolioFieldHTML += '<span class="portfolio_add_remove"><i class="fa fa-minus remove_more_portfolio" id="" style="color:red;margin-top: 7px; margin-right: -36px;  cursor: pointer;"></i></span>';
 
 

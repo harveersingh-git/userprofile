@@ -705,7 +705,7 @@ Toast::message('message', 'level', 'title');
                                                                     <span style="color: red;">*</span>
 
                                                                     @endif </label>
-                                                                <input type="text" class="form-control" placeholder="EX:abc" name="title[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="on|off" />
+                                                                <input type="text" class="form-control" placeholder="EX:abc" name="title[]" value="" {{ isset($data->id)  ? '' : 'required=""'}} autocomplete="off" />
 
                                                             </div>
                                                             <div class="col-lg-12">
