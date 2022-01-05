@@ -27,7 +27,7 @@ Toast::message('message', 'level', 'title');
                     <div class="panel-heading mypnl_heading">
                         <span>Users</span>
                         <div class="col-sm-3 pull-right my_usearch">
-                            <form action="{{url('users')}}" method="GET" role="search">
+                            <form action="{{url('users')}}" method="GET" role="search" autocomplete="off">
 
                                 <div class="input-group">
                                     <input type="text" value="{{ Request::get('search') }}" class="form-control" name="search" placeholder="Search users"> <span class="input-group-btn">
