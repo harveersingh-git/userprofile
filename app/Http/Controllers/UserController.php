@@ -276,7 +276,7 @@ class UserController extends Controller
             // dd( $input); 
             $validator = Validator::make($request->all(), [
                 'first_name' => 'required',
-                'email' => 'required|email|unique:users,email,' . $input['id'] . ',id',
+                'email' =>	'required|email|max:255|ends_with:virtualemployee.com,teckvalley.com|unique:users,email,' . $input['id'] . ',id',
                 'last_name' => 'required',
                 'employee_id' => 'required|unique:users,employee_id,' . $input['id'] . ',id',
                 'resume_title' => 'required',
