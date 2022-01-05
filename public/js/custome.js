@@ -419,7 +419,9 @@ $(document).ready(function() {
 
 
     $(document).ready(function() {
-        $('.present').click(function() {
+        $(document).on("click",".present",function() {
+         
+        // $('.present').click(function() {
             var current = $(this);
             if ($(this).is(
                 ":checked")) {
