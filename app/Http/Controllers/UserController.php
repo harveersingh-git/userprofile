@@ -240,16 +240,7 @@ class UserController extends Controller
             $input = $request->all();
 
 
-            // userAchievement::where(['user_id' => $input['user_id']])->delete();
-            // for ($i = 0; $i < count($input['title']); $i++) {
-            //     if (isset($input['title'][$i])) {
-            //         $inp['order'] = $i + 1;
-            //         $inp['user_id'] =  $input['user_id'];
-            //         $inp['title'] =  $input['title'][$i];
-            //         $inp['description'] =  $input['description'][$i];
-            //         userAchievement::create($inp);
-            //     }
-            // }
+
             UserProject::where(['user_id' => $input['user_id']])->delete();
             for ($i = 0; $i < count($input['project_name']); $i++) {
                 if (isset($input['project_name'][$i])) {
@@ -296,13 +287,10 @@ class UserController extends Controller
                 'team' => 'required',
                 'about_employee' => 'required',
                 'experience' => 'required',
-                // 'employee_id' => [
-
-                //     Rule::requiredIf('tk'),
-                // ], 
+                
 
             ]);
-
+           
 
             if ($validator->fails()) {
                 return response()->json([
@@ -312,6 +300,17 @@ class UserController extends Controller
                     'Status_code' => "401"
                 ]);
             }
+
+         $tk =str_starts_with($input['employee_id'],'TK');
+         if(!$tk){
+            return response()->json([
+                'status' =>false, 
+                'message' => "Please check the employee id. It should be start with the TK ",
+                'Data' => '',
+                'Status_code' => "401"
+            ]);
+         }
+
             $getTeam = Teams::where('id', '=', $input['team'])->first();
 
             $input['resume_emp_id'] = substr($input['first_name'], 0, 1) . substr($input['last_name'], 0, 1) . '_' . substr($getTeam['name'], 0, 2) . '_' . $input['employee_id'];
