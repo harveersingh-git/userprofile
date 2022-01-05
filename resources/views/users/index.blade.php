@@ -94,7 +94,7 @@ Toast::message('message', 'level', 'title');
                                     <a class="btn btn-warning myac_btn" href="{{url('/information')}}/{{$value->id}}"><i class="fa fa-edit"></i> </a>
 
                                     <a class="delete btn btn-danger myac_btn" id="{{$value->id}}"> <i class="fa fa-trash"></i></a>
-                                    <a class=" btn btn-info myac_btn" href="{{url('/resume')}}/{{$value->id}}"><i class="fa fa-cloud-download" aria-hidden="true"></i> </a>
+                                    <a class=" btn btn-primary myac_btn" href="{{url('/resume')}}/{{$value->id}}"><i class="fa fa-cloud-download" aria-hidden="true"></i> </a>
                                     <a class="btn btn-info myac_btn" href="{{url('/view-resume')}}/{{$value->id}}"><i class="fa fa-eye" aria-hidden="true"></i> </a>
 
                                 </td>
