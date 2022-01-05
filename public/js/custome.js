@@ -137,9 +137,9 @@ $(document).ready(function() {
                 {name: 'editing', items: ['Format', 'Font', 'FontSize', 'TextColor', 'BGColor' , 'Bold', 'Italic','NumberedList','BulletedList'] }
             ]});
 
-    }, 2000);
+    }, 1000);
 
-
+    $('#project_description'+x).focus();
     });
      //Once add button is clicked
      $(achAddButton).click(function() {
@@ -161,9 +161,12 @@ $(document).ready(function() {
                 {name: 'editing', items: ['Format', 'Font', 'FontSize', 'TextColor', 'BGColor' , 'Bold', 'Italic','NumberedList','BulletedList'] }
             ]});
 
-    }, 2000);
+    }, 1000);
 
     });
+    setTimeout(function(){
+        $('#description'+x).focus();
+    }, 2000);
 
     //Once add button is clicked
     $(addButton).click(function() {
@@ -277,10 +280,12 @@ $(document).ready(function() {
                     {name: 'editing', items: ['Format', 'Font', 'FontSize', 'TextColor', 'BGColor' , 'Bold', 'Italic','NumberedList','BulletedList'] }
                 ]});
     
-        }, 2000);
+        }, 1000);
         }
-    }, 2000);
-      
+    }, 1000);
+    setTimeout(function(){
+    $('#certification'+x).focus();
+}, 2000);
     });
 
     
@@ -295,7 +300,7 @@ $(document).ready(function() {
             x++; //Increment field counter
             var expFieldHTML = '<div><div class="my_separator"></div><div class="row"><div class="col-lg-3"><label><i class="fa fa-arrows" aria-hidden="true"></i>Companay Name<span style="color: red;">*</span></label>';
             expFieldHTML += '<input type="text" class="form-control" placeholder="XYZ" name="company_name[]" value="" required="" autocomplete="on|off">';
-            expFieldHTML += '</div><div class="col-lg-3"><label>Designation<span style="color: red;">*</span></label><input type="text" class="form-control" placeholder="Team leader" name="designation[]" value="" required="" autocomplete="on|off">';
+            expFieldHTML += '</div><div class="col-lg-3"><label>Designation<span style="color: red;">*</span></label><input type="text" class="form-control" placeholder="Team leader" name="designation[]" value="" required="" autocomplete="off" id="input_role_ress'+x+'">';
             expFieldHTML += '</div><div class="col-lg-2 datepicker-wrap"><label>From<span style="color: red;">*</span></label><input type="text" class="form-control exp_from" placeholder="2021-01" name="exp_from[]" value="" required="" autocomplete="on|off" id="dp1639739620183">';
             expFieldHTML += '</div><div class="col-lg-2 datepicker-wrap"><label>To<span style="color: red;">*</span></label><input type="text" class="form-control exp_to" placeholder="2021-01" name="exp_to[]" value=""  autocomplete="on|off" id="dp1639739620184">';
             expFieldHTML += '</div><div class="col-lg-2"><label>Present</label><input type="hidden" name="present_checked[]" value="" class="present_checked"> <span class="chec_box"> <input type="checkbox"  name="present[]" class="present " id="present"></span></div></div>';
@@ -331,6 +336,7 @@ $(document).ready(function() {
                     $(this).datepicker('setDate', new Date(year,month, 1));
                 }
             });
+
         }
  
         setTimeout(function(){
@@ -339,10 +345,10 @@ $(document).ready(function() {
                      items: ['Format', 'Font', 'FontSize', 'TextColor', 'BGColor' , 'Bold', 'Italic','NumberedList','BulletedList'] }
                 ]});
    
-        }, 2000);
+        }, 1000);
        
-
-
+        $('#role_ress'+x).focus();
+        // setTimeout($('document').find(, 1000);
     });
 
     //Once remove button is clicked
