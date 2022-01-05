@@ -286,7 +286,7 @@ class UserController extends Controller
                 'shift_end' => 'required',
                 'team' => 'required',
                 'about_employee' => 'required',
-                'experience' => 'required',
+                'experience' => 'required|numeric',
                 
 
             ]);
