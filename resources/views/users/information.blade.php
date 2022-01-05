@@ -972,7 +972,7 @@ Toast::message('message', 'level', 'title');
                 processData: false,
                 data: new FormData(this),
                 success: function(data) {
-                    if (data.status = "success") {
+                    if (data.status ==true) {
                         toastr.success("Record insert successfully");
                         $('#skills_submit').hide();
                         $('#skills_button').show();

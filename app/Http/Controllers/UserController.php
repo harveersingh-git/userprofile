@@ -83,22 +83,24 @@ class UserController extends Controller
     {
         if ($request->isMethod('post')) {
             $input = $request->all();
-            // dd($input );
-            // UserSkills::where(['user_id' => $input['user_id']])->delete();
-            // for ($i = 0; $i < count($input['skill_value_id']); $i++) {
 
-            //     $inpu['order'] =  $i + 1;
-            //     $inpu['user_id'] =  $input['user_id'];
-            //     $inpu['skill_value_id'] =  $input['skill_value_id'][$i];
-            //     $skills = UserSkills::create($inpu);
+            // $validator = Validator::make($request->all(), [
+            //     'edu_type.*' => 'required',
+            //     'edu_title.*' => 'required',
+            //     // 'edu_from.*' => 'required|date',
+            //     // 'edu_to.*' => 'required|date|after_or_equal:edu_from',
+ 
+            // ]);
+
+            // if ($validator->fails()) {
+            //     return response()->json([
+            //         'status' =>
+            //         false, 'message' => $validator->errors()->first(),
+            //         'Data' => '',
+            //         'Status_code' => "401"
+            //     ]);
             // }
-            // LearningSkills::where(['user_id' => $input['user_id']])->delete();
-            // for ($i = 0; $i < count($input['learning_skills']); $i++) {
-            //     $inpu['order'] =  $i + 1;
-            //     $inpu['user_id'] =  $input['user_id'];
-            //     $inpu['learning_skill_value_id'] =  $input['learning_skills'][$i];
-            //     $learningSkills = LearningSkills::create($inpu);
-            // }
+        
             UserEducation::where(['user_id' => $input['user_id']])->delete();
             for ($i = 0; $i < count($input['edu_type']); $i++) {
                 if (isset($input['edu_type'][$i])) {
@@ -131,7 +133,7 @@ class UserController extends Controller
 
 
             return response()->json([
-                'status' => 'success',
+                'status' => true,
                 'last_insert_id' => $skills
             ]);
         }
