@@ -117,7 +117,7 @@ Toast::message('message', 'level', 'title');
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <label>Total EXP(in year)<span style="color: red;">*</span></label>
-                                                        <input type="number" class="form-control" placeholder="EX:3.5" name="experience" value="{{isset($data->experience)?$data->experience:'' }}" required="" autocomplete="off" />
+                                                        <input type="text" class="form-control" placeholder="EX:3.5" name="experience" value="{{isset($data->experience)?$data->experience:'' }}" required="" autocomplete="off" />
 
                                                     </div>
                                                 </div>
