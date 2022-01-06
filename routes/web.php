@@ -70,6 +70,21 @@ Route::post('/remove_project', [App\Http\Controllers\UserController::class, 'rem
 Route::post('/remove_portfolio', [App\Http\Controllers\UserController::class, 'removePortfolio']);
 
 
+Route::any('/client-status', [App\Http\Controllers\ClientStatusController::class, 'index'])->name('client-status');
+Route::any('/add-client-status', [App\Http\Controllers\ClientStatusController::class, 'create'])->name('add-client-status');
+Route::any('/client-status/edit/{id}', [App\Http\Controllers\ClientStatusController::class,'view']);
+Route::post('/update-client-status', [App\Http\Controllers\ClientStatusController::class, 'update']);
+Route::post('/delete_client_status', [App\Http\Controllers\ClientStatusController::class, 'destroy']);
+
+Route::any('/work-type', [App\Http\Controllers\WorkTypeController::class, 'index'])->name('work-type');
+Route::any('/add-work-type', [App\Http\Controllers\WorkTypeController::class, 'create'])->name('add-work-type');
+Route::any('/work-type/edit/{id}', [App\Http\Controllers\WorkTypeController::class,'view']);
+Route::post('/update-work-type', [App\Http\Controllers\WorkTypeController::class, 'update']);
+Route::post('/delete_work_type', [App\Http\Controllers\WorkTypeController::class, 'destroy']);
+
+
+
+
 
 
 

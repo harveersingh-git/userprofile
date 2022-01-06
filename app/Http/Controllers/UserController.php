@@ -13,6 +13,8 @@ use App\Models\Certification;
 use App\Models\LearningSkills;
 use App\Models\userAchievement;
 use App\Models\UserPortfolio;
+use App\Models\ClientStatus;
+use App\Models\WorkType;
 
 use App\Models\UserProject;
 use App\Models\Teams;
@@ -389,6 +391,8 @@ class UserController extends Controller
         $certificate = SkillsEducation::where('category', '=', 'certificate')->get();
         $course = SkillsEducation::where('category', '=', 'course')->get();
         $team = Teams::get();
+        $client_status = ClientStatus::get();
+        $work_type = WorkType::get();
 
         $selectedPrimarySkills = [];
         $selectedSecondrySkills = [];
@@ -414,10 +418,10 @@ class UserController extends Controller
 
             $selectedEducationType = $selectedEducationType->toArray();
 
-            return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills', 'selectedEducationType', 'course', 'team'));
+            return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills', 'selectedEducationType', 'course', 'team','client_status','work_type'));
         }
 
-        return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'course', 'team', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills'));
+        return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'course', 'team', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills','client_status','work_type'));
     }
 
 

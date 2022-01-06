@@ -32,4 +32,21 @@ class SkillsEducation extends Model
 
     }
 
+    public function primary_skills_user(){
+        return $this->hasMany(UserSkills::class, 'skill_value_id', 'id')->where('type', 1);
+
+    }
+    public function secondary_skills_user(){
+        return $this->hasMany(UserSkills::class, 'skill_value_id','id')->where('type', 2);
+
+    }
+    public function learning_skills_user(){
+        return $this->hasMany(UserSkills::class, 'skill_value_id', 'id')->where('type', 3);
+
+    }
+
+
+
+
+
 }

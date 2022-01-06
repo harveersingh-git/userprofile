@@ -44,7 +44,9 @@ class User extends Authenticatable
         'team',
         'about_employee',
         'experience',
-        'resume_emp_id'
+        'resume_emp_id',
+        'work_type',
+        'client_status'
     ];
 
     /**

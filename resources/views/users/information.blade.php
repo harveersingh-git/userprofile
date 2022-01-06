@@ -121,6 +121,44 @@ Toast::message('message', 'level', 'title');
 
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <label>Client Status<span style="color: red;">*</span></label>
+                                                        <select class="form-control" name="client_status" {{ isset($data->id)  ? '' : 'required=""'}}>
+
+                                                            @forelse($client_status as $key=>$clientstatus)
+                                                            @if(isset($data['client_status'] ) && $clientstatus['id']== $data['client_status'])
+                                                            <option value="{{$clientstatus['id']}}" selected>{{$clientstatus['title']}} </option>
+
+                                                            @else
+                                                            <option value="{{$clientstatus['id']}}">{{$clientstatus['title']}}</option>
+
+                                                            @endif
+                                                            @empty
+                                                            <p>Team not found</p>
+                                                            @endforelse
+                                                        </select>
+
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <label>Work Type<span style="color: red;">*</span></label>
+                                                        <select class="form-control" name="work_type" {{ isset($data->id)  ? '' : 'required=""'}}>
+
+                                                            @forelse($work_type as $key=>$worktype)
+                                                            @if(isset($data['work_type'] ) && $worktype['id']== $data['work_type'])
+                                                            <option value="{{$worktype['id']}}" selected>{{$worktype['title']}} </option>
+
+                                                            @else
+                                                            <option value="{{$worktype['id']}}">{{$worktype['title']}}</option>
+
+                                                            @endif
+                                                            @empty
+                                                            <p>Team not found</p>
+                                                            @endforelse
+                                                        </select>
+
+                                                    </div>
+                                                </div>
                                                 <div class="form-group">
                                                     <label>About Employee<span style="color: red;">*</span></label>
                                                     <textarea class="form-control" rows="3" name="about_employee">{{isset($data->about_employee)?$data->about_employee:'' }}</textarea>

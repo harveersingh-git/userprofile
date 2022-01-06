@@ -23,7 +23,8 @@
     <link href="{{asset('css/startmin.css')}}" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="{{asset('css/morris.css')}}" rel="stylesheet">
+    
+    <link href="{{asset('css/bootstrap-colorpicker.min.css')}}" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
@@ -64,11 +65,7 @@
     <!-- Metis Menu Plugin JavaScript -->
     <script src="{{asset('js/metisMenu.min.js')}}"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="{{asset('js/raphael.min.js')}}"></script>
-    <script src="{{asset('js/morris.min.js')}}"></script>
-    <script src="{{asset('js/morris-data.js')}}"></script>
-
+  
     <!-- Custom Theme JavaScript -->
     <script src="{{asset('js/startmin.js')}}"></script>
  
@@ -83,7 +80,8 @@
 
     <!-- <script src="{{asset('js/ckediter.js')}}"></script> -->
     <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
-
+    <script src="{{asset('js/bootstrap-colorpicker.min.js')}}"></script>
+    <script src="{{asset('js/colorpicker.js')}}"></script>
 
 
 
@@ -126,7 +124,14 @@
   		toastr.warning("{{ session('warning') }}");
   @endif
   var base_url = {!! json_encode(url('/')) !!}
-//   alert(base_url);
+
+
+//   $(function() {
+  
+//   setTimeout(function(){  $('#side-menu').metisMenu(); }, 1000);
+ 
+
+// });
 </script>
     @yield('script')
 </body>
