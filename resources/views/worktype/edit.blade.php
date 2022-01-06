@@ -8,7 +8,7 @@ Add Skills Education
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Edit Team</h1>
+                <h1 class="page-header">Edit Work Type</h1>
             </div>
 
 
