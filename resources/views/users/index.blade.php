@@ -71,11 +71,11 @@ Toast::message('message', 'level', 'title');
             @forelse($technologyes as $key=>$technology)
       
               
-               @if(!empty($search_skills) && in_array($technology['value'],$search_skills))
+               <!-- @if(!empty($search_skills) && in_array($technology['value'],$search_skills))
                <option value="{{$technology['value']}}" selected>{{$technology['value']}}</option>
-               @else
+               @else -->
                <option value="{{$technology['value']}}" >{{$technology['value']}}</option>
-               @endif
+               <!-- @endif -->
                @empty
                <option value="">No data found</option>
             @endforelse
