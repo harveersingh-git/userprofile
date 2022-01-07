@@ -21,12 +21,12 @@ body {
 @media(min-width:768px) {
     #page-wrapper {
         position: inherit;
-        margin-left: 250px;
-        padding: 30px 15px 0 15px;
+        /*margin-left: 250px;
+        padding: 30px 15px 0 15px;*/
         border-left: 1px solid #e7e7e7;
         min-height: 100% !important;
     }
-
+    .input-group-btn .btn{  height:34px !important;}
     h1.page-header {
         font-size: 24px;
         font-weight: bold;

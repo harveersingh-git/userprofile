@@ -15,6 +15,46 @@
     </ul>
 
     <ul class="nav navbar-right navbar-top-links">
+    <li class="sidebar-search">
+                    <!--<div class="input-group custom-search-form">
+                        <input type="text" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>-->
+                    <!-- /input-group -->
+                </li>
+                <li>
+                    <a href="{{route('home')}}" class="{{ Request::segment(1) === 'home' ? 'active' : null }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                </li>
+
+                <li>
+                    <a href="{{route('users')}}" class="{{ Request::segment(1) === 'users' ? 'active' : null }}"><i class="fa fa-users"></i> Users</a>
+                </li>
+
+                <li>
+                    <a href="{{route('team')}}" class="{{ Request::segment(1) === 'team' ? 'active' : null }}"><i class="fa fa-users"></i> Team Mgmt</a>
+                </li>
+               
+                <li class="profile_box dropdown"> <a class= "dropdown-toggle" data-toggle="dropdown" href="#">Master <b class="caret"></b></a>
+
+                    
+                <ul class="dropdown-menu">
+                            <li> <a href="{{route('skills-education')}}" class="{{ Request::segment(1) === 'skills-education' ? 'active' : null }}"><i class="fa fa-book"></i> Skills/education</a></li>
+                            <li> <a href="{{route('client-status')}}" class="{{ Request::segment(1) === 'client-status' ? 'active' : null }}"><i class="fa fa-users"></i> Client Status</a></li>
+                            <li> <a href="{{route('work-type')}}" class="{{ Request::segment(1) === 'work-type' ? 'active' : null }}"><i class="fa fa-cogs"></i> Work Type</a>
+                            </li>
+
+
+
+                        </ul>
+                   
+                </li>
+
+           <li><li>     
+
         <li class="dropdown navbar-inverse">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-bell fa-fw"></i> <b class="caret"></b>
@@ -97,10 +137,27 @@
                 </li>
             </ul>
         </li>
+    
+    
+    <li>
+
+    <form class="navbar-form" role="search">
+            <div class="input-group">
+               <input type="text" class="form-control" placeholder="Search">
+               <div class="input-group-btn">
+                  <button type="submit" class="btn btn-default custom_search_height"><span class="glyphicon glyphicon-search"></span></button>
+               </div>
+            </div>
+         </form>
+
+    </li>
+    
+    
+    
     </ul>
     <!-- /.navbar-top-links -->
 
-    <div class="navbar-default sidebar" role="navigation">
+    <!--<div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li class="sidebar-search">
@@ -112,19 +169,9 @@
                             </button>
                         </span>
                     </div>
-                    <!-- /input-group -->
+                    <!-- /input-group
                 </li>
-                <li>
-                    <a href="{{route('home')}}" class="{{ Request::segment(1) === 'home' ? 'active' : null }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                </li>
-
-                <li>
-                    <a href="{{route('users')}}" class="{{ Request::segment(1) === 'users' ? 'active' : null }}"><i class="fa fa-users"></i> Users</a>
-                </li>
-
-                <li>
-                    <a href="{{route('team')}}" class="{{ Request::segment(1) === 'team' ? 'active' : null }}"><i class="fa fa-users"></i> Team Mgmt</a>
-                </li>
+               
                
                 <li class="profile_box dropdown"> <a href="#"><i class="fa fa-ellipsis-h"></i> Master</a>
 
@@ -141,16 +188,18 @@
                     </div>
                 </li>
 
-                <!-- <div class="profile_box dropdown">
-                                <span>Nitin</span> 
-                                <img src="https://secure.gravatar.com/avatar/02394870812f591b604565cb174154d1?s=96&d=mm&r=g" class="" alt=""> 
-                                <div class="dropdown-content"><a href="https://www.imogsuedtirol.com/user-profile" class="fas fa-user"></i>Profil</a><a href="https://www.imogsuedtirol.com/change-password/" class="fas fa-unlock-alt"></i>Passwort ändern</a><a href="/liked-hotel-list/?nocache=1"><i class="far fa-thumbs-up"></i>Favoriten</a><a href="https://www.imogsuedtirol.com/order-list" class="far fa-list-alt"></i>Meine Buchungen</a><a href="https://www.imogsuedtirol.com/wp-content/themes/oceanwp-child/custom-logout.php"> class="fas fa-sign-out-alt"></i>Ausloggen</a></div></div>
-                            -->
+               
 
 
 
 
             </ul>
         </div>
-    </div>
-</nav>
+    </div>-->
+</nav> 
+
+<style>
+
+
+
+</style>
