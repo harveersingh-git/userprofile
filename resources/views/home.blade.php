@@ -12,9 +12,9 @@
         </div>
         <!-- /.row -->
         <div class="row">
-        @forelse( $data['client_status'] as $key=>$clientstatus)
+            @forelse( $data['client_status'] as $key=>$clientstatus)
             <div class="col-lg-3 col-md-6">
-                <div class="panel "  style="background-color: {{$clientstatus['background_color']}};">
+                <div class="panel " style="background-color: {{$clientstatus['background_color']}};">
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-3">
@@ -26,9 +26,9 @@
                             </div>
                         </div>
                     </div>
-                    <a  href="{{url('/users?client_status=')}}{{$clientstatus->id}}">
-                        <div class="panel-footer" >
-                            <span class="pull-left"  style="color: {{$clientstatus['background_color']}};">View Details</span>
+                    <a href="{{url('/users?client_status=')}}{{$clientstatus->id}}">
+                        <div class="panel-footer">
+                            <span class="pull-left" style="color: {{$clientstatus['background_color']}};">View Details</span>
                             <span class="pull-right" style="color: {{$clientstatus['background_color']}};"><i class="fa fa-arrow-circle-right"></i></span>
 
                             <div class="clearfix"></div>
@@ -47,45 +47,37 @@
                     <div class="panel-heading " style="background-color: #f5f5f5 important;     font-weight: bold;">
                         <span>Experience<span>
                     </div>
-              
-                   
+
+
                     <table class="table table-bordered table-responsive">
-                        <tr>
-                            <td>
-                                <table class="table table-bordered table-responsive">
-                                    <tr>
-                                        <th>Experience</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Number Of User</th>
-                                    </tr>
-                                    
-                                </table>
-                            </td>
-                            @forelse($data['exprince'] as $key=>$val)
-                            <td>
-                                <table class="table table-bordered table-responsive">
-                                    <tr>
-                                        <td>{{$val['experience']}}Year's</td>
-                                    </tr>
-                                    <tr>
-                                        <td>{{$val['total']}}</td>
-                                    </tr>
-                                   
-                                </table>
-                            </td>
-                            @empty
-                                <p></p>
 
-                                @endforelse
-                            
-                        </tr>
+                        <thead>
+                            <tr>
+                            <th scope="row">EXP</th>
+                                <th scope="col">0-3 Years</th>
+                                <th scope="col">3-5 Years</th>
+                                <th scope="col">5-10 Years</th>
+                                <th scope="col">10+ Years</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Nomber of Users</th>
+                                <td>{{ $data['zeo_three']}}</td>
+                                <td>{{ $data['three_five']}}</td>
+                                <td>{{$data['five_ten']}}</td>
+                                <td>{{ $data['ten_fifty']}}</td>
+                            </tr>
+                            <tr>
+                          
+                        </tbody>
                     </table>
+                   
 
 
-                 
 
-               
+
+
                 </div>
                 <!-- /.panel -->
             </div>
@@ -114,10 +106,10 @@
                             @forelse($data['technology'] as $key => $technology)
                             <tr>
                                 <td class="text-center">{{ $key+1 }}</td>
-                                <td class="">{{ $technology->value }}</td>
-                                <td class="text-center"><a href="{{url('/users?search=')}}{{$technology->value}}&tech={{$technology->id}}&type=1">{{ $technology->primary_skills_user_count }}</a></td>
-                                <td class="text-center"><a href="{{url('/users?search=')}}{{$technology->value}}&tech={{$technology->id}}&type=2">{{ $technology->secondary_skills_user_count }}</a></td>
-                                <td class="text-center"><a href="{{url('/users?search=')}}{{$technology->value}}&tech={{$technology->id}}&type=3">{{ $technology->learning_skills_user_count }}</a></td>
+                                <td class=""><a href="{{url('/users?skills%5B%5D=')}}{{$technology->value}}">{{ $technology->value }}</a></td>
+                                <td class="text-center"><a href="{{url('/users?skills%5B%5D=')}}{{$technology->value}}&type=1">{{ $technology->primary_skills_user_count }}</a></td>
+                                <td class="text-center"><a href="{{url('/users?skills%5B%5D=')}}{{$technology->value}}&type=2">{{ $technology->secondary_skills_user_count }}</a></td>
+                                <td class="text-center"><a href="{{url('/users?skills%5B%5D=')}}{{$technology->value}}&type=3">{{ $technology->learning_skills_user_count }}</a></td>
 
 
 
@@ -140,7 +132,7 @@
             <!-- /.col-lg-12 -->
         </div>
 
-       
+
         <!-- /.row -->
     </div>
     <!-- /.container-fluid -->

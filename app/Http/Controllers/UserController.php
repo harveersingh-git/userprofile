@@ -46,8 +46,10 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        if (isset($request['search'])) {
-            $skill =  SkillsEducation::where('value', 'like', '%' . $request['search'] . '%');
+        // dd($request['skills']);
+        $search_skills = $request['skills'];
+        if (isset($request['skills']) && !empty($request['skills'])) {
+            $skill =  SkillsEducation::whereIn('value',$request['skills']);
             
             $skills =$skill->pluck('id');
         }
@@ -73,29 +75,63 @@ class UserController extends Controller
            
             $query = User::with(['myTeam', 'skills'])->where('id', '!=', 1);
             
-            if (isset($request['client_status'])) {
+            if (isset($request['client_status'])  && $request['client_status']!=null)  {
                
                 $query->where(['client_status'=>$request['client_status']]);
             }
-            if (isset($request['search'])) {
+            if (isset($request['exprince'])  && $request['exprince']!=null) {
+                if($request['exprince']=="0-3"){
+                    $query->where('experience', '>=', 1)->where('experience', '<=', 3);
+                }
+                if($request['exprince']=="3-5"){
+                    $query->where('experience', '>=', 4)->where('experience', '<=', 5);
+                }
+                if($request['exprince']=="5-10"){
+                    $query->where('experience','>=',6)->where('experience','<=',10);
+                }
+                if($request['exprince']=="10-plus"){
+                 
+                    $query->where('experience', '>=', 11)->where('experience', '<=', 30);
+                }
+                
+                
+            }
+            if (isset($request['client_status']) && $request['client_status']!=null) {
+                $query->where('client_status', $request['client_status']);
+            }
+            if (isset($request['work_status']) && $request['work_status']!=null) {
+              
+                $query->where('work_type', $request['work_status']);
+            }
+            if (isset($request['search']) && $request['search']!=null) {
                 $query->where('mobile', 'like', '%' . $request['search'] . '%');
             }
-            if (isset($request['search'])) {
+         
+            if (isset($request['search']) && $request['search']!=null) {
+               
                 $query->orWhere('name', 'like', '%' . $request['search'] . '%');
             }
-            if (isset($request['search'])) {
+            if (isset($request['search']) && $request['search']!=null) {
                 $query->orWhere('last_name', 'like', '%' . $request['search'] . '%');
             }
-            if (isset($request['search'])) {
+            if (isset($request['search']) && $request['search']!=null) {
                 $query->orWhere('employee_id', 'like', '%' . $request['search'] . '%');
             }
+           
+            
+
+            
 
             
         }
 
         $data = $query->orderBy('id', 'DESC')->paginate(10);
+        $client_status =ClientStatus::get();
+        $work_type=WorkType::get();
+        $technologyes = SkillsEducation::where(['category' => 'skill'])->get();
+
         // dd($data->toArray());
-        return view('users.index', compact('data'));
+        return view('users.index', compact('data','client_status','work_type','technologyes','search_skills'));
     }
 
 

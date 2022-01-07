@@ -20,55 +20,72 @@ Toast::message('message', 'level', 'title');
                 </a>
             </div>
             <div class="pull-right">
-            <form class="form-inline" action="">
+            <form action="{{url('users')}}" method="GET" role="search" autocomplete="off" class="form-inline" >
+          
             <div class="form-group">
     
-            <select class="form-control">
-               
-               <option>Client status search</option>
-               <option>Client status active</option>
-               <option>Client status pending</option>
+            <select class="form-control" name="client_status">
+            <option value="">--select client status--</option>
+            @forelse($client_status as $key=>$clientstatus)
+               <option value="{{$clientstatus['id']}}" {{ (Request::get('client_status')) == $clientstatus['id']  ? 'selected' : ''}}>{{$clientstatus['title']}}</option>
+               @empty
+               <option value="">No data found</option>
+            @endforelse
            </select>          
             </div>  
            
             <div class="form-group">
     
-            <select class="form-control">
-               
-                <option>work type</option>
-                
-            </select>        
+            <select class="form-control" name="work_status">
+            <option value="">--select work status--</option>
+            @forelse($work_type as $key=>$worktype)
+            <option value="{{$worktype['id']}}" {{ (Request::get('work_status')) == $worktype['id']  ? 'selected' : ''}}>{{$worktype['title']}}</option>
+
+             
+               @empty
+               <option value="">No data found</option>
+            @endforelse
+           </select>        
         </div>    
   <div class="form-group">
     
-    <input type="email" class="form-control" id="email" placeholder="empid , name , mobile number">
+    <input type="text" class="form-control" name="search" placeholder="empid , name , mobile number" value="{{Request::get('search')}}">
   </div>
   <div class="form-group">
     
-    <select class="form-control">
+    <select class="form-control" name="exprince">
         <option>Range Of experience</option>
-        <option>0 - 3</option>
-        <option>3 - 5</option>
-        <option>5 - 10</option>
-        <option>10+</option>
+        <option value="0-3" {{ (Request::get('exprince')) == '0-3'  ? 'selected' : ''}}>0 - 3</option>
+        <option value="3-5" {{ (Request::get('exprince')) == '3-5'  ? 'selected' : ''}}>3 - 5</option>
+        <option value="5-10" {{ (Request::get('exprince')) == '5-10'  ? 'selected' : ''}}>5 - 10</option>
+        <option value="10-plus" {{ (Request::get('exprince')) == '10-plus'  ? 'selected' : ''}}>10+</option>
         
     </select>        
 </div> 
 
 <div class="form-group">
     
-<select id="multiple-checkboxes" multiple="multiple">
-        <option value="php">PHP</option>
-        <option value="javascript">JavaScript</option>
-        <option value="java">Java</option>
-        <option value="sql">SQL</option>
-        <option value="jquery">Jquery</option>
-        <option value=".net">.Net</option>
-    </select>       
+
+<select id="multiple-checkboxes" multiple="multiple" name="skills[]">
+           
+            @forelse($technologyes as $key=>$technology)
+      
+              
+               @if(isset($search_skills) && in_array($technology['value'],$search_skills))
+               <option value="{{$technology['value']}}" selected>{{$technology['value']}}</option>
+               @else
+               <option value="{{$technology['value']}}" >{{$technology['value']}}</option>
+               @endif
+               @empty
+               <option value="">No data found</option>
+            @endforelse
+           </select>      
 </div> 
   
   
   <button type="submit" class="btn btn-info btn-default">Submit</button>
+
+  <a type="button" href="{{route('users')}}" class="btn btn-danger btn-default">Clear</a>
 </form>
 </div>
 
@@ -81,7 +98,7 @@ Toast::message('message', 'level', 'title');
                 <div class="panel panel-default">
                     <div class="panel-heading mypnl_heading">
                         <span>Users</span>
-                        <div class="col-sm-3 pull-right my_usearch">
+                        <!-- <div class="col-sm-3 pull-right my_usearch">
                             <form action="{{url('users')}}" method="GET" role="search" autocomplete="off">
 
                                 <div class="input-group">
@@ -92,7 +109,7 @@ Toast::message('message', 'level', 'title');
                                     </span>
                                 </div>
                             </form>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- /.panel-heading -->
 
