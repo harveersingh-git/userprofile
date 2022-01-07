@@ -406,5 +406,8 @@ div#ui-datepicker-div{
     padding: 5px 20px;
     }
 
-
+    ul.multiselect-container.dropdown-menu {
+        height: 280px;
+        overflow-y: auto;
+        }
  
