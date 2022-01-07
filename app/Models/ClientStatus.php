@@ -13,4 +13,9 @@ class ClientStatus extends Model
         'background_color',
         'font_color'   
     ];
+
+    public function client_status_count(){
+        return $this->hasMany(User::class, 'client_status', 'id');
+
+    }
 }
