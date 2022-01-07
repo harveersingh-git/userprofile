@@ -12,163 +12,42 @@
         </div>
         <!-- /.row -->
         <div class="row">
+        @forelse( $data['client_status'] as $key=>$clientstatus)
             <div class="col-lg-3 col-md-6">
-                <div class="panel panel-primary">
+                <div class="panel "  style="background-color: {{$clientstatus['background_color']}};">
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-3">
-                                <i class="fa fa-comments fa-5x"></i>
+                                <i class="fa fa-support fa-5x" style="color:#fff"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">{{$data['current_month']}}</div>
-                                <div>Recently Join</div>
+                                <div class="huge" style="color: {{$clientstatus['font_color']}};">{{$clientstatus['client_status_count_count']}}</div>
+                                <div style="color: {{$clientstatus['font_color']}};">{{$clientstatus['title']}}</div>
                             </div>
                         </div>
                     </div>
-                    <a href="#">
-                        <div class="panel-footer">
-                            <span class="pull-left">View Details</span>
-                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <a  href="{{url('/users?client_status=')}}{{$clientstatus->id}}">
+                        <div class="panel-footer" >
+                            <span class="pull-left"  style="color: {{$clientstatus['background_color']}};">View Details</span>
+                            <span class="pull-right" style="color: {{$clientstatus['background_color']}};"><i class="fa fa-arrow-circle-right"></i></span>
 
                             <div class="clearfix"></div>
                         </div>
                     </a>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="panel panel-green">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-tasks fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-
-                                @forelse($data['exprince'] as $key=>$val)
-
-                                <div>{{$val['experience']}}Year - Users {{$val['total']}}</div>
-                                @empty
-                                <p>No users</p>
-
-                                @endforelse
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#">
-                        <div class="panel-footer">
-                            <span class="pull-left">View Details</span>
-                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-
-                            <div class="clearfix"></div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="panel panel-yellow">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-shopping-cart fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge">124</div>
-                                <div>New Orders!</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#">
-                        <div class="panel-footer">
-                            <span class="pull-left">View Details</span>
-                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-
-                            <div class="clearfix"></div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="panel panel-red">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-support fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge">13</div>
-                                <div>Support Tickets!</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#">
-                        <div class="panel-footer">
-                            <span class="pull-left">View Details</span>
-                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-
-                            <div class="clearfix"></div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            @empty
+            <p></p>
+            @endforelse
         </div>
         <!-- /.row -->
-
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading " style="background-color: #f5f5f5 important; ">
-                        <span>Resource Summary<span>
-                    </div>
-                    <!-- /.panel-heading -->
-                    <table class="table table-bordered table-responsive">
-                        <thead>
-                            <tr>
-                                <th class="text-center">Sr. No.</th>
-                                <th class="text-center">Tech</th>
-                                <th class="text-center">Primary</th>
-                                <th class="text-center">Secondary</th>
-                                <th class="text-center">Learming</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            @forelse($data['technology'] as $key => $technology)
-                            <tr>
-                                <td class="text-center">{{ $key+1 }}</td>
-                                <td class="text-center">{{ $technology->value }}</td>
-                                <td class="text-center">{{ $technology->primary_skills_user_count }}</td>
-                                <td class="text-center">{{ $technology->secondary_skills_user_count }}</td>
-                                <td class="text-center">{{ $technology->learning_skills_user_count }}</td>
-
-
-
-                            </tr>
-
-                            @empty
-                            <tr>
-                                <td colspan="10">There are no data.</td>
-                            </tr>
-                            @endforelse
-                        </tbody>
-
-                    </table>
-
-
-                    <!-- /.panel-body -->
-                </div>
-                <!-- /.panel -->
-            </div>
-            <!-- /.col-lg-12 -->
-        </div>
-
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading " style="background-color: #f5f5f5 important; ">
+                    <div class="panel-heading " style="background-color: #f5f5f5 important;     font-weight: bold;">
                         <span>Experience<span>
                     </div>
-                    <!-- /.panel-heading -->
+              
                    
                     <table class="table table-bordered table-responsive">
                         <tr>
@@ -204,41 +83,54 @@
                     </table>
 
 
-                    <!-- <table class="table table-bordered table-responsive" >
-                        <thead>
-                        <tr>  <th class="text-center">#</th>
-                                <th class="text-center">0-5</th>
-                                <th class="text-center">5-10</th>
-                                <th class="text-center">10-15</th>
-                                <th class="text-center">15-20</th>
-                                <th class="text-center">20-25</th>
-                                
-                            </tr>
-                            <tr>
-                                <th class="text-center">EXP</th>
-                                <td class="text-center">10</td>
-                                <td class="text-center">10</td>
-                                <td class="text-center">10</td>
-                                <td class="text-center">10</td>
-                                <td class="text-center">10</td>
+                 
 
-                                
-                            </tr>
+               
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading " style="background-color: #f5f5f5 important;     font-weight: bold;">
+                        <span>Resource Summary<span>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <table class="table table-bordered table-responsive">
+                        <thead>
                             <tr>
-                                <th class="text-center">Number of User</th>
-                                <td class="text-center">10</td>
-                                <td class="text-center">10</td>
-                                <td class="text-center">10</td>
-                                <td class="text-center">10</td>
-                                <td class="text-center">10</td>
-                              
-                             
-                               
+                                <th class="text-center">Sr. No.</th>
+                                <th class="">Tech</th>
+                                <th class="text-center">Primary</th>
+                                <th class="text-center">Secondary</th>
+                                <th class="text-center">Learming</th>
+
                             </tr>
                         </thead>
-                      
+                        <tbody>
 
-                    </table> -->
+                            @forelse($data['technology'] as $key => $technology)
+                            <tr>
+                                <td class="text-center">{{ $key+1 }}</td>
+                                <td class="">{{ $technology->value }}</td>
+                                <td class="text-center"><a href="{{url('/users?search=')}}{{$technology->value}}&tech={{$technology->id}}&type=1">{{ $technology->primary_skills_user_count }}</a></td>
+                                <td class="text-center"><a href="{{url('/users?search=')}}{{$technology->value}}&tech={{$technology->id}}&type=2">{{ $technology->secondary_skills_user_count }}</a></td>
+                                <td class="text-center"><a href="{{url('/users?search=')}}{{$technology->value}}&tech={{$technology->id}}&type=3">{{ $technology->learning_skills_user_count }}</a></td>
+
+
+
+                            </tr>
+
+                            @empty
+                            <tr>
+                                <td colspan="10">There are no data.</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+
+                    </table>
 
 
                     <!-- /.panel-body -->
@@ -247,6 +139,8 @@
             </div>
             <!-- /.col-lg-12 -->
         </div>
+
+       
         <!-- /.row -->
     </div>
     <!-- /.container-fluid -->

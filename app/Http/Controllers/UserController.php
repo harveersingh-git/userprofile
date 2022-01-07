@@ -47,20 +47,36 @@ class UserController extends Controller
     public function index(Request $request)
     {
         if (isset($request['search'])) {
-            $skills =  SkillsEducation::where('value', 'like', '%' . $request['search'] . '%')->pluck('id');
+            $skill =  SkillsEducation::where('value', 'like', '%' . $request['search'] . '%');
+            
+            $skills =$skill->pluck('id');
         }
 
-
+      
         $query = User::with('myTeam')->where('id', '!=', 1);
 
         if (isset($skills) && $skills->count() > 0) {
+           
             $query = User::with('myTeam')->where('id', '!=', 1);
 
-            $query->whereHas('skills', function ($q) use ($skills) {
-                $q->whereIn('skill_value_id', $skills->toArray());
+            $query->whereHas('skills', function ($q) use ($skills,$request) {
+           
+                if(isset($request['tech'])){
+                    $q->where('skill_value_id',$request['tech']);
+                }
+                if(isset($request['type'])){
+                    $q->where('type',$request['type']);
+                }
+               $q->whereIn('skill_value_id', $skills->toArray());
             });
         } else {
+           
             $query = User::with(['myTeam', 'skills'])->where('id', '!=', 1);
+            
+            if (isset($request['client_status'])) {
+               
+                $query->where(['client_status'=>$request['client_status']]);
+            }
             if (isset($request['search'])) {
                 $query->where('mobile', 'like', '%' . $request['search'] . '%');
             }
@@ -73,6 +89,8 @@ class UserController extends Controller
             if (isset($request['search'])) {
                 $query->orWhere('employee_id', 'like', '%' . $request['search'] . '%');
             }
+
+            
         }
 
         $data = $query->orderBy('id', 'DESC')->paginate(10);

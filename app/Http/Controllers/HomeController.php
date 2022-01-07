@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use App\Models\SkillsEducation;
+use App\Models\ClientStatus;
 use DB;
 
 class HomeController extends Controller
@@ -35,8 +36,8 @@ class HomeController extends Controller
 
 
         $data['technology'] = SkillsEducation::withCount(['primary_skills_user','secondary_skills_user','learning_skills_user'])->where(['category'=>'skill'])->get();
-
-        // dd($data['technology']->toArray());
+        $data['client_status'] =  ClientStatus::withCount('client_status_count')->get(); 
+        // dd($data['client_status']->toArray());
         return view('home',compact('data'));
     }
 }

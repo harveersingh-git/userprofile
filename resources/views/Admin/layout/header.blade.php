@@ -1,6 +1,6 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="navbar-header">
-        <a class="navbar-brand" href="{{ route('home') }}">Startmin</a>
+        <a class="navbar-brand" href="{{ route('home') }}">Virtual Employee</a>
     </div>
 
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -11,7 +11,7 @@
     </button>
 
     <ul class="nav navbar-nav navbar-left navbar-top-links">
-        <li><a href="#"><i class="fa fa-home fa-fw"></i> Website</a></li>
+        <li><a href="{{route('home')}}"><i class="fa fa-home fa-fw"></i> Home</a></li>
     </ul>
 
     <ul class="nav navbar-right navbar-top-links">
@@ -141,14 +141,14 @@
     
     <li>
 
-    <form class="navbar-form" role="search">
+    <!-- <form class="navbar-form" role="search">
             <div class="input-group">
                <input type="text" class="form-control" placeholder="Search">
                <div class="input-group-btn">
                   <button type="submit" class="btn btn-default custom_search_height"><span class="glyphicon glyphicon-search"></span></button>
                </div>
             </div>
-         </form>
+         </form> -->
 
     </li>
     
