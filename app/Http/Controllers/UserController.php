@@ -128,7 +128,7 @@ class UserController extends Controller
         $data = $query->orderBy('id', 'DESC')->paginate(10);
         $client_status =ClientStatus::get();
         $work_type=WorkType::get();
-        $technologyes = SkillsEducation::where(['category' => 'skill'])->get();
+        $technologyes = SkillsEducation::where(['category'=>'skill'])->get();
 
         // dd($data->toArray());
         return view('users.index', compact('data','client_status','work_type','technologyes','search_skills'));
