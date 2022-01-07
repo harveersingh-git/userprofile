@@ -30,8 +30,8 @@ class EducationController extends Controller
         if ($request->isMethod('post')) {
 
             $request->validate([
-                'value' => 'required',
-                'value' => 'required',
+                'value' => 'required|unique:skills_education,value',
+                'detail' => 'required',
             ]);
 
             $input = $request->all();
