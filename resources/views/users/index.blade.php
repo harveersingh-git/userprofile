@@ -71,11 +71,11 @@ Toast::message('message', 'level', 'title');
             @forelse($technologyes as $key=>$technology)
       
               
-               <!-- @if(!empty($search_skills) && in_array($technology['value'],$search_skills))
+               @if(!empty($search_skills) && in_array($technology['value'],$search_skills))
                <option value="{{$technology['value']}}" selected>{{$technology['value']}}</option>
-               @else -->
+               @else
                <option value="{{$technology['value']}}" >{{$technology['value']}}</option>
-               <!-- @endif -->
+               @endif
                @empty
                <option value="">No data found</option>
             @endforelse
@@ -147,12 +147,12 @@ Toast::message('message', 'level', 'title');
                                     @if($value->skills->count()>0)
                                     @foreach($value->skills as $key=>$res)
                                     @if($res->type=='1')
-                                    <a class="btn btn-success btn-xs " style="margin-bottom: 4px;"> {{$res->skills_details['value']}}</a>
+                                    <a class="btn btn-success btn-xs " style="margin-bottom: 4px;"> {{($res->skills_details['value'])?$res->skills_details['value']:''}}</a>
                                     @elseif($res->type=='2')
-                                    <a class="btn btn-warning btn-xs" style="margin-bottom: 4px;"> {{$res->skills_details['value']}}</a>
+                                    <a class="btn btn-warning btn-xs" style="margin-bottom: 4px;"> {{($res->skills_details['value'])?$res->skills_details['value']:''}}</a>
 
                                     @elseif ($res->type=='3')
-                                    <a class="btn btn-default btn-xs" style="margin-bottom: 4px;"> {{$res->skills_details['value']}}</a>
+                                    <a class="btn btn-default btn-xs" style="margin-bottom: 4px;">{{($res->skills_details['value'])?$res->skills_details['value']:''}}</a>
 
                                     @endif
                                     @endforeach
