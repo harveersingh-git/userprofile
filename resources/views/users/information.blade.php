@@ -204,7 +204,7 @@ Toast::message('message', 'level', 'title');
                                                         <div class="card-header"><i class="fa fa-star-o"></i>&nbsp;&nbsp;Primary Skills</div>
                                                         <div class="card-body well">
                                                             <ul id="primary_sortable" name="in_primary_fields" class="sortable-list secondaryDropzone fixed-panel" data-fieldtype="secondary"> @forelse ($selectedPrimarySkills as $skill)
-                                                                <li class="sortable-item  allowSecondary allowExport" id="{{isset($skill->skills_details['id'])?$skill->skills_details['id']:''}}">{{isset($res->skills_details['value'])?$res->skills_details['value']:''}}   <i class="fa fa-close skill_delete" style="color:red;float: right;  cursor: pointer;"></i></li> @empty
+                                                                <li class="sortable-item  allowSecondary allowExport" id="{{isset($skill->skills_details['id'])?$skill->skills_details['id']:''}}">{{isset($res->skills_details['value']) ? $res->skills_details['value'] : ''}}   <i class="fa fa-close skill_delete" style="color:red;float: right;  cursor: pointer;"></i></li> @empty
                                                                 <div class="alert alert-warning small">
                                                                     <center>No Fields Selected</center>
                                                                 </div> @endforelse
@@ -219,7 +219,7 @@ Toast::message('message', 'level', 'title');
                                                             <ul id="sortable" name="in_secondary_fields" class="sortable-list secondaryDropzone fixed-panel" data-fieldtype="secondary">
 
                                                                 @forelse ($selectedSecondrySkills as $skill)
-                                                                <li class="sortable-item  allowSecondary allowExport" id="{{isset($skill->skills_details['id'])?$skill->skills_details['id']:''}}">{{isset($res->skills_details['value'])?$res->skills_details['value']:''}} <i class="fa fa-close skill_delete" style="color:red;float: right;  cursor: pointer;"></i></li>
+                                                                <li class="sortable-item  allowSecondary allowExport" id="{{isset($skill->skills_details['id'])?$skill->skills_details['id']:''}}">{{isset($res->skills_details['value']) ? $res->skills_details['value'] :''}} <i class="fa fa-close skill_delete" style="color:red;float: right;  cursor: pointer;"></i></li>
 
                                                                 @empty
                                                                 <div class="alert alert-warning small">
@@ -236,7 +236,7 @@ Toast::message('message', 'level', 'title');
 
                                                             <ul id="sortable_lerning" name="in_export_fields" class="sortable-list exportDropzone fixed-panel">
                                                                 @forelse ($selectedLearningSkills as $skill)
-                                                                <li class="sortable-item  allowSecondary allowExport" id="{{isset($skill->skills_details['id'])?$skill->skills_details['id']:''}}">{{isset($res->skills_details['value'])?$res->skills_details['value']:''}} <i class="fa fa-close skill_delete" style="color:red;float: right; cursor: pointer;"></i></li>
+                                                                <li class="sortable-item  allowSecondary allowExport" id="{{isset($skill->skills_details['id'])?$skill->skills_details['id']:''}}">{{isset($res->skills_details['value']) ? $res->skills_details['value'] :''}} <i class="fa fa-close skill_delete" style="color:red;float: right; cursor: pointer;"></i></li>
 
                                                                 @empty
                                                                 <div class="alert alert-warning small">
