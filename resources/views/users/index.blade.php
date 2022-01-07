@@ -13,11 +13,66 @@ Toast::message('message', 'level', 'title');
 
         </div>
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-12">
+            <div class="pull-left">
                 <a class="btn btn-info mb-20" href="{{ url('information') }}" class="active"><i class="fa fa-plus fa-fw"></i>
                     <i class="fa fa-user fa-fw"></i> Add User
                 </a>
             </div>
+            <div class="pull-right">
+            <form class="form-inline" action="">
+            <div class="form-group">
+    
+            <select class="form-control">
+               
+               <option>Client status search</option>
+               <option>Client status active</option>
+               <option>Client status pending</option>
+           </select>          
+            </div>  
+           
+            <div class="form-group">
+    
+            <select class="form-control">
+               
+                <option>work type</option>
+                
+            </select>        
+        </div>    
+  <div class="form-group">
+    
+    <input type="email" class="form-control" id="email" placeholder="empid , name , mobile number">
+  </div>
+  <div class="form-group">
+    
+    <select class="form-control">
+        <option>Range Of experience</option>
+        <option>0 - 3</option>
+        <option>3 - 5</option>
+        <option>5 - 10</option>
+        <option>10+</option>
+        
+    </select>        
+</div> 
+
+<div class="form-group">
+    
+<select id="multiple-checkboxes" multiple="multiple">
+        <option value="php">PHP</option>
+        <option value="javascript">JavaScript</option>
+        <option value="java">Java</option>
+        <option value="sql">SQL</option>
+        <option value="jquery">Jquery</option>
+        <option value=".net">.Net</option>
+    </select>       
+</div> 
+  
+  
+  <button type="submit" class="btn btn-info btn-default">Submit</button>
+</form>
+</div>
+
+         </div>
         </div>
 
         <!-- /.row -->
@@ -123,6 +178,7 @@ Toast::message('message', 'level', 'title');
     <!-- /.row -->
 </div>
 
+
 @section('script')
 <script>
     $(document).on('click', '.delete', function() {
@@ -162,6 +218,14 @@ Toast::message('message', 'level', 'title');
 
     });
 </script>
+<script>
 
+$(document).ready(function() {
+    $('#multiple-checkboxes').multiselect({
+          includeSelectAllOption: true,
+        });
+    });
+
+</script>
 @endsection
 @endsection

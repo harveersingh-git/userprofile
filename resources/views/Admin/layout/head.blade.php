@@ -21,7 +21,8 @@
 
     <!-- Custom CSS -->
     <link href="{{asset('css/startmin.css')}}" rel="stylesheet">
-
+  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
     <!-- Morris Charts CSS -->
     
     <link href="{{asset('css/bootstrap-colorpicker.min.css')}}" rel="stylesheet">
@@ -82,6 +83,7 @@
     <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
     <script src="{{asset('js/bootstrap-colorpicker.min.js')}}"></script>
     <script src="{{asset('js/colorpicker.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
 
 
 
