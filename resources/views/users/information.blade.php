@@ -204,7 +204,7 @@ Toast::message('message', 'level', 'title');
                                                         <div class="card-header"><i class="fa fa-star-o"></i>&nbsp;&nbsp;Primary Skills</div>
                                                         <div class="card-body well">
                                                             <ul id="primary_sortable" name="in_primary_fields" class="sortable-list secondaryDropzone fixed-panel" data-fieldtype="secondary"> @forelse ($selectedPrimarySkills as $skill)
-                                                                <li class="sortable-item  allowSecondary allowExport" id="{{$skill->skills_details['id']}}">{{isset($res->skills_details['value'])?$res->skills_details['value']:''}} <i class="fa fa-close skill_delete" style="color:red;float: right;  cursor: pointer;"></i></li> @empty
+                                                                <li class="sortable-item  allowSecondary allowExport" id="{{$skill->skills_details['id']}}">{{isset($res->skills_details['value'])?$res->skills_details['value']:''}}   <i class="fa fa-close skill_delete" style="color:red;float: right;  cursor: pointer;"></i></li> @empty
                                                                 <div class="alert alert-warning small">
                                                                     <center>No Fields Selected</center>
                                                                 </div> @endforelse
