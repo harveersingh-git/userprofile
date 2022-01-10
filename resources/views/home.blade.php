@@ -62,7 +62,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">Nomber of Users</th>
+                                <th scope="row">Number of Users</th>
                                 <td>{{ $data['zeo_three']}}</td>
                                 <td>{{ $data['three_five']}}</td>
                                 <td>{{$data['five_ten']}}</td>
