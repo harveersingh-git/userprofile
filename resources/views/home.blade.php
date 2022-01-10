@@ -97,7 +97,7 @@
                                 <th class="">Tech</th>
                                 <th class="text-center">Primary</th>
                                 <th class="text-center">Secondary</th>
-                                <th class="text-center">Learming</th>
+                                <th class="text-center">Learning</th>
 
                             </tr>
                         </thead>
