@@ -88,9 +88,11 @@
                 <div class="panel panel-default">
                     <div class="panel-heading " style="background-color: #f5f5f5 important;     font-weight: bold;">
                         <span>Resource Summary<span>
+                        <span class="pull-right" style="margin-top: -7px;"><input class="form-control pull-right" id="myInput" type="text" placeholder="Search.."><span>
                     </div>
+                   
                     <!-- /.panel-heading -->
-                    <table class="table table-bordered table-responsive">
+                    <table class="table table-bordered table-responsive" >
                         <thead>
                             <tr>
                                 <th class="text-center">Sr. No.</th>
@@ -101,7 +103,7 @@
 
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="myTable">
 
                             @forelse($data['technology'] as $key => $technology)
                             <tr>
@@ -137,4 +139,16 @@
     </div>
     <!-- /.container-fluid -->
 </div>
+@section('script')
+<script>
+$(document).ready(function(){
+    $("#myInput").on("keyup", function() {
+    
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+  </script>
 @endsection
