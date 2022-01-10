@@ -63,10 +63,10 @@
                         <tbody>
                             <tr>
                                 <th scope="row">Number of Users</th>
-                                <td>{{ $data['zeo_three']}}</td>
-                                <td>{{ $data['three_five']}}</td>
-                                <td>{{$data['five_ten']}}</td>
-                                <td>{{ $data['ten_fifty']}}</td>
+                                <td><a href="{{url('/users?exprince=0-3')}}">{{ $data['zeo_three']}}</a></td>
+                                <td><a href="{{url('/users?exprince=3-5')}}">{{ $data['three_five']}}</a></td>
+                                <td><a href="{{url('/users?exprince=5-10')}}">{{$data['five_ten']}}</a></td>
+                                <td><a href="{{url('/users?exprince=10-plus')}}">{{ $data['ten_fifty']}}</a></td>
                             </tr>
                             <tr>
                           

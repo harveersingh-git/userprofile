@@ -125,7 +125,18 @@ class User extends Authenticatable
         return $this->belongsTo(Teams::class, 'team', 'id');
 
     }
-    
 
+    
+    
+    public function client_status_value(){
+        return $this->hasMany(ClientStatus::class, 'id', 'client_status');
+
+    }
+    public function work_status_value(){
+        return $this->hasMany(WorkType::class, 'id', 'work_type');
+
+    }
+
+    
     
 }

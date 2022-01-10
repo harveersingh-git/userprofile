@@ -14,84 +14,105 @@ Toast::message('message', 'level', 'title');
         </div>
         <div class="row">
             <div class="col-lg-12">
-            <div class="pull-left">
-                <a class="btn btn-info mb-20" href="{{ url('information') }}" class="active"><i class="fa fa-plus fa-fw"></i>
-                    <i class="fa fa-user fa-fw"></i> Add User
-                </a>
+                <div class="pull-left">
+                    <a class="btn btn-info mb-20" href="{{ url('information') }}" class="active"><i class="fa fa-plus fa-fw"></i>
+                        <i class="fa fa-user fa-fw"></i> Add User
+                    </a>
+                </div>
+
+
+                <div class="pull-right">
+                    <form action="{{url('users')}}" method="GET" role="search" autocomplete="off" class="form-inline">
+                        <div class="form-group">
+
+                            <input type="text" class="form-control" name="search" placeholder="empid , name , mobile number" value="{{Request::get('search')}}">
+                        </div>
+                        <div class="form-group">
+
+                            <select class="form-control" name="client_status">
+                                <option value="">--select client status--</option>
+                                @forelse($client_status as $key=>$clientstatus)
+                                <option value="{{$clientstatus['id']}}" {{ (Request::get('client_status')) == $clientstatus['id']  ? 'selected' : ''}}>{{$clientstatus['title']}}</option>
+                                @empty
+                                <option value="">No data found</option>
+                                @endforelse
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+
+                            <select class="form-control" name="work_status">
+                                <option value="">--select work status--</option>
+                                @forelse($work_type as $key=>$worktype)
+                                <option value="{{$worktype['id']}}" {{ (Request::get('work_status')) == $worktype['id']  ? 'selected' : ''}}>{{$worktype['title']}}</option>
+
+
+                                @empty
+                                <option value="">No data found</option>
+                                @endforelse
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+
+                            <select class="form-control" name="exprince">
+                                <option>Range Of experience</option>
+                                <option value="0-3" {{ (Request::get('exprince')) == '0-3'  ? 'selected' : ''}}>0 - 3</option>
+                                <option value="3-5" {{ (Request::get('exprince')) == '3-5'  ? 'selected' : ''}}>3 - 5</option>
+                                <option value="5-10" {{ (Request::get('exprince')) == '5-10'  ? 'selected' : ''}}>5 - 10</option>
+                                <option value="10-plus" {{ (Request::get('exprince')) == '10-plus'  ? 'selected' : ''}}>10+</option>
+
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+
+
+                            <select id="multiple-checkboxes" multiple="multiple" name="skills[]">
+
+                                @forelse($technologyes as $key=>$technology)
+
+
+                                @if(!empty($search_skills) && in_array($technology['value'],$search_skills))
+                                <option value="{{$technology['value']}}" selected>{{$technology['value']}}</option>
+                                @else
+                                <option value="{{$technology['value']}}">{{$technology['value']}}</option>
+                                @endif
+                                @empty
+                                <option value="">No data found</option>
+                                @endforelse
+                            </select>
+                        </div>
+                        <div class="form-group">
+
+                            <select class="form-control" name="type">
+                                <option>--skill type--</option>
+                                <option value="1" {{ (Request::get('type')) == '1'  ? 'selected' : ''}}>Primary</option>
+                                <option value="2" {{ (Request::get('type')) == '2'  ? 'selected' : ''}}>Secondary</option>
+                                <option value="3" {{ (Request::get('type')) == '3'  ? 'selected' : ''}}>Learning</option>
+
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-info btn-default">Submit</button>
+
+                        <a type="button" href="{{route('users')}}" class="btn btn-danger btn-default">Clear</a>
+                    </form>
+                </div>
+
             </div>
-            <div class="pull-right">
-            <form action="{{url('users')}}" method="GET" role="search" autocomplete="off" class="form-inline" >
-          
-            <div class="form-group">
-    
-            <select class="form-control" name="client_status">
-            <option value="">--select client status--</option>
-            @forelse($client_status as $key=>$clientstatus)
-               <option value="{{$clientstatus['id']}}" {{ (Request::get('client_status')) == $clientstatus['id']  ? 'selected' : ''}}>{{$clientstatus['title']}}</option>
-               @empty
-               <option value="">No data found</option>
-            @endforelse
-           </select>          
-            </div>  
-           
-            <div class="form-group">
-    
-            <select class="form-control" name="work_status">
-            <option value="">--select work status--</option>
-            @forelse($work_type as $key=>$worktype)
-            <option value="{{$worktype['id']}}" {{ (Request::get('work_status')) == $worktype['id']  ? 'selected' : ''}}>{{$worktype['title']}}</option>
-
-             
-               @empty
-               <option value="">No data found</option>
-            @endforelse
-           </select>        
-        </div>    
-  <div class="form-group">
-    
-    <input type="text" class="form-control" name="search" placeholder="empid , name , mobile number" value="{{Request::get('search')}}">
-  </div>
-  <div class="form-group">
-    
-    <select class="form-control" name="exprince">
-        <option>Range Of experience</option>
-        <option value="0-3" {{ (Request::get('exprince')) == '0-3'  ? 'selected' : ''}}>0 - 3</option>
-        <option value="3-5" {{ (Request::get('exprince')) == '3-5'  ? 'selected' : ''}}>3 - 5</option>
-        <option value="5-10" {{ (Request::get('exprince')) == '5-10'  ? 'selected' : ''}}>5 - 10</option>
-        <option value="10-plus" {{ (Request::get('exprince')) == '10-plus'  ? 'selected' : ''}}>10+</option>
-        
-    </select>        
-</div> 
-
-<div class="form-group">
-    
-
-<select id="multiple-checkboxes" multiple="multiple" name="skills[]">
-           
-            @forelse($technologyes as $key=>$technology)
-      
-              
-               @if(!empty($search_skills) && in_array($technology['value'],$search_skills))
-               <option value="{{$technology['value']}}" selected>{{$technology['value']}}</option>
-               @else
-               <option value="{{$technology['value']}}" >{{$technology['value']}}</option>
-               @endif
-               @empty
-               <option value="">No data found</option>
-            @endforelse
-           </select>      
-</div> 
-  
-  
-  <button type="submit" class="btn btn-info btn-default">Submit</button>
-
-  <a type="button" href="{{route('users')}}" class="btn btn-danger btn-default">Clear</a>
-</form>
-</div>
-
-         </div>
         </div>
+        <div class="">
+            <div class="form-inline">
+                @forelse ($client_status as $status)
 
+                <a class="btn" style="margin-bottom: 4px; background-color:{{$status['background_color']}};  color:{{$status['font_color']}};"> {{$status['title']}} {{($status['count'])?$status['count']:0}}</a>
+                @empty
+                <a class="btn btn-success btn-xs " style="margin-bottom: 4px;"> plese add a new status</a>
+                @endforelse
+
+            </div>
+        </div>
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-12">
@@ -136,8 +157,8 @@ Toast::message('message', 'level', 'title');
                             @if(!empty($data) && $data->count())
                             @foreach($data as $key => $value)
                             <tr class="text-center">
-                                <td>{{ $value->employee_id }}</td>
-                                <td>{{ $value->name }} {{ $value->last_name }}</td>
+                                <td style="background-color: {{isset($value->client_status_value['0']->background_color) ? $value->client_status_value['0']->background_color:'';}}  "><span style="color: {{isset($value->client_status_value['0']->font_color) ? $value->client_status_value['0']->font_color:'';}}">{{ $value->employee_id }} </span></td>
+                                <td>{{ $value->name }} {{ $value->last_name }} </br> <span style="color: red;font-size: 10px;">{{isset($value->work_status_value['0']->title) ? $value->work_status_value['0']->title:'';}}</span></td>
 
                                 <td>{{ $value->email  }}</td>
                                 <td>{{ $value->mobile  }}</td>
@@ -236,13 +257,11 @@ Toast::message('message', 'level', 'title');
     });
 </script>
 <script>
-
-$(document).ready(function() {
-    $('#multiple-checkboxes').multiselect({
-          includeSelectAllOption: true,
+    $(document).ready(function() {
+        $('#multiple-checkboxes').multiselect({
+            includeSelectAllOption: true,
         });
     });
-
 </script>
 @endsection
 @endsection

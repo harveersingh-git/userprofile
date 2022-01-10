@@ -49,89 +49,101 @@ class UserController extends Controller
         // dd($request['skills']);
         $search_skills = $request['skills'];
         if (isset($request['skills']) && !empty($request['skills'])) {
-            $skill =  SkillsEducation::whereIn('value',$request['skills']);
-            
-            $skills =$skill->pluck('id');
+            $skill =  SkillsEducation::whereIn('value', $request['skills']);
+
+            $skills = $skill->pluck('id');
         }
 
-      
-        $query = User::with('myTeam')->where('id', '!=', 1);
+
+        // $query = User::with('myTeam')->where('id', '!=', 1);
 
         if (isset($skills) && $skills->count() > 0) {
-           
-            $query = User::with('myTeam')->where('id', '!=', 1);
 
-            $query->whereHas('skills', function ($q) use ($skills,$request) {
-           
-                if(isset($request['tech'])){
-                    $q->where('skill_value_id',$request['tech']);
+            $query = User::with('myTeam', 'client_status_value', 'work_status_value')->where('id', '!=', 1);
+
+            $query->whereHas('skills', function ($q) use ($skills, $request) {
+
+                if (isset($request['tech'])) {
+                    $q->where('skill_value_id', $request['tech']);
                 }
-                if(isset($request['type'])){
-                    $q->where('type',$request['type']);
+                if (isset($request['type'])) {
+                    $q->where('type', $request['type']);
                 }
-               $q->whereIn('skill_value_id', $skills->toArray());
+                $q->whereIn('skill_value_id', $skills->toArray());
             });
         } else {
-           
-            $query = User::with(['myTeam', 'skills'])->where('id', '!=', 1);
-            
-            if (isset($request['client_status'])  && $request['client_status']!=null)  {
-               
-                $query->where(['client_status'=>$request['client_status']]);
+
+            $query = User::with(['myTeam', 'skills', 'client_status_value', 'work_status_value'])->where('id', '!=', 1);
+
+            if (isset($request['client_status'])  && $request['client_status'] != null) {
+
+                $query->where(['client_status' => $request['client_status']]);
             }
-            if (isset($request['exprince'])  && $request['exprince']!=null) {
-                if($request['exprince']=="0-3"){
+            if (isset($request['exprince'])  && $request['exprince'] != null) {
+                if ($request['exprince'] == "0-3") {
                     $query->where('experience', '>=', 1)->where('experience', '<=', 3);
                 }
-                if($request['exprince']=="3-5"){
+                if ($request['exprince'] == "3-5") {
                     $query->where('experience', '>=', 4)->where('experience', '<=', 5);
                 }
-                if($request['exprince']=="5-10"){
-                    $query->where('experience','>=',6)->where('experience','<=',10);
+                if ($request['exprince'] == "5-10") {
+                    $query->where('experience', '>=', 6)->where('experience', '<=', 10);
                 }
-                if($request['exprince']=="10-plus"){
-                 
+                if ($request['exprince'] == "10-plus") {
+
                     $query->where('experience', '>=', 11)->where('experience', '<=', 30);
                 }
-                
-                
             }
-            if (isset($request['client_status']) && $request['client_status']!=null) {
+            if (isset($request['client_status']) && $request['client_status'] != null) {
                 $query->where('client_status', $request['client_status']);
             }
-            if (isset($request['work_status']) && $request['work_status']!=null) {
-              
+            if (isset($request['work_status']) && $request['work_status'] != null) {
+
                 $query->where('work_type', $request['work_status']);
             }
-            if (isset($request['search']) && $request['search']!=null) {
+            if (isset($request['search']) && $request['search'] != null) {
                 $query->where('mobile', 'like', '%' . $request['search'] . '%');
             }
-         
-            if (isset($request['search']) && $request['search']!=null) {
-               
+
+            if (isset($request['search']) && $request['search'] != null) {
+
                 $query->orWhere('name', 'like', '%' . $request['search'] . '%');
             }
-            if (isset($request['search']) && $request['search']!=null) {
+            if (isset($request['search']) && $request['search'] != null) {
                 $query->orWhere('last_name', 'like', '%' . $request['search'] . '%');
             }
-            if (isset($request['search']) && $request['search']!=null) {
+            if (isset($request['search']) && $request['search'] != null) {
                 $query->orWhere('employee_id', 'like', '%' . $request['search'] . '%');
             }
-           
-            
-
-            
-
-            
         }
 
         $data = $query->orderBy('id', 'DESC')->paginate(10);
-        $client_status =ClientStatus::get();
-        $work_type=WorkType::get();
-        $technologyes = SkillsEducation::where(['category'=>'skill'])->get();
+        $client_status = ClientStatus::get();
+        $work_type = WorkType::get();
+        if($data->count()>0){
+           
+            foreach( $client_status  as $k=>$val){
+                foreach($data as $key=>$value){
+
+                if($val['id']==$value['client_status']){
+                    $temp=1;
+                 
+                }else{
+                    $temp=0;
+                }
+                $client_status[$k]['count'] +=$temp;
+                }
+              
+              
+            }
+
+            
+
+        }
+        $technologyes = SkillsEducation::where(['category' => 'skill'])->get();
 
         // dd($data->toArray());
-        return view('users.index', compact('data','client_status','work_type','technologyes','search_skills'));
+        return view('users.index', compact('data', 'client_status', 'work_type', 'technologyes', 'search_skills'));
     }
 
 
@@ -145,7 +157,7 @@ class UserController extends Controller
             //     'edu_title.*' => 'required',
             //     // 'edu_from.*' => 'required|date',
             //     // 'edu_to.*' => 'required|date|after_or_equal:edu_from',
- 
+
             // ]);
 
             // if ($validator->fails()) {
@@ -156,7 +168,7 @@ class UserController extends Controller
             //         'Status_code' => "401"
             //     ]);
             // }
-        
+
             UserEducation::where(['user_id' => $input['user_id']])->delete();
             for ($i = 0; $i < count($input['edu_type']); $i++) {
                 if (isset($input['edu_type'][$i])) {
@@ -180,9 +192,9 @@ class UserController extends Controller
                     // $inp['order'] = $i + 1;
                     $inp['user_id'] =  $input['user_id'];
                     $inp['name'] =  $input['portfolio'][$i];
-                  
 
-                   UserPortfolio::create($inp);
+
+                    UserPortfolio::create($inp);
                 }
             }
 
@@ -334,7 +346,7 @@ class UserController extends Controller
             // dd( $input); 
             $validator = Validator::make($request->all(), [
                 'first_name' => 'required',
-                'email' =>	'required|email|max:255|ends_with:virtualemployee.com,teckvalley.com|unique:users,email,' . $input['id'] . ',id',
+                'email' =>    'required|email|max:255|ends_with:virtualemployee.com,teckvalley.com|unique:users,email,' . $input['id'] . ',id',
                 'last_name' => 'required',
                 'employee_id' => 'required|starts_with:tk,TK|unique:users,employee_id,' . $input['id'] . ',id',
                 'resume_title' => 'required',
@@ -345,10 +357,10 @@ class UserController extends Controller
                 'team' => 'required',
                 'about_employee' => 'required',
                 'experience' => 'required|numeric',
-                
+
 
             ]);
-           
+
 
             if ($validator->fails()) {
                 return response()->json([
@@ -359,7 +371,7 @@ class UserController extends Controller
                 ]);
             }
 
-    
+
 
             $getTeam = Teams::where('id', '=', $input['team'])->first();
 
@@ -458,7 +470,7 @@ class UserController extends Controller
                 $q->where(['user_id' => $id]);
             })->where('category', '=', 'skill')->get();
             // dd($allskills->toArray());
-            $data = User::with(['portfolio','education', 'exprince', 'certification', 'learning_skills', 'achievement', 'project', 'myTeam'])->with('skills', function ($q) {
+            $data = User::with(['portfolio', 'education', 'exprince', 'certification', 'learning_skills', 'achievement', 'project', 'myTeam'])->with('skills', function ($q) {
 
                 $q->orderBy('order', 'asc');
             })->where('id', '=', $id)->first();
@@ -472,10 +484,10 @@ class UserController extends Controller
 
             $selectedEducationType = $selectedEducationType->toArray();
 
-            return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills', 'selectedEducationType', 'course', 'team','client_status','work_type'));
+            return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills', 'selectedEducationType', 'course', 'team', 'client_status', 'work_type'));
         }
 
-        return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'course', 'team', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills','client_status','work_type'));
+        return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'course', 'team', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills', 'client_status', 'work_type'));
     }
 
 
@@ -588,9 +600,9 @@ class UserController extends Controller
         $data = User::where('id', '=', $id)->first();
         $data['project'] =  UserProject::where('user_id', '=', $id)->get();
         $data['certificate'] =  Certification::where('user_id', '=', $id)->get();
-        $data['primary_skills'] =  UserSkills::with('skills_details')->where(['user_id'=>$id,'type'=>'1'])->orderBy('order', 'asc')->get();
-        $data['secondry_skills'] =  UserSkills::with('skills_details')->where(['user_id'=>$id,'type'=>'2'])->orderBy('order', 'asc')->get();
-     
+        $data['primary_skills'] =  UserSkills::with('skills_details')->where(['user_id' => $id, 'type' => '1'])->orderBy('order', 'asc')->get();
+        $data['secondry_skills'] =  UserSkills::with('skills_details')->where(['user_id' => $id, 'type' => '2'])->orderBy('order', 'asc')->get();
+
         $data['education'] =  UserEducation::with('education_details', 'course')->where('user_id', '=', $id)->orderBy('order', 'asc')->get();
         $data['portfolio'] =  UserPortfolio::where('user_id', '=', $id)->get();
         // dd($data['education']->toArray());
@@ -608,9 +620,9 @@ class UserController extends Controller
         $data = User::where('id', '=', $id)->first();
         $data['project'] =  UserProject::where('user_id', '=', $id)->get();
         $data['certificate'] =  Certification::where('user_id', '=', $id)->get();
-        $data['primary_skills'] =  UserSkills::with('skills_details')->where(['user_id'=>$id,'type'=>'1'])->orderBy('order', 'asc')->get();
-        $data['secondry_skills'] =  UserSkills::with('skills_details')->where(['user_id'=>$id,'type'=>'2'])->orderBy('order', 'asc')->get();
-     
+        $data['primary_skills'] =  UserSkills::with('skills_details')->where(['user_id' => $id, 'type' => '1'])->orderBy('order', 'asc')->get();
+        $data['secondry_skills'] =  UserSkills::with('skills_details')->where(['user_id' => $id, 'type' => '2'])->orderBy('order', 'asc')->get();
+
         $data['education'] =  UserEducation::with('education_details', 'course')->where('user_id', '=', $id)->orderBy('order', 'asc')->get();
 
         if ($data) {
@@ -699,7 +711,7 @@ class UserController extends Controller
     }
 
 
-    
+
     public function removeAchievement(Request $request)
     {
         $id = $request['id'];
@@ -710,7 +722,7 @@ class UserController extends Controller
             return response()->json(['status' => 'success']);
         }
     }
-    
+
     public function removeProject(Request $request)
     {
         $id = $request['id'];
