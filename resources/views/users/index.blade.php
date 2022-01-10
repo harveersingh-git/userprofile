@@ -30,7 +30,7 @@ Toast::message('message', 'level', 'title');
                         <div class="form-group">
 
                             <select class="form-control" name="client_status">
-                                <option value="">--select client status--</option>
+                                <option value="">--Select client status--</option>
                                 @forelse($client_status as $key=>$clientstatus)
                                 <option value="{{$clientstatus['id']}}" {{ (Request::get('client_status')) == $clientstatus['id']  ? 'selected' : ''}}>{{$clientstatus['title']}}</option>
                                 @empty
@@ -42,7 +42,7 @@ Toast::message('message', 'level', 'title');
                         <div class="form-group">
 
                             <select class="form-control" name="work_status">
-                                <option value="">--select work status--</option>
+                                <option value="">--Select work status--</option>
                                 @forelse($work_type as $key=>$worktype)
                                 <option value="{{$worktype['id']}}" {{ (Request::get('work_status')) == $worktype['id']  ? 'selected' : ''}}>{{$worktype['title']}}</option>
 
@@ -86,7 +86,7 @@ Toast::message('message', 'level', 'title');
                         <div class="form-group">
 
                             <select class="form-control" name="type">
-                                <option>--skill type--</option>
+                                <option>--Skill type--</option>
                                 <option value="1" {{ (Request::get('type')) == '1'  ? 'selected' : ''}}>Primary</option>
                                 <option value="2" {{ (Request::get('type')) == '2'  ? 'selected' : ''}}>Secondary</option>
                                 <option value="3" {{ (Request::get('type')) == '3'  ? 'selected' : ''}}>Learning</option>
@@ -141,11 +141,11 @@ Toast::message('message', 'level', 'title');
                             <tr>
                                 <th class="text-center">Emp Id</th>
                                 <th class="text-center"> Name</th>
-
+                                <th class="text-center">Joining Date</th>
                                 <th class="text-center">Email</th>
                                 <th class="text-center">Mobile</th>
                                 <th class="text-center">Experience</th>
-                                <th class="text-center">joining Date</th>
+                               
 
                                 <th class="text-center">Skills</th>
                                 <th class="text-center">Time</th>
@@ -153,7 +153,7 @@ Toast::message('message', 'level', 'title');
 
 
 
-                                <th class="text-center" style="width: 20%;">Action</th>
+                                <th class="text-center" style="width: 14%;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -162,11 +162,11 @@ Toast::message('message', 'level', 'title');
                             <tr class="text-center">
                                 <td style="background-color: {{isset($value->client_status_value['0']->background_color) ? $value->client_status_value['0']->background_color:'';}}  "><span style="color: {{isset($value->client_status_value['0']->font_color) ? $value->client_status_value['0']->font_color:'';}}">{{ $value->employee_id }} </span></td>
                                 <td>{{ $value->name }} {{ $value->last_name }} </br> <span style="color: red;font-size: 10px;">{{isset($value->work_status_value['0']->title) ? $value->work_status_value['0']->title:'';}}</span></td>
-
+                                <td>{{ Carbon\Carbon::parse($value->joining_date)->format('d F Y') }}</td>
                                 <td>{{ $value->email  }}</td>
                                 <td>{{ $value->mobile  }}</td>
                                 <td>{{ $value->experience  }}</td>
-                                <td>{{ Carbon\Carbon::parse($value->joining_date)->format('d F Y') }}</td>
+                            
 
                                 <td>
                                     @if($value->skills->count()>0)
