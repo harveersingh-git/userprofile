@@ -106,7 +106,7 @@ Toast::message('message', 'level', 'title');
             <div class="form-inline">
                 @forelse ($client_status as $status)
 
-                <a class="btn" style="margin-bottom: 4px; background-color:{{$status['background_color']}};  color:{{$status['font_color']}};"> {{$status['title']}} {{($status['count'])?$status['count']:0}}</a>
+                <a href="{{url('/users?client_status=')}}{{$status['id']}}" class="btn" style="margin-bottom: 4px; background-color:{{$status['background_color']}};  color:{{$status['font_color']}};"> {{$status['title']}} {{($status['count'])?$status['count']:0}}</a>
                 @empty
                 <a class="btn btn-success btn-xs " style="margin-bottom: 4px;"> plese add a new status</a>
                 @endforelse
@@ -144,13 +144,16 @@ Toast::message('message', 'level', 'title');
 
                                 <th class="text-center">Email</th>
                                 <th class="text-center">Mobile</th>
-                                <th class="text-center">Resume Title</th>
+                                <th class="text-center">Experience</th>
+                                <th class="text-center">joining Date</th>
 
                                 <th class="text-center">Skills</th>
+                                <th class="text-center">Time</th>
+                                <th class="text-center">Team</th>
 
 
 
-                                <th class="text-center" style="width: 25%;">Action</th>
+                                <th class="text-center" style="width: 20%;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -162,7 +165,8 @@ Toast::message('message', 'level', 'title');
 
                                 <td>{{ $value->email  }}</td>
                                 <td>{{ $value->mobile  }}</td>
-                                <td>{{ $value->resume_title }}</td>
+                                <td>{{ $value->experience  }}</td>
+                                <td>{{ Carbon\Carbon::parse($value->joining_date)->format('d F Y') }}</td>
 
                                 <td>
                                     @if($value->skills->count()>0)
@@ -182,6 +186,9 @@ Toast::message('message', 'level', 'title');
 
 
                                 </td>
+                                <td class="text-center">{{ $value->shift_start  }}-{{ $value->shift_end  }}</td>
+                                <td class="text-center">{{ $value->myTeam->name }}</td>
+                                
 
                                 <td>
                                     <a class="btn btn-warning myac_btn" href="{{url('/information')}}/{{$value->id}}"><i class="fa fa-edit"></i> </a>
