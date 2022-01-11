@@ -1195,9 +1195,16 @@ Toast::message('message', 'level', 'title');
                 processData: false,
                 data: new FormData(this),
                 success: function(data) {
-                    if (data.status = "success") {
-                        toastr.success("Record insert successfully");
+                    console.log('role',data.role);
+                    if (data.status == "success") {
+                        if(data.role=="admin"){
+                            toastr.success("Record insert successfully");
                         window.location.href = {!!json_encode(url('/')) !!} + "/users";
+                        }else{
+                            toastr.success("Record insert successfully");
+                        window.location.href = {!!json_encode(url('information')) !!} +'/'+ $('.user_id').val();
+                        }
+                     
 
                     }
 

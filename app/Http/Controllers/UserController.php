@@ -331,12 +331,14 @@ class UserController extends Controller
             }
 
 
+                return response()->json([
+                    'status' => 'success',
+                    'role'=>Session::get('role')
+    
+                ]);
+            
 
-
-            return response()->json([
-                'status' => 'success',
-
-            ]);
+           
         }
     }
 
