@@ -34,7 +34,7 @@ Route::post('/changePassword',[ForgotPasswordController::class, 'changePasswordP
 
 
 
-Route::any('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users');
+Route::any('/users', [App\Http\Controllers\HomeController::class, 'userList'])->name('users');
 
 Route::any('/add-user', [App\Http\Controllers\UserController::class, 'add'])->name('add-user');
 Route::any('/add-user-skills', [App\Http\Controllers\UserController::class, 'addSkills'])->name('add-user-skills');

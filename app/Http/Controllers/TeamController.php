@@ -13,6 +13,8 @@ class TeamController extends Controller
     {
         $this->middleware('access');
     }
+
+    
     public function index(Request $request){
         $data = Teams::latest()->paginate(10);
 
