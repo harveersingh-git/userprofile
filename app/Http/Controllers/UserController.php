@@ -15,12 +15,16 @@ use App\Models\userAchievement;
 use App\Models\UserPortfolio;
 use App\Models\ClientStatus;
 use App\Models\WorkType;
-
+use App\Models\Role;
+use Auth;
 use App\Models\UserProject;
 use App\Models\Teams;
 use Validator;
 use PDF;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Crypt;
+use Hash;
+use Session;
 
 
 
@@ -343,7 +347,7 @@ class UserController extends Controller
 
         if ($request->isMethod('post')) {
             $input = $request->all();
-            // dd( $input); 
+         
             $validator = Validator::make($request->all(), [
                 'first_name' => 'required',
                 'email' =>    'required|email|max:255|ends_with:virtualemployee.com,teckvalley.com|unique:users,email,' . $input['id'] . ',id',
@@ -377,8 +381,22 @@ class UserController extends Controller
 
             $input['resume_emp_id'] = substr($input['first_name'], 0, 1) . substr($input['last_name'], 0, 1) . '_' . substr($getTeam['name'], 0, 2) . '_' . $input['employee_id'];
 
+            // $enc = Crypt::encryptString($input['password']);
+           if(isset( $input['id'])){
+            $exist_user = User::where(['id' => $input['id']])->first();
+          
 
-            $input['password'] = bcrypt('welcome');
+           
+                $input['check_password'] = Crypt::encryptString($input['password']);
+                $input['password'] = bcrypt($input['password']);
+            
+            $input['updated_by'] = Auth::user()->id;
+           }else{
+            $input['check_password'] = Crypt::encryptString($input['password']);
+            $input['password'] = bcrypt($input['password']);
+            $input['added_by'] = Auth::user()->id;
+           }
+            
             $input['name'] =  $input['first_name'];
             $user = User::updateOrCreate(['id' => $input['id']], $input);
 
@@ -454,6 +472,7 @@ class UserController extends Controller
     {
         $allskills = SkillsEducation::where('category', '=', 'skill')->get();
         $education = SkillsEducation::where('category', '=', 'education')->get();
+        $roles = Role::get();
         $certificate = SkillsEducation::where('category', '=', 'certificate')->get();
         $course = SkillsEducation::where('category', '=', 'course')->get();
         $team = Teams::get();
@@ -470,12 +489,28 @@ class UserController extends Controller
                 $q->where(['user_id' => $id]);
             })->where('category', '=', 'skill')->get();
             // dd($allskills->toArray());
-            $data = User::with(['portfolio', 'education', 'exprince', 'certification', 'learning_skills', 'achievement', 'project', 'myTeam'])->with('skills', function ($q) {
+            if(Session::get('role')=="admin"){
+                $data = User::with(['created_by','change_by','portfolio', 'education', 'exprince', 'certification', 'learning_skills', 'achievement', 'project', 'myTeam'])->with('skills', function ($q) {
 
-                $q->orderBy('order', 'asc');
-            })->where('id', '=', $id)->first();
-            // dd($data->myTeam['id']);
-            // dd($data->toArray());
+                    $q->orderBy('order', 'asc');
+                })->where('id', '=', $id)->first();
+            }else{
+                if(Auth::user()->id!=$id){
+                    return redirect('information/'.Auth::user()->id);
+                }else{
+                    $data = User::with(['created_by','change_by','portfolio', 'education', 'exprince', 'certification', 'learning_skills', 'achievement', 'project', 'myTeam'])->with('skills', function ($q) {
+
+                        $q->orderBy('order', 'asc');
+                    })->where('id', '=', Auth::user()->id)->first();
+                }
+               
+
+
+               
+            }
+            
+            
+        
             $selectedPrimarySkills = UserSkills::with('skills_details')->where(['user_id' => $id, 'type' => 1])->get();
             $selectedSecondrySkills = UserSkills::with('skills_details')->where(['user_id' => $id, 'type' => 2])->get();
 
@@ -483,11 +518,18 @@ class UserController extends Controller
             $selectedEducationType = UserEducation::where('user_id', '=', $id)->pluck('degree_type_id');
 
             $selectedEducationType = $selectedEducationType->toArray();
-
-            return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills', 'selectedEducationType', 'course', 'team', 'client_status', 'work_type'));
+            // dd(Crypt::decryptString($data['check_password']));
+            if($data['check_password']){
+                $data['password'] = Crypt::decryptString($data['check_password']);
+            }else{
+                $data['password'] = 'welcome';
+            }
+            
+          
+            return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills', 'selectedEducationType', 'course', 'team', 'client_status', 'work_type','roles'));
         }
 
-        return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'course', 'team', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills', 'client_status', 'work_type'));
+        return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'course', 'team', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills', 'client_status', 'work_type','roles'));
     }
 
 

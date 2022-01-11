@@ -187,7 +187,7 @@ Toast::message('message', 'level', 'title');
 
                                 </td>
                                 <td class="text-center">{{ $value->shift_start  }}-{{ $value->shift_end  }}</td>
-                                <td class="text-center">{{ $value->myTeam->name }}</td>
+                                <td class="text-center">{{ isset($value->myTeam->name)?$value->myTeam->name:'' }}</td>
                                 
 
                                 <td>

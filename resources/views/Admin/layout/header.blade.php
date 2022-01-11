@@ -26,6 +26,7 @@
                     </div>-->
                     <!-- /input-group -->
                 </li>
+                @if(Session::get('role')=="admin")
                 <li>
                     <a href="{{route('home')}}" class="{{ Request::segment(1) === 'home' ? 'active' : null }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
@@ -52,6 +53,8 @@
                         </ul>
                    
                 </li>
+                
+                @endif
 
            <li><li>     
 

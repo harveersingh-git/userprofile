@@ -64,6 +64,44 @@ Toast::message('message', 'level', 'title');
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-lg-6">
+                                                        <label>Password<span style="color: red;">*</span></label>
+                                                        <input type="password" class="form-control" placeholder="Ex:123@123" name="password" value="{{isset($data->password)?$data->password:'' }}" required="" autocomplete="off" />
+
+                                                    </div>
+                                                    @if(Session::get('role')=="admin")
+                                                    <div class="col-lg-6">
+                                                        <label>User Type <span style="color: red;">*</span></label>
+                                                        <select class="form-control" name="user_role" {{ isset($data->id)  ? '' : 'required=""'}}>
+
+                                                        @forelse($roles as $key=>$role)
+                                                        @if(isset($data->user_role)  && $role['id']== $data->user_role)
+                                                        <option value="{{$role['id']}}" selected>{{$role['name']}} </option>
+
+                                                        @else
+                                                        <option value="{{$role['id']}}">{{$role['name']}}</option>
+
+                                                        @endif
+                                                        @empty
+                                                        <p>Rolse</p>
+                                                        @endforelse
+                                                        </select>
+                                                    </div>
+                                                    @else
+                                                    <div class="col-lg-6">
+                                                        <label>User Type <span style="color: red;">*</span></label>
+                                                        <select class="form-control" name="user_role" {{ isset($data->id)  ? '' : 'required=""'}}>
+                                                       
+                                                        @foreach($roles as $key=>$role)
+                                                         @if($role['name']== 'user')
+                                                        <option value="{{$role['id']}}" selected>{{$role['name']}} </option>
+                                                        @endif
+                                                        @endforeach
+                                                        </select>
+                                                    </div>
+                                                    @endif
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-6">
                                                         <label>Mobile<span style="color: red;">*</span></label>
                                                         <input type="number" class="form-control" placeholder="Ex:968565472" name="mobile" value="{{isset($data->mobile)?$data->mobile:'' }}" required="" autocomplete="off" />
 
@@ -172,7 +210,7 @@ Toast::message('message', 'level', 'title');
                                         </form>
                                         <input type="button" name="next" style="display: none;" class="next btn btn-info  action-button col-md-3" value="Next Step" id="genral_info_button" />
                                         <input type="button" name="next" style="display: none;" class="next btn btn-info  action-button col-md-3" value="Next Step" id="genral_info_button_two" />
-
+                                        <p >CreatedBy:<b>{{isset ($data->created_by['name']) ? $data->created_by['name'] : ''}}</b> UpdatedBy:<b>{{ isset($data->change_by['name']) ? $data->change_by['name']  : ''  }}</b></p>    
                                     </fieldset>
 
                                     <fieldset>
@@ -255,6 +293,7 @@ Toast::message('message', 'level', 'title');
 
 
                                         <input type="button" name="next" class="next action-button btn btn-primary  col-md-3 pull-right" value="Next Step" />
+                                        <p >CreatedBy:<b>{{isset ($data->created_by['name']) ? $data->created_by['name'] : ''}}</b> UpdatedBy:<b>{{ isset($data->change_by['name']) ? $data->change_by['name']  : ''  }}</b></p>    
 
                                     </fieldset>
 
@@ -452,6 +491,7 @@ Toast::message('message', 'level', 'title');
                                         <input type="button" id="skills_prev" name="previous" class="previous action-button-previous  pull-left btn btn-warning" value="Previous" />
 
                                         <input type="button" style="display:none" name="next" class="next action-button btn btn-primary  col-md-3 pull-right" value="Next Stepp" id="skills_button" />
+                                        <p >CreatedBy:<b>{{isset ($data->created_by['name']) ? $data->created_by['name'] : ''}}</b> UpdatedBy:<b>{{ isset($data->change_by['name']) ? $data->change_by['name']  : ''  }}</b></p>    
 
                                     </fieldset>
                                     <fieldset>
@@ -614,6 +654,8 @@ Toast::message('message', 'level', 'title');
                                         <input type="button" name="previous" id="exprince_prev" class="previous action-button-previous  pull-left btn btn-warning" value="Previous" />
 
                                         <input type="button" name="make_payment" style="display:none" class="next action-button pull-right" value="Next Step" id="exprince_button" />
+                                        <p >CreatedBy:<b>{{isset ($data->created_by['name']) ? $data->created_by['name'] : ''}}</b> UpdatedBy:<b>{{ isset($data->change_by['name']) ? $data->change_by['name']  : ''  }}</b></p>    
+
                                     </fieldset>
 
 
@@ -723,6 +765,7 @@ Toast::message('message', 'level', 'title');
                                         <input type="button" name="previous" id="certificate_prev" class="previous action-button-previous  pull-left btn btn-warning" value="Previous" />
 
                                         <input type="button" name="certificate_button" style="display:none" class="next action-button pull-right" value="Next Step" id="certificate_button" />
+                                        <p >CreatedBy:<b>{{isset ($data->created_by['name']) ? $data->created_by['name'] : ''}}</b> UpdatedBy:<b>{{ isset($data->change_by['name']) ? $data->change_by['name']  : ''  }}</b></p>    
 
 
                                     </fieldset>
@@ -794,7 +837,8 @@ Toast::message('message', 'level', 'title');
                                         </form>
                                         <input type="button" name="previous" class="previous action-button-previous btn btn-warning pull-left " value="Previous" id="achievement_prev" />
                                         <input type="button" style="display:none" name="next" class="next action-button pull-right btn-primary" value="Next Step" id="achievement_button" />
-                                   
+                                        <p >CreatedBy:<b>{{isset ($data->created_by['name']) ? $data->created_by['name'] : ''}}</b> UpdatedBy:<b>{{ isset($data->change_by['name']) ? $data->change_by['name']  : ''  }}</b></p>    
+
                                     </fieldset>
 
 
@@ -936,6 +980,8 @@ Toast::message('message', 'level', 'title');
                                             <input type="submit" value="Confirm" class="action-button btn btn-success col-md-3 pull-right" id="project_submit" />
                                         </form>
                                         <input type="button" id="project_previous" name="previous" class="previous action-button-previous  pull-left btn btn-warning" value="Previous" />
+                                        <p >CreatedBy:<b>{{isset ($data->created_by['name']) ? $data->created_by['name'] : ''}}</b> UpdatedBy:<b>{{ isset($data->change_by['name']) ? $data->change_by['name']  : ''  }}</b></p>    
+
                                     </fieldset>
                                     </fieldset>
                                 </div>

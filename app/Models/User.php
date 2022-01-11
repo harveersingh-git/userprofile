@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable,SoftDeletes;
@@ -46,7 +47,11 @@ class User extends Authenticatable
         'experience',
         'resume_emp_id',
         'work_type',
-        'client_status'
+        'client_status',
+        'updated_by',
+        'check_password',
+        'added_by',
+        'user_role'
     ];
 
     /**
@@ -134,6 +139,14 @@ class User extends Authenticatable
     }
     public function work_status_value(){
         return $this->hasMany(WorkType::class, 'id', 'work_type');
+
+    }
+    public function created_by(){
+        return $this->belongsTo(User::class, 'added_by','id');
+
+    }
+    public function change_by(){
+        return $this->belongsTo(User::class, 'updated_by','id');
 
     }
 
