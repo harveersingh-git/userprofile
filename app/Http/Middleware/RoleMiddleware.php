@@ -26,23 +26,27 @@ class RoleMiddleware
             
             if ($role) {
                 Session::put('role', $role['name']);
-                switch ($role['name']) {
-
-                    case 'admin':
-
-                        return $next($request);
-                        break;
-                    case 'user':
-                        
-                        $url = "information/" . Auth::user()->id;
-                        break;
-
-                    default:
-                        $url = 'test';
-                        break;
+                if($role['name']=='user'){
+                    return redirect("information/" . Auth::user()->id);
                 }
+                // switch ($role['name']) {
 
-                return redirect($url);
+                //     case 'admin':
+
+                //         return $next($request);
+                //         break;
+                //     case 'user':
+                //         return $next($request);
+                //         break;
+                //         // $url = "information/" . Auth::user()->id;
+                //         break;
+
+                //     default:
+                //         $url = 'test';
+                //         break;
+                // }
+
+               
             }
         }
         return $next($request);
