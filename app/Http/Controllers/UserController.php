@@ -50,7 +50,7 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        // dd($request['skills']);
+        
         $search_skills = $request['skills'];
         if (isset($request['skills']) && !empty($request['skills'])) {
             $skill =  SkillsEducation::whereIn('value', $request['skills']);
@@ -495,14 +495,10 @@ class UserController extends Controller
                     $q->orderBy('order', 'asc');
                 })->where('id', '=', $id)->first();
             }else{
-                if(Auth::user()->id!=$id){
-                    return redirect('information/'.Auth::user()->id);
-                }else{
-                    $data = User::with(['created_by','change_by','portfolio', 'education', 'exprince', 'certification', 'learning_skills', 'achievement', 'project', 'myTeam'])->with('skills', function ($q) {
+                $data = User::with(['created_by','change_by','portfolio', 'education', 'exprince', 'certification', 'learning_skills', 'achievement', 'project', 'myTeam'])->with('skills', function ($q) {
 
-                        $q->orderBy('order', 'asc');
-                    })->where('id', '=', Auth::user()->id)->first();
-                }
+                    $q->orderBy('order', 'asc');
+                })->where('id', '=', Auth::user()->id)->first();
                
 
 
