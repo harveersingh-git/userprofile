@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Teams;
+use Session;
 
 class TeamController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('access');
+    }
     public function index(Request $request){
         $data = Teams::latest()->paginate(10);
 

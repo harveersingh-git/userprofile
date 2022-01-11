@@ -7,6 +7,10 @@ use App\Models\SkillsEducation;
 
 class EducationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('access');
+    }
     /**
      * Display a listing of the resource.
      *

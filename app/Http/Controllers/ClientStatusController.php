@@ -7,6 +7,10 @@ use App\Models\ClientStatus;
 
 class ClientStatusController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('access');
+    }
     public function index(Request $request){
         $data = ClientStatus::latest()->paginate(10);
 

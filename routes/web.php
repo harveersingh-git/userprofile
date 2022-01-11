@@ -89,6 +89,10 @@ Route::post('/update-work-type', [App\Http\Controllers\WorkTypeController::class
 Route::post('/delete_work_type', [App\Http\Controllers\WorkTypeController::class, 'destroy']);
 
 
+Route::get('/page-not-found', function () {
+    return view('welcome');
+});
+
 
 
 

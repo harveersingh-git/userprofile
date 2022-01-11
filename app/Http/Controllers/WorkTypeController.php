@@ -7,6 +7,10 @@ use App\Models\WorkType;
 
 class WorkTypeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('access');
+    }
     public function index(Request $request){
         $data = WorkType::latest()->paginate(10);
 
