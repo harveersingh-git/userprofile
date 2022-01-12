@@ -15,7 +15,8 @@
 
     <!-- MetisMenu CSS -->
     <link href="{{asset('css/metisMenu.min.css')}}" rel="stylesheet">
-
+    <link href="{{asset('css/dataTables/dataTables.bootstrap.css')}}" rel="stylesheet">
+    <link href="{{asset('css/dataTables/dataTables.responsive.css')}}" rel="stylesheet">
     <!-- Timeline CSS -->
     <link href="{{asset('css/timeline.css')}}" rel="stylesheet">
 
@@ -93,7 +94,8 @@
     <script src="{{asset('js/colorpicker.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
 
-
+    <script src="{{asset('js/dataTables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('js/dataTables/dataTables.bootstrap.min.js')}}"></script>
 
 
 <script>

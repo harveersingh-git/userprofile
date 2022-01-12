@@ -53,7 +53,7 @@
 
                         <thead>
                             <tr>
-                            <th scope="row">EXP</th>
+                                <th scope="row">EXP</th>
                                 <th scope="col">0-3 Years</th>
                                 <th scope="col">3-5 Years</th>
                                 <th scope="col">5-10 Years</th>
@@ -69,10 +69,10 @@
                                 <td><a href="{{url('/users?exprince=10-plus')}}">{{ $data['ten_fifty']}}</a></td>
                             </tr>
                             <tr>
-                          
+
                         </tbody>
                     </table>
-                   
+
 
 
 
@@ -86,70 +86,101 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading " style="background-color: #f5f5f5 important;     font-weight: bold;">
-                        <span>Resource Summary<span>
-                        <span class="pull-right" style="margin-top: -7px;"><input class="form-control pull-right" id="myInput" type="text" placeholder="Search.."><span>
-                    </div>
-                   
+                    <div class="panel-heading">Resource Summary <span class="pull-right" style="margin-top: -7px;"><input class="form-control pull-right" id="myInput" type="text" placeholder="Search.."><span></div>
                     <!-- /.panel-heading -->
-                    <table class="table table-bordered table-responsive" >
-                        <thead>
-                            <tr>
-                                <th class="text-center">Sr. No.</th>
-                                <th class="">Tech</th>
-                                <th class="text-center">Primary</th>
-                                <th class="text-center">Secondary</th>
-                                <th class="text-center">Learning</th>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Sr. No.</th>
+                                        <th class="">Tech</th>
+                                        <th class="text-center">Primary</th>
+                                        <th class="text-center">Secondary</th>
+                                        <th class="text-center">Learning</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                            </tr>
-                        </thead>
-                        <tbody id="myTable">
-
-                            @forelse($data['technology'] as $key => $technology)
-                            <tr>
-                                <td class="text-center">{{ $key+1 }}</td>
-                                <td class=""><a href="{{url('/users?skills%5B%5D=')}}{{$technology->value}}">{{ $technology->value }}</a></td>
-                                <td class="text-center"><a href="{{url('/users?skills%5B%5D=')}}{{$technology->value}}&type=1">{{ $technology->primary_skills_user_count }}</a></td>
-                                <td class="text-center"><a href="{{url('/users?skills%5B%5D=')}}{{$technology->value}}&type=2">{{ $technology->secondary_skills_user_count }}</a></td>
-                                <td class="text-center"><a href="{{url('/users?skills%5B%5D=')}}{{$technology->value}}&type=3">{{ $technology->learning_skills_user_count }}</a></td>
-
-
-
-                            </tr>
-
-                            @empty
-                            <tr>
-                                <td colspan="10">There are no data.</td>
-                            </tr>
-                            @endforelse
-                        </tbody>
-
-                    </table>
+                                    @forelse($data['technology'] as $key => $technology)
+                                    <tr>
+                                        <td class="text-center">{{ $key+1 }}</td>
+                                        <td class=""><a href="{{url('/users?skills%5B%5D=')}}{{$technology->value}}">{{ $technology->value }}</a></td>
+                                        <td class="text-center"><a href="{{url('/users?skills%5B%5D=')}}{{$technology->value}}&type=1">{{ $technology->primary_skills_user_count }}</a></td>
+                                        <td class="text-center"><a href="{{url('/users?skills%5B%5D=')}}{{$technology->value}}&type=2">{{ $technology->secondary_skills_user_count }}</a></td>
+                                        <td class="text-center"><a href="{{url('/users?skills%5B%5D=')}}{{$technology->value}}&type=3">{{ $technology->learning_skills_user_count }}</a></td>
 
 
+
+                                    </tr>
+
+                                    @empty
+                                    <tr>
+                                        <td colspan="10">There are no data.</td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
+
+                    </div>
                     <!-- /.panel-body -->
                 </div>
                 <!-- /.panel -->
             </div>
             <!-- /.col-lg-12 -->
         </div>
-
-
-        <!-- /.row -->
+        <!-- <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading " style="background-color: #f5f5f5 important;     font-weight: bold;">
+                        <span>Resource Summary<span>
+                                <!-- <span class="pull-right" style="margin-top: -7px;"><input class="form-control pull-right" id="myInput" type="text" placeholder="Search.."><span> -->
     </div>
-    <!-- /.container-fluid -->
+
+    <!-- /.panel-heading -->
+
+
+    <!-- /.panel-body -->
+</div>
+<!-- /.panel -->
+</div>
+<!-- /.col-lg-12 -->
+</div>
+
+
+<!-- /.row -->
+</div>
+<!-- /.container-fluid -->
 </div>
 @section('script')
 <script>
-$(document).ready(function(){
-    $("#myInput").on("keyup", function() {
-    
-      var value = $(this).val().toLowerCase();
-      $("#myTable tr").filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-      });
+    // $(document).ready(function() {
+    //     $("#myInput").on("keyup", function() {
+
+    //         // var value = $(this).val().toLowerCase();
+    //         dataTable.fnFilter(this.value);
+
+    //         // $("#myTable tr").filter(function() {
+    //         //     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    //         // });
+    //     });
+    // });
+    $(document).ready(function() {
+        var oTable = $('#dataTables-example').DataTable({
+            responsive: true,
+            "lengthChange": false
+            // "bPaginate": false,
+        });
+        $("#myInput").on("keyup", function() {
+
+            // var value = $(this).val().toLowerCase();
+            oTable.search(this.value).draw();
+
+        });
     });
-  });
-  </script>
-  @endsection
+  
+</script>
+@endsection
 @endsection

@@ -8,18 +8,11 @@ use Illuminate\Support\Carbon;
 use App\Models\SkillsEducation;
 use App\Models\ClientStatus;
 use DB;
+use Auth;
 
-
-use App\Models\UserSkills;
-use App\Models\UserEducation;
-use App\Models\UserExperince;
-use App\Models\Certification;
-use App\Models\LearningSkills;
-use App\Models\userAchievement;
-use App\Models\UserPortfolio;
 
 use App\Models\WorkType;
-use App\Models\Role;
+
 
 class HomeController extends Controller
 {

@@ -410,4 +410,8 @@ div#ui-datepicker-div{
         height: 280px;
         overflow-y: auto;
         }
+
+        .dataTables_filter {
+            display: none;
+         }
  
