@@ -14,4 +14,9 @@ class Role extends Model
         
     ];
 
+    public function getNameAttribute($value)
+    {
+        return strtoupper($value);
+    }
+
 }
