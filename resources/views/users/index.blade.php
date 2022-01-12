@@ -56,7 +56,7 @@ Toast::message('message', 'level', 'title');
                         <div class="form-group">
 
                             <select class="form-control" name="exprince">
-                                <option>Range Of experience</option>
+                                <option value="">Range Of experience</option>
                                 <option value="0-3" {{ (Request::get('exprince')) == '0-3'  ? 'selected' : ''}}>0 - 3</option>
                                 <option value="3-5" {{ (Request::get('exprince')) == '3-5'  ? 'selected' : ''}}>3 - 5</option>
                                 <option value="5-10" {{ (Request::get('exprince')) == '5-10'  ? 'selected' : ''}}>5 - 10</option>
@@ -86,7 +86,7 @@ Toast::message('message', 'level', 'title');
                         <div class="form-group">
 
                             <select class="form-control" name="type">
-                                <option>--Skill type--</option>
+                                <option value="">--Skill type--</option>
                                 <option value="1" {{ (Request::get('type')) == '1'  ? 'selected' : ''}}>Primary</option>
                                 <option value="2" {{ (Request::get('type')) == '2'  ? 'selected' : ''}}>Secondary</option>
                                 <option value="3" {{ (Request::get('type')) == '3'  ? 'selected' : ''}}>Learning</option>

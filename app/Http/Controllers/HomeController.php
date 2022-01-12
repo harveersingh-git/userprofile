@@ -77,7 +77,8 @@ class HomeController extends Controller
                 if (isset($request['tech'])) {
                     $q->where('skill_value_id', $request['tech']);
                 }
-                if (isset($request['type'])) {
+                if (isset($request['type']) && $request['type'] != null) {
+                    
                     $q->where('type', $request['type']);
                 }
                 $q->whereIn('skill_value_id', $skills->toArray());
