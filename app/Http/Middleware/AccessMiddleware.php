@@ -17,9 +17,11 @@ class AccessMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Session::get('role')=="admin"){
+        
+        if(Session::get('role')=="ADMIN"){
             return $next($request);
         }else{
+            return $next($request);
             return redirect("page-not-found/");
         }
    

@@ -68,7 +68,7 @@ Toast::message('message', 'level', 'title');
                                                         <input type="password" class="form-control" placeholder="Ex:123@123" name="password" value="{{isset($data->password)?$data->password:'' }}" required="" autocomplete="off" />
 
                                                     </div>
-                                                    @if(Session::get('role')=="admin")
+                                                    @if(Session::get('role')=="ADMIN")
                                                     <div class="col-lg-6">
                                                         <label>User Type <span style="color: red;">*</span></label>
                                                         <select class="form-control" name="user_role" {{ isset($data->id)  ? '' : 'required=""'}}>
@@ -1197,7 +1197,7 @@ Toast::message('message', 'level', 'title');
                 success: function(data) {
                     console.log('role',data.role);
                     if (data.status == "success") {
-                        if(data.role=="admin"){
+                        if(data.role=="ADMIN"){
                             toastr.success("Record insert successfully");
                         window.location.href = {!!json_encode(url('/')) !!} + "/users";
                         }else{

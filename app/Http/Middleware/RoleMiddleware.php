@@ -26,7 +26,7 @@ class RoleMiddleware
             
             if ($role) {
                 Session::put('role', $role['name']);
-                if($role['name']=='user'){
+                if($role['name']=='USER'){
                     return redirect("information/" . Auth::user()->id);
                 }
                 // switch ($role['name']) {

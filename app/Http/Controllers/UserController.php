@@ -390,7 +390,7 @@ class UserController extends Controller
                 $q->where(['user_id' => $id]);
             })->where('category', '=', 'skill')->get();
             // dd($allskills->toArray());
-            if(Session::get('role')=="admin"){
+            if(Session::get('role')=="ADMIN"){
                 $data = User::with(['created_by','change_by','portfolio', 'education', 'exprince', 'certification', 'learning_skills', 'achievement', 'project', 'myTeam'])->with('skills', function ($q) {
 
                     $q->orderBy('order', 'asc');
