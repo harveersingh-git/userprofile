@@ -53,7 +53,7 @@
 
                         <thead>
                             <tr>
-                                <th scope="row">EXP</th>
+                                <th scope="col">EXP</th>
                                 <th scope="col">0-3 Years</th>
                                 <th scope="col">3-5 Years</th>
                                 <th scope="col">5-10 Years</th>
@@ -86,7 +86,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Resource Summary <span class="pull-right" style="margin-top: -7px;"><input class="form-control pull-right" id="myInput" type="text" placeholder="Search.."><span></div>
+                    <div class="panel-heading" style="background-color: #f5f5f5 important; font-weight: bold;">Resource Summary <span class="pull-right" style="margin-top: -7px;"><input class="form-control pull-right" id="myInput" type="text" placeholder="Search.."><span></div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="table-responsive">
@@ -94,7 +94,7 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">Sr. No.</th>
-                                        <th class="">Technology</th>
+                                        <th >Technology</th>
                                         <th class="text-center">Primary</th>
                                         <th class="text-center">Secondary</th>
                                         <th class="text-center">Learning</th>
@@ -131,7 +131,7 @@
             </div>
             <!-- /.col-lg-12 -->
         </div>
-        </div>
+    </div>
 
     <!-- /.panel-heading -->
 
@@ -164,8 +164,10 @@
     $(document).ready(function() {
         var oTable = $('#dataTables-example').DataTable({
             responsive: true,
-            "lengthChange": false
+            "lengthChange": false,
             // "bPaginate": false,
+        //     "aoColumnDefs": [ { "bSortable": false, "aTargets": [ +1,-1,0, 1, 2, 3 ] }, 
+        // { "bSearchable": false, "aTargets": [ 0, 1, 2, 3 ] }]
         });
         $("#myInput").on("keyup", function() {
 
@@ -174,7 +176,6 @@
 
         });
     });
-  
 </script>
 @endsection
 @endsection
