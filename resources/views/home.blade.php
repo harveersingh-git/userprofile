@@ -94,7 +94,7 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">Sr. No.</th>
-                                        <th class="">Tech</th>
+                                        <th class="">Technology</th>
                                         <th class="text-center">Primary</th>
                                         <th class="text-center">Secondary</th>
                                         <th class="text-center">Learning</th>
@@ -131,13 +131,7 @@
             </div>
             <!-- /.col-lg-12 -->
         </div>
-        <!-- <div class="row">
-            <div class="col-lg-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading " style="background-color: #f5f5f5 important;     font-weight: bold;">
-                        <span>Resource Summary<span>
-                                <!-- <span class="pull-right" style="margin-top: -7px;"><input class="form-control pull-right" id="myInput" type="text" placeholder="Search.."><span> -->
-    </div>
+        </div>
 
     <!-- /.panel-heading -->
 
