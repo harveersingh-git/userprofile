@@ -12,8 +12,10 @@ Toast::message('message', 'level', 'title');
 <div id="page-wrapper" style="min-height: 183px;">
     <div class="container-fluid">
         <div class="panel-heading">
+        @if(Session::get('role')=="ADMIN"){
             <span class="pull-right"><a class="btn btn-outline btn-primary" type="reset" href="{{ url('users')}}"><i class="fa fa-arrow-left"></i> Back </a>
             </span>
+            @endif
         </div>
         <!-- MultiStep Form -->
         <div class="container-fluid" id="">
