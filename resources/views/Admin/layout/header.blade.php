@@ -34,6 +34,9 @@
                 <li>
                     <a href="{{route('users')}}" class="{{ Request::segment(1) === 'users' ? 'active' : null }}"><i class="fa fa-users"></i> Users</a>
                 </li>
+                <li>
+                    <a href="{{route('clients')}}" class="{{ Request::segment(1) === 'clients' ? 'active' : null }}"><i class="fa fa-users"></i> Clients</a>
+                </li>
 
                 <li>
                     <a href="{{route('team')}}" class="{{ Request::segment(1) === 'team' ? 'active' : null }}"><i class="fa fa-users"></i> Team Mgmt</a>

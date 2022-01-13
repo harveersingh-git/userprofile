@@ -39,6 +39,11 @@ Add Skills Education
                                                 @error('name')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
+                                                <label>TL Code</label>
+                                                <input class="form-control" placeholder="Ex:TK0123" name="tl_code" value="{{old('tl_code')}}"  autocomplete="off" />
+                                                @error('tl_code')
+                                                <p class="alert alert-danger"> {{ $message }} </p>
+                                                @enderror
                                             </div>
                                         
                                         </div>

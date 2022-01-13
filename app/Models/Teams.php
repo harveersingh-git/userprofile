@@ -9,6 +9,7 @@ class Teams extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name'
+        'name',
+        'tl_code'
     ];
 }

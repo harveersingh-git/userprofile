@@ -66,6 +66,7 @@ Route::any('/add-team', [App\Http\Controllers\TeamController::class, 'create'])-
 Route::any('/team/edit/{id}', [App\Http\Controllers\TeamController::class,'view']);
 Route::post('/update-team', [App\Http\Controllers\TeamController::class, 'update']);
 Route::post('/delete_team', [App\Http\Controllers\TeamController::class, 'destroy']);
+
 Route::post('/remove_skills', [App\Http\Controllers\UserController::class, 'removeSkill']);
 Route::post('/remove_education', [App\Http\Controllers\UserController::class, 'removeEducation']);
 Route::post('/check_present', [App\Http\Controllers\UserController::class, 'checkPresent']);
@@ -87,6 +88,12 @@ Route::any('/add-work-type', [App\Http\Controllers\WorkTypeController::class, 'c
 Route::any('/work-type/edit/{id}', [App\Http\Controllers\WorkTypeController::class,'view']);
 Route::post('/update-work-type', [App\Http\Controllers\WorkTypeController::class, 'update']);
 Route::post('/delete_work_type', [App\Http\Controllers\WorkTypeController::class, 'destroy']);
+
+Route::any('/clients', [App\Http\Controllers\ClientControlle::class, 'index'])->name('clients');
+Route::any('/add-client', [App\Http\Controllers\ClientControlle::class, 'create'])->name('add-client');
+Route::any('/client/edit/{id}', [App\Http\Controllers\ClientControlle::class,'view']);
+Route::post('/update-client', [App\Http\Controllers\ClientControlle::class, 'update']);
+Route::post('/delete_client', [App\Http\Controllers\ClientControlle::class, 'destroy']);
 
 
 Route::get('/page-not-found', function () {

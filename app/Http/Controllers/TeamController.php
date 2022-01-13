@@ -60,7 +60,8 @@ class TeamController extends Controller
         $id = $request['id'];
         $data = Teams::find($id);
         $data->update([
-            'name' => $input['name']
+            'name' => $input['name'],
+            'tl_code' => isset($input['tl_code'])?$input['tl_code']:''
         ]);
 
         if ($id) {

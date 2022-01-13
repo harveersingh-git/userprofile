@@ -45,7 +45,10 @@
     <!--[if lt IE 9]>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+        
         <![endif]-->
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
        
 </head>
 
@@ -96,6 +99,8 @@
 
     <script src="{{asset('js/dataTables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('js/dataTables/dataTables.bootstrap.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 
 
 <script>
