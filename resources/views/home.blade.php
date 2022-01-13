@@ -22,10 +22,9 @@
                             </div>
                             <div class="col-xs-9 text-right">
                                 <div class="huge" style="color: {{$clientstatus['font_color']}};">{{$clientstatus['client_status_count_count']}}</div>
+                                <div style="color: {{$clientstatus['font_color']}};">{{$clientstatus['title']}}</div>
                             </div>
                         </div>
-                        <div style="color: {{$clientstatus['font_color']}};">{{$clientstatus['title']}}</div>
-
                     </div>
                     <a href="{{url('/users?client_status=')}}{{$clientstatus->id}}">
                         <div class="panel-footer">
