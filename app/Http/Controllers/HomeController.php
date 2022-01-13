@@ -171,7 +171,7 @@ class HomeController extends Controller
         //     }
         // }
 
-        $data = $query->orderBy('id', 'DESC')->paginate(10);
+        $data = $query->orderBy('id', 'DESC')->paginate(15);
         $client_status = ClientStatus::with('client_status_count')->get();
 
         $work_type = WorkType::get();
