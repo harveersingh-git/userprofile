@@ -94,7 +94,7 @@ Toast::message('message', 'level', 'title');
                             </select>
                         </div>
 
-                        <button type="submit" class="btn btn-info btn-default">Submit</button>
+                        <button type="submit" class="btn btn-info btn-default">Search</button>
 
                         <a type="button" href="{{route('users')}}" class="btn btn-danger btn-default">Clear</a>
                     </form>
@@ -106,7 +106,7 @@ Toast::message('message', 'level', 'title');
             <div class="form-inline">
                 @forelse ($client_status as $status)
 
-                <a href="{{url('/users?client_status=')}}{{$status['id']}}" class="btn" style="margin-bottom: 4px; background-color:{{$status['background_color']}};  color:{{$status['font_color']}};"> {{$status['title']}} {{($status['count'])?$status['count']:0}}</a>
+                <a data-toggle="tooltip" data-placement="top" title="Client Status" href="{{url('/users?client_status=')}}{{$status['id']}}" class="btn" style="margin-bottom: 4px; background-color:{{$status['background_color']}};  color:{{$status['font_color']}};"> {{$status['title']}} {{($status['client_status_count'])?count($status['client_status_count']):0}}</a>
                 @empty
                 <a class="btn btn-success btn-xs " style="margin-bottom: 4px;"> plese add a new status</a>
                 @endforelse
@@ -145,11 +145,11 @@ Toast::message('message', 'level', 'title');
                                 <th class="text-center">Email</th>
                                 <th class="text-center">Mobile</th>
                                 <th class="text-center">Experience</th>
-                               
+
 
                                 <th class="text-center">Skills</th>
                                 <th class="text-center">Time</th>
-                                <th class="text-center">Team</th>
+                                <!-- <th class="text-center">Team</th> -->
 
 
 
@@ -160,24 +160,24 @@ Toast::message('message', 'level', 'title');
                             @if(!empty($data) && $data->count())
                             @foreach($data as $key => $value)
                             <tr class="text-center">
-                                <td style="background-color: {{isset($value->client_status_value['0']->background_color) ? $value->client_status_value['0']->background_color:'';}}  "><span style="color: {{isset($value->client_status_value['0']->font_color) ? $value->client_status_value['0']->font_color:'';}}">{{ $value->employee_id }} </span></td>
+                                <td data-toggle="tooltip" data-placement="top" title="{{isset($value->client_status_value['0']->title) ? $value->client_status_value['0']->title:'';}} " style="background-color: {{isset($value->client_status_value['0']->background_color) ? $value->client_status_value['0']->background_color:'';}}  "><span style="color: {{isset($value->client_status_value['0']->font_color) ? $value->client_status_value['0']->font_color:'';}}">{{ $value->employee_id }} </span></td>
                                 <td>{{ $value->name }} {{ $value->last_name }} </br> <span style="color: red;font-size: 10px;">{{isset($value->work_status_value['0']->title) ? $value->work_status_value['0']->title:'';}}</span></td>
                                 <td>{{ Carbon\Carbon::parse($value->joining_date)->format('d F Y') }}</td>
                                 <td>{{ $value->email  }}</td>
                                 <td>{{ $value->mobile  }}</td>
                                 <td>{{ $value->experience  }}</td>
-                            
+
 
                                 <td>
                                     @if($value->skills->count()>0)
                                     @foreach($value->skills as $key=>$res)
                                     @if($res->type=='1')
-                                    <a class="btn btn-success btn-xs " style="margin-bottom: 4px;"> {{isset($res->skills_details['value'])?$res->skills_details['value']:'';}}</a>
+                                    <button class="btn btn-success btn-xs " style="margin-bottom: 4px;" data-toggle="tooltip" data-placement="top" title="Primary"> {{isset($res->skills_details['value'])?$res->skills_details['value']:'';}}</button>
                                     @elseif($res->type=='2')
-                                    <a class="btn btn-warning btn-xs" style="margin-bottom: 4px;"> {{isset($res->skills_details['value'])?$res->skills_details['value']:''}}</a>
+                                    <button class="btn btn-warning btn-xs" style="margin-bottom: 4px;" data-toggle="tooltip" data-placement="top" title="Secondary"> {{isset($res->skills_details['value'])?$res->skills_details['value']:''}}</button>
 
                                     @elseif ($res->type=='3')
-                                    <a class="btn btn-default btn-xs" style="margin-bottom: 4px;">{{isset($res->skills_details['value'])?$res->skills_details['value']:''}}</a>
+                                    <button class="btn btn-default btn-xs" style="margin-bottom: 4px;" data-toggle="tooltip" data-placement="top" title="Learning">{{isset($res->skills_details['value'])?$res->skills_details['value']:''}}</button>
 
                                     @endif
                                     @endforeach
@@ -187,15 +187,15 @@ Toast::message('message', 'level', 'title');
 
                                 </td>
                                 <td class="text-center">{{ $value->shift_start  }}-{{ $value->shift_end  }}</td>
-                                <td class="text-center">{{ isset($value->myTeam->name)?$value->myTeam->name:'' }}</td>
-                                
+                                <!-- <td class="text-center">{{ isset($value->myTeam->name)?$value->myTeam->name:'' }}</td> -->
+
 
                                 <td>
-                                    <a class="btn btn-warning myac_btn" href="{{url('/information')}}/{{$value->id}}"><i class="fa fa-edit"></i> </a>
+                                    <a class="btn btn-warning myac_btn" href="{{url('/information')}}/{{$value->id}}" data-toggle="tooltip" data-placement="top" title="EDIT"><i class="fa fa-edit"></i> </a>
 
-                                    <a class="delete btn btn-danger myac_btn" id="{{$value->id}}"> <i class="fa fa-trash"></i></a>
-                                    <a class=" btn btn-primary myac_btn" href="{{url('/resume')}}/{{$value->id}}"><i class="fa fa-cloud-download" aria-hidden="true"></i> </a>
-                                    <a class="btn btn-info myac_btn" href="{{url('/view-resume')}}/{{$value->id}}"><i class="fa fa-eye" aria-hidden="true"></i> </a>
+                                    <a class="delete btn btn-danger myac_btn" id="{{$value->id}}" data-toggle="tooltip" data-placement="top" title="DELETE"> <i class="fa fa-trash"></i></a>
+                                    <a class=" btn btn-primary myac_btn" href="{{url('/resume')}}/{{$value->id}}" data-toggle="tooltip" data-placement="top" title="DOWNLOAD" target="_blank"><i class="fa fa-cloud-download" aria-hidden="true"></i> </a>
+                                    <a class="btn btn-info myac_btn" href="{{url('/view-resume')}}/{{$value->id}}" data-toggle="tooltip" data-placement="top" title="VIEW" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> </a>
 
                                 </td>
                             </tr>
@@ -265,6 +265,8 @@ Toast::message('message', 'level', 'title');
 </script>
 <script>
     $(document).ready(function() {
+
+     
         $('#multiple-checkboxes').multiselect({
             includeSelectAllOption: true,
         });

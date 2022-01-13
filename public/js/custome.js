@@ -64,7 +64,7 @@ $(function() {
 
 
 $(document).ready(function() {
-   
+
     var maxField = 10; //Input fields increment limitation
     var addButton = $('.add_button'); //Add button selector
     var expAddButton = $('.exp_add_button'); //Add button selector

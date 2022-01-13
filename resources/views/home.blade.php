@@ -13,7 +13,7 @@
         <!-- /.row -->
         <div class="row">
             @forelse( $data['client_status'] as $key=>$clientstatus)
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-2 col-md-6">
                 <div class="panel " style="background-color: {{$clientstatus['background_color']}};">
                     <div class="panel-heading">
                         <div class="row">
@@ -150,28 +150,14 @@
 </div>
 @section('script')
 <script>
-    // $(document).ready(function() {
-    //     $("#myInput").on("keyup", function() {
-
-    //         // var value = $(this).val().toLowerCase();
-    //         dataTable.fnFilter(this.value);
-
-    //         // $("#myTable tr").filter(function() {
-    //         //     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    //         // });
-    //     });
-    // });
+   
     $(document).ready(function() {
         var oTable = $('#dataTables-example').DataTable({
             responsive: true,
             "lengthChange": false,
-            // "bPaginate": false,
-        //     "aoColumnDefs": [ { "bSortable": false, "aTargets": [ +1,-1,0, 1, 2, 3 ] }, 
-        // { "bSearchable": false, "aTargets": [ 0, 1, 2, 3 ] }]
+      
         });
         $("#myInput").on("keyup", function() {
-
-            // var value = $(this).val().toLowerCase();
             oTable.search(this.value).draw();
 
         });
