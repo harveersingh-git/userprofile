@@ -62,7 +62,7 @@ Toast::message('message', 'level', 'title');
                             <tr>
                                    <td class="text-center">{{ $key+1 }}</td>
                                 <td class="text-center">{{ $value->users['employee_id'] }}</td>
-                                <td class="text-center">{{ $value->users['name'] }}{{ $value->users['last_name'] }}</td>
+                                <td class="text-center">{{ $value->users['name'] }} {{ $value->users['last_name'] }}</td>
                                 <td class="text-center">{{ $value->emp_status['title'] }}</td>
                                 <td class="text-center">{{ $value->client_code}}</td>
                                 <td class="text-center">{{ $value->client_name}}</td>
