@@ -172,12 +172,12 @@ Toast::message('message', 'level', 'title');
                                     @if($value->skills->count()>0)
                                     @foreach($value->skills as $key=>$res)
                                     @if($res->type=='1')
-                                    <button class="btn btn-success btn-xs " style="margin-bottom: 4px;" data-toggle="tooltip" data-placement="top" title="Primary"> {{isset($res->skills_details['value'])?$res->skills_details['value']:'';}}</button>
+                                    <button class="btn btn-success btn-xs " style="margin-bottom: 4px; pointer-events: none;" data-toggle="tooltip" data-placement="top" title="Primary"> {{isset($res->skills_details['value'])?$res->skills_details['value']:'';}}</button>
                                     @elseif($res->type=='2')
-                                    <button class="btn btn-warning btn-xs" style="margin-bottom: 4px;" data-toggle="tooltip" data-placement="top" title="Secondary"> {{isset($res->skills_details['value'])?$res->skills_details['value']:''}}</button>
+                                    <button class="btn btn-warning btn-xs" style="margin-bottom: 4px; pointer-events: none;" data-toggle="tooltip" data-placement="top" title="Secondary"> {{isset($res->skills_details['value'])?$res->skills_details['value']:''}}</button>
 
                                     @elseif ($res->type=='3')
-                                    <button class="btn btn-default btn-xs" style="margin-bottom: 4px;" data-toggle="tooltip" data-placement="top" title="Learning">{{isset($res->skills_details['value'])?$res->skills_details['value']:''}}</button>
+                                    <button class="btn btn-default btn-xs" style="margin-bottom: 4px; pointer-events: none;" data-toggle="tooltip" data-placement="top" title="Learning">{{isset($res->skills_details['value'])?$res->skills_details['value']:''}}</button>
 
                                     @endif
                                     @endforeach
