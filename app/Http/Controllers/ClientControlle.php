@@ -19,7 +19,7 @@ class ClientControlle extends Controller
 
     public function index(Request $request)
     {
-        $data = Clients::with(['users','emp_status','work_type','team'])->latest()->paginate(10);
+        $data = Clients::with(['users', 'emp_status', 'work_type', 'team'])->latest()->paginate(10);
         // dd($data->toArray());
         return view('client.index', compact('data'));
     }
@@ -54,25 +54,29 @@ class ClientControlle extends Controller
             ]);
 
 
-           
+
             $input = $request->all();
             $input['user_id'] =  $input['user_name'];
-            $input['client_status_id'] =  $input['emp_status']; 
+            $input['client_status_id'] =  $input['emp_status'];
             $input['work_type_id'] =  $input['work_type'];
             $input['team_id'] =  $input['team_leader'];
-        
             $input['starting_date'] =  $input['start_date'];
+            $client = Clients::create($input);
+            if ($client) {
+                $updated['client_status'] = $input['emp_status'];
+                $updated['work_type'] = $input['work_type'];
+                User::updateOrCreate(['id' => $input['user_name']], $updated);
+            }
 
 
-            $user = Clients::create($input);
             return redirect('clients')->with('message', 'Data added Successfully');
         }
-        return view('client.create', compact('url','data'));
+        return view('client.create', compact('url', 'data'));
     }
 
     public function view(Request $reques, $id)
     {
-        
+
         $data['client_status'] = ClientStatus::get();
         $data['workstatus'] =  WorkType::get();
         $data['team'] =  Teams::get();
@@ -81,7 +85,7 @@ class ClientControlle extends Controller
         $id =  $id;
         $client = Clients::find($id);
         // dd($client);
-        return view('client.edit', compact('id', 'url', 'data','client'));
+        return view('client.edit', compact('id', 'url', 'data', 'client'));
     }
 
 
@@ -104,8 +108,13 @@ class ClientControlle extends Controller
 
 
         ]);
+        if ($data) {
+            $updated['client_status'] = $input['emp_status'];
+            $updated['work_type'] = $input['work_type'];
+            User::updateOrCreate(['id' => $input['user_name']], $updated);
+        }
 
-        if ($id) {
+        if ($data) {
             return  redirect()->route('clients')->with('message', 'Data update Successfully');
         }
     }
