@@ -767,6 +767,17 @@ label {
     z-index: 444;
     font-family: 'FontAwesome';
 }
+.datepicker-prsonal_new:before {
+    content: "\f073";
+    font-family: "Font Awesome 5 Free";
+    position: absolute;
+    right: 28px;
+    top: 67%;
+    font-weight: 400;
+    transform: translateY(-50%);
+    z-index: 444;
+    font-family: 'FontAwesome';
+}
 .my_separator {
     width: 100%;
     border-bottom: 2px dashed #333;

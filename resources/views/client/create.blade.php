@@ -152,7 +152,7 @@ Add Skills Education
 
                                         <div class="row">
                                            
-                                            <div class="col-lg-6 " >
+                                            <div class="col-lg-6 datepicker-prsonal_new" >
                                                 <label>Start Date</label>
                                                 <input class="form-control" placeholder="2022-01-13" name="start_date" id="start_date" value="{{old('start_date')}}" required="" autocomplete="off" />
                                                 @error('start_date')
