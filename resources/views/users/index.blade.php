@@ -8,7 +8,7 @@ Toast::message('message', 'level', 'title');
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Users{{Session::get('role')}}</h1>
+                <h1 class="page-header">Users</h1>
             </div>
 
         </div>
