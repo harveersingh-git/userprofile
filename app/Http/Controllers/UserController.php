@@ -48,7 +48,157 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-   
+
+    public function userList(Request $request)
+    {
+
+        $search_skills = $request['skills'];
+        if (isset($request['skills']) && !empty($request['skills'])) {
+            $skill =  SkillsEducation::whereIn('value', $request['skills']);
+
+            $skills = $skill->pluck('id');
+        }
+
+
+        // $query = User::with('myTeam')->where('id', '!=', 1);
+
+
+        $query = User::with('myTeam', 'client_status_value', 'work_status_value')->where('id', '!=', 1);
+
+        if (Session::get('role') != "ADMIN") {
+
+            $query->where(['id' => Auth::user()->id]);
+        }
+
+        if (isset($skills) && $skills->count() > 0) {
+
+            $query->whereHas('skills', function ($q) use ($skills, $request) {
+
+                if (isset($request['tech'])) {
+                    $q->where('skill_value_id', $request['tech']);
+                }
+                if (isset($request['type']) && $request['type'] != null) {
+
+                    $q->where('type', $request['type']);
+                }
+                $q->whereIn('skill_value_id', $skills->toArray());
+            });
+        }
+        if (isset($request['client_status'])  && $request['client_status'] != null) {
+
+            $query->where(['client_status' => $request['client_status']]);
+        }
+        if (isset($request['exprince'])  && $request['exprince'] != null) {
+            if ($request['exprince'] == "0-3") {
+                $query->where('experience', '>=', 1)->where('experience', '<=', 3);
+            }
+            if ($request['exprince'] == "3-5") {
+                $query->where('experience', '>', 3)->where('experience', '<=', 5);
+            }
+            if ($request['exprince'] == "5-10") {
+                $query->where('experience', '>', 5)->where('experience', '<=', 10);
+            }
+            if ($request['exprince'] == "10-plus") {
+
+                $query->where('experience', '>', 11)->where('experience', '<=', 30);
+            }
+        }
+        if (isset($request['client_status']) && $request['client_status'] != null) {
+            $query->where('client_status', $request['client_status']);
+        }
+        if (isset($request['work_status']) && $request['work_status'] != null) {
+
+            $query->where('work_type', $request['work_status']);
+        }
+        if (isset($request['search']) && $request['search'] != null) {
+            $query->where('mobile', 'like', '%' . $request['search'] . '%');
+        }
+
+        if (isset($request['search']) && $request['search'] != null) {
+
+            $query->orWhere('name', 'like', '%' . $request['search'] . '%');
+        }
+        if (isset($request['search']) && $request['search'] != null) {
+            $query->orWhere('last_name', 'like', '%' . $request['search'] . '%');
+        }
+        if (isset($request['search']) && $request['search'] != null) {
+            $query->orWhere('employee_id', 'like', '%' . $request['search'] . '%');
+        }
+
+        // } else {
+
+        //     $query = User::with(['myTeam', 'skills', 'client_status_value', 'work_status_value'])->where('id', '!=', 1);
+
+        //     if (isset($request['client_status'])  && $request['client_status'] != null) {
+
+        //         $query->where(['client_status' => $request['client_status']]);
+        //     }
+        //     if (isset($request['exprince'])  && $request['exprince'] != null) {
+        //         if ($request['exprince'] == "0-3") {
+        //             $query->where('experience', '>=', 1)->where('experience', '<=', 3);
+        //         }
+        //         if ($request['exprince'] == "3-5") {
+        //             $query->where('experience', '>=', 4)->where('experience', '<=', 5);
+        //         }
+        //         if ($request['exprince'] == "5-10") {
+        //             $query->where('experience', '>=', 6)->where('experience', '<=', 10);
+        //         }
+        //         if ($request['exprince'] == "10-plus") {
+
+        //             $query->where('experience', '>=', 11)->where('experience', '<=', 30);
+        //         }
+        //     }
+        //     if (isset($request['client_status']) && $request['client_status'] != null) {
+        //         $query->where('client_status', $request['client_status']);
+        //     }
+        //     if (isset($request['work_status']) && $request['work_status'] != null) {
+
+        //         $query->where('work_type', $request['work_status']);
+        //     }
+        //     if (isset($request['search']) && $request['search'] != null) {
+        //         $query->where('mobile', 'like', '%' . $request['search'] . '%');
+        //     }
+
+        //     if (isset($request['search']) && $request['search'] != null) {
+
+        //         $query->orWhere('name', 'like', '%' . $request['search'] . '%');
+        //     }
+        //     if (isset($request['search']) && $request['search'] != null) {
+        //         $query->orWhere('last_name', 'like', '%' . $request['search'] . '%');
+        //     }
+        //     if (isset($request['search']) && $request['search'] != null) {
+        //         $query->orWhere('employee_id', 'like', '%' . $request['search'] . '%');
+        //     }
+        // }
+
+        $data = $query->orderBy('id', 'DESC')->paginate(15);
+        $client_status = ClientStatus::with('client_status_count')->get();
+
+        $work_type = WorkType::get();
+        // if($data->count()>0){
+
+        //     foreach( $client_status  as $k=>$val){
+        //         foreach($data as $key=>$value){
+
+        //         if($val['id']==$value['client_status']){
+        //             $temp=1;
+
+        //         }else{
+        //             $temp=0;
+        //         }
+        //         $client_status[$k]['count'] +=$temp;
+        //         }
+
+
+        //     }
+
+        // }
+        $technologyes = SkillsEducation::where(['category' => 'skill'])->get();
+
+        // dd($data->toArray());
+        return view('users.index', compact('data', 'client_status', 'work_type', 'technologyes', 'search_skills'));
+    }
+
 
     public function addSkills(Request $request)
     {
@@ -230,14 +380,11 @@ class UserController extends Controller
             }
 
 
-                return response()->json([
-                    'status' => 'success',
-                    'role'=>Session::get('role')
-    
-                ]);
-            
+            return response()->json([
+                'status' => 'success',
+                'role' => Session::get('role')
 
-           
+            ]);
         }
     }
 
@@ -248,7 +395,7 @@ class UserController extends Controller
 
         if ($request->isMethod('post')) {
             $input = $request->all();
-         
+
             $validator = Validator::make($request->all(), [
                 'first_name' => 'required',
                 'email' =>    'required|email|max:255|ends_with:virtualemployee.com,teckvalley.com|unique:users,email,' . $input['id'] . ',id',
@@ -283,21 +430,21 @@ class UserController extends Controller
             $input['resume_emp_id'] = substr($input['first_name'], 0, 1) . substr($input['last_name'], 0, 1) . '_' . substr($getTeam['name'], 0, 2) . '_' . $input['employee_id'];
 
             // $enc = Crypt::encryptString($input['password']);
-           if(isset( $input['id'])){
-            $exist_user = User::where(['id' => $input['id']])->first();
-          
+            if (isset($input['id'])) {
+                $exist_user = User::where(['id' => $input['id']])->first();
 
-           
+
+
                 $input['check_password'] = Crypt::encryptString($input['password']);
                 $input['password'] = bcrypt($input['password']);
-            
-            $input['updated_by'] = Auth::user()->id;
-           }else{
-            $input['check_password'] = Crypt::encryptString($input['password']);
-            $input['password'] = bcrypt($input['password']);
-            $input['added_by'] = Auth::user()->id;
-           }
-            
+
+                $input['updated_by'] = Auth::user()->id;
+            } else {
+                $input['check_password'] = Crypt::encryptString($input['password']);
+                $input['password'] = bcrypt($input['password']);
+                $input['added_by'] = Auth::user()->id;
+            }
+
             $input['name'] =  $input['first_name'];
             $user = User::updateOrCreate(['id' => $input['id']], $input);
 
@@ -371,6 +518,9 @@ class UserController extends Controller
 
     public function information(Request $request, $id = null)
     {
+        if(isset($id)){
+            $id=base64_decode($id);
+        }
         $allskills = SkillsEducation::where('category', '=', 'skill')->get();
         $education = SkillsEducation::where('category', '=', 'education')->get();
         $roles = Role::get();
@@ -390,28 +540,16 @@ class UserController extends Controller
                 $q->where(['user_id' => $id]);
             })->where('category', '=', 'skill')->get();
             // dd($allskills->toArray());
-            if(Session::get('role')=="ADMIN"){
-                $data = User::with(['created_by','change_by','portfolio', 'education', 'exprince', 'certification', 'learning_skills', 'achievement', 'project', 'myTeam'])->with('skills', function ($q) {
 
-                    $q->orderBy('order', 'asc');
-                })->where('id', '=', $id)->first();
-            }else{
-                if(Auth::user()->id!=$id){
-                    return redirect('information/'.Auth::user()->id);
-                }else{
-                    $data = User::with(['created_by','change_by','portfolio', 'education', 'exprince', 'certification', 'learning_skills', 'achievement', 'project', 'myTeam'])->with('skills', function ($q) {
+            $data = User::with(['created_by', 'change_by', 'portfolio', 'education', 'exprince', 'certification', 'learning_skills', 'achievement', 'project', 'myTeam'])->with('skills', function ($q) {
 
-                        $q->orderBy('order', 'asc');
-                    })->where('id', '=', Auth::user()->id)->first();
+                $q->orderBy('order', 'asc');
+            })->where('id', '=', $id)->first();
+            if (Session::get('role') != "ADMIN") {
+                if (Auth::user()->id != $id) {
+                    return redirect('information/' . Auth::user()->id);
                 }
-               
-
-
-               
             }
-            
-            
-        
             $selectedPrimarySkills = UserSkills::with('skills_details')->where(['user_id' => $id, 'type' => 1])->get();
             $selectedSecondrySkills = UserSkills::with('skills_details')->where(['user_id' => $id, 'type' => 2])->get();
 
@@ -420,17 +558,17 @@ class UserController extends Controller
 
             $selectedEducationType = $selectedEducationType->toArray();
             // dd(Crypt::decryptString($data['check_password']));
-            if($data['check_password']){
+            if ($data['check_password']) {
                 $data['password'] = Crypt::decryptString($data['check_password']);
-            }else{
+            } else {
                 $data['password'] = 'welcome';
             }
-            
-          
-            return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills', 'selectedEducationType', 'course', 'team', 'client_status', 'work_type','roles'));
+
+
+            return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills', 'selectedEducationType', 'course', 'team', 'client_status', 'work_type', 'roles'));
         }
 
-        return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'course', 'team', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills', 'client_status', 'work_type','roles'));
+        return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'course', 'team', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills', 'client_status', 'work_type', 'roles'));
     }
 
 
@@ -539,7 +677,11 @@ class UserController extends Controller
     }
     public function viewResume(Request $request, $id = null)
     {
-
+        if (Session::get('role') != "ADMIN") {
+            if (Auth::user()->id != $id) {
+                return redirect('view-resume/' . Auth::user()->id);
+            }
+        }
         $data = User::where('id', '=', $id)->first();
         $data['project'] =  UserProject::where('user_id', '=', $id)->get();
         $data['certificate'] =  Certification::where('user_id', '=', $id)->get();
@@ -559,6 +701,11 @@ class UserController extends Controller
 
     public function resume(Request $request, $id = null)
     {
+        if (Session::get('role') != "ADMIN") {
+            if (Auth::user()->id != $id) {
+                return redirect('resume/' . Auth::user()->id);
+            }
+        }
 
         $data = User::where('id', '=', $id)->first();
         $data['project'] =  UserProject::where('user_id', '=', $id)->get();

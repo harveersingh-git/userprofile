@@ -35,7 +35,7 @@ Add Skills Education
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <label>Name</label>
-                                                <select class="form-control" name="user_name" id="users">
+                                                <select class="form-control" name="user_name" id="users" required="">
                                                     <option value="">--Please select--</option>
                                                     @forelse($data['users'] as $key=>$user)
                                                 
@@ -54,7 +54,7 @@ Add Skills Education
                                             </div>
                                             <div class="col-lg-6">
                                                 <label>Emp Status</label>
-                                                <select class="form-control" name="emp_status">
+                                                <select class="form-control" name="emp_status" required="">
                                                     <option value="">--Please select--</option>
                                                     @forelse($data['client_status'] as $key=>$status)
 
@@ -100,7 +100,7 @@ Add Skills Education
                                             </div>
                                             <div class="col-lg-6">
                                                 <label>Work Type</label>
-                                                <select class="form-control" name="work_type">
+                                                <select class="form-control" name="work_type" required="">
                                                     <option value="">--Please select--</option>
                                                     @forelse($data['workstatus'] as $key=>$worktype)
 
@@ -130,7 +130,7 @@ Add Skills Education
                                             </div>
                                             <div class="col-lg-6">
                                                 <label>Team Leader</label>
-                                                <select class="form-control" name="team_leader">
+                                                <select class="form-control" name="team_leader" required="">
                                                     <option value="">--Please select--</option>
                                                     @forelse($data['team'] as $key=>$team)
 

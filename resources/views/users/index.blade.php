@@ -8,10 +8,11 @@ Toast::message('message', 'level', 'title');
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Users</h1>
+                <h1 class="page-header">Users{{Session::get('role')}}</h1>
             </div>
 
         </div>
+        @if(Session::get('role')=="ADMIN")
         <div class="row">
             <div class="col-lg-12">
                 <div class="pull-left">
@@ -102,6 +103,7 @@ Toast::message('message', 'level', 'title');
 
             </div>
         </div>
+    
         <div class="">
             <div class="form-inline">
                 @forelse ($client_status as $status)
@@ -113,24 +115,14 @@ Toast::message('message', 'level', 'title');
 
             </div>
         </div>
+        @endif
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading mypnl_heading">
                         <span>Users</span>
-                        <!-- <div class="col-sm-3 pull-right my_usearch">
-                            <form action="{{url('users')}}" method="GET" role="search" autocomplete="off">
-
-                                <div class="input-group">
-                                    <input type="text" value="{{ Request::get('search') }}" class="form-control" name="search" placeholder="Search users"> <span class="input-group-btn">
-                                        <button type="submit" class="btn btn-default">
-                                            <span class="glyphicon glyphicon-search"></span>
-                                        </button>
-                                    </span>
-                                </div>
-                            </form>
-                        </div> -->
+                     
                     </div>
                     <!-- /.panel-heading -->
 
@@ -191,9 +183,10 @@ Toast::message('message', 'level', 'title');
 
 
                                 <td>
-                                    <a class="btn btn-warning myac_btn" href="{{url('/information')}}/{{$value->id}}" data-toggle="tooltip" data-placement="top" title="EDIT"><i class="fa fa-edit"></i> </a>
-
+                                    <a class="btn btn-warning myac_btn" href="{{url('/information')}}/{{base64_encode($value->id)}}" data-toggle="tooltip" data-placement="top" title="EDIT"><i class="fa fa-edit"></i> </a>
+                                    @if(Session::get('role')=="ADMIN")
                                     <a class="delete btn btn-danger myac_btn" id="{{$value->id}}" data-toggle="tooltip" data-placement="top" title="DELETE"> <i class="fa fa-trash"></i></a>
+                                    @endif
                                     <a class=" btn btn-primary myac_btn" href="{{url('/resume')}}/{{$value->id}}" data-toggle="tooltip" data-placement="top" title="DOWNLOAD" target="_blank"><i class="fa fa-cloud-download" aria-hidden="true"></i> </a>
                                     <a class="btn btn-info myac_btn" href="{{url('/view-resume')}}/{{$value->id}}" data-toggle="tooltip" data-placement="top" title="VIEW" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> </a>
 
