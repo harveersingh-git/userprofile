@@ -58,7 +58,7 @@ class ClientControlle extends Controller
         $work_type = WorkType::get();
         $client_status = ClientStatus::get();
         $client_type = ClientType::get();
-        $query = Clients::with(['users', 'client_status', 'work_type','client_type']);
+        $query = Clients::with(['users', 'client_status', 'work_type', 'client_type']);
         if (isset($request['search']) && $request['search'] != null) {
             // $query->whereHas('users', function ($query) use ($request) {
             //     $query->orWhere('name','like', '%' . $request['search'] . '%');
@@ -92,8 +92,8 @@ class ClientControlle extends Controller
         // dd($data->toArray());
         if ($request['client_status'] == 'yes') {
 
-            $fileName = 'tasks.csv';
-            $tasks = Clients::all();
+            $fileName = 'clientsheet.csv';
+            $tasks = $data;
             // dd($tasks->toArray());
             $headers = array(
                 "Content-type"        => "text/csv",
@@ -108,18 +108,18 @@ class ClientControlle extends Controller
                 fputcsv($file, $columns);
 
                 foreach ($tasks as $task) {
-                    $row['EmpId']  = $task->users['employee_id'];
-                    $row['Resource Name']    = $task->users['name'];
-                    $row['Client Status']    = $task->emp_status['title'];
-                    $row['Client Code']  = $task->client_code;
-                    $row['Client Name']  = $task->client_name;
-                    $row['Client Email']  = $task->client_email;
+                    $row['EmpId']  = isset($task->users['employee_id'])?$task->users['employee_id']:'N/A';
+                    $row['Resource Name']    = isset($task->users['name'])?$task->users['name']:'N/A';
+                    $row['Client Status']    = isset($task->client_status['title'])?$task->client_status['title']:'N/A';
+                    $row['Client Code']  = isset($task->client_code)?$task->client_code:'N/A';
+                    $row['Client Name']  = isset($task->client_name)?$task->client_name:'N/A';
+                    $row['Client Email']  = isset($task->client_email)?$task->client_email:'N/A';
                     $row['TL Code']  = isset($task->users->myTeam['tl_code']) ? $task->users->myTeam['tl_code'] : 'N/A';
                     $row['TL Name']  = isset($task->users->myTeam['name']) ? $task->users->myTeam['name'] : 'N/A';
-                    $row['Resource']  = $task->work_type['title'];
-                    $row['Hours']  = $task->hours;
-                    $row['Sarting date']  = $task->starting_date;
-                    $row['End date']  = isset($task->end_date)?$task->end_date:'';
+                    $row['Resource']  = isset($task->work_type['title'])?$task->work_type['title']:'N/A';
+                    $row['Hours']  = isset($task->hours)?$task->hours:'N/A';
+                    $row['Sarting date']  = isset($task->starting_date)?$task->starting_date:'N/A';
+                    $row['End date']  = isset($task->end_date) ? $task->end_date : 'N/A';
 
 
                     fputcsv($file, array($row['EmpId'], $row['Resource Name'], $row['Client Status'], $row['Client Code'], $row['Client Name'], $row['Client Email'], $row['TL Code'], $row['TL Name'], $row['Resource'], $row['Hours'], $row['Sarting date'], $row['End date']));
@@ -173,7 +173,7 @@ class ClientControlle extends Controller
             $input['client_status_id'] =  $input['client_status'];
             // $input['team_id'] =  $input['team_leader'];
             $input['starting_date'] =  $input['start_date'];
-            $input['end_date'] =  isset($input['end_date'])?$input['end_date']:NULL;
+            $input['end_date'] =  isset($input['end_date']) ? $input['end_date'] : NULL;
             $client = Clients::create($input);
             if ($client) {
                 $updated['client_status'] = $input['client_status'];
