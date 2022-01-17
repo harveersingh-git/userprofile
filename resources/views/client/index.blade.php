@@ -128,7 +128,7 @@ Toast::message('message', 'level', 'title');
                                 <td class="text-center">{{ $value->client_code}}</td>
                                 <td class="text-center">{{ $value->client_name}}</td>
                                 <td class="text-center">{{ $value->client_email}}</td>
-                                <td class="text-center">{{ $value->client_type['title'] }}</td>
+                                <td class="text-center">{{ isset($value->client_type['title'])?$value->client_type['title']:'' }}</td>
                                 <td class="text-center">{{ isset($value->users->myTeam['tl_code'])?$value->users->myTeam['tl_code'] : ''}}</td>
                                 <td class="text-center">{{ isset($value->users->myTeam['name'])?$value->users->myTeam['name']:''}}</td>
                                 <td class="text-center">{{ $value->work_type['title'] }}</td>
