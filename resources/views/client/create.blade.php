@@ -163,7 +163,7 @@ Add Client
 
                                             <div class="col-lg-3 datepicker-prsonal_new">
                                                 <label>End Date</label>
-                                                <input class="form-control" placeholder="2022-01-13" name="end_date" id="end_date" value="{{old('end_date')}}" required="" autocomplete="off" />
+                                                <input class="form-control" placeholder="2022-01-13" name="end_date" id="end_date" value="{{old('end_date')}}"  autocomplete="off" />
                                                 @error('end_date')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror

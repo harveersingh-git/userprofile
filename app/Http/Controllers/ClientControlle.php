@@ -119,7 +119,7 @@ class ClientControlle extends Controller
                     $row['Resource']  = $task->work_type['title'];
                     $row['Hours']  = $task->hours;
                     $row['Sarting date']  = $task->starting_date;
-                    $row['End date']  = $task->end_date;
+                    $row['End date']  = isset($task->end_date)?$task->end_date:'';
 
 
                     fputcsv($file, array($row['EmpId'], $row['Resource Name'], $row['Client Status'], $row['Client Code'], $row['Client Name'], $row['Client Email'], $row['TL Code'], $row['TL Name'], $row['Resource'], $row['Hours'], $row['Sarting date'], $row['End date']));
@@ -173,7 +173,7 @@ class ClientControlle extends Controller
             $input['client_status_id'] =  $input['client_status'];
             // $input['team_id'] =  $input['team_leader'];
             $input['starting_date'] =  $input['start_date'];
-            $input['end_date'] =  $input['end_date'];
+            $input['end_date'] =  isset($input['end_date'])?$input['end_date']:NULL;
             $client = Clients::create($input);
             if ($client) {
                 $updated['client_status'] = $input['client_status'];
@@ -220,7 +220,7 @@ class ClientControlle extends Controller
             // 'team_id' => isset($input['team_leader']) ? $input['team_leader'] : '',
             'hours' => isset($input['hours']) ? $input['hours'] : '',
             'starting_date' => isset($input['start_date']) ? $input['start_date'] : '',
-            'end_date' => isset($input['end_date']) ? $input['end_date'] : '',
+            'end_date' => isset($input['end_date']) ? $input['end_date'] : NULL,
 
 
         ]);
