@@ -16,7 +16,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 |
 */
 // Route::any('/logout', function () { return redirect('/home');});
-// Route::any('/', function () { return redirect('/login');});
+Route::any('/', function () { return redirect('/login');});
 Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
