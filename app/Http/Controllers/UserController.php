@@ -25,7 +25,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Crypt;
 use Hash;
 use Session;
-
+use App\Models\ClientType;
 
 
 
@@ -527,6 +527,7 @@ class UserController extends Controller
         $certificate = SkillsEducation::where('category', '=', 'certificate')->get();
         $course = SkillsEducation::where('category', '=', 'course')->get();
         $team = Teams::get();
+        $client_type = ClientType::get();
         $client_status = ClientStatus::get();
         $work_type = WorkType::get();
 
@@ -565,10 +566,10 @@ class UserController extends Controller
             }
 
 
-            return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills', 'selectedEducationType', 'course', 'team', 'client_status', 'work_type', 'roles'));
+            return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills', 'selectedEducationType', 'course', 'team', 'client_type', 'work_type', 'roles','client_status'));
         }
 
-        return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'course', 'team', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills', 'client_status', 'work_type', 'roles'));
+        return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'course', 'team', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills', 'client_type', 'work_type', 'roles','client_status'));
     }
 
 

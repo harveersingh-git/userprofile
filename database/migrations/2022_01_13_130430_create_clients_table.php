@@ -23,8 +23,8 @@ class CreateClientsTable extends Migration
             $table->string('client_name');
             $table->string('client_email');
             $table->string('map')->nullable();
-            $table->unsignedBigInteger('team_id');
-            $table->foreign('team_id')->references('id')->on('teams');
+            // $table->unsignedBigInteger('team_id');
+            // $table->foreign('team_id')->references('id')->on('teams');
             $table->unsignedBigInteger('work_type_id');
             $table->foreign('work_type_id')->references('id')->on('work_types');
             $table->string('hours');

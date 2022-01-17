@@ -16,29 +16,37 @@ class Clients extends Model
         'client_name',
         'client_email',
         'map',
-        'team_id',
+        // 'team_id',
         'work_type_id',
         'hours',
-        'starting_date'
+        'starting_date',
+        'end_date',
+        'client_type_id'
     ];
 
     public function users(){
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id')->with('myTeam');
 
     }
 
-    public function emp_status(){
+    public function client_status(){
         return $this->belongsTo(ClientStatus::class, 'client_status_id', 'id');
 
     }
+
+  
 
     public function work_type(){
         return $this->belongsTo(WorkType::class, 'work_type_id', 'id');
 
     }
-
-    public function team(){
-        return $this->belongsTo(Teams::class, 'team_id', 'id');
+    public function client_type(){
+        return $this->belongsTo(ClientType::class, 'client_type_id', 'id');
 
     }
+
+    // public function team(){
+    //     return $this->belongsTo(Teams::class, 'team_id', 'id');
+
+    // }
 }

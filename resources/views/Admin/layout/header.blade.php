@@ -47,9 +47,11 @@
                     
                 <ul class="dropdown-menu">
                             <li> <a href="{{route('skills-education')}}" class="{{ Request::segment(1) === 'skills-education' ? 'active' : null }}"><i class="fa fa-book"></i> Skills/education</a></li>
-                            <li> <a href="{{route('client-status')}}" class="{{ Request::segment(1) === 'client-status' ? 'active' : null }}"><i class="fa fa-users"></i> Client Status</a></li>
+                            <li> <a href="{{route('client-type')}}" class="{{ Request::segment(1) === 'client-type' ? 'active' : null }}"><i class="fa fa-cogs"></i> Client Type</a>
+
                             <li> <a href="{{route('work-type')}}" class="{{ Request::segment(1) === 'work-type' ? 'active' : null }}"><i class="fa fa-cogs"></i> Work Type</a>
-                            </li>
+                            <li> <a href="{{route('client-status')}}" class="{{ Request::segment(1) === 'client-status' ? 'active' : null }}"><i class="fa fa-users"></i> Client Status</a></li>  
+                        </li>
 
 
 

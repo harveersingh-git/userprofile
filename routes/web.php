@@ -83,6 +83,15 @@ Route::any('/client-status/edit/{id}', [App\Http\Controllers\ClientStatusControl
 Route::post('/update-client-status', [App\Http\Controllers\ClientStatusController::class, 'update']);
 Route::post('/delete_client_status', [App\Http\Controllers\ClientStatusController::class, 'destroy']);
 
+
+Route::any('/client-type', [App\Http\Controllers\ClientTypeController::class, 'index'])->name('client-type');
+Route::any('/add-client-type', [App\Http\Controllers\ClientTypeController::class, 'create'])->name('add-client-type');
+Route::any('/client-type/edit/{id}', [App\Http\Controllers\ClientTypeController::class,'view']);
+Route::post('/update-client-type', [App\Http\Controllers\ClientTypeController::class, 'update']);
+Route::post('/delete_client_type', [App\Http\Controllers\ClientTypeController::class, 'destroy']);
+
+
+
 Route::any('/work-type', [App\Http\Controllers\WorkTypeController::class, 'index'])->name('work-type');
 Route::any('/add-work-type', [App\Http\Controllers\WorkTypeController::class, 'create'])->name('add-work-type');
 Route::any('/work-type/edit/{id}', [App\Http\Controllers\WorkTypeController::class,'view']);
@@ -94,6 +103,7 @@ Route::any('/add-client', [App\Http\Controllers\ClientControlle::class, 'create'
 Route::any('/client/edit/{id}', [App\Http\Controllers\ClientControlle::class,'view']);
 Route::post('/update-client', [App\Http\Controllers\ClientControlle::class, 'update']);
 Route::post('/delete_client', [App\Http\Controllers\ClientControlle::class, 'destroy']);
+Route::any('/csv', [App\Http\Controllers\ClientControlle::class, 'csv'])->name('csv');
 
 
 Route::get('/page-not-found', function () {

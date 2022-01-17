@@ -1,6 +1,6 @@
 @extends('admin.layout.head')
 @section('title')
-Add Skills Education
+Edit Client 
 @endsection
 @section('content')
 @include('admin.layout.header')
@@ -34,7 +34,7 @@ Add Skills Education
 
                                     <div class="form-group">
                                         <div class="row">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-3">
                                                 <label>Name</label>
                                                 <select class="form-control" name="user_name" id="users" required="">
                                                     <option value="">--Please select--</option>
@@ -57,13 +57,13 @@ Add Skills Education
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
-                                            <div class="col-lg-6">
-                                                <label>Emp Status</label>
-                                                <select class="form-control" name="emp_status" required="">
+                                            <div class="col-lg-3">
+                                                <label>Client Type</label>
+                                                <select class="form-control" name="client_type" required="">
                                                     <option value="">--Please select--</option>
-                                                    @forelse($data['client_status'] as $key=>$status)
-                                                    @if($status['id']==$client->client_status_id)
-                                                    <option selected  value="{{$status['id']}}">{{$status['title']}}</option>
+                                                    @forelse($data['client_type'] as $key=>$status)
+                                                    @if($status['id']==$client->client_type_id)
+                                                    <option selected value="{{$status['id']}}">{{$status['title']}}</option>
 
                                                     @else
                                                     <option value="{{$status['id']}}">{{$status['title']}}</option>
@@ -76,39 +76,11 @@ Add Skills Education
                                                     @endforelse
 
                                                 </select>
-                                                @error('emp_status')
+                                                @error('client_type')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
-
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <label>Client Code</label>
-                                                <input class="form-control" placeholder="Ex:TK0987" name="client_code" value="{{$client['client_code']}}" required="" autocomplete="off" />
-                                                @error('client_code')
-                                                <p class="alert alert-danger"> {{ $message }} </p>
-                                                @enderror
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <label>Client Name</label>
-                                                <input class="form-control" placeholder="Ex:abc" name="client_name" value="{{$client['client_name']}}" required="" autocomplete="off" />
-                                                @error('client_name')
-                                                <p class="alert alert-danger"> {{ $message }} </p>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <label>Client Email</label>
-                                                <input type="email" class="form-control" placeholder="Ex:abc@gmail.com" name="client_email" value="{{$client['client_email']}}" required="" autocomplete="off" />
-                                                @error('client_email')
-                                                <p class="alert alert-danger"> {{ $message }} </p>
-                                                @enderror
-                                            </div>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-3">
                                                 <label>Work Type</label>
                                                 <select class="form-control" name="work_type" required="">
                                                     <option value="">--Please select--</option>
@@ -133,50 +105,81 @@ Add Skills Education
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
+                                            <div class="col-lg-3">
+                                                <label>Client Status</label>
+                                                <select class="form-control" name="client_status" required="">
+                                                    <option value="">--Please select--</option>
+                                                    @forelse($data['client_status'] as $key=>$clientstatus)
+                                                    @if($clientstatus['id']==$client->client_status_id)
+                                                    <option selected value="{{$clientstatus['id']}}">{{$clientstatus['title']}}</option>
+                                                    @else
+                                                    <option value="{{$clientstatus['id']}}">{{$clientstatus['title']}}</option>
+                                                    @endif
+                                                    @empty
+                                                    <p>No Client Status Found</p>
+                                                    @endforelse
+
+                                                </select>
+                                                <!-- <input class="form-control" placeholder="Ex:abc" name="name" value="{{old('client_name')}}" required="" autocomplete="off" /> -->
+                                                @error('client_status')
+                                                <p class="alert alert-danger"> {{ $message }} </p>
+                                                @enderror
+                                            </div>
 
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-3">
+                                                <label>Client Code</label>
+                                                <input class="form-control" placeholder="Ex:TK0987" name="client_code" value="{{$client['client_code']}}" required="" autocomplete="off" />
+                                                @error('client_code')
+                                                <p class="alert alert-danger"> {{ $message }} </p>
+                                                @enderror
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <label>Client Name</label>
+                                                <input class="form-control" placeholder="Ex:abc" name="client_name" value="{{$client['client_name']}}" required="" autocomplete="off" />
+                                                @error('client_name')
+                                                <p class="alert alert-danger"> {{ $message }} </p>
+                                                @enderror
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <label>Client Email</label>
+                                                <input type="email" class="form-control" placeholder="Ex:abc@gmail.com" name="client_email" value="{{$client['client_email']}}" required="" autocomplete="off" />
+                                                @error('client_email')
+                                                <p class="alert alert-danger"> {{ $message }} </p>
+                                                @enderror
+                                            </div>
+                                            <div class="col-lg-3">
                                                 <label>Hours</label>
                                                 <input type="number" class="form-control" placeholder="Ex:152" name="hours" value="{{$client['hours']}}" required="" autocomplete="off" />
                                                 @error('hours')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
-                                            <div class="col-lg-6">
-                                                <label>Team Leader</label>
-                                                <select class="form-control" name="team_leader" required="">
-                                                    <option value="">--Please select--</option>
-                                                    @forelse($data['team'] as $key=>$team)
-                                                    @if($team['id']==$client->team_id)
-                                                    <option selected value="{{$team['id']}}">{{$team['name']}}-{{$team['tl_code']}}</option>
+                                        </div>
 
-                                                    @else
-                                                    <option value="{{$team['id']}}">{{$team['name']}}-{{$team['tl_code']}}</option>
+                                     
 
-                                                    @endif
-
-
-                                                    @empty
-                                                    <p>No Work type Found</p>
-                                                    @endforelse
-
-                                                </select>
-                                                <!-- <input class="form-control" placeholder="Ex:abc" name="name" value="{{old('client_name')}}" required="" autocomplete="off" /> -->
-                                                @error('team_leader')
-                                                <p class="alert alert-danger"> {{ $message }} </p>
-                                                @enderror
-                                            </div>
+                                        <div class="row">
+                                       
+                                            
 
                                         </div>
 
                                         <div class="row">
 
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-3">
                                                 <label>Start Date</label>
                                                 <input class="form-control" placeholder="2022-01-13" name="start_date" id="start_date" value="{{ $client->starting_date }}" required="" autocomplete="off" />
                                                 @error('start_date')
+                                                <p class="alert alert-danger"> {{ $message }} </p>
+                                                @enderror
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <label>End Date</label>
+                                                <input class="form-control" placeholder="2022-01-13" name="end_date" id="end_date" value="{{ $client->end_date }}" required="" autocomplete="off" />
+                                                @error('end_date')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
@@ -217,6 +220,13 @@ Add Skills Education
         $('#users').select2();
 
         $("#start_date").datepicker({
+                dateFormat: 'yy-mm-dd',
+                // maxDate: new Date()
+
+            }
+
+        );
+        $("#end_date").datepicker({
                 dateFormat: 'yy-mm-dd',
                 // maxDate: new Date()
 

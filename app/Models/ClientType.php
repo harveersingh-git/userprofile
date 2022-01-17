@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class WorkType extends Model
+class ClientType extends Model
 {
     use HasFactory;
     protected $fillable = [
@@ -14,6 +14,5 @@ class WorkType extends Model
         'font_color'   
     ];
 
-    protected $table = 'work_types';
-
+   
 }
