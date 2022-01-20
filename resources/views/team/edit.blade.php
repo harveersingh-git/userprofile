@@ -45,6 +45,16 @@ Add Skills Education
                                                 @error('tl_code')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
+                                                <label>Click Up Team ID</label>
+                                                <input class="form-control" placeholder="Ex:123456" name="click_up_team_id" value="{{$data['click_up_team_id']}}" autocomplete="off" />
+                                                @error('click_up_team_id')
+                                                <p class="alert alert-danger"> {{ $message }} </p>
+                                                @enderror
+                                                <label>Click Up Access Token</label>
+                                                <input class="form-control" placeholder="pk_49441641f_43SO0ZORIP60GBVCVY3H2WHJBSJV1V2D" name="click_up_access_token" value="{{$data['click_up_access_token']}}" autocomplete="off" />
+                                                @error('click_up_access_token')
+                                                <p class="alert alert-danger"> {{ $message }} </p>
+                                                @enderror
                                             </div>
                                             
                                         </div>

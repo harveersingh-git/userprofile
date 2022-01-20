@@ -51,7 +51,8 @@ class User extends Authenticatable
         'updated_by',
         'check_password',
         'added_by',
-        'user_role'
+        'user_role',
+        'click_up_user_id'
     ];
 
     /**

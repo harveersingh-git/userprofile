@@ -12,34 +12,34 @@ Toast::message('message', 'level', 'title');
                 <h1 class="page-header">Teams</h1>
             </div>
 
-           
+
 
 
             <!-- /.col-lg-12 -->
         </div>
 
         <div class="row">
-        <div class="col-lg-3">
+            <div class="col-lg-3">
                 <a class="btn btn-info mb-20" href="{{ url('add-team') }}" class="active"><i class="fa fa-plus fa-fw"></i>
                     <i class="fa fa-book fa-fw"></i> Add Team
                 </a>
             </div>
 
-</div>
+        </div>
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading mypnl_heading">
-                      <span>Teams<span>
+                        <span>Teams<span>
                     </div>
                     <!-- /.panel-heading -->
-                    <table class="table table-bordered table-responsive" >
+                    <table class="table table-bordered table-responsive">
                         <thead>
                             <tr>
                                 <th class="text-center">Sr. No.</th>
                                 <th class="text-center">Name</th>
-                               
+
 
 
 
@@ -50,15 +50,21 @@ Toast::message('message', 'level', 'title');
                             @if(!empty($data) && $data->count())
                             @foreach($data as $key => $value)
                             <tr>
-                                   <td class="text-center">{{ $key+1 }}</td>
+                                <td class="text-center">{{ $key+1 }}</td>
                                 <td class="text-center">{{ $value->name }}</td>
-                                
+
 
                                 <td class="text-center">
-                                    <a  class="btn btn-warning" href="{{url('/team/edit')}}/{{$value->id}}"><i class="fa fa-edit"></i> Edit</button>
+                                    <a class="btn btn-warning" href="{{url('/team/edit')}}/{{$value->id}}"><i class="fa fa-edit"></i> Edit</a>
 
-                                    <a class="delete btn btn-danger" id="{{$value->id}}"> <i class="fa fa-trash"></i> Delete</button>
+                                    <a class="delete btn btn-danger" id="{{$value->id}}"> <i class="fa fa-trash"></i> Delete</a>
+                                    @if($value->click_up_team_id)
+                                    <a class="btn btn-warning" href="{{url('/click-up-team-sync')}}/{{$value->id}}"><i class="fa fa-users"></i> ClickUp Team Sync</a>
 
+                                    <a class="btn btn-warning" href="{{url('/click-up-report-sync')}}/{{$value->id}}"><i class="fa fa-edit"></i> ClickUp Report Sync</a>
+                                    <a class="btn btn-warning" href="{{url('/genrate-daily-report')}}/{{$value->id}}"><i class="fa fa-book" target="_blank"></i> Generate Report</a>
+
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach

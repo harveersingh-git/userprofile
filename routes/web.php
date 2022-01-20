@@ -110,6 +110,16 @@ Route::get('/page-not-found', function () {
     return view('welcome');
 });
 
+Route::get('/click-up-report-sync/{id}', [App\Http\Controllers\ClickUpController::class, 'clickTimeSync']);
+
+Route::any('/click-up-team-sync/{id}', [App\Http\Controllers\ClickUpController::class,'clickTeamSync']);
+Route::any('/genrate-daily-report/{id}', [App\Http\Controllers\ClickUpController::class,'genrateReport']);
+
+// Route::any('/clickup-report/{id}', [App\Http\Controllers\ClickUpController::class,'view']);
+// Route::get('/click-up-space', [App\Http\Controllers\ClickUpController::class, 'space']);
+// Route::get('/click-up-tasklist-folder-less', [App\Http\Controllers\ClickUpController::class, 'taskListFolderLess']);
+// Route::get('/click-up-get_golder', [App\Http\Controllers\ClickUpController::class, 'taskListFolderLess']);
+
 
 
 

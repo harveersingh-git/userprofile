@@ -14,13 +14,14 @@ class TeamController extends Controller
         $this->middleware('access');
     }
 
-    
-    public function index(Request $request){
+
+    public function index(Request $request)
+    {
         $data = Teams::latest()->paginate(10);
 
         return view('team.index', compact('data'));
     }
-      /**
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -29,7 +30,7 @@ class TeamController extends Controller
     {
         $url = '';
         if ($request->isMethod('post')) {
-           
+
             $request->validate([
                 'name' => 'required'
             ]);
@@ -61,14 +62,17 @@ class TeamController extends Controller
         $data = Teams::find($id);
         $data->update([
             'name' => $input['name'],
-            'tl_code' => isset($input['tl_code'])?$input['tl_code']:''
+            'tl_code' => isset($input['tl_code']) ? $input['tl_code'] : '',
+            'click_up_team_id' => isset($input['click_up_team_id']) ? $input['click_up_team_id'] : '',
+            'click_up_access_token' => isset($input['click_up_access_token']) ? $input['click_up_access_token'] : ''
+
         ]);
 
         if ($id) {
             return  redirect()->route('team')->with('message', 'Data update Successfully');
         }
     }
-     /**
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
