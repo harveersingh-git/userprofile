@@ -58,7 +58,7 @@ Toast::message('message', 'level', 'title');
                                     <a class="btn btn-warning" href="{{url('/team/edit')}}/{{$value->id}}"><i class="fa fa-edit"></i> Edit</a>
 
                                     <a class="delete btn btn-danger" id="{{$value->id}}"> <i class="fa fa-trash"></i> Delete</a>
-                                    @if($value->click_up_team_id)
+                                    @if(isset($value->click_up_team_id) && isset($value->click_up_access_token))
                                     <a class="btn btn-warning" href="{{url('/click-up-team-sync')}}/{{$value->id}}"><i class="fa fa-users"></i> ClickUp Team Sync</a>
 
                                     <a class="btn btn-warning" href="{{url('/click-up-report-sync')}}/{{$value->id}}"><i class="fa fa-edit"></i> ClickUp Report Sync</a>
