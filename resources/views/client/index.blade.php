@@ -116,9 +116,9 @@ Toast::message('message', 'level', 'title');
                             @if(!empty($data) && $data->count())
                             @foreach($data as $key => $value)
                             <tr>
-                                <td class="text-center" data-toggle="tooltip" data-placement="top" style="background-color: {{isset($value->client_status->background_color) ? $value->client_status->background_color:''}}"><span style="color: {{isset($value->client_status->font_color) ? $value->client_status->font_color:'';}}">{{ $key+1 }} </span></td>
+                                <td class="text-center" data-toggle="tooltip" data-placement="top" style="background-color: {{isset($value->client_type->background_color) ? $value->client_type->background_color:''}}"><span style="color: {{isset($value->client_type->font_color) ? $value->client_type->font_color:'';}}">{{ $key+1 }} </span></td>
 
-                                <td class="text-center">
+                                <td class="">
                                     @forelse($value['client_resource'] as $index=>$res)
                                     {{$res['working_resource']->name}} {{$res['working_resource']->last_name}}-{{$res['working_resource']->employee_id}} {{$res['working_resource']->client_status_value[0]->title}} ({{$res['working_resource']->work_status_value[0]->title}}),</br>
 
@@ -127,7 +127,7 @@ Toast::message('message', 'level', 'title');
                                     @endforelse
 
                                 </td>
-                                <td class="text-center">
+                                <td class="">
                                     @forelse($value['client_resource'] as $index=>$res)
                                     {{$res['hire_resource']->name}} {{$res['hire_resource']->last_name}}-{{$res['hire_resource']->employee_id}} {{$res['hire_resource']->client_status_value[0]->title}} ({{$res['hire_resource']->work_status_value[0]->title}}),</br>
 
