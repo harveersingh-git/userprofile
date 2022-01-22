@@ -685,9 +685,7 @@ label {
     font-size: 13px;
     color: #555;
 }
-.delete {
-    margin: 0 0px 0px 10px;
-}
+
 .table tr td{ font-size: 12px; vertical-align: middle !important;}
 .panel-heading > .btn-outline {
     padding: 3px 10px;
