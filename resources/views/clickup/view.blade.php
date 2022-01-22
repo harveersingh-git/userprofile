@@ -28,7 +28,7 @@ Toast::message('message', 'level', 'title');
                 <div class="pull-right">
                     <form action="{{ url('click-up-time-sync') }}" method="GET" role="search" autocomplete="off" class="form-inline">
 
-                        <input type="text" class="form-control" name="daterange" value="" placeholder="2022-01-21"/>
+                        <input type="text" class="form-control" name="daterange" value="" placeholder="2022-01-21" />
                         <input type="hidden" value="{{$id}}" name="id">
 
 
@@ -119,7 +119,7 @@ Toast::message('message', 'level', 'title');
                     <div class="form-group">
 
                         <label for="recipient-name" class="col-form-label">Time:</label>
-                        <input type="number" class="form-control" id="time" required="" name="time">
+                        <input type="text" class="form-control" id="time" required="" name="time">
                         <input type="hidden" class="form-control" id="click_up_report_id" name="click_up_report_id">
                     </div>
                     <div class="form-group">
@@ -159,6 +159,9 @@ Toast::message('message', 'level', 'title');
     });
 
     $('.popup').on('click', function() {
+        var time = $(this).text();
+        $('#time').val(time);
+
         var token = $('input[name="_token"]').attr('value');
         var id = $(this).attr('id');
         $('#click_up_report_id').val(id);
@@ -191,14 +194,13 @@ Toast::message('message', 'level', 'title');
 
 
     $(function() {
-        $('input[name="daterange"]').datepicker(
-        {
-            dateFormat: 'yy-mm-dd',
-            maxDate: new Date()
-           
-        }
+        $('input[name="daterange"]').datepicker({
+                dateFormat: 'yy-mm-dd',
+                maxDate: new Date()
 
-    );
+            }
+
+        );
         // $('input[name="daterange"]').daterangepicker({
         //     startDate: moment().startOf('hour'),
         //     endDate: moment().startOf('hour').add(23, 'hour'),
