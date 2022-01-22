@@ -727,7 +727,7 @@ label {
     padding: 0
 }
 .myac_btn {
-    padding: 1px !important;
+    padding: 3px !important;
     margin: 4px 0px;
     border-radius: 50%;
     height: 30px;
@@ -834,4 +834,30 @@ span.select2-selection.select2-selection--single {
     padding: 2px 6px;
     border:1px solid #ccc
 }
+.update_status{ width:460px !important; top:15%}
+.btn_new_cross {
+    font-size: 22px;
+    background: red !important;
+    opacity: 1;
+    color: #fff;
+    border-radius: 30px;
+    width: 22px;
+    font-weight: normal;
+}
+
+button.close.btn_new_cross:hover {
+    opacity: 1;
+    color: #fff;
+}
+
+.modal-header-new {
+    min-height: 16.43px;
+    padding: 15px;
+    border-bottom: 1px solid #e5e5e5;
+    background: #202c32;
+    border-radius: 4px 4px 0 0;
+    color: #fff;
+}
+
+
 

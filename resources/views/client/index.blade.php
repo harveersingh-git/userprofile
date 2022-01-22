@@ -147,13 +147,8 @@ Toast::message('message', 'level', 'title');
                                 <td class="text-center">
                                     <a class="btn btn-warning myac_btn" href="{{url('/client/edit')}}/{{$value->id}}" data-toggle="tooltip" title="Edit!"> <i class="fa fa-edit"></i></button>
 
-<<<<<<< HEAD
                                         <a class="delete btn btn-danger myac_btn" id="{{$value->id}}" data-toggle="tooltip" title="Delete"> <i class="fa fa-trash" ></i></button>
                                         <a class="btn btn-success delete myac_btn" href="{{url('/add-resource')}}/{{$value->id}}" data-toggle="tooltip" title="Add New Resources!"><i class="fa fa-user-plus"></i></button>
-=======
-                                        <a class="delete btn btn-danger" id="{{$value->id}}"> <i class="fa fa-trash"></i> Delete</button>
-                                            <a class="btn btn-warning" href="{{url('/add-resource')}}/{{$value->id}}"><i class="fa fa-users"></i>Add Resource</button>
->>>>>>> main
 
                                 </td>
                             </tr>

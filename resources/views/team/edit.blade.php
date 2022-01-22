@@ -34,7 +34,7 @@ Add Skills Education
 
                                     <div class="form-group">
                                         <div class="row">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-6 form-group">
                                                 <label>Name</label>
                                                 <input class="form-control form-group" placeholder="Ex:abc" name="name" value="{{$data['name']}}" required="" autocomplete="off" />
                                                 @error('name')
@@ -69,9 +69,9 @@ Add Skills Education
 
                                 </form>
                             </div>
-                            <!-- /.col-lg-6 (nested) -->
+                            <!-- /.col-lg-6 form-group (nested) -->
 
-                            <!-- /.col-lg-6 (nested) -->
+                            <!-- /.col-lg-6 form-group (nested) -->
                         </div>
                         <!-- /.row (nested) -->
                     </div>

@@ -45,7 +45,7 @@ class ClickUpController extends Controller
             $click_up_team_id = $team->click_up_team_id;
             // $team = Teams::select('id')->where('click_up_team_id', $click_up_team_id)->first();
             $users =  User::select('id', 'click_up_user_id')->where(['team' => $team['id']])->whereNotNull('click_up_user_id')->get();
-
+            
             if (count($users) > 0) {
 
                 foreach ($users as $key => $val) {

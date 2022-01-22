@@ -105,14 +105,12 @@ Toast::message('message', 'level', 'title');
 
 
 <!--model-->
-<div class="modal" tabindex="-1" role="dialog" id="myModal">
-    <div class="modal-dialog" role="document">
+<div class="modal " tabindex="-1" role="dialog" id="myModal">
+    <div class="modal-dialog update_status " role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Update status</h2>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+            <div class="modal-header modal-header-new">
+            <button type="button" class="close btn_new_cross" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Update Status</h4>
             </div>
             <div class="modal-body">
                 <form id="recordForm" action="{{url('update-click-up-report')}}">
@@ -139,7 +137,7 @@ Toast::message('message', 'level', 'title');
 
             </div>
             <div class="modal-footer">
-                <input type="submit" value="Save" class="action-button btn btn-success col-md-3 pull-right" id="record_submit" />
+                <input type="submit" value="Save" class="action-button btn btn-info col-md-3 pull-right" id="record_submit" />
                 </form>
 
             </div>

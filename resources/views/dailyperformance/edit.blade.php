@@ -34,7 +34,7 @@ Edit Daily Performance
 
                                     <div class="form-group">
                                         <div class="row">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-6 form-group">
                                                 <label>Name</label>
                                                 <input class="form-control" placeholder="Ex:abc" name="title" value="{{$data['title']}}" required="" autocomplete="off" />
                                                 @error('title')
@@ -44,9 +44,9 @@ Edit Daily Performance
 
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-6 form-group">
                                                 <label>Background Color</label>
-                                                <div class="form-group row">
+                                                <div class="row">
 
                                                     <div class="col-md-12 col-sm-12  ">
                                                         <div class="input-group demo2">
@@ -64,9 +64,9 @@ Edit Daily Performance
 
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-6 form-group">
                                                 <label>Font Color</label>
-                                                <div class="form-group row">
+                                                <div class="row">
 
                                                     <div class="col-md-12 col-sm-12  ">
                                                         <div class="input-group demo2">
@@ -84,17 +84,21 @@ Edit Daily Performance
 
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-6">
-                                                <label>Need A Reason</label>
-                                                <div class="form-group row">
+                                            <div class="col-lg-6 form-group">
+                                               
+                                                <div class="row">
 
                                                     <div class="col-md-12 col-sm-12  ">
                                                         <div class="input-group">
+
                                                             <input type="checkbox" id="need_a_reason" name="need_a_reason" value="1" {{ isset($data['need_a_reason']) ? $data['need_a_reason'] == '1' ? 'checked=checked' :'' :'' }}>
 
                                                             @error('need_a_reason')
                                                             <p class="alert alert-danger"> {{ $message }} </p>
                                                             @enderror
+
+                                                            <label>&nbsp; Need A Reason &nbsp;</label>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -114,9 +118,9 @@ Edit Daily Performance
 
                                 </form>
                             </div>
-                            <!-- /.col-lg-6 (nested) -->
+                            <!-- /.col-lg-6 form-group (nested) -->
 
-                            <!-- /.col-lg-6 (nested) -->
+                            <!-- /.col-lg-6 form-group (nested) -->
                         </div>
                         <!-- /.row (nested) -->
                     </div>

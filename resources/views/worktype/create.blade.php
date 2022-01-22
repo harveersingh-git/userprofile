@@ -30,9 +30,9 @@ Add Skills Education
                             <div class="col-lg-12">
                             <form role="form" action="{{$url}}" method="post">
                                     @csrf
-                                    <div class="form-group">
+                                    <div class="">
                                         <div class="row">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-6 form-group">
                                                 <label>Name</label>
                                                 <input class="form-control" placeholder="Ex:abc" name="title" value="{{old('title')}}" required="" autocomplete="off" />
                                                 @error('name')
@@ -44,9 +44,9 @@ Add Skills Education
 
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-6 form-group">
                                             <label>Background Color</label>
-                                                <div class="form-group row">
+                                                <div class="row">
                                                     
                                                     <div class="col-md-12 col-sm-12  ">
                                                         <div class="input-group demo2">
@@ -64,9 +64,9 @@ Add Skills Education
 
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-6 form-group">
                                             <label>Font Color</label>
-                                                <div class="form-group row">
+                                                <div class="row">
                                                     
                                                     <div class="col-md-12 col-sm-12  ">
                                                         <div class="input-group demo2">
@@ -94,9 +94,9 @@ Add Skills Education
                                     <button type="submit" class="btn btn-info submit_info">Add</button>
                                 </form>
                             </div>
-                            <!-- /.col-lg-6 (nested) -->
+                            <!-- /.col-lg-6 form-group (nested) -->
 
-                            <!-- /.col-lg-6 (nested) -->
+                            <!-- /.col-lg-6 form-group (nested) -->
                         </div>
                         <!-- /.row (nested) -->
                     </div>

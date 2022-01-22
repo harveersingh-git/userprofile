@@ -33,7 +33,7 @@ Add Skills Education
                                     @csrf
                                     <div class="form-group">
                                         <div class="row">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-6 form-group">
                                                 <label>Name</label>
                                                 <input class="form-control form-group" placeholder="Ex:abc" name="name" value="{{old('name')}}" required="" autocomplete="off" />
                                                 @error('name')
@@ -68,9 +68,9 @@ Add Skills Education
                                     <button type="submit" class="btn btn-info submit_info">Add</button>
                                 </form>
                             </div>
-                            <!-- /.col-lg-6 (nested) -->
+                            <!-- /.col-lg-6 form-group (nested) -->
 
-                            <!-- /.col-lg-6 (nested) -->
+                            <!-- /.col-lg-6 form-group (nested) -->
                         </div>
                         <!-- /.row (nested) -->
                     </div>
