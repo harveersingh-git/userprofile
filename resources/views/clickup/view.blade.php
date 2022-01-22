@@ -137,7 +137,7 @@ Toast::message('message', 'level', 'title');
 
             </div>
             <div class="modal-footer">
-                <input type="submit" value="Save" class="action-button btn btn-info col-md-3 pull-right" id="record_submit" />
+                <button type="submit" value="Save" class="action-button btn btn-info col-md-3 pull-right" id="record_submit"> Save</button>
                 </form>
 
             </div>
