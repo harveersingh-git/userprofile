@@ -32,7 +32,7 @@ Edit Daily Performance
                                     @csrf
                                     <input type="hidden" name="id" value="{{$id}}">
 
-                                    <div class="form-group">
+                                    <div class="fo rm-group">
                                         <div class="row">
                                             <div class="col-lg-6 form-group">
                                                 <label>Name</label>

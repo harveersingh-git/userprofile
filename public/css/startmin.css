@@ -693,6 +693,7 @@ label {
 .table .btn {
     font-size: 12px;
     padding: 4px 7px;
+    margin:4px 3px!important
 
 }
 .datepicker-wrap:before {

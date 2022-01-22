@@ -32,7 +32,7 @@ Add Skills Education
                                     @csrf
                                     <input type="hidden" name="id" value="{{$id}}">
 
-                                    <div class="form-group">
+                                    <div class="">
                                         <div class="row">
                                             <div class="col-lg-6 form-group">
                                                 <label>Name</label>

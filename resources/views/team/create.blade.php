@@ -31,7 +31,7 @@ Add Skills Education
 
                                 <form role="form" action="{{$url}}" method="post">
                                     @csrf
-                                    <div class="form-group">
+                                    <div class="fo rm-group">
                                         <div class="row">
                                             <div class="col-lg-6 form-group">
                                                 <label>Name</label>
