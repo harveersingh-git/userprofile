@@ -33,7 +33,7 @@ body {
     }
 
     th.text-center {
-        font-size: 14px;
+        font-size: 13px;
     }
 }
 
@@ -688,11 +688,15 @@ label {
 .delete {
     margin: 0 0px 0px 10px;
 }
-.table tr td{ font-size: 13px; vertical-align: middle !important;}
+.table tr td{ font-size: 12px; vertical-align: middle !important;}
 .panel-heading > .btn-outline {
     padding: 3px 10px;
 }
-.table .btn  { font-size: 12px; padding: 4px 6px;}
+.table .btn {
+    font-size: 12px;
+    padding: 4px 7px;
+
+}
 .datepicker-wrap:before {
     content: "\f073";
     font-family: "Font Awesome 5 Free";
@@ -723,11 +727,11 @@ label {
     padding: 0
 }
 .myac_btn {
-    padding: 6px !important;
-    margin: 4px 3px;
+    padding: 1px !important;
+    margin: 4px 0px;
     border-radius: 50%;
-    height: 35px;
-    width: 35px;
+    height: 30px;
+    width: 30px;
     font-size: 16px !important;
 }
 .back_btn {
@@ -735,10 +739,11 @@ label {
 }
 
 .back_btn a {
-    padding: 8px 15px;
+    padding: 7px 14px;
     font-weight: normal;
     text-decoration: none;
     background-color: #fff;
+    border-radius: 4px;
 }
 
 .back_btn a:hover {
@@ -818,3 +823,15 @@ label {
 .dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover{
     background-color: transparent !important;
 }
+
+
+   .delete {
+    margin: 0 0px 0px 5px;
+}
+
+span.select2-selection.select2-selection--single {
+    height: 34px;
+    padding: 2px 6px;
+    border:1px solid #ccc
+}
+

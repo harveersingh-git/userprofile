@@ -100,23 +100,16 @@ Toast::message('message', 'level', 'title');
                     <table class="table table-bordered table-responsive">
                         <thead>
                             <tr>
-                                <th class="text-center">Sr. No.</th>
-                                <th class="text-center">Working Resource</th>
-                                <th class="text-center">Hire Resource</th>
-                                <th class="text-center">Client Code</th>
-                                <th class="text-center">Client Name</th>
-                                <th class="text-center">Client Email</th>
-                                <th class="text-center">Client Type</th>
-
-
-
-                                <th class="text-center">Sarting date</th>
-                                <th class="text-center">End date</th>
-
-
-
-
-                                <th class="text-center">Action</th>
+                                <th width="5%" class="text-center">Sr. No.</th>
+                                <th class="text-center" width="18%">Working Resource</th>
+                                <th class="text-center" width="18%">Hire Resource</th>
+                                <th class="text-center" width="8%">Client Code</th>
+                                <th class="text-center" width="8%">Client Name</th>
+                                <th class="text-center" width="8%">Client Email</th>
+                                <th class="text-center" width="8%">Client Type</th>
+                                <th class="text-center" width="8%">Start date</th>
+                                <th class="text-center" width="8%">End date</th>
+                                <th class="text-center" width="12%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -152,10 +145,10 @@ Toast::message('message', 'level', 'title');
                                 <td class="text-center">{{ $value->end_date}}</td>
 
                                 <td class="text-center">
-                                    <a class="btn btn-warning" href="{{url('/client/edit')}}/{{$value->id}}"><i class="fa fa-edit"></i> Edit</button>
+                                    <a class="btn btn-warning myac_btn" href="{{url('/client/edit')}}/{{$value->id}}" data-toggle="tooltip" title="Edit!"> <i class="fa fa-edit"></i></button>
 
-                                        <a class="delete btn btn-danger" id="{{$value->id}}"> <i class="fa fa-trash"></i> Delete</button>
-                                        <a class="btn btn-warning" href="{{url('/add-resource')}}/{{$value->id}}"><i class="fa fa-users"></i>Add Resource</button>
+                                        <a class="delete btn btn-danger myac_btn" id="{{$value->id}}" data-toggle="tooltip" title="Delete"> <i class="fa fa-trash" ></i></button>
+                                        <a class="btn btn-success delete myac_btn" href="{{url('/add-resource')}}/{{$value->id}}" data-toggle="tooltip" title="Add New Resources!"><i class="fa fa-user-plus"></i></button>
 
                                 </td>
                             </tr>
@@ -215,6 +208,12 @@ Toast::message('message', 'level', 'title');
         });
 
     });
+</script>
+
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
 </script>
 
 @endsection

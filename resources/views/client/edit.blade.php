@@ -35,7 +35,7 @@ Edit Client
                                     <div class="form-group">
                                         <div class="row">
                                           
-                                            <div class="col-lg-3">
+                                            <div class="col-lg-3 form-group">
                                                 <label>Client Status</label>
                                                 <select class="form-control" name="client_type" required="">
                                                     <option value="">--Please select--</option>
@@ -58,21 +58,21 @@ Edit Client
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
-                                            <div class="col-lg-3">
+                                            <div class="col-lg-3 form-group">
                                                 <label>Start Date</label>
                                                 <input class="form-control" placeholder="2022-01-13" name="start_date" id="start_date" value="{{ $client->starting_date }}" required="" autocomplete="off" />
                                                 @error('start_date')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
-                                            <div class="col-lg-3">
+                                            <div class="col-lg-3 form-group">
                                                 <label>End Date</label>
                                                 <input class="form-control" placeholder="2022-01-13" name="end_date" id="end_date" value="{{ $client->end_date }}"  autocomplete="off" />
                                                 @error('end_date')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
-                                            <div class="col-lg-3">
+                                            <div class="col-lg-3 form-group">
                                                 <label>Hours</label>
                                                 <input type="number" class="form-control" placeholder="Ex:152" name="hours" value="{{$client['hours']}}" required="" autocomplete="off" />
                                                 @error('hours')
@@ -83,28 +83,28 @@ Edit Client
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-lg-3">
+                                            <div class="col-lg-3 form-group">
                                                 <label>Client Code</label>
                                                 <input class="form-control" placeholder="Ex:TK0987" name="client_code" value="{{$client['client_code']}}" required="" autocomplete="off" />
                                                 @error('client_code')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
-                                            <div class="col-lg-3">
+                                            <div class="col-lg-3 form-group">
                                                 <label>Client Name</label>
                                                 <input class="form-control" placeholder="Ex:abc" name="client_name" value="{{$client['client_name']}}" required="" autocomplete="off" />
                                                 @error('client_name')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
-                                            <div class="col-lg-3">
+                                            <div class="col-lg-3 form-group">
                                                 <label>Client Email</label>
                                                 <input type="email" class="form-control" placeholder="Ex:abc@gmail.com" name="client_email" value="{{$client['client_email']}}" required="" autocomplete="off" />
                                                 @error('client_email')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
-                                            <div class="col-lg-3">
+                                            <div class="col-lg-3 form-group">
                                                 <label>Hours Consumed</label>
                                                 <input type="number" class="form-control" placeholder="Ex:152" name="hours_cunsumed" value="{{$client['hours_cunsumed']}}" required="" autocomplete="off" />
                                                 @error('hours_cunsumed')

@@ -35,7 +35,7 @@ Add Resource
                                     <div class="form-group">
                                         <div class="row">
 
-                                            <div class="col-lg-3">
+                                            <div class="col-lg-3 form-group">
                                                 <label>Working Resource</label>
                                                 <input type="hidden" name="client_name" value="{{$id}}">
                                                 <select class="form-control" name="working_user_name" id="workingusers" required="">
@@ -55,7 +55,7 @@ Add Resource
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
-                                            <div class="col-lg-3">
+                                            <div class="col-lg-3 form-group">
                                                 <label>Hire Resource</label>
                                                 <select class="form-control" name="hire_user_name" id="hireusers" required="">
                                                     <option value="">--Please select--</option>
@@ -74,7 +74,7 @@ Add Resource
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
-                                            <div class="col-lg-3">
+                                            <div class="col-lg-3 form-group">
                                                 <label>Work Duration</label>
                                                 <select class="form-control" name="work_type" id="" required="">
                                                     <option value="">--Please select--</option>
@@ -93,7 +93,7 @@ Add Resource
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
-                                            <div class="col-lg-3">
+                                            <div class="col-lg-3 form-group">
                                                 <label>Resource Hire Status</label>
                                                 <select class="form-control" name="resource_status" id="" required="">
                                                     <option value="">--Please select--</option>

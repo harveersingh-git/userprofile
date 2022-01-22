@@ -36,22 +36,22 @@ Add Skills Education
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <label>Name</label>
-                                                <input class="form-control" placeholder="Ex:abc" name="name" value="{{$data['name']}}" required="" autocomplete="off" />
+                                                <input class="form-control form-group" placeholder="Ex:abc" name="name" value="{{$data['name']}}" required="" autocomplete="off" />
                                                 @error('name')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                                 <label>TL Code</label>
-                                                <input class="form-control" placeholder="Ex:TK0123" name="tl_code" value="{{$data['tl_code']}}"  autocomplete="off" />
+                                                <input class="form-control form-group" placeholder="Ex:TK0123" name="tl_code" value="{{$data['tl_code']}}"  autocomplete="off" />
                                                 @error('tl_code')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                                 <label>Click Up Team ID</label>
-                                                <input class="form-control" placeholder="Ex:123456" name="click_up_team_id" value="{{$data['click_up_team_id']}}" autocomplete="off" />
+                                                <input class="form-control form-group" placeholder="Ex:123456" name="click_up_team_id" value="{{$data['click_up_team_id']}}" autocomplete="off" />
                                                 @error('click_up_team_id')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                                 <label>Click Up Access Token</label>
-                                                <input class="form-control" placeholder="pk_49441641f_43SO0ZORIP60GBVCVY3H2WHJBSJV1V2D" name="click_up_access_token" value="{{$data['click_up_access_token']}}" autocomplete="off" />
+                                                <input class="form-control form-group" placeholder="pk_49441641f_43SO0ZORIP60GBVCVY3H2WHJBSJV1V2D" name="click_up_access_token" value="{{$data['click_up_access_token']}}" autocomplete="off" />
                                                 @error('click_up_access_token')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
