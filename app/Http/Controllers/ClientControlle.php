@@ -153,6 +153,35 @@ class ClientControlle extends Controller
         $data['users'] = User::where('id', '!=', 1)->get();
 
         if ($request->isMethod('post')) {
+         
+            if (!empty($request['end_date'])) {
+           
+                $request->validate([
+              
+                    'client_type' => 'required',
+                    'client_code' => 'required',
+                    'client_name' => 'required',
+                    'client_email' => 'required',
+                    'hours' => 'required',
+                    'start_date' => 'required|before_or_equal:end_date',
+                    'end_date' => 'date_format:Y-m-d',
+                    'hours_cunsumed' => 'required',
+
+
+                ]);
+            } else {
+                $request->validate([
+                    'client_type' => 'required',
+                    'client_code' => 'required',
+                    'client_name' => 'required',
+                    'client_email' => 'required',
+                    'hours' => 'required',
+                    'start_date' => 'required',
+                    'hours_cunsumed' => 'required',
+
+
+                ]);
+            }
 
             $request->validate([
                 // 'user_name' => 'required',

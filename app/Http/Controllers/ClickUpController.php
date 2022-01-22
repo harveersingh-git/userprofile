@@ -180,16 +180,15 @@ class ClickUpController extends Controller
 
     public function view(Request $reques, $id)
     {
-        $date = Carbon::now()->toDateString();
+     
         $columns = [];
         $result = [];
         $users =  User::where(['team' => $id])->whereNotNull('click_up_user_id')->pluck('id');
         $click = ClickUp::with('user', 'daily_performance')->whereIn('user_id', $users)->get();
-        // dd(    $click->toArray());
 
         if (count($click)) {
             $columns = [];
-            // dd($click->toArray());
+
             foreach ($click as $key => $valu) {
 
                 if (!in_array($valu->user['name'] . ' ' . $valu->user['last_name'], $columns, true)) {
