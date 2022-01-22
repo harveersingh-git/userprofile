@@ -29,7 +29,7 @@ Toast::message('message', 'level', 'title');
                     <form action="{{ url('click-up-time-sync') }}" method="GET" role="search" autocomplete="off" class="form-inline">
 
                         <input type="text" class="form-control" name="daterange" value="" placeholder="2022-01-21" />
-                        <input type="hidden" value="{{$id}}" name="id">
+                        <input type="hidden" value="{{$id}}" name="id" id="team_id">
 
 
                         <button type="submit" class="btn btn-info btn-default">Fetch Report</button>
@@ -194,13 +194,48 @@ Toast::message('message', 'level', 'title');
 
 
     $(function() {
-        $('input[name="daterange"]').datepicker({
-                dateFormat: 'yy-mm-dd',
-                maxDate: new Date()
+        var token = $('input[name="_token"]').attr('value');
+        var data = {
+            team_id: $('#team_id').val()
+        };
+        $.ajax({
+            type: 'GET',
+            url: base_url + '/get_sync_dates',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: data,
+            headers: {
+                'X-CSRF-Token': token
+            },
+
+            success: function(result) {
+                var array = [];
+                if (result.data.length > 0) {
+                    result.data.forEach(element => {
+                        array.push(element.date);
+                    });
+                }
+
+                $('input[name="daterange"]').datepicker({
+                        dateFormat: 'yy-mm-dd',
+                        maxDate: new Date(),
+                        beforeShowDay: function(date) {
+                            var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+                            return [array.indexOf(string) == -1]
+                        }
+
+                    }
+
+                );
+
+
+
+
 
             }
+        })
+        // var array = ["2022-01-20", "2022-01-19", "2022-01-17"]
 
-        );
         // $('input[name="daterange"]').daterangepicker({
         //     startDate: moment().startOf('hour'),
         //     endDate: moment().startOf('hour').add(23, 'hour'),
