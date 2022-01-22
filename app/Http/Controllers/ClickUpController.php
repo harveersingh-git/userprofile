@@ -107,12 +107,12 @@ class ClickUpController extends Controller
                 'Content-Type' => 'application/json'
             ])->get(env('CLICKUP_BASE_URL') . '/team');
             $data = json_decode($response->body());
-
+                
             if ($data) {
 
-                foreach ($data->teams as $key => $val) {
+                foreach ($data->teams as $key => $result) {
 
-                    foreach ($val->members as $key => $val) {
+                    foreach ($result->members as $key => $val) {
                         $user = User::where(['email' => $val->user->email])->first();
 
                         if ($user) {
