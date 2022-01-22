@@ -15,18 +15,18 @@ class CreateClientsTable extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('client_status_id');
-            $table->foreign('client_status_id')->references('id')->on('client_statuses');
+            // $table->unsignedBigInteger('user_id');
+            // $table->foreign('user_id')->references('id')->on('users');
+            // $table->unsignedBigInteger('client_status_id');
+            // $table->foreign('client_status_id')->references('id')->on('client_statuses');
             $table->string('client_code');
             $table->string('client_name');
             $table->string('client_email');
             $table->string('map')->nullable();
             // $table->unsignedBigInteger('team_id');
             // $table->foreign('team_id')->references('id')->on('teams');
-            $table->unsignedBigInteger('work_type_id');
-            $table->foreign('work_type_id')->references('id')->on('work_types');
+            // $table->unsignedBigInteger('work_type_id');
+            // $table->foreign('work_type_id')->references('id')->on('work_types');
             $table->string('hours');
             $table->date('starting_date');
             $table->timestamps();

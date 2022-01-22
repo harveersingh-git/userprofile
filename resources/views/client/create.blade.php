@@ -34,27 +34,9 @@ Add Client
                                     @csrf
                                     <div class="form-group">
                                         <div class="row">
+                                            
                                             <div class="col-lg-3">
-                                                <label>Name</label>
-                                                <select class="form-control" name="user_name" id="users" required="">
-                                                    <option value="">--Please select--</option>
-                                                    @forelse($data['users'] as $key=>$user)
-
-                                                    <option value="{{$user['id']}}">{{$user['name']}} - {{$user['last_name']}}</option>
-
-
-                                                    @empty
-                                                    <p>No User Found</p>
-                                                    @endforelse
-
-                                                </select>
-                                                <!-- <input class="form-control" placeholder="Ex:abc" name="name" value="{{old('name')}}" required="" autocomplete="off" /> -->
-                                                @error('user_name')
-                                                <p class="alert alert-danger"> {{ $message }} </p>
-                                                @enderror
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <label>Client Type</label>
+                                                <label>Client Status</label>
                                                 <select class="form-control" name="client_type" required="">
                                                     <option value="">--Please select--</option>
                                                     @forelse($data['client_type'] as $key=>$status)
@@ -71,44 +53,29 @@ Add Client
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
-                                            <div class="col-lg-3">
-                                                <label>Work Type</label>
-                                                <select class="form-control" name="work_type" required="">
-                                                    <option value="">--Please select--</option>
-                                                    @forelse($data['workstatus'] as $key=>$worktype)
+                                            <div class="col-lg-3 datepicker-prsonal_new">
+                                                <label>Start Date</label>
+                                                <input class="form-control" placeholder="2022-01-13" name="start_date" id="start_date" value="{{old('start_date')}}" required="" autocomplete="off" />
+                                                @error('start_date')
+                                                <p class="alert alert-danger"> {{ $message }} </p>
+                                                @enderror
+                                            </div>
 
-                                                    <option value="{{$worktype['id']}}">{{$worktype['title']}}</option>
-
-
-                                                    @empty
-                                                    <p>No Work type Found</p>
-                                                    @endforelse
-
-                                                </select>
-                                                <!-- <input class="form-control" placeholder="Ex:abc" name="name" value="{{old('client_name')}}" required="" autocomplete="off" /> -->
-                                                @error('work_type')
+                                            <div class="col-lg-3 datepicker-prsonal_new">
+                                                <label>End Date</label>
+                                                <input class="form-control" placeholder="2022-01-13" name="end_date" id="end_date" value="{{old('end_date')}}"  autocomplete="off" />
+                                                @error('end_date')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
                                             <div class="col-lg-3">
-                                                <label>Client Status</label>
-                                                <select class="form-control" name="client_status" required="">
-                                                    <option value="">--Please select--</option>
-                                                    @forelse($data['client_status'] as $key=>$worktype)
-
-                                                    <option value="{{$worktype['id']}}">{{$worktype['title']}}</option>
-
-
-                                                    @empty
-                                                    <p>No Work type Found</p>
-                                                    @endforelse
-
-                                                </select>
-                                                <!-- <input class="form-control" placeholder="Ex:abc" name="name" value="{{old('client_name')}}" required="" autocomplete="off" /> -->
-                                                @error('work_type')
+                                                <label>Hours</label>
+                                                <input type="number" class="form-control" placeholder="Ex:152" name="hours" value="{{old('hours')}}" required="" autocomplete="off" />
+                                                @error('hours')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
+                                            
 
 
                                         </div>
@@ -137,12 +104,13 @@ Add Client
                                                 @enderror
                                             </div>
                                             <div class="col-lg-3">
-                                                <label>Hours</label>
-                                                <input type="number" class="form-control" placeholder="Ex:152" name="hours" value="{{old('hours')}}" required="" autocomplete="off" />
-                                                @error('hours')
+                                                <label>Hours Consumed</label>
+                                                <input type="number" class="form-control" placeholder="Ex:152" name="hours_cunsumed" value="{{old('hours_cunsumed')}}" required="" autocomplete="off" />
+                                                @error('hours_cunsumed')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
+                                           
 
 
 
@@ -150,26 +118,7 @@ Add Client
 
 
 
-                                        <div class="row">
-                                          
-
-                                            <div class="col-lg-3 datepicker-prsonal_new">
-                                                <label>Start Date</label>
-                                                <input class="form-control" placeholder="2022-01-13" name="start_date" id="start_date" value="{{old('start_date')}}" required="" autocomplete="off" />
-                                                @error('start_date')
-                                                <p class="alert alert-danger"> {{ $message }} </p>
-                                                @enderror
-                                            </div>
-
-                                            <div class="col-lg-3 datepicker-prsonal_new">
-                                                <label>End Date</label>
-                                                <input class="form-control" placeholder="2022-01-13" name="end_date" id="end_date" value="{{old('end_date')}}"  autocomplete="off" />
-                                                @error('end_date')
-                                                <p class="alert alert-danger"> {{ $message }} </p>
-                                                @enderror
-                                            </div>
-
-                                        </div>
+                                      
 
 
 

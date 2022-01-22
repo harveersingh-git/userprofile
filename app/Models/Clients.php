@@ -21,7 +21,8 @@ class Clients extends Model
         'hours',
         'starting_date',
         'end_date',
-        'client_type_id'
+        'client_type_id',
+        'hours_cunsumed'
     ];
 
     public function users(){
@@ -49,4 +50,11 @@ class Clients extends Model
     //     return $this->belongsTo(Teams::class, 'team_id', 'id');
 
     // }
+    public function client_resource(){
+        return $this->hasMany(ClientResource::class, 'client_id', 'id')->with(['working_resource','hire_resource']);;
+
+    }
+    
+
+  
 }

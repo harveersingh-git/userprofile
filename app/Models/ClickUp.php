@@ -11,7 +11,9 @@ class ClickUp extends Model
     protected $fillable = [
         'user_id',
         'date',
-        'time'
+        'time',
+        'daily_performance_id',
+        'reason'
     ];
 
     protected $table = 'clickup_report';
@@ -19,5 +21,10 @@ class ClickUp extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function daily_performance()
+    {
+        return $this->belongsTo(DailyPerformance::class, 'daily_performance_id', 'id');
     }
 }

@@ -163,7 +163,7 @@ Toast::message('message', 'level', 'title');
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-lg-6">
-                                                        <label>Client Status<span style="color: red;">*</span></label>
+                                                        <label>Resource Hire Status<span style="color: red;">*</span></label>
                                                         <select class="form-control" name="client_status" {{ isset($data->id)  ? '' : 'required=""'}}>
 
                                                             @forelse($client_status as $key=>$clientstatus)
@@ -181,7 +181,7 @@ Toast::message('message', 'level', 'title');
 
                                                     </div>
                                                     <div class="col-lg-6">
-                                                        <label>Work Type<span style="color: red;">*</span></label>
+                                                        <label>Work Duration<span style="color: red;">*</span></label>
                                                         <select class="form-control" name="work_type" {{ isset($data->id)  ? '' : 'required=""'}}>
 
                                                             @forelse($work_type as $key=>$worktype)

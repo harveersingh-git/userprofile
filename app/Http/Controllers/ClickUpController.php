@@ -16,15 +16,26 @@ use App\Models\ClickUp;
 class ClickUpController extends Controller
 {
 
-    public function clickTimeSync(Request $request, $id)
+    public function clickTimeSync(Request $request)
     {
+        $id = $request['id'];
+        // rang code
+        // $rangdate = explode('-', $request['daterange']);
+        // rang code
 
         $team =  Teams::where('id', $id)->first();
         if (isset($team->click_up_access_token) && isset($team->click_up_team_id)) {
-            // $start_date = Carbon::create($request['start_date'])->toDateTimeString();
-            // $start_date = Carbon::create($request['start_date'])->toDateTimeString();
-            $start_date = Carbon::now()->startOfDay()->toDateTimeString();
-            $end_date = Carbon::now()->endOfDay()->toDateTimeString();
+            $start_date = Carbon::create($request['daterange'])->toDateTimeString();
+            $end_date = Carbon::create($request['daterange'])->endOfDay()->toDateTimeString();
+
+
+            // range code
+            // $start_date = Carbon::create($rangdate[0])->startOfDay()->toDateTimeString();
+            // $end_date = Carbon::create($rangdate[1])->endOfDay()->toDateTimeString();
+            // range code
+
+            // $start_date = Carbon::now()->startOfDay()->toDateTimeString();
+            // $end_date = Carbon::now()->endOfDay()->toDateTimeString();
 
             // $end_date = Carbon::create($request['start_date'])->addHours(23)->addMinutes(59)->toDateTimeString();
 
@@ -66,7 +77,7 @@ class ClickUpController extends Controller
                         $input = [];
                         $input['user_id'] = $val->id;
                         $input['date'] =  $start_date;
-                        $input['time'] =  $hour . ':' . $minutes;
+                        $input['time'] =  $hour . ':' . $minutes . ':' . $seconds;
                         ClickUp::where(['user_id' => $val->id, 'date' => $start_date])->delete();
                         $success =   ClickUp::create($input);
                     } else {
@@ -78,7 +89,8 @@ class ClickUpController extends Controller
                     }
                 }
             }
-            return redirect('team')->with('message', 'Data Sync successfully');
+            return redirect()->back()->with('message', 'Data Sync successfully');
+            // return redirect('team')->with('message', 'Data Sync successfully');
         } else {
             return redirect('team')->with('message', 'Access token not found');
         }
@@ -148,6 +160,7 @@ class ClickUpController extends Controller
                 $file = fopen('php://output', 'w');
                 fputcsv($file, $columns);
                 foreach ($tasks as $newky => $data) {
+
                     $row[$data->user['name'] . ' ' . $data->user['last_name']]  = $data->time;
                 }
 
@@ -167,7 +180,31 @@ class ClickUpController extends Controller
 
     public function view(Request $reques, $id)
     {
+        $date = Carbon::now()->toDateString();
+        $columns = [];
+        $result = [];
+        $users =  User::where(['team' => $id])->whereNotNull('click_up_user_id')->pluck('id');
+        $click = ClickUp::with('user', 'daily_performance')->whereIn('user_id', $users)->get();
+        // dd(    $click->toArray());
 
-        return view('clickup.view', compact('id'));
+        if (count($click)) {
+            $columns = [];
+            // dd($click->toArray());
+            foreach ($click as $key => $valu) {
+
+                if (!in_array($valu->user['name'] . ' ' . $valu->user['last_name'], $columns, true)) {
+                    $columns[] = $valu->user['name'] . ' ' . $valu->user['last_name'];
+                }
+            }
+
+            array_unshift($columns, "Date");
+            foreach ($click as $key => $value) {
+                // dd($value->daily_performance);
+                $result[$value->date][] = $value->time . ',' . $value->id ;
+            }
+
+            return view('clickup.view', compact('id', 'columns', 'result'));
+        }
+        return view('clickup.view', compact('id', 'columns', 'result'));
     }
 }

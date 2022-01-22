@@ -34,31 +34,9 @@ Edit Client
 
                                     <div class="form-group">
                                         <div class="row">
+                                          
                                             <div class="col-lg-3">
-                                                <label>Name</label>
-                                                <select class="form-control" name="user_name" id="users" required="">
-                                                    <option value="">--Please select--</option>
-                                                    @forelse($data['users'] as $key=>$user)
-
-                                                    @if($user['id'] == $client->user_id)
-                                                    <option selected value="{{$user['id']}}">{{$user['name']}} - {{$user['last_name']}}</option>
-                                                    @else
-                                                    <option value="{{$user['id']}}">{{$user['name']}} - {{$user['last_name']}}</option>
-
-                                                    @endif
-
-                                                    @empty
-                                                    <p>No User Found</p>
-                                                    @endforelse
-
-                                                </select>
-                                                <!-- <input class="form-control" placeholder="Ex:abc" name="name" value="{{old('name')}}" required="" autocomplete="off" /> -->
-                                                @error('user_name')
-                                                <p class="alert alert-danger"> {{ $message }} </p>
-                                                @enderror
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <label>Client Type</label>
+                                                <label>Client Status</label>
                                                 <select class="form-control" name="client_type" required="">
                                                     <option value="">--Please select--</option>
                                                     @forelse($data['client_type'] as $key=>$status)
@@ -81,47 +59,23 @@ Edit Client
                                                 @enderror
                                             </div>
                                             <div class="col-lg-3">
-                                                <label>Work Type</label>
-                                                <select class="form-control" name="work_type" required="">
-                                                    <option value="">--Please select--</option>
-                                                    @forelse($data['workstatus'] as $key=>$worktype)
-
-                                                    @if($worktype['id']==$client['work_type_id'])
-                                                    <option selected value="{{$worktype['id']}}">{{$worktype['title']}}</option>
-
-                                                    @else
-                                                    <option value="{{$worktype['id']}}">{{$worktype['title']}}</option>
-
-                                                    @endif
-
-
-                                                    @empty
-                                                    <p>No Work type Found</p>
-                                                    @endforelse
-
-                                                </select>
-                                                <!-- <input class="form-control" placeholder="Ex:abc" name="name" value="{{old('client_name')}}" required="" autocomplete="off" /> -->
-                                                @error('work_type')
+                                                <label>Start Date</label>
+                                                <input class="form-control" placeholder="2022-01-13" name="start_date" id="start_date" value="{{ $client->starting_date }}" required="" autocomplete="off" />
+                                                @error('start_date')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
                                             <div class="col-lg-3">
-                                                <label>Client Status</label>
-                                                <select class="form-control" name="client_status" required="">
-                                                    <option value="">--Please select--</option>
-                                                    @forelse($data['client_status'] as $key=>$clientstatus)
-                                                    @if($clientstatus['id']==$client->client_status_id)
-                                                    <option selected value="{{$clientstatus['id']}}">{{$clientstatus['title']}}</option>
-                                                    @else
-                                                    <option value="{{$clientstatus['id']}}">{{$clientstatus['title']}}</option>
-                                                    @endif
-                                                    @empty
-                                                    <p>No Client Status Found</p>
-                                                    @endforelse
-
-                                                </select>
-                                                <!-- <input class="form-control" placeholder="Ex:abc" name="name" value="{{old('client_name')}}" required="" autocomplete="off" /> -->
-                                                @error('client_status')
+                                                <label>End Date</label>
+                                                <input class="form-control" placeholder="2022-01-13" name="end_date" id="end_date" value="{{ $client->end_date }}"  autocomplete="off" />
+                                                @error('end_date')
+                                                <p class="alert alert-danger"> {{ $message }} </p>
+                                                @enderror
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <label>Hours</label>
+                                                <input type="number" class="form-control" placeholder="Ex:152" name="hours" value="{{$client['hours']}}" required="" autocomplete="off" />
+                                                @error('hours')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
@@ -151,40 +105,18 @@ Edit Client
                                                 @enderror
                                             </div>
                                             <div class="col-lg-3">
-                                                <label>Hours</label>
-                                                <input type="number" class="form-control" placeholder="Ex:152" name="hours" value="{{$client['hours']}}" required="" autocomplete="off" />
-                                                @error('hours')
+                                                <label>Hours Consumed</label>
+                                                <input type="number" class="form-control" placeholder="Ex:152" name="hours_cunsumed" value="{{$client['hours_cunsumed']}}" required="" autocomplete="off" />
+                                                @error('hours_cunsumed')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
+                                           
                                         </div>
 
                                      
 
-                                        <div class="row">
-                                       
-                                            
-
-                                        </div>
-
-                                        <div class="row">
-
-                                            <div class="col-lg-3">
-                                                <label>Start Date</label>
-                                                <input class="form-control" placeholder="2022-01-13" name="start_date" id="start_date" value="{{ $client->starting_date }}" required="" autocomplete="off" />
-                                                @error('start_date')
-                                                <p class="alert alert-danger"> {{ $message }} </p>
-                                                @enderror
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <label>End Date</label>
-                                                <input class="form-control" placeholder="2022-01-13" name="end_date" id="end_date" value="{{ $client->end_date }}"  autocomplete="off" />
-                                                @error('end_date')
-                                                <p class="alert alert-danger"> {{ $message }} </p>
-                                                @enderror
-                                            </div>
-
-                                        </div>
+                                      
 
 
 

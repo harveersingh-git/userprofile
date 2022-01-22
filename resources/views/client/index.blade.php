@@ -19,36 +19,41 @@ Toast::message('message', 'level', 'title');
         </div>
 
         <div class="row">
-            <div class="col-lg-3">
-                <a class="btn btn-info mb-20" href="{{ url('add-client') }}" class="active"><i class="fa fa-plus fa-fw"></i>
-                    <i class="fa fa-book fa-fw"></i> Add Client
-                </a>
-            </div>
-            <div class="col-lg-9">
-                <form action="{{url('clients')}}" method="GET" role="search" autocomplete="off" class="form-inline">
+            <div class="col-lg-12">
+                <div class="pull-left">
+                    <a class="btn btn-info mb-20" href="{{ url('add-client') }}" class="active"><i class="fa fa-plus fa-fw"></i>
+                        <i class="fa fa-book fa-fw"></i> Add Client
+                    </a>
+                    <!-- <a class="btn btn-info mb-20" href="{{ url('add-resource') }}" class="active"><i class="fa fa-plus fa-fw"></i>
+                        <i class="fa fa-book fa-fw"></i> Add Resource
+                    </a> -->
+                </div>
 
-                    <div class="form-group">
+                <div class="pull-right">
+                    <form action="{{url('clients')}}" method="GET" role="search" autocomplete="off" class="form-inline">
+
+                        <!-- <div class="form-group">
 
                         <input type="text" class="form-control" name="search" placeholder="search by empid" value="{{Request::get('search')}}">
-                    </div>
-                    <div class="form-group">
+                    </div> -->
+                        <!-- <div class="form-group">
 
                         <input type="text" class="form-control" name="client_search" placeholder="clinet name,code,email" value="{{Request::get('client_search')}}">
-                    </div>
-                    <div class="form-group">
+                    </div> -->
+                        <div class="form-group">
 
-                        <select class="form-control" name="client_type">
-                            <option value="">--Select client type--</option>
-                            @forelse($client_type as $key=>$clientstatus)
-                            <option value="{{$clientstatus['id']}}" {{ (Request::get('client_type')) == $clientstatus['id']  ? 'selected' : ''}}>{{$clientstatus['title']}}</option>
-                            @empty
-                            <option value="">No data found</option>
-                            @endforelse
-                        </select>
-                    </div>
+                            <select class="form-control" name="client_type">
+                                <option value="">--Select client type--</option>
+                                @forelse($client_type as $key=>$clientstatus)
+                                <option value="{{$clientstatus['id']}}" {{ (Request::get('client_type')) == $clientstatus['id']  ? 'selected' : ''}}>{{$clientstatus['title']}}</option>
+                                @empty
+                                <option value="">No data found</option>
+                                @endforelse
+                            </select>
+                        </div>
 
 
-                    <div class="form-group">
+                        <!-- <div class="form-group">
 
                         <select class="form-control" name="work_type">
                             <option value="">--Select work type--</option>
@@ -58,24 +63,25 @@ Toast::message('message', 'level', 'title');
                             <option value="">No data found</option>
                             @endforelse
                         </select>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-info btn-default">Search</button>
+                    </div> -->
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-info btn-default">Search</button>
 
-                        <a type="button" href="{{route('clients')}}" class="btn btn-danger btn-default">Clear</a>
-                        <a type="button" href="{{url('clients?client_status=yes')}}" class="btn btn-primary btn-default" target="_blank">Export</a>
+                            <a type="button" href="{{route('clients')}}" class="btn btn-danger btn-default">Clear</a>
+                            <!-- <a type="button" href="{{url('clients?client_status=yes')}}" class="btn btn-primary btn-default" target="_blank">Export</a> -->
 
-                    </div>
-                </form>
+                        </div>
+                    </form>
+                </div>
             </div>
 
         </div>
         <!-- /.row -->
         <div class="">
             <div class="form-inline">
-                @forelse ($client_status as $status)
+                @forelse ($client_type as $status)
 
-                <a data-toggle="tooltip" data-placement="top" title="Client Status" href="#" class="btn" style="margin-bottom: 4px; background-color:{{$status['background_color']}};  color:{{$status['font_color']}};"> {{$status['title']}} </a>
+                <a data-toggle="tooltip" data-placement="top" title="Client Status" href="{{url('clients?client_type=')}}{{$status['id']}}" class="btn" style="margin-bottom: 4px; background-color:{{$status['background_color']}};  color:{{$status['font_color']}};"> {{$status['title']}} </a>
                 @empty
                 <a class="btn btn-success btn-xs " style="margin-bottom: 4px;"> plese add a new status</a>
                 @endforelse
@@ -95,17 +101,15 @@ Toast::message('message', 'level', 'title');
                         <thead>
                             <tr>
                                 <th class="text-center">Sr. No.</th>
-                                <th class="text-center">EmpID</th>
-                                <th class="text-center">Resource Name</th>
-                                <th class="text-center">Client Status</th>
+                                <th class="text-center">Working Resource</th>
+                                <th class="text-center">Hire Resource</th>
                                 <th class="text-center">Client Code</th>
                                 <th class="text-center">Client Name</th>
                                 <th class="text-center">Client Email</th>
                                 <th class="text-center">Client Type</th>
-                                <th class="text-center">TL Code</th>
-                                <th class="text-center">TL Name</th>
-                                <th class="text-center">Resource</th>
-                                <th class="text-center">Hours</th>
+
+
+
                                 <th class="text-center">Sarting date</th>
                                 <th class="text-center">End date</th>
 
@@ -121,18 +125,29 @@ Toast::message('message', 'level', 'title');
                             <tr>
                                 <td class="text-center" data-toggle="tooltip" data-placement="top" style="background-color: {{isset($value->client_status->background_color) ? $value->client_status->background_color:''}}"><span style="color: {{isset($value->client_status->font_color) ? $value->client_status->font_color:'';}}">{{ $key+1 }} </span></td>
 
-                                <!-- <td class="text-center" >{{ $key+1 }}</td> -->
-                                <td class="text-center">{{ $value->users['employee_id'] }}</td>
-                                <td class="text-center">{{ $value->users['name'] }} {{ $value->users['last_name'] }}</td>
-                                <td class="text-center">{{ $value->client_status['title'] }}</td>
+                                <td class="text-center">
+                                    @forelse($value['client_resource'] as $index=>$res)
+                                    {{$res['working_resource']->name}} {{$res['working_resource']->last_name}}-{{$res['working_resource']->employee_id}} {{$res['working_resource']->client_status_value[0]->title}} ({{$res['working_resource']->work_status_value[0]->title}}),</br>
+
+                                    @empty
+                                    <p>No Resource available yet</p>
+                                    @endforelse
+
+                                </td>
+                                <td class="text-center">
+                                    @forelse($value['client_resource'] as $index=>$res)
+                                    {{$res['hire_resource']->name}} {{$res['hire_resource']->last_name}}-{{$res['hire_resource']->employee_id}} {{$res['hire_resource']->client_status_value[0]->title}} ({{$res['hire_resource']->work_status_value[0]->title}}),</br>
+
+                                    @empty
+                                    <p>No Resource available yet</p>
+                                    @endforelse
+
+                                </td>
                                 <td class="text-center">{{ $value->client_code}}</td>
                                 <td class="text-center">{{ $value->client_name}}</td>
                                 <td class="text-center">{{ $value->client_email}}</td>
                                 <td class="text-center">{{ isset($value->client_type['title'])?$value->client_type['title']:'' }}</td>
-                                <td class="text-center">{{ isset($value->users->myTeam['tl_code'])?$value->users->myTeam['tl_code'] : ''}}</td>
-                                <td class="text-center">{{ isset($value->users->myTeam['name'])?$value->users->myTeam['name']:''}}</td>
-                                <td class="text-center">{{ $value->work_type['title'] }}</td>
-                                <td class="text-center">{{ $value->hours }}</td>
+
                                 <td class="text-center">{{ $value->starting_date}}</td>
                                 <td class="text-center">{{ $value->end_date}}</td>
 
@@ -140,6 +155,7 @@ Toast::message('message', 'level', 'title');
                                     <a class="btn btn-warning" href="{{url('/client/edit')}}/{{$value->id}}"><i class="fa fa-edit"></i> Edit</button>
 
                                         <a class="delete btn btn-danger" id="{{$value->id}}"> <i class="fa fa-trash"></i> Delete</button>
+                                        <a class="btn btn-warning" href="{{url('/add-resource')}}/{{$value->id}}"><i class="fa fa-users"></i>Add Resource</button>
 
                                 </td>
                             </tr>
