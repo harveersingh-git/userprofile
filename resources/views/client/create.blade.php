@@ -40,8 +40,14 @@ Add Client
                                                 <select class="form-control" name="client_type" required="">
                                                     <option value="">--Please select--</option>
                                                     @forelse($data['client_type'] as $key=>$status)
+                                                    @if (old('client_type') == $status['id'])
+                                                   
+                                                    <option value="{{$status['id']}}" selected>{{$status['title']}}</option>
+                                                    @else
+                                                    <option value="{{$status['id']}} ">{{$status['title']}}</option>
+                                                    @endif
 
-                                                    <option value="{{$status['id']}}">{{$status['title']}}</option>
+                                                  
 
 
                                                     @empty
@@ -63,7 +69,7 @@ Add Client
 
                                             <div class="col-lg-3 form-group form-group datepicker-prsonal_new">
                                                 <label>End Date</label>
-                                                <input class="form-control" placeholder="2022-01-13" name="end_date" id="end_date" value="{{old('end_date')}}"  autocomplete="off" />
+                                                <input class="form-control" placeholder="2022-01-13" name="end_date" id="end_date" value="{{old('end_date')}}" autocomplete="off" />
                                                 @error('end_date')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
@@ -75,7 +81,7 @@ Add Client
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
-                                            
+
 
 
                                         </div>
@@ -110,7 +116,7 @@ Add Client
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
-                                           
+
 
 
 
@@ -118,7 +124,7 @@ Add Client
 
 
 
-                                      
+
 
 
 
