@@ -164,6 +164,8 @@ class ClientControlle extends Controller
                 // 'team_leader' => 'required',
                 'hours' => 'required',
                 'start_date' => 'required',
+                // 'start_date' => 'required|before_or_equal:end_date',
+                // 'end_date' => 'date_format:Y-m-d',
                 'hours_cunsumed' => 'required',
 
 
