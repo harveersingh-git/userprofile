@@ -728,7 +728,7 @@ label {
 }
 .myac_btn {
     padding: 3px !important;
-    margin: 4px 0px;
+    margin: 4px 3px;
     border-radius: 50%;
     height: 30px;
     width: 30px;
@@ -825,9 +825,7 @@ label {
 }
 
 
-   .delete {
-    margin: 0 0px 0px 5px;
-}
+
 
 span.select2-selection.select2-selection--single {
     height: 34px;
