@@ -36,7 +36,7 @@ Add Resource
                                         <div class="row">
 
                                             <div class="col-lg-3">
-                                                <label>Working Resource</label>
+                                                <label>Working Resource<span style="color: red;">*</span></label>
                                                 <input type="hidden" name="client_name" value="{{$id}}">
                                                 <select class="form-control" name="working_user_name" id="workingusers" required="">
                                                     <option value="">--Please select--</option>
@@ -56,7 +56,7 @@ Add Resource
                                                 @enderror
                                             </div>
                                             <div class="col-lg-3">
-                                                <label>Hire Resource</label>
+                                                <label>Hire Resource <span style="color: red;">*</span></label>
                                                 <select class="form-control" name="hire_user_name" id="hireusers" required="">
                                                     <option value="">--Please select--</option>
                                                     @forelse($data['users'] as $key=>$user)
@@ -75,7 +75,7 @@ Add Resource
                                                 @enderror
                                             </div>
                                             <div class="col-lg-3">
-                                                <label>Work Duration</label>
+                                                <label>Work Duration<span style="color: red;">*</span></label>
                                                 <select class="form-control" name="work_type" id="" required="">
                                                     <option value="">--Please select--</option>
                                                     @forelse($data['workstatus'] as $key=>$type)
@@ -94,7 +94,7 @@ Add Resource
                                                 @enderror
                                             </div>
                                             <div class="col-lg-3">
-                                                <label>Resource Hire Status</label>
+                                                <label>Resource Hire Status<span style="color: red;">*</span></label>
                                                 <select class="form-control" name="resource_status" id="" required="">
                                                     <option value="">--Please select--</option>
                                                     @forelse($data['client_status'] as $key=>$client)

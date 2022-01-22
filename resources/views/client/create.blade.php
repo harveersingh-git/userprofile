@@ -36,7 +36,7 @@ Add Client
                                         <div class="row">
                                             
                                             <div class="col-lg-3">
-                                                <label>Client Status</label>
+                                                <label>Client Status<span style="color: red;">*</span></label>
                                                 <select class="form-control" name="client_type" required="">
                                                     <option value="">--Please select--</option>
                                                     @forelse($data['client_type'] as $key=>$status)
@@ -54,7 +54,7 @@ Add Client
                                                 @enderror
                                             </div>
                                             <div class="col-lg-3 datepicker-prsonal_new">
-                                                <label>Start Date</label>
+                                                <label>Start Date<span style="color: red;">*</span></label>
                                                 <input class="form-control" placeholder="2022-01-13" name="start_date" id="start_date" value="{{old('start_date')}}" required="" autocomplete="off" />
                                                 @error('start_date')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
@@ -69,7 +69,7 @@ Add Client
                                                 @enderror
                                             </div>
                                             <div class="col-lg-3">
-                                                <label>Hours</label>
+                                                <label>Hours<span style="color: red;">*</span></label>
                                                 <input type="number" class="form-control" placeholder="Ex:152" name="hours" value="{{old('hours')}}" required="" autocomplete="off" />
                                                 @error('hours')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
@@ -83,28 +83,28 @@ Add Client
 
                                         <div class="row">
                                             <div class="col-lg-3">
-                                                <label>Client Code</label>
+                                                <label>Client Code<span style="color: red;">*</span></label>
                                                 <input class="form-control" placeholder="Ex:TK0987" name="client_code" value="{{old('client_code')}}" required="" autocomplete="off" />
                                                 @error('client_code')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
                                             <div class="col-lg-3">
-                                                <label>Client Name</label>
+                                                <label>Client Name<span style="color: red;">*</span></label>
                                                 <input class="form-control" placeholder="Ex:abc" name="client_name" value="{{old('client_name')}}" required="" autocomplete="off" />
                                                 @error('client_name')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
                                             <div class="col-lg-3">
-                                                <label>Client Email</label>
+                                                <label>Client Email<span style="color: red;">*</span></label>
                                                 <input type="email" class="form-control" placeholder="Ex:abc@gmail.com" name="client_email" value="{{old('client_email')}}" required="" autocomplete="off" />
                                                 @error('client_email')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
                                             <div class="col-lg-3">
-                                                <label>Hours Consumed</label>
+                                                <label>Hours Consumed<span style="color: red;">*</span></label>
                                                 <input type="number" class="form-control" placeholder="Ex:152" name="hours_cunsumed" value="{{old('hours_cunsumed')}}" required="" autocomplete="off" />
                                                 @error('hours_cunsumed')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
