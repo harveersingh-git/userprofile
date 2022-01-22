@@ -86,10 +86,10 @@ class ClientControlle extends Controller
 
             $query->where('client_type_id', $request['client_type']);
         }
-        if (isset($request['work_type']) && $request['work_type'] != null) {
+        // if (isset($request['work_type']) && $request['work_type'] != null) {
 
-            $query->where('work_type_id', $request['work_type']);
-        }
+        //     $query->where('work_type_id', $request['work_type']);
+        // }
         // ,'emp_status', 'emp_status']
         $data = $query->orderBy('id', 'DESC')->paginate(15);
         // dd($data->toArray());
@@ -164,6 +164,8 @@ class ClientControlle extends Controller
                 // 'team_leader' => 'required',
                 'hours' => 'required',
                 'start_date' => 'required',
+                // 'start_date' => 'required|before_or_equal:end_date',
+                // 'end_date' => 'date_format:Y-m-d',
                 'hours_cunsumed' => 'required',
 
 

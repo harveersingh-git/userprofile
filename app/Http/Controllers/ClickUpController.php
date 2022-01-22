@@ -110,9 +110,9 @@ class ClickUpController extends Controller
 
             if ($data) {
 
-                foreach ($data->teams as $key => $val) {
+                foreach ($data->teams as $key => $result) {
 
-                    foreach ($val->members as $key => $val) {
+                    foreach ($result->members as $key => $val) {
                         $user = User::where(['email' => $val->user->email])->first();
 
                         if ($user) {
@@ -200,11 +200,24 @@ class ClickUpController extends Controller
             array_unshift($columns, "Date");
             foreach ($click as $key => $value) {
                 // dd($value->daily_performance);
-                $result[$value->date][] = $value->time . ',' . $value->id ;
+                $result[$value->date][] = $value->time . ',' . $value->id;
             }
 
             return view('clickup.view', compact('id', 'columns', 'result'));
         }
         return view('clickup.view', compact('id', 'columns', 'result'));
+    }
+
+
+    public function getSyncDate(Request $request)
+    {
+        // dd($request->all());
+        $id = $request['team_id'];
+        $users =  User::where(['team' => $id])->whereNotNull('click_up_user_id')->pluck('id');
+
+        $click = ClickUp::select('date')->whereIn('user_id', $users)->groupBy('date')->get();
+        if ($click) {
+            return response()->json(['status' => 'success', 'data' => $click]);
+        }
     }
 }

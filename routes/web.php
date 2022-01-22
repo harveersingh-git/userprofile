@@ -118,6 +118,7 @@ Route::any('/click-up-time-sync', [App\Http\Controllers\ClickUpController::class
 Route::any('/genrate-daily-report/{id}', [App\Http\Controllers\ClickUpController::class, 'genrateReport']);
 
 Route::any('/clickup-report/{id}', [App\Http\Controllers\ClickUpController::class, 'view']);
+Route::get('/get_sync_dates', [App\Http\Controllers\ClickUpController::class, 'getSyncDate']);
 
 
 Route::any('/daily-performance', [App\Http\Controllers\DailyPerformanceController::class, 'index'])->name('daily-performance');
