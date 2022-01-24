@@ -127,7 +127,7 @@
                 <i class="fa fa-user fa-fw"></i> {{ Auth::user()->name }} <b class="caret"></b>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="{{ url('information') }}/{{ base64_encode(Auth::user()->id) }}"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                <li><a href="{{ url('information') }}/{{ base64_encode(Auth::user()->id) }}"><i class="fa fa-user fa-fw"></i> User  Profile</a>
                 </li>
                 <li><a href="{{ url('changePassword') }}"><i class="fa fa-key fa-fw"></i> Change Password</a>
                 </li>
