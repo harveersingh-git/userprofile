@@ -28,7 +28,7 @@ class AdminSeeder extends Seeder
             'experience'=>'0',
             'added_by'=>'0',
             'about_employee'=>'admin',
-            'password' => '$2y$10$SyDamHlN9gAqZs7UM2T1b.C5ppZvM3bcRfuzpVb4UR8VnVDaXil.G',
+            'password' => '$2y$10$1EMUdYqvfQAyFe4GOfUHr.tyS8MNjYL1rURP.cmuhWp612vII1IJu',
             'user_role' => '1'
         ]);
     }

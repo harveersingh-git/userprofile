@@ -13,6 +13,7 @@
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
+    
     <!-- MetisMenu CSS -->
     <link href="{{asset('css/metisMenu.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/dataTables/dataTables.bootstrap.css')}}" rel="stylesheet">
