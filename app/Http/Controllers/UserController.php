@@ -559,11 +559,11 @@ class UserController extends Controller
 
             $selectedEducationType = $selectedEducationType->toArray();
             // dd(Crypt::decryptString($data['check_password']));
-            // if ($data['check_password']) {
-            //     $data['password'] = Crypt::decryptString($data['check_password']);
-            // } else {
-            //     $data['password'] = 'welcome';
-            // }
+            if ($data['check_password']) {
+                $data['password'] = Crypt::decryptString($data['check_password']);
+            } else {
+                $data['password'] = 'welcome';
+            }
 
 
             return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills', 'selectedEducationType', 'course', 'team', 'client_type', 'work_type', 'roles','client_status'));
