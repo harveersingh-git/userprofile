@@ -32,14 +32,14 @@ class EducationController extends Controller
     {
         $url = '';
         if ($request->isMethod('post')) {
-
+      
             $request->validate([
                 'value' => 'required|unique:skills_education,value',
-                'detail' => 'required',
+                'category' => 'required',
             ]);
 
             $input = $request->all();
-
+      
 
             $user = SkillsEducation::create($input);
             return redirect('skills-education')->with('message', 'Data added Successfully');
@@ -57,7 +57,7 @@ class EducationController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'detail' => 'required',
+            'category' => 'required',
         ]);
 
         SkillsEducation::create($request->all());
