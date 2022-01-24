@@ -94,7 +94,7 @@ Toast::message('message', 'level', 'title');
                                                         <select class="form-control" name="user_role" {{ isset($data->id)  ? '' : 'required=""'}}>
                                                        
                                                         @foreach($roles as $key=>$role)
-                                                         @if($role['name']== 'user')
+                                                         @if($role['name']== 'USER')
                                                         <option value="{{$role['id']}}" selected>{{$role['name']}} </option>
                                                         @endif
                                                         @endforeach
