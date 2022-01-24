@@ -35,11 +35,14 @@
                     <a href="{{route('users')}}" class="{{ Request::segment(1) === 'users' ? 'active' : null }}"><i class="fa fa-users"></i> Users</a>
                 </li>
                 <li>
-                    <a href="{{route('clients')}}" class="{{ Request::segment(1) === 'clients' ? 'active' : null }}"><i class="fa fa-users"></i> Clients</a>
+                    <a href="{{route('clients')}}" class="{{ Request::segment(1) === 'clients' ? 'active' : null }}"><i class="fa fa-american-sign-language-interpreting"></i> Clients</a>
                 </li>
 
                 <li>
-                    <a href="{{route('team')}}" class="{{ Request::segment(1) === 'team' ? 'active' : null }}"><i class="fa fa-users"></i> Team Mgmt</a>
+                    <a href="{{route('team')}}" class="{{ Request::segment(1) === 'team' ? 'active' : null }}"><i class="fa fa-tasks"></i> Team Mgmt</a>
+                </li>
+                <li>
+                    <a href="{{route('clickup-report')}}"><i class="fa fa-file"></i> ClickUp Report</a>
                 </li>
                
                 <li class="profile_box dropdown"> <a class= "dropdown-toggle" data-toggle="dropdown" href="#">Master <b class="caret"></b></a>
@@ -50,7 +53,7 @@
                             <li> <a href="{{route('client-type')}}" class="{{ Request::segment(1) === 'client-type' ? 'active' : null }}"><i class="fa fa-cogs"></i> Client Type</a>
 
                             <li> <a href="{{route('work-type')}}" class="{{ Request::segment(1) === 'work-type' ? 'active' : null }}"><i class="fa fa-cogs"></i> Work Type</a>
-                            <li> <a href="{{route('client-status')}}" class="{{ Request::segment(1) === 'client-status' ? 'active' : null }}"><i class="fa fa-users"></i> Client Status</a></li>  
+                            <li> <a href="{{route('client-status')}}" class="{{ Request::segment(1) === 'client-status' ? 'active' : null }}"><i class="fa fa-users"></i> Resource Hire Status</a></li>  
                             <li> <a href="{{route('daily-performance')}}" class="{{ Request::segment(1) === 'daily-performance' ? 'active' : null }}"><i class="fa fa-cogs"></i> Daily Performance</a></li>  
 
                         </li>
@@ -65,7 +68,7 @@
 
            <li><li>     
 
-        <li class="dropdown navbar-inverse">
+        <!-- <li class="dropdown navbar-inverse">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-bell fa-fw"></i> <b class="caret"></b>
             </a>
@@ -118,7 +121,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li> -->
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-user fa-fw"></i> {{ Auth::user()->name }} <b class="caret"></b>

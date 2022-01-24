@@ -13,7 +13,8 @@ class ClickUp extends Model
         'date',
         'time',
         'daily_performance_id',
-        'reason'
+        'reason',
+        'status'
     ];
 
     protected $table = 'clickup_report';

@@ -1,6 +1,6 @@
 @extends('admin.layout.head')
 @section('title')
-Users
+Resource Hire Status
 @endsection
 @section('content')
 @include('admin.layout.header')
@@ -9,7 +9,7 @@ Toast::message('message', 'level', 'title');
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Client Status</h1>
+                <h1 class="page-header"> Resource Hire Status</h1>
             </div>
 
            
@@ -31,7 +31,7 @@ Toast::message('message', 'level', 'title');
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading mypnl_heading">
-                      <span>Client Status<span>
+                      <span> Resource Hire Status<span>
                     </div>
                     <!-- /.panel-heading -->
                     <table class="table table-bordered table-responsive" >

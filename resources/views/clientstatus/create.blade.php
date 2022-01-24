@@ -8,7 +8,7 @@ Add Skills Education
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Add Client Status</h1>
+                <h1 class="page-header">Add Resource Hire Status</h1>
             </div>
 
 
@@ -22,7 +22,7 @@ Add Skills Education
 
                     <div class="panel-heading mypnl_heading">
                         <span class="back_btn"><a type="reset" href="{{url('client-status')}}">
-                                <i class="fa fa-arrow-left"></i> Back </a></span> <span>Add Client Status</span>
+                                <i class="fa fa-arrow-left"></i> Back </a></span> <span>Add Resource Hire Status</span>
                     </div>
 
                     <div class="panel-body">

@@ -45,7 +45,7 @@ class ClickUpController extends Controller
             $click_up_team_id = $team->click_up_team_id;
             // $team = Teams::select('id')->where('click_up_team_id', $click_up_team_id)->first();
             $users =  User::select('id', 'click_up_user_id')->where(['team' => $team['id']])->whereNotNull('click_up_user_id')->get();
-            
+
             if (count($users) > 0) {
 
                 foreach ($users as $key => $val) {
@@ -78,12 +78,14 @@ class ClickUpController extends Controller
                         $input['user_id'] = $val->id;
                         $input['date'] =  $start_date;
                         $input['time'] =  $hour . ':' . $minutes . ':' . $seconds;
+                        $input['status'] =  "1";
                         ClickUp::where(['user_id' => $val->id, 'date' => $start_date])->delete();
                         $success =   ClickUp::create($input);
                     } else {
                         $input['user_id'] = $val->id;
                         $input['date'] =  $start_date;
                         $input['time'] =  "00:00:00";
+                        $input['status'] =  "1";
                         ClickUp::where(['user_id' => $val->id, 'date' => $start_date])->delete();
                         $success =   ClickUp::create($input);
                     }
@@ -178,33 +180,75 @@ class ClickUpController extends Controller
     }
 
 
-    public function view(Request $reques, $id)
+    public function view(Request $reques, $id = NULL)
     {
-     
+
+        $teams =  Teams::get();
+        if ($reques['daterange_search']) {
+            $id = $reques['id'];
+            $date = explode("to", $reques['daterange_search']);
+            $curent_month_first_date =    trim($date[0]);
+
+
+            $curent_month_end_date = trim($date[1]);
+        } else {
+            $curent_month_first_date = Carbon::now()->startOfMonth()->toDateString();
+            $curent_month_end_date = Carbon::now()->endOfMonth()->toDateString();
+        }
+
+
         $columns = [];
         $result = [];
         $users =  User::where(['team' => $id])->whereNotNull('click_up_user_id')->pluck('id');
-        $click = ClickUp::with('user', 'daily_performance')->whereIn('user_id', $users)->get();
+        //    dd( $users);
+        $click = ClickUp::with('user', 'daily_performance')->whereIn('user_id', $users)->whereBetween('date', [$curent_month_first_date, $curent_month_end_date])->orderBy('date')->get();
 
-        if (count($click)) {
-            $columns = [];
 
-            foreach ($click as $key => $valu) {
 
-                if (!in_array($valu->user['name'] . ' ' . $valu->user['last_name'], $columns, true)) {
-                    $columns[] = $valu->user['name'] . ' ' . $valu->user['last_name'];
+        foreach ($users as $user) {
+            $data_exists = ClickUp::where('date', $curent_month_first_date)->where('user_id', $user)->first();
+
+            if (!empty($data_exists)) {
+                if (count($click)) {
+                    $columns = [];
+
+                    foreach ($click as $key => $valu) {
+
+                        if (!in_array($valu->user['name'] . ' ' . $valu->user['last_name'], $columns, true)) {
+                            $columns[] = $valu->user['name'] . ' ' . $valu->user['last_name'];
+                        }
+                    }
+
+                    array_unshift($columns, "Date");
+                    foreach ($click as $key => $value) {
+
+                        $result[$value->date][] = $value->time . ',' . $value->id . ',' . $value->status;
+                    }
+
+                    return view('clickup.view', compact('id', 'columns', 'result', 'teams'));
+                }
+            } else {
+
+
+
+                for ($i = 0; $i < Carbon::now()->daysInMonth; $i++) {
+
+                    $input['user_id'] = $user;
+                    $input['date'] = Carbon::now()->startOfMonth()->addDays($i)->toDateString();
+
+                    if (Carbon::now()->startOfMonth()->addDays($i)->isWeekday() == "false") {
+                        $input['status'] = '0';
+                    } else {
+                        $input['status'] = '2';
+                    }
+                    $input['time'] = '00:00:00';
+                    $success =   ClickUp::create($input);
                 }
             }
-
-            array_unshift($columns, "Date");
-            foreach ($click as $key => $value) {
-                // dd($value->daily_performance);
-                $result[$value->date][] = $value->time . ',' . $value->id;
-            }
-
-            return view('clickup.view', compact('id', 'columns', 'result'));
         }
-        return view('clickup.view', compact('id', 'columns', 'result'));
+
+
+        return view('clickup.view', compact('id', 'columns', 'result', 'teams'));
     }
 
 
@@ -214,7 +258,8 @@ class ClickUpController extends Controller
         $id = $request['team_id'];
         $users =  User::where(['team' => $id])->whereNotNull('click_up_user_id')->pluck('id');
 
-        $click = ClickUp::select('date')->whereIn('user_id', $users)->groupBy('date')->get();
+        $click = ClickUp::select('date')->whereIn('user_id', $users)->where('status', '!=', '0')->groupBy('date')->get();
+        // dd($click->toArray());
         if ($click) {
             return response()->json(['status' => 'success', 'data' => $click]);
         }

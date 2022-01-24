@@ -18,23 +18,28 @@ Toast::message('message', 'level', 'title');
         @if(Session::get('role')=="ADMIN")
         <div class="row">
             <div class="col-lg-12">
-                <div class="pull-left">
-                    <a class="btn btn-info mb-20" href="{{url('team')}}"><i class="fa fa-arrow-left  fa-fw"></i>
-                        <i class="fa fa-users fa-fw"></i> Back
-                    </a>
+
+                <div class="pull-left btn  mb-20">
+
+                    <form action="{{ url('clickup-report/') }}" method="GET" role="search" autocomplete="off" class="form-inline">
+
+                        <input type="text" class="form-control" name="daterange_search" value="{{Request::get('daterange_search')}}" id="daterange_search" placeholder="2022-01-24 to 2022-01-24" />
+                        <input type="hidden" value="{{$id}}" name="id" id="team_id">
+
+
+                        <button type="submit" class="btn btn-info btn-default">Search</button>
+
+                    </form>
                 </div>
 
-
                 <div class="pull-right">
-                    <form action="{{ url('click-up-time-sync') }}" method="GET" role="search" autocomplete="off" class="form-inline">
 
+                    <form action="{{ url('click-up-time-sync') }}" method="GET" role="search" autocomplete="off" class="form-inline">
                         <input type="text" class="form-control" name="daterange" value="" placeholder="2022-01-21" />
                         <input type="hidden" value="{{$id}}" name="id" id="team_id">
 
 
                         <button type="submit" class="btn btn-info btn-default">Fetch Report</button>
-
-                        <!-- <a type="button" href="{{url('team')}}" class="btn btn-danger btn-default">Clear</a> -->
                     </form>
                 </div>
 
@@ -49,8 +54,23 @@ Toast::message('message', 'level', 'title');
                 <div class="panel panel-default">
                     <div class="panel-heading mypnl_heading">
                         <span>Click Up Report</span>
+                        <div class="col-lg-3 pull-right" style="margin-top: -7px;">
+                            <select class="col-md-3  form-control" name="select_team" id="team" required="">
+                                <option value="">--Please select for view report--</option>
+                                @forelse($teams as $key=>$user)
 
+                                <option value="{{$user['id']}}">{{$user['name']}}</option>
+
+
+                                @empty
+                                <p>No User Found</p>
+                                @endforelse
+
+
+                            </select>
+                        </div>
                     </div>
+
                     <!-- /.panel-heading -->
 
                     <table class="table table-bordered table-responsive">
@@ -74,7 +94,7 @@ Toast::message('message', 'level', 'title');
                                     @php
                                     $data = explode(",",$value[$i] );
                                     @endphp
-                                    <a href="#" class="popup" id="{{$data[1]}}" data-toggle="tooltip" data-placement="top" title="">{{ $data[0] }}</a>
+                                    <a href="#" style="color:{{($data[2]=='2')? 'red':''}}" class="popup" id="{{$data[1]}}" data-toggle="tooltip" data-placement="top" title="">{{ $data[0] }}</a>
                                     </td>
                                     @endfor
 
@@ -109,8 +129,8 @@ Toast::message('message', 'level', 'title');
     <div class="modal-dialog update_status " role="document">
         <div class="modal-content">
             <div class="modal-header modal-header-new">
-            <button type="button" class="close btn_new_cross" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Update Status</h4>
+                <button type="button" class="close btn_new_cross" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Update Status</h4>
             </div>
             <div class="modal-body">
                 <form id="recordForm" action="{{url('update-click-up-report')}}">
@@ -217,8 +237,11 @@ Toast::message('message', 'level', 'title');
                 $('input[name="daterange"]').datepicker({
                         dateFormat: 'yy-mm-dd',
                         maxDate: new Date(),
+                        disableWeekends: true,
+
                         beforeShowDay: function(date) {
                             var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+
                             return [array.indexOf(string) == -1]
                         }
 
@@ -234,12 +257,16 @@ Toast::message('message', 'level', 'title');
         })
         // var array = ["2022-01-20", "2022-01-19", "2022-01-17"]
 
-        // $('input[name="daterange"]').daterangepicker({
-        //     startDate: moment().startOf('hour'),
-        //     endDate: moment().startOf('hour').add(23, 'hour'),
-        //     maxDate: new Date(),
-        //     // format: 'YYYY-MM-DD'
-        // });
+        $('#daterange_search').daterangepicker({
+            startDate: moment().startOf('hour'),
+            endDate: moment().startOf('hour').add(23, 'hour'),
+            maxDate: new Date(),
+            locale: {
+                format: 'YYYY-MM-DD',
+                separator: " to "
+            },
+
+        });
     });
 
     $(document).on('change', '#daily_status_id', function() {
@@ -270,6 +297,8 @@ Toast::message('message', 'level', 'title');
         })
 
     });
+
+
 
     $(document).on("click", "#record_submit", function() {
         $('#recordForm').submit(function(e) {
@@ -304,6 +333,11 @@ Toast::message('message', 'level', 'title');
                 }
             });
         });
+    });
+
+    $('#team').on('change', function() {
+
+        location.href = base_url + "/clickup-report/" + this.value;
     });
 </script>
 @endsection
