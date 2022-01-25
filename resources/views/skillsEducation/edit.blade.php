@@ -59,7 +59,26 @@ Add Skills Education
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                            <div class="col-lg-6 form-group">
+                                                <label>Show on front</label>
+                                                <div class="row">
 
+                                                    <div class="col-md-12 col-sm-12  ">
+                                                        <div class="input-group">
+                                                            <input type="checkbox" id="show_on_front" name="show_on_front" value="1" {{ isset($data['show_on_front']) ? $data['show_on_front'] == '1' ? 'checked=checked' :'' :''}}>
+
+                                                            @error('show_on_front')
+                                                            <p class="alert alert-danger"> {{ $message }} </p>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
 
 
 

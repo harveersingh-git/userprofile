@@ -11,6 +11,7 @@ class SkillsEducation extends Model
     protected $fillable = [
         'value',
         'category',
+        'show_on_front'
         
     ];
     protected $hidden = [

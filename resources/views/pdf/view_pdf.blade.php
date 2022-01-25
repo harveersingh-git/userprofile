@@ -810,6 +810,7 @@
                     @empty
                     <p>No EDUCATION Found</p>
                     @endforelse
+                    
                     @if(count($data['certificate']) >0)
                     <P class="p32 ft8">CERTIFICATIONS</P>
                     @forelse ($data['certificate'] as $res)

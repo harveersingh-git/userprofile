@@ -163,34 +163,22 @@ Toast::message('message', 'level', 'title');
                                 <td>
                                     @if($value->skills->count()>0)
                                     @foreach($value->skills as $key=>$res)
-                                    @if($res->show_on_front=='1')
-                                    @if($res->type=='1')
+                                   
+                                    @if($res->type=='1' && !empty($res->skills_details['value']))
                                     <button class="btn btn-success btn-xs " style="margin-bottom: 4px; pointer-events: none;" data-toggle="tooltip" data-placement="top" title="Primary"> {{isset($res->skills_details['value'])?$res->skills_details['value']:'';}}</button>
-                                    @elseif($res->type=='2')
+                                    @elseif($res->type=='2' && !empty($res->skills_details['value']))
                                     <button class="btn btn-warning btn-xs" style="margin-bottom: 4px; pointer-events: none;" data-toggle="tooltip" data-placement="top" title="Secondary"> {{isset($res->skills_details['value'])?$res->skills_details['value']:''}}</button>
 
-                                    @elseif ($res->type=='3')
+                                    @elseif ($res->type=='3' && !empty($res->skills_details['value']))
                                     <button class="btn btn-default btn-xs" style="margin-bottom: 4px; pointer-events: none;" data-toggle="tooltip" data-placement="top" title="Learning">{{isset($res->skills_details['value'])?$res->skills_details['value']:''}}</button>
 
                                     @endif
-                                    @endif
+                                   
                                     @endforeach
 
                                     @endif
 
-                                    <select class="form-control show_on_front" name="show_on_front" id="show_on_front">
-                                        <option value="">--Show on front--</option>
-                                        @if($value->skills->count()>0)
-                                        @foreach($value->skills as $key=>$res)
-                                        @if($res->show_on_front!='1')
-                                        <option value="{{$res->skills_details['id']}}"> {{isset($res->skills_details['value'])?$res->skills_details['value']:''}}</option>
-
-                                        @endif
-                                        @endforeach
-
-                                        @endif
-
-                                    </select>
+                
 
 
                                 </td>

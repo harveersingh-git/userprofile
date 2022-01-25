@@ -132,6 +132,7 @@ class EducationController extends Controller
         $data->update([
             'value' => $input['value'],
             'category' => $input['category'],
+            'show_on_front' => isset($input['show_on_front']) ? ($input['show_on_front']) : '0'
         ]);
 
         if ($id) {
