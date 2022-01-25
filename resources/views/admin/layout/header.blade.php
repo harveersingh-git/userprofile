@@ -15,8 +15,8 @@
     </ul>
 
     <ul class="nav navbar-right navbar-top-links">
-    <li class="sidebar-search">
-                    <!--<div class="input-group custom-search-form">
+        <li class="sidebar-search">
+            <!--<div class="input-group custom-search-form">
                         <input type="text" class="form-control" placeholder="Search...">
                         <span class="input-group-btn">
                             <button class="btn btn-primary" type="button">
@@ -24,49 +24,50 @@
                             </button>
                         </span>
                     </div>-->
-                    <!-- /input-group -->
-                </li>
-                @if(Session::get('role')=="ADMIN")
-                <li>
-                    <a href="{{route('home')}}" class="{{ Request::segment(1) === 'home' ? 'active' : null }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                </li>
+            <!-- /input-group -->
+        </li>
+        @if(Session::get('role')=="ADMIN")
+        <li>
+            <a href="{{route('home')}}" class="{{ Request::segment(1) === 'home' ? 'active' : null }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+        </li>
 
-                <li>
-                    <a href="{{route('users')}}" class="{{ Request::segment(1) === 'users' ? 'active' : null }}"><i class="fa fa-users"></i> Users</a>
-                </li>
-                <li>
-                    <a href="{{route('clients')}}" class="{{ Request::segment(1) === 'clients' ? 'active' : null }}"><i class="fa fa-american-sign-language-interpreting"></i> Clients</a>
-                </li>
+        <li>
+            <a href="{{route('users')}}" class="{{ Request::segment(1) === 'users' ? 'active' : null }}"><i class="fa fa-users"></i> Users</a>
+        </li>
+        <li>
+            <a href="{{route('clients')}}" class="{{ Request::segment(1) === 'clients' ? 'active' : null }}"><i class="fa fa-american-sign-language-interpreting"></i> Clients</a>
+        </li>
 
-                <li>
-                    <a href="{{route('team')}}" class="{{ Request::segment(1) === 'team' ? 'active' : null }}"><i class="fa fa-tasks"></i> Team Mgmt</a>
-                </li>
-                <li>
-                    <a href="{{route('clickup-report')}}"><i class="fa fa-file"></i> ClickUp Report</a>
-                </li>
-               
-                <li class="profile_box dropdown"> <a class= "dropdown-toggle" data-toggle="dropdown" href="#">Master <b class="caret"></b></a>
+        <li>
+            <a href="{{route('team')}}" class="{{ Request::segment(1) === 'team' ? 'active' : null }}"><i class="fa fa-tasks"></i> Team Mgmt</a>
+        </li>
+        <li>
+            <a href="{{url('clickup-report/1')}}"><i class="fa fa-file"></i> ClickUp Report</a>
+        </li>
 
-                    
-                <ul class="dropdown-menu">
-                            <li> <a href="{{route('skills-education')}}" class="{{ Request::segment(1) === 'skills-education' ? 'active' : null }}"><i class="fa fa-book"></i> Skills/education</a></li>
-                            <li> <a href="{{route('client-type')}}" class="{{ Request::segment(1) === 'client-type' ? 'active' : null }}"><i class="fa fa-cogs"></i> Client Type</a>
-
-                            <li> <a href="{{route('work-type')}}" class="{{ Request::segment(1) === 'work-type' ? 'active' : null }}"><i class="fa fa-cogs"></i> Work Type</a>
-                            <li> <a href="{{route('client-status')}}" class="{{ Request::segment(1) === 'client-status' ? 'active' : null }}"><i class="fa fa-users"></i> Resource Hire Status</a></li>  
-                            <li> <a href="{{route('daily-performance')}}" class="{{ Request::segment(1) === 'daily-performance' ? 'active' : null }}"><i class="fa fa-cogs"></i> Daily Performance</a></li>  
-
-                        </li>
+        <li class="profile_box dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#">Master <b class="caret"></b></a>
 
 
+            <ul class="dropdown-menu">
+                <li> <a href="{{route('skills-education')}}" class="{{ Request::segment(1) === 'skills-education' ? 'active' : null }}"><i class="fa fa-book"></i> Skills/education</a></li>
+                <li> <a href="{{route('client-type')}}" class="{{ Request::segment(1) === 'client-type' ? 'active' : null }}"><i class="fa fa-cogs"></i> Client Type</a>
 
-                        </ul>
-                   
-                </li>
-                
-                @endif
+                <li> <a href="{{route('work-type')}}" class="{{ Request::segment(1) === 'work-type' ? 'active' : null }}"><i class="fa fa-cogs"></i> Work Type</a>
+                <li> <a href="{{route('client-status')}}" class="{{ Request::segment(1) === 'client-status' ? 'active' : null }}"><i class="fa fa-users"></i> Resource Hire Status</a></li>
+                <li> <a href="{{route('daily-performance')}}" class="{{ Request::segment(1) === 'daily-performance' ? 'active' : null }}"><i class="fa fa-cogs"></i> Daily Performance</a></li>
 
-           <li><li>     
+        </li>
+
+
+
+    </ul>
+
+    </li>
+
+    @endif
+
+    <li>
+    <li>
 
         <!-- <li class="dropdown navbar-inverse">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -122,40 +123,40 @@
                 </li>
             </ul>
         </li> -->
-        
-        <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-user fa-fw"></i> {{ Auth::user()->name }} <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu dropdown-user">
-                <li><a href="{{ url('information') }}/{{ base64_encode(Auth::user()->id) }}"><i class="fa fa-user fa-fw"></i> User  Profile</a>
-                </li>
-                <li><a href="{{ url('changePassword') }}"><i class="fa fa-key fa-fw"></i> Change Password</a>
-                </li>
-                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                </li>
-                <li class="divider"></li>
-                <li>
+
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw"></i> {{ Auth::user()->name }} <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu dropdown-user">
+            <li><a href="{{ url('information') }}/{{ base64_encode(Auth::user()->id) }}"><i class="fa fa-user fa-fw"></i> User Profile</a>
+            </li>
+            <li><a href="{{ url('changePassword') }}"><i class="fa fa-key fa-fw"></i> Change Password</a>
+            </li>
+            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+            </li>
+            <li class="divider"></li>
+            <li>
 
 
 
-                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                        <i class="fa fa-sign-out fa-fw"></i> {{ __('Logout') }}
-                    </a>
+                    <i class="fa fa-sign-out fa-fw"></i> {{ __('Logout') }}
+                </a>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
 
-                </li>
-            </ul>
-        </li>
-    
-    
+            </li>
+        </ul>
+    </li>
+
+
     <li>
 
-    <!-- <form class="navbar-form" role="search">
+        <!-- <form class="navbar-form" role="search">
             <div class="input-group">
                <input type="text" class="form-control" placeholder="Search">
                <div class="input-group-btn">
@@ -165,9 +166,9 @@
          </form> -->
 
     </li>
-    
-    
-    
+
+
+
     </ul>
     <!-- /.navbar-top-links -->
 
@@ -210,5 +211,4 @@
             </ul>
         </div>
     </div>-->
-</nav> 
-
+</nav>

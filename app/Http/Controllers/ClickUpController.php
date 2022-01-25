@@ -11,6 +11,7 @@ use App\Models\Teams;
 use App\Models\User;
 use Carbon\Carbon;
 use App\Models\ClickUp;
+use App\Models\DailyPerformance;
 
 
 class ClickUpController extends Controller
@@ -78,7 +79,18 @@ class ClickUpController extends Controller
                         $input['user_id'] = $val->id;
                         $input['date'] =  $start_date;
                         $input['time'] =  $hour . ':' . $minutes;
+                        // $hour = '7.2';
+
+
+                        $chek_time =  DailyPerformance::where('min', '<=', intval($hour))->where('max', '>=', intval($hour))->first();
+
+
+                        if ($chek_time) {
+                            $input['daily_performance_id'] =  $chek_time['id'];
+                        }
+
                         $input['status'] =  "1";
+
                         ClickUp::where(['user_id' => $val->id, 'date' => $start_date])->delete();
                         $success =   ClickUp::create($input);
                     } else {
@@ -200,15 +212,16 @@ class ClickUpController extends Controller
         $columns = [];
         $result = [];
         $users =  User::where(['team' => $id])->whereNotNull('click_up_user_id')->pluck('id');
-        //    dd( $users);
+  
         $click = ClickUp::with('user', 'daily_performance')->whereIn('user_id', $users)->whereBetween('date', [$curent_month_first_date, $curent_month_end_date])->orderBy('date')->get();
-
-
+  
+  
 
         foreach ($users as $user) {
-            $data_exists = ClickUp::where('date', $curent_month_first_date)->where('user_id', $user)->first();
-
-            if (!empty($data_exists)) {
+            $data_exists = ClickUp::where('date', $curent_month_first_date)->where('user_id', $user)->get();
+            // dd(count($data_exists));
+            if (count($data_exists)>0) {
+               
                 if (count($click)) {
                     $columns = [];
 
@@ -221,14 +234,15 @@ class ClickUpController extends Controller
 
                     array_unshift($columns, "Date");
                     foreach ($click as $key => $value) {
-
-                        $result[$value->date][] = $value->time . ',' . $value->id . ',' . $value->status;
+                        // dd(isset($value['daily_performance']->title)?($value['daily_performance']->title):'');
+                        $title = isset($value['daily_performance']->title)?($value['daily_performance']->title):'';
+                        $result[$value->date][] = $value->time . ',' . $value->id . ',' . $value->status . ',' .  $title;
                     }
-
+                    // dd($result);
                     return view('clickup.view', compact('id', 'columns', 'result', 'teams'));
                 }
             } else {
-
+               
 
 
                 for ($i = 0; $i < Carbon::now()->daysInMonth; $i++) {

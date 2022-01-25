@@ -59,7 +59,7 @@ Toast::message('message', 'level', 'title');
                                 <option value="">--Please select for view report--</option>
                                 @forelse($teams as $key=>$user)
 
-                                <option value="{{$user['id']}}">{{$user['name']}}</option>
+                                <option value="{{$user['id']}}" {{ $user['id'] == $id ? 'selected' : '' }}>{{$user['name']}}</option>
 
 
                                 @empty
@@ -100,7 +100,7 @@ Toast::message('message', 'level', 'title');
                                     @php
                                     $data = explode(",",$value[$i] );
                                     @endphp
-                                    <a href="#" style="color:{{($data[2]=='2')? 'red':''}}" class="popup" id="{{$data[1]}}" data-toggle="tooltip" data-placement="top" title="">{{ $data[0] }}</a>
+                                    <a href="#" style="color:{{($data[2]=='2')? 'red':''}}" class="popup" id="{{$data[1]}}" data-toggle="tooltip" data-placement="top" title="{{ $data[3] }}">{{ $data[0] }}</a>
                                     </td>
                                     @endfor
 
@@ -175,6 +175,10 @@ Toast::message('message', 'level', 'title');
 
 @section('script')
 <script>
+    // $(document).ready(function() {
+    //     window.location.href = base_url + '/clickup-report/3'
+    // });
+
     $('#myModal').on('hidden.bs.modal', function(e) {
         $(this)
             .find("input,textarea,select")
