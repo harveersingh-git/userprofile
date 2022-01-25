@@ -77,14 +77,14 @@ class ClickUpController extends Controller
                         $input = [];
                         $input['user_id'] = $val->id;
                         $input['date'] =  $start_date;
-                        $input['time'] =  $hour . ':' . $minutes . ':' . $seconds;
+                        $input['time'] =  $hour . ':' . $minutes;
                         $input['status'] =  "1";
                         ClickUp::where(['user_id' => $val->id, 'date' => $start_date])->delete();
                         $success =   ClickUp::create($input);
                     } else {
                         $input['user_id'] = $val->id;
                         $input['date'] =  $start_date;
-                        $input['time'] =  "00:00:00";
+                        $input['time'] =  "00:00";
                         $input['status'] =  "1";
                         ClickUp::where(['user_id' => $val->id, 'date' => $start_date])->delete();
                         $success =   ClickUp::create($input);
@@ -241,7 +241,7 @@ class ClickUpController extends Controller
                     } else {
                         $input['status'] = '2';
                     }
-                    $input['time'] = '00:00:00';
+                    $input['time'] = '00:00';
                     $success =   ClickUp::create($input);
                 }
             }

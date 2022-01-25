@@ -85,6 +85,43 @@ Add Daily Performance
 
                                         </div>
                                         <div class="row">
+                                            <div class="col-lg-3 form-group">
+                                                <label>Min</label>
+                                                <div class="row">
+
+                                                    <div class="col-md-12 col-sm-12  ">
+                                                        <div class="input-group ">
+                                                            <input type="text" value="" class="form-control" name="min" min="0"/>
+                                                            <span class="input-group-addon"><i></i></span>
+                                                            @error('font_color')
+                                                            <p class="alert alert-danger"> {{ $message }} </p>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                            <div class="col-lg-3 form-group">
+                                                <label>Max</label>
+                                                <div class="row">
+
+                                                    <div class="col-md-12 col-sm-12  ">
+                                                        <div class="input-group ">
+                                                            <input type="text" value="" class="form-control" name="max" min="1" />
+                                                            <span class="input-group-addon"><i></i></span>
+                                                            @error('font_color')
+                                                            <p class="alert alert-danger"> {{ $message }} </p>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
                                             <div class="col-lg-6 form-group">
                                                 <label>Need A Reason</label>
                                                 <div class="row">

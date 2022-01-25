@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DailyPerformance;
 use App\Models\ClickUp;
+use App\Models\UserSkills;
 
 
 class DailyPerformanceController extends Controller
@@ -37,9 +38,6 @@ class DailyPerformanceController extends Controller
             ]);
 
             $input = $request->all();
-
-            if (isset($input['need_a_reason'])) {
-            }
             $user = DailyPerformance::create($input);
             return redirect('daily-performance')->with('message', 'Data added Successfully');
         }
@@ -66,7 +64,10 @@ class DailyPerformanceController extends Controller
             'title' => $input['title'],
             'background_color' => $input['background_color'],
             'font_color' => $input['font_color'],
+            'min' => isset($input['min']) ? ($input['min']) : '0',
+            'max' => isset($input['max']) ? ($input['max']) : '0',
             'need_a_reason' => isset($input['need_a_reason']) ? ($input['need_a_reason']) : '0'
+
         ]);
 
         if ($id) {
@@ -134,5 +135,21 @@ class DailyPerformanceController extends Controller
             'status' => 'success'
 
         ]);
+    }
+
+    public function showOnFront(Request $request)
+    {
+
+
+        $result = UserSkills::where(['skill_value_id' => $request['skill_id'], 'user_id' => $request['user_id']])->first();
+
+        $result->update([
+            'show_on_front' => '1',
+
+        ]);
+        if ($result) {
+
+            return response()->json(['status' => 'success', 'data' => $result]);
+        }
     }
 }

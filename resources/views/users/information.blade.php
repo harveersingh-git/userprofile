@@ -1201,13 +1201,13 @@ Toast::message('message', 'level', 'title');
                 success: function(data) {
                     console.log('role',data.role);
                     if (data.status == "success") {
-                        if(data.role=="ADMIN"){
+                        // if(data.role=="ADMIN"){
                             toastr.success("Record insert successfully");
                         window.location.href = {!!json_encode(url('/')) !!} + "/users";
-                        }else{
-                            toastr.success("Record insert successfully");
-                        window.location.href = {!!json_encode(url('information')) !!} +'/'+ $('.user_id').val();
-                        }
+                        // }else{
+                        //     toastr.success("Record insert successfully");
+                        // window.location.href = {!!json_encode(url('information')) !!} +'/'+ $('.user_id').val();
+                        // }
                      
 
                     }

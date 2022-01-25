@@ -12,6 +12,8 @@ class DailyPerformance extends Model
         'title',
         'background_color',
         'font_color',
-        'need_a_reason'
+        'need_a_reason',
+        'min',
+        'max'
     ];
 }

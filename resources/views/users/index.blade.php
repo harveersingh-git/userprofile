@@ -103,7 +103,7 @@ Toast::message('message', 'level', 'title');
 
             </div>
         </div>
-    
+
         <div class="">
             <div class="form-inline">
                 @forelse ($client_status as $status)
@@ -122,7 +122,7 @@ Toast::message('message', 'level', 'title');
                 <div class="panel panel-default">
                     <div class="panel-heading mypnl_heading">
                         <span>Users</span>
-                     
+
                     </div>
                     <!-- /.panel-heading -->
 
@@ -139,7 +139,7 @@ Toast::message('message', 'level', 'title');
                                 <th class="text-center">Experience</th>
 
 
-                                <th class="text-center" style="width: 18%;">Skills</th>
+                                <th class="text-center">Skills</th>
                                 <th class="text-center">Time</th>
                                 <!-- <th class="text-center">Team</th> -->
 
@@ -151,7 +151,7 @@ Toast::message('message', 'level', 'title');
                         <tbody>
                             @if(!empty($data) && $data->count())
                             @foreach($data as $key => $value)
-                            <tr class="text-center">
+                            <tr class="text-center" id="{{ $value->id }}">
                                 <td data-toggle="tooltip" data-placement="top" title="{{isset($value->client_status_value['0']->title) ? $value->client_status_value['0']->title:'';}} " style="background-color: {{isset($value->client_status_value['0']->background_color) ? $value->client_status_value['0']->background_color:'';}}  "><span style="color: {{isset($value->client_status_value['0']->font_color) ? $value->client_status_value['0']->font_color:'';}}">{{ $value->employee_id }} </span></td>
                                 <td>{{ $value->name }} {{ $value->last_name }} </br> <span style="color: red;font-size: 10px;">{{isset($value->work_status_value['0']->title) ? $value->work_status_value['0']->title:'';}}</span></td>
                                 <td>{{ Carbon\Carbon::parse($value->joining_date)->format('d F Y') }}</td>
@@ -163,6 +163,7 @@ Toast::message('message', 'level', 'title');
                                 <td>
                                     @if($value->skills->count()>0)
                                     @foreach($value->skills as $key=>$res)
+                                    @if($res->show_on_front=='1')
                                     @if($res->type=='1')
                                     <button class="btn btn-success btn-xs " style="margin-bottom: 4px; pointer-events: none;" data-toggle="tooltip" data-placement="top" title="Primary"> {{isset($res->skills_details['value'])?$res->skills_details['value']:'';}}</button>
                                     @elseif($res->type=='2')
@@ -172,9 +173,24 @@ Toast::message('message', 'level', 'title');
                                     <button class="btn btn-default btn-xs" style="margin-bottom: 4px; pointer-events: none;" data-toggle="tooltip" data-placement="top" title="Learning">{{isset($res->skills_details['value'])?$res->skills_details['value']:''}}</button>
 
                                     @endif
+                                    @endif
                                     @endforeach
 
                                     @endif
+
+                                    <select class="form-control show_on_front" name="show_on_front" id="show_on_front">
+                                        <option value="">--Show on front--</option>
+                                        @if($value->skills->count()>0)
+                                        @foreach($value->skills as $key=>$res)
+                                        @if($res->show_on_front!='1')
+                                        <option value="{{$res->skills_details['id']}}"> {{isset($res->skills_details['value'])?$res->skills_details['value']:''}}</option>
+
+                                        @endif
+                                        @endforeach
+
+                                        @endif
+
+                                    </select>
 
 
                                 </td>
@@ -243,12 +259,7 @@ Toast::message('message', 'level', 'title');
                         window.location.reload();
                     }
                 })
-                //   axios.get(`/api/move_to_trash/${id}`).then(() => {
-                //      this.$router.push("/users");
-                //     let i = this.users.map((data) => data.id).indexOf(id);
-                //     this.users.splice(i, 1);
-                //      this.$toaster.success('Record delete successfully.')
-                //   });
+
             } else {
                 swal("Your Record safe now!");
             }
@@ -259,10 +270,37 @@ Toast::message('message', 'level', 'title');
 <script>
     $(document).ready(function() {
 
-     
+
         $('#multiple-checkboxes').multiselect({
             includeSelectAllOption: true,
         });
+    });
+
+
+    $('.show_on_front').on('change', function() {
+
+        var token = $('input[name="_token"]').attr('value');
+        var data = {
+            skill_id: this.value,
+            user_id: $(this).closest('tr').attr('id')
+        };
+        $.ajax({
+            type: 'POST',
+            url: base_url + '/show_on_front',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify(data),
+            headers: {
+                'X-CSRF-Token': token
+            },
+
+            success: function(result) {
+                window.location.reload();
+
+
+
+            }
+        })
     });
 </script>
 @endsection

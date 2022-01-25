@@ -172,30 +172,14 @@ class UserController extends Controller
         // }
 
         $data = $query->orderBy('id', 'DESC')->paginate(20);
+       
         $client_status = ClientStatus::with('client_status_count')->get();
 
         $work_type = WorkType::get();
-        // if($data->count()>0){
-
-        //     foreach( $client_status  as $k=>$val){
-        //         foreach($data as $key=>$value){
-
-        //         if($val['id']==$value['client_status']){
-        //             $temp=1;
-
-        //         }else{
-        //             $temp=0;
-        //         }
-        //         $client_status[$k]['count'] +=$temp;
-        //         }
-
-
-        //     }
-
-        // }
+       
         $technologyes = SkillsEducation::where(['category' => 'skill'])->get();
 
-        // dd($data->toArray());
+
         return view('users.index', compact('data', 'client_status', 'work_type', 'technologyes', 'search_skills'));
     }
 

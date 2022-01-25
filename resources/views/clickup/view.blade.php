@@ -77,7 +77,13 @@ Toast::message('message', 'level', 'title');
                         <thead>
                             <tr>
                                 @forelse ($columns as $column)
+                                @if($column=="Date")
                                 <th class="text-center">{{$column}}</th>
+
+                                @else
+                                <th class="text-center" data-toggle="tooltip" data-placement="" title="{{$column}}">{{substr( $column, 0, 2)}}</th>
+
+                                @endif
                                 @empty
                                 <th class="text-center">No Data Found</th>
                                 @endforelse
