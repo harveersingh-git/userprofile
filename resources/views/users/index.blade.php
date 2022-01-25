@@ -31,7 +31,7 @@ Toast::message('message', 'level', 'title');
                         <div class="form-group">
 
                             <select class="form-control" name="client_status">
-                                <option value="">--Select client status--</option>
+                                <option value="">--Resource Hire Status--</option>
                                 @forelse($client_status as $key=>$clientstatus)
                                 <option value="{{$clientstatus['id']}}" {{ (Request::get('client_status')) == $clientstatus['id']  ? 'selected' : ''}}>{{$clientstatus['title']}}</option>
                                 @empty
@@ -178,8 +178,8 @@ Toast::message('message', 'level', 'title');
 
 
                                 </td>
-                                <td class="text-center">{{ $value->shift_start  }}-{{ $value->shift_end  }}</td>
-                                <!-- <td class="text-center">{{ isset($value->myTeam->name)?$value->myTeam->name:'' }}</td> -->
+                                <td class="text-center">{{ \Carbon\Carbon::create('2022-01-20'.$value->shift_start)->format('g:i a')}}- {{ \Carbon\Carbon::create('2022-01-20'.$value->shift_end)->format('g:i a')}}</td>
+                                <!-- <td class="text-center">{{ isset($value->myTeam->shift_start)?$value->myTeam->name:'' }}</td> -->
 
 
                                 <td>
