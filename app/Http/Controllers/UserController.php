@@ -171,7 +171,7 @@ class UserController extends Controller
         //     }
         // }
 
-        $data = $query->orderBy('id', 'DESC')->paginate(15);
+        $data = $query->orderBy('id', 'DESC')->paginate(20);
         $client_status = ClientStatus::with('client_status_count')->get();
 
         $work_type = WorkType::get();

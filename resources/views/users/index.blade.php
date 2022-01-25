@@ -139,7 +139,7 @@ Toast::message('message', 'level', 'title');
                                 <th class="text-center">Experience</th>
 
 
-                                <th class="text-center">Skills</th>
+                                <th class="text-center" style="width: 18%;">Skills</th>
                                 <th class="text-center">Time</th>
                                 <!-- <th class="text-center">Team</th> -->
 

@@ -161,6 +161,7 @@ Toast::message('message', 'level', 'title');
 
                                                     </div>
                                                 </div>
+                                                @if(Session::get('role')=="ADMIN")
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <label>Resource Hire Status<span style="color: red;">*</span></label>
@@ -199,6 +200,7 @@ Toast::message('message', 'level', 'title');
 
                                                     </div>
                                                 </div>
+                                                @endif
                                                 <div class="form-group">
                                                     <label>About Employee<span style="color: red;">*</span></label>
                                                     <textarea class="form-control" rows="3" name="about_employee">{{isset($data->about_employee)?$data->about_employee:'' }}</textarea>
