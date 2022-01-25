@@ -694,7 +694,7 @@
             padding-left: 2px;
 
             position: absolute;
-            color:#fff;
+            color: #fff;
 
 
 
@@ -726,37 +726,41 @@
             width: 864px;
             height: 1209px;  */
         }
-/* nitin css */
 
-.aboutme_text{
-    width:70%; text-align: center; margin-left:10px;
-    margin-top:5px;line-height: 21px;
-}
+        /* nitin css */
 
-.skill_box{
-            display:flex;
-            color:#fff;
+        .aboutme_text {
+            width: 70%;
+            text-align: center;
+            margin-left: 10px;
+            margin-top: 5px;
+            line-height: 21px;
+        }
+
+        .skill_box {
+            display: flex;
+            color: #fff;
             width: 90%;
         }
+
         /* .skills_list{
             width:50%;
         } */
-        .skills_list ul{
+        .skills_list ul {
             padding: 15px;
             margin: 0px;
         }
 
- .employe_compny{
-    display:flex; 
- }   
- .employe_compny ul{
+        .employe_compny {
+            display: flex;
+        }
+
+        .employe_compny ul {
             padding: 15px;
             margin: 15px;
-            list-style:none;
-            font-size:13px;
-        }    
-
-
+            list-style: none;
+            font-size: 13px;
+        }
     </STYLE>
 </HEAD>
 
@@ -776,30 +780,30 @@
                 </div>
                 <p class="p7 ft0" style="color:#fff;">SKILLS, LANGUAGES</p>
                 <p class="p8 ft0" style="color:#fff;">AND TOOLS</p>
-                
+
                 <div class="skill_box">
                     <div class="skills_list" style="width:50%; flot:left;">
                         <ul>
-                        @forelse ($data['primary_skills'] as $primary)
+                            @forelse ($data['primary_skills'] as $primary)
                             <li>{{$primary['skills_details']['value']}}</li>
                             @empty
-                        
-                              @endforelse
-                         </ul>
+
+                            @endforelse
+                        </ul>
                     </div>
 
                     <div class="skills_list" style="width:50%; float:right; padding-right: 20px;">
                         <ul>
-                        @forelse($data['secondry_skills'] as $second)
+                            @forelse($data['secondry_skills'] as $second)
                             <li>{{$second['skills_details']['value']}}</li>
                             @empty
-                         
-                              @endforelse
-                         </ul>
+
+                            @endforelse
+                        </ul>
                     </div>
-    </div>
-                
-                
+                </div>
+
+
                 <!-- <TABLE cellpadding=0 cellspacing=0 class="t0">
 
 
@@ -819,14 +823,14 @@
 
                 </TABLE> -->
                 @if($data['portfolio']->count()>0)
-                        <p class="p10 ft0" style="color:#fff;margin-top:40px;">VISIT PORTFOLIO</p>
-                    @endif
-                   
-                    @forelse ($data['portfolio'] as $portf)
-                    <p class="p12 ft1"><a style="color:#fff; text-decoration: none" href="{{$portf['name']}}">{{$portf['name']}}</a></p>
-                    @empty
-                    <p></p>
-                    @endforelse
+                <p class="p10 ft0" style="color:#fff;margin-top:40px;">VISIT PORTFOLIO</p>
+                @endif
+
+                @forelse ($data['portfolio'] as $portf)
+                <p class="p12 ft1"><a style="color:#fff; text-decoration: none" href="{{$portf['name']}}">{{$portf['name']}}</a></p>
+                @empty
+                <p></p>
+                @endforelse
 
             </DIV>
 
@@ -864,20 +868,20 @@
                 </TR>
             </TABLE> -->
 
-                 <div class="employe_compny">
-                    <div class="skills_list" style="width:46%; flot:left;">
-                        <ul>
-                            <li>Virtual Employee</li>
-                            <li>{{ \Carbon\Carbon::parse($data['joining_date'])->format('M Y')}} - Present</li>
-                         </ul>
-                    </div>
+            <div class="employe_compny">
+                <div class="skills_list" style="width:46%; flot:left;">
+                    <ul>
+                        <li>Virtual Employee</li>
+                        <li>{{ \Carbon\Carbon::parse($data['joining_date'])->format('M Y')}} - Present</li>
+                    </ul>
+                </div>
 
-                    <div class="skills_list" style="width:56%; float:right; white-space: nowrap;">
-                        <ul>
-                            <li>CMMI L3 SCV</li>
-                            <li>ISO 27001:2013/ISO 9001:2015</li>
-                    </div>
-                 </div>
+                <div class="skills_list" style="width:56%; float:right; white-space: nowrap;">
+                    <ul>
+                        <li>CMMI L3 SCV</li>
+                        <li>ISO 27001:2013/ISO 9001:2015</li>
+                </div>
+            </div>
 
 
             <P class="p22 ft8">EDUCATION</P>
@@ -893,34 +897,41 @@
             <P class="p29 ft9">TECHMENTRO,</P>
             <P class="p30 ft9">INDIA, NOIDA</P>
             <P class="p31 ft11">Jan 2016</P>-->
+            @if(count($data['certificate']) >0)
             <P class="p32 ft8">CERTIFICATIONS</P>
             @forelse ($data['certificate'] as $res)
             <P class="p33 ft16"><SPAN class="ft15">{!!html_entity_decode($res['certification'])!!}</SPAN></P>
             @empty
             <p>No Certification Found</p>
             @endforelse
+            @endif
+
+
+            <P class="p32 ft8">{!!html_entity_decode(isset($data->miscellaneous['miscellaneous_title'])?$data->miscellaneous['miscellaneous_title']:'')!!}</P>
+            <P class="p33 ft16"><SPAN class="ft15">{!!html_entity_decode(isset($data->miscellaneous['miscellaneous'])?$data->miscellaneous['miscellaneous']:'')!!}</SPAN></P>
+
         </div>
     </div>
 
     <DIV id="page_2">
-           <!-- <DIV id="p2dimg1">
+        <!-- <DIV id="p2dimg1">
                 <IMG src="{{public_path('pdf/img-2.jpg')}}" id="p2img1">
             </DIV> -->
 
 
 
         <DIV class="dclr"></DIV>
-     <div style="float:right;width:54%">
-        <P class="ft4" style="width:300px; height: 51px; float:left; margin:0; padding-top:5px; margin-top:-8px;margin-left:18px;"><img style="width:90%" src="{{ public_path('pdf/logo.jpg') }}"></P>
+        <div style="float:right;width:54%">
+            <P class="ft4" style="width:300px; height: 51px; float:left; margin:0; padding-top:5px; margin-top:-8px;margin-left:18px;"><img style="width:90%" src="{{ public_path('pdf/logo.jpg') }}"></P>
             <P class="p14 ft5" style="white-space: nowrap;">CMMI L3 SCV</P>
             <P class="p14 ft5" style="white-space: nowrap;">ISO 27001:2013</P>
             <P class="p14 ft5" style="white-space: nowrap;">ISO 9001:2015</P>
-    </div>
+        </div>
         <P class="p37 ft8">ABOUT PROJECTS</P>
         @forelse ($data['project'] as $show)
         <P class="p38 ft9">{{$show['project_name']}}</P>
         <div style="padding: 17px;text-align: justify;">
-        <P class="p39 ft17">{!!html_entity_decode($show['project_description'])!!}</P>
+            <P class="p39 ft17">{!!html_entity_decode($show['project_description'])!!}</P>
         </div>
         @empty
         <p>No Project Found</p>

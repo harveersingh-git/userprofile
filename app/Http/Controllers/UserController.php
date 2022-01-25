@@ -15,6 +15,7 @@ use App\Models\userAchievement;
 use App\Models\UserPortfolio;
 use App\Models\ClientStatus;
 use App\Models\WorkType;
+use App\Models\Miscellaneous;
 use App\Models\Role;
 use Auth;
 use App\Models\UserProject;
@@ -172,11 +173,11 @@ class UserController extends Controller
         // }
 
         $data = $query->orderBy('id', 'DESC')->paginate(20);
-       
+
         $client_status = ClientStatus::with('client_status_count')->get();
 
         $work_type = WorkType::get();
-       
+
         $technologyes = SkillsEducation::where(['category' => 'skill'])->get();
 
 
@@ -345,9 +346,7 @@ class UserController extends Controller
         if ($request->isMethod('post')) {
 
             $input = $request->all();
-
-
-
+         
             UserProject::where(['user_id' => $input['user_id']])->delete();
             for ($i = 0; $i < count($input['project_name']); $i++) {
                 if (isset($input['project_name'][$i])) {
@@ -361,6 +360,20 @@ class UserController extends Controller
                     $inp['project_description'] =  $input['project_description'][$i];
                     $userProject = UserProject::create($inp);
                 }
+            }
+
+
+            Miscellaneous::where(['user_id' => $input['user_id']])->delete();
+         
+                if (isset($input['miscellaneous_title'])) {
+
+
+                    $mis['miscellaneous_title'] =  $input['miscellaneous_title'];
+
+                    $mis['user_id'] =  $input['user_id'];
+                    $mis['miscellaneous'] =  $input['miscellaneous'];
+                    Miscellaneous::create($mis);
+           
             }
 
 
@@ -502,8 +515,8 @@ class UserController extends Controller
 
     public function information(Request $request, $id = null)
     {
-        if(isset($id)){
-            $id=base64_decode($id);
+        if (isset($id)) {
+            $id = base64_decode($id);
         }
         $allskills = SkillsEducation::where('category', '=', 'skill')->get();
         $education = SkillsEducation::where('category', '=', 'education')->get();
@@ -526,7 +539,7 @@ class UserController extends Controller
             })->where('category', '=', 'skill')->get();
             // dd($allskills->toArray());
 
-            $data = User::with(['created_by', 'change_by', 'portfolio', 'education', 'exprince', 'certification', 'learning_skills', 'achievement', 'project', 'myTeam'])->with('skills', function ($q) {
+            $data = User::with(['miscellaneous','created_by', 'change_by', 'portfolio', 'education', 'exprince', 'certification', 'learning_skills', 'achievement', 'project', 'myTeam'])->with('skills', function ($q) {
 
                 $q->orderBy('order', 'asc');
             })->where('id', '=', $id)->first();
@@ -548,12 +561,12 @@ class UserController extends Controller
             } else {
                 $data['password'] = 'welcome';
             }
+            // dd($data->toArray());
 
-
-            return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills', 'selectedEducationType', 'course', 'team', 'client_type', 'work_type', 'roles','client_status'));
+            return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills', 'selectedEducationType', 'course', 'team', 'client_type', 'work_type', 'roles', 'client_status'));
         }
 
-        return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'course', 'team', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills', 'client_type', 'work_type', 'roles','client_status'));
+        return view('users.information', compact('allskills', 'data', 'education', 'certificate', 'course', 'team', 'selectedPrimarySkills', 'selectedSecondrySkills', 'selectedLearningSkills', 'client_type', 'work_type', 'roles', 'client_status'));
     }
 
 
@@ -675,7 +688,8 @@ class UserController extends Controller
 
         $data['education'] =  UserEducation::with('education_details', 'course')->where('user_id', '=', $id)->orderBy('order', 'asc')->get();
         $data['portfolio'] =  UserPortfolio::where('user_id', '=', $id)->get();
-        // dd($data['education']->toArray());
+        $data['miscellaneous'] =  Miscellaneous::where('user_id', '=', $id)->first();
+        // dd($data['miscellaneous']->toArray());
 
 
 

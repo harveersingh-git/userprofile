@@ -810,12 +810,21 @@
                     @empty
                     <p>No EDUCATION Found</p>
                     @endforelse
+                    @if(count($data['certificate']) >0)
                     <P class="p32 ft8">CERTIFICATIONS</P>
                     @forelse ($data['certificate'] as $res)
                     <P class="p33 ft16"><SPAN class="ft15">{!!html_entity_decode($res['certification'])!!}</SPAN></P>
                     @empty
                     <p>No Certification Found</p>
                     @endforelse
+                    @endif
+
+
+                    <P class="p32 ft8">{!!html_entity_decode(isset($data->miscellaneous['miscellaneous_title'])?$data->miscellaneous['miscellaneous_title']:'')!!}</P>
+                    <P class="p33 ft16"><SPAN class="ft15">{!!html_entity_decode(isset($data->miscellaneous['miscellaneous'])?$data->miscellaneous['miscellaneous']:'')!!}</SPAN></P>
+
+                  
+                    
                 </DIV>
             </DIV>
         </DIV>

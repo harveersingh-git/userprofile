@@ -976,9 +976,21 @@ Toast::message('message', 'level', 'title');
 
                                                     @endforeach
                                                     @endif
+
+
+                                               
                                                 </div>
-
-
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <label>Miscellaneous Title</label>
+                                                        <input class="form-control" name="miscellaneous_title" value="{{ isset($data['miscellaneous']->miscellaneous_title)?$data['miscellaneous']->miscellaneous_title:''}}"> </div>
+                                                </div>
+                                                <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>Miscellaneous </label>
+                                                    <textarea class="form-control" rows="3" name="miscellaneous">{{ isset($data['miscellaneous']->miscellaneous)?$data['miscellaneous']->miscellaneous:''}}</textarea>
+                                                </div>
+                                            </div>              
 
                                             </div>
                                             <input type="submit" value="Confirm" class="action-button btn btn-success col-md-3 pull-right" id="project_submit" />
@@ -1428,6 +1440,17 @@ Toast::message('message', 'level', 'title');
 
 
     $(window).on('load', function() {
+
+        
+        CKEDITOR.replace('miscellaneous', {
+            toolbar: [
+                // { name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
+                {
+                    name: 'editing',
+                    items: ['Format', 'Font', 'FontSize', 'TextColor', 'BGColor', 'Bold', 'Italic', 'NumberedList', 'BulletedList']
+                }
+            ]
+        });
         CKEDITOR.replace('about_employee', {
             toolbar: [
                 // { name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},

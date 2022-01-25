@@ -150,7 +150,10 @@ class User extends Authenticatable
         return $this->belongsTo(User::class, 'updated_by','id');
 
     }
+    public function miscellaneous(){
+        return $this->hasOne(Miscellaneous::class, 'user_id', 'id');
 
+    }
     
     
 }
