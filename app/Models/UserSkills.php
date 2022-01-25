@@ -20,7 +20,7 @@ class UserSkills extends Model
     // protected $visible = ['id', 'skill_value_id','order','skills_details'];
 
     public function skills_details(){
-        return $this->belongsTo(SkillsEducation::class, 'skill_value_id', 'id')->where('show_on_front','=','1');
+        return $this->belongsTo(SkillsEducation::class, 'skill_value_id', 'id');
 
     }
 }

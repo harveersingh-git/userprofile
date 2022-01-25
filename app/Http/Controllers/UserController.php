@@ -64,7 +64,7 @@ class UserController extends Controller
         // $query = User::with('myTeam')->where('id', '!=', 1);
 
 
-        $query = User::with('myTeam', 'client_status_value', 'work_status_value')->where('id', '!=', 1);
+        $query = User::with('skills','myTeam', 'client_status_value', 'work_status_value')->where('id', '!=', 1);
 
         if (Session::get('role') != "ADMIN") {
 
@@ -173,6 +173,7 @@ class UserController extends Controller
         // }
 
         $data = $query->orderBy('id', 'DESC')->paginate(20);
+        // dd(  $data->toArray());
 
         $client_status = ClientStatus::with('client_status_count')->get();
 

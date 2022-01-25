@@ -89,7 +89,7 @@ class User extends Authenticatable
    
 
     public function skills(){
-        return $this->hasMany(UserSkills::class, 'user_id', 'id')->with('skills_details')->orderBy('type', 'asc');;
+        return $this->hasMany(UserSkills::class, 'user_id', 'id')->with('skills_details')->orderBy('type', 'asc');
 
     }
 
