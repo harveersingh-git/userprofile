@@ -20,10 +20,6 @@ class ClickUpController extends Controller
     public function clickTimeSync(Request $request)
     {
         $id = $request['id'];
-        // rang code
-        // $rangdate = explode('-', $request['daterange']);
-        // rang code
-
         $team =  Teams::where('id', $id)->first();
         if (isset($team->click_up_access_token) && isset($team->click_up_team_id)) {
             $start_date = Carbon::create($request['daterange'])->toDateTimeString();
@@ -198,71 +194,122 @@ class ClickUpController extends Controller
         $teams =  Teams::get();
         if ($reques['daterange_search']) {
             $id = $reques['id'];
-            $date = explode("to", $reques['daterange_search']);
-            $curent_month_first_date =    trim($date[0]);
+            // dd($reques['daterange_search']);
+            // $curent_month_first_date = Carbon::parse($reques['daterange_search'])->toDateString();
+            // dd($curent_month_first_date);
+            // $date = explode("to", $reques['daterange_search']);
+            // $curent_month_first_date =    trim($date[0]);
+            // $curent_month_end_date = trim($date[1]);
+            $curent_month_first_date = Carbon::parse('01-' . $reques['daterange_search'])->startOfMonth()->toDateString();
 
-
-            $curent_month_end_date = trim($date[1]);
+            $curent_month_end_date = Carbon::parse('01-' . $reques['daterange_search'])->endOfMonth()->toDateString();
         } else {
             $curent_month_first_date = Carbon::now()->startOfMonth()->toDateString();
             $curent_month_end_date = Carbon::now()->endOfMonth()->toDateString();
         }
-
+        // dd();
+        // Carbon::now()->daysInMonth
 
         $columns = [];
         $result = [];
+        $finalTime = [];
         $users =  User::where(['team' => $id])->whereNotNull('click_up_user_id')->pluck('id');
-  
+
         $click = ClickUp::with('user', 'daily_performance')->whereIn('user_id', $users)->whereBetween('date', [$curent_month_first_date, $curent_month_end_date])->orderBy('date')->get();
-  
-  
+
+
 
         foreach ($users as $user) {
             $data_exists = ClickUp::where('date', $curent_month_first_date)->where('user_id', $user)->get();
-            // dd(count($data_exists));
-            if (count($data_exists)>0) {
-               
+
+            if (count($data_exists) > 0) {
+
                 if (count($click)) {
                     $columns = [];
-
+                    $totalTime = [];
+                    $total = 0;
+                    $minutes = 0;
+                    $minutes2 = 0;
+                    //    dd($click->toArray());
                     foreach ($click as $key => $valu) {
+                        $hours = 0;
+                        $minutes = 0;
+                        if ($valu) {
+
+
+                            $time = explode(':', $valu->time);
+
+                            $minutes += $time[0] * 60;
+                            $minutes += $time[1];
+
+
+                            $hours = floor($minutes / 60);
+                            $minutes -= $hours * 60;
+
+                            $totalTime[$valu->user_id][] = $hours . ':' . $minutes;
+                        }
+
+
 
                         if (!in_array($valu->user['name'] . ' ' . $valu->user['last_name'], $columns, true)) {
                             $columns[] = $valu->user['name'] . ' ' . $valu->user['last_name'];
                         }
                     }
 
+                    foreach ($totalTime as $key => $getTime) {
+                        $hours2 = 0;
+                        $minutes2 = 0;
+
+                        foreach ($getTime as $key => $timeVal) {
+
+                            $time2 = explode(':', $timeVal);
+                            $minutes2 += $time2[0] * 60;
+                            $minutes2 += $time2[1];
+                        }
+
+                        $hours2 = floor($minutes2 / 60);
+
+                        $minutes2 -= $hours2 * 60;
+
+                        $finalTime[] = $hours2 . ':' . $minutes2;
+                    }
+                    // dd($finalTime);
+
+                    array_unshift($finalTime, "Total");
                     array_unshift($columns, "Date");
                     foreach ($click as $key => $value) {
-                        // dd(isset($value['daily_performance']->title)?($value['daily_performance']->title):'');
-                        $title = isset($value['daily_performance']->title)?($value['daily_performance']->title):'';
-                        $result[$value->date][] = $value->time . ',' . $value->id . ',' . $value->status . ',' .  $title;
+                        $title = isset($value['daily_performance']->title) ? ($value['daily_performance']->title) : '';
+                        $background_color = isset($value['daily_performance']->background_color) ? ($value['daily_performance']->background_color) : '';
+                        $font_color = isset($value['daily_performance']->font_color) ? ($value['daily_performance']->font_color) : '';
+
+                        $result[$value->date][] = $value->time . ',' . $value->id . ',' . $value->status . ',' .  $background_color . ',' .  $font_color . ',' .  $title;
                     }
-                    // dd($result);
-                    return view('clickup.view', compact('id', 'columns', 'result', 'teams'));
+                    // dd($total);
+                    return view('clickup.view', compact('id', 'columns', 'result', 'teams', 'finalTime'));
                 }
             } else {
-               
 
+                if (!isset($reques['daterange_search'])) {
 
-                for ($i = 0; $i < Carbon::now()->daysInMonth; $i++) {
+                    for ($i = 0; $i < Carbon::now()->daysInMonth; $i++) {
 
-                    $input['user_id'] = $user;
-                    $input['date'] = Carbon::now()->startOfMonth()->addDays($i)->toDateString();
+                        $input['user_id'] = $user;
+                        $input['date'] = Carbon::now()->startOfMonth()->addDays($i)->toDateString();
 
-                    if (Carbon::now()->startOfMonth()->addDays($i)->isWeekday() == "false") {
-                        $input['status'] = '0';
-                    } else {
-                        $input['status'] = '2';
+                        if (Carbon::now()->startOfMonth()->addDays($i)->isWeekday() == "false") {
+                            $input['status'] = '0';
+                        } else {
+                            $input['status'] = '2';
+                        }
+                        $input['time'] = '00:00';
+                        $success =   ClickUp::create($input);
                     }
-                    $input['time'] = '00:00';
-                    $success =   ClickUp::create($input);
                 }
             }
         }
 
 
-        return view('clickup.view', compact('id', 'columns', 'result', 'teams'));
+        return view('clickup.view', compact('id', 'columns', 'result', 'teams', 'finalTime'));
     }
 
 

@@ -7,6 +7,15 @@ ClickUp Report
 @include('admin.layout.header')
 
 Toast::message('message', 'level', 'title');
+<style>
+    /* .table-condensed thead tr:nth-child(2),
+    .table-condensed tbody {
+        display: none
+    } */
+    /* #daterange_search > .ui-datepicker-calendar {
+    display: none;
+} */
+</style>
 <div id="page-wrapper" style="min-height: 183px;">
     <div class="container-fluid">
         <div class="row">
@@ -23,7 +32,7 @@ Toast::message('message', 'level', 'title');
 
                     <form action="{{ url('clickup-report/') }}" method="GET" role="search" autocomplete="off" class="form-inline">
 
-                        <input type="text" class="form-control" name="daterange_search" value="{{Request::get('daterange_search')}}" id="daterange_search" placeholder="2022-01-24 to 2022-01-24" />
+                        <input type="text" class="form-control" name="daterange_search" value="{{Request::get('daterange_search')}}" id="daterange_search" placeholder="January 2022" />
                         <input type="hidden" value="{{$id}}" name="id" id="team_id">
 
 
@@ -78,14 +87,39 @@ Toast::message('message', 'level', 'title');
                             <tr>
                                 @forelse ($columns as $column)
                                 @if($column=="Date")
-                                <th class="text-center">{{$column}}</th>
+                                <th class="text-center" style="width: 13%;">{{$column}}</th>
 
                                 @else
-                                <th class="text-center" data-toggle="tooltip" data-placement="" title="{{$column}}">{{substr( $column, 0, 2)}}</th>
+                                @php
+                                $name = explode(" ",$column)
+
+                                @endphp
+                                <th class="text-center" data-toggle="tooltip" data-placement="" title="{{$column}}">{{strtoupper(substr($name[0],0,1))}}_{{strtoupper(substr($name[1],0,1))}}</th>
 
                                 @endif
                                 @empty
-                                <th class="text-center">No Data Found</th>
+                            
+                                @endforelse
+
+                            </tr>
+
+                        </thead>
+                        <thead>
+                            <tr>
+                                @forelse ($finalTime as $totallTime)
+                                @if($column=="Total")
+                                <th class="text-center" style="width: 13%;"></th>
+
+                                @else
+                                @php
+                                $name = explode(" ",$column)
+
+                                @endphp
+                                <th class="text-center">{{$totallTime}}</th>
+
+                                @endif
+                                @empty
+                          
                                 @endforelse
 
                             </tr>
@@ -95,12 +129,10 @@ Toast::message('message', 'level', 'title');
 
                             @forelse($result as $keyy => $value)
                             <tr>
-                                <td class="text-center">{{\Carbon\Carbon::parse($keyy)->format('d-M-Y') }}</td>
-                                @for ($i = 0; $i < count($value); $i++) <td class="text-center">
-                                    @php
-                                    $data = explode(",",$value[$i] );
-                                    @endphp
-                                    <a href="#" style="color:{{($data[2]=='2')? 'red':''}}" class="popup" id="{{$data[1]}}" data-toggle="tooltip" data-placement="top" title="{{ $data[3] }}">{{ $data[0] }}</a>
+                                <td>{{\Carbon\Carbon::parse($keyy)->format('d-M-Y') }}({{ \Carbon\Carbon::parse($keyy)->format('l')}})</td>
+                                @for ($i = 0; $i < count($value); $i++) @php $data=explode(",",$value[$i] ); @endphp <td class="text-center" style="background-color:{{($data[2]=='2')? '':$data[3]}}">
+
+                                    <a href="#" style="color:{{($data[2]=='2')? 'red':$data[4]}}; " class="popup" id="{{$data[1]}}" data-toggle="tooltip" data-placement="top" title="{{ $data[5] }}"> {{ $data[0] }}</a>
                                     </td>
                                     @endfor
 
@@ -113,6 +145,28 @@ Toast::message('message', 'level', 'title');
                             </tr>
                             @endforelse
                         </tbody>
+
+                        <thead>
+                            <tr>
+                                @forelse ($finalTime as $totallTime)
+                                @if($column=="Total")
+                                <th class="text-center" style="width: 13%;"></th>
+
+                                @else
+                                @php
+                                $name = explode(" ",$column)
+
+                                @endphp
+                                <th class="text-center">{{$totallTime}}</th>
+
+                                @endif
+                                @empty
+                         
+                                @endforelse
+
+                            </tr>
+
+                        </thead>
 
                     </table>
 
@@ -143,7 +197,7 @@ Toast::message('message', 'level', 'title');
                     <div class="form-group">
 
                         <label for="recipient-name" class="col-form-label">Time:</label>
-                        <input type="text" class="form-control" id="time" required="" name="time">
+                        <input type="time" class="form-control" id="time" required="" name="time">
                         <input type="hidden" class="form-control" id="click_up_report_id" name="click_up_report_id">
                     </div>
                     <div class="form-group">
@@ -267,15 +321,43 @@ Toast::message('message', 'level', 'title');
         })
         // var array = ["2022-01-20", "2022-01-19", "2022-01-17"]
 
-        $('#daterange_search').daterangepicker({
-            startDate: moment().startOf('hour'),
-            endDate: moment().startOf('hour').add(23, 'hour'),
-            maxDate: new Date(),
-            locale: {
-                format: 'YYYY-MM-DD',
-                separator: " to "
+        // $('#daterange_search/').daterangepicker({
+        //     startDate: moment().startOf('hour'),
+        //     endDate: moment().startOf('hour').add(23, 'hour'),
+        //     maxDate: new Date(),
+        //     locale: {
+        //         format: 'YYYY-MM',
+        //         separator: " to "
+        //     },
+
+        // });
+
+
+
+
+        $('#daterange_search').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'mm-yy',
+            minDate: '-12M',
+            maxDate: '+28D',
+            onClose: function() {
+                var iMonth = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                var iYear = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                $(this).datepicker('setDate', new Date(iYear, iMonth, 1));
             },
 
+            beforeShow: function() {
+                if ((selDate = $(this).val()).length > 0) {
+                    iYear = selDate.substring(selDate.length - 4, selDate.length);
+                    iMonth = jQuery.inArray(selDate.substring(0, selDate.length - 5),
+                        $(this).datepicker('option', 'monthNames'));
+                    $(this).datepicker('option', 'defaultDate', new Date(iYear, iMonth, 1));
+                    $(this).datepicker('setDate', new Date(iYear, iMonth, 1));
+                }
+            }
+        }).focus(function() {
+            $(".ui-datepicker-calendar").hide();
         });
     });
 

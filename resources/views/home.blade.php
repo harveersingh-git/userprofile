@@ -93,8 +93,8 @@
                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                      
-                                        <th >Technology</th>
+                                        <th class="text-center">Sr. No.</th>
+                                        <th>Technology</th>
                                         <th class="text-center">Primary</th>
                                         <th class="text-center">Secondary</th>
                                         <th class="text-center">Learning</th>
@@ -103,13 +103,13 @@
                                 <tbody>
 
                                     @forelse($data['technology'] as $key => $technology)
-                                    @php 
-                                   $allcount =  $technology->primary_skills_user_count +  $technology->secondary_skills_user_count +$technology->learning_skills_user_count;
+                                    @php
+                                    $allcount = $technology->primary_skills_user_count + $technology->secondary_skills_user_count +$technology->learning_skills_user_count;
                                     @endphp
                                     @if($allcount>0)
                                     <tr>
-                                      
-                                        <td class=""><a href="{{url('/users?skills%5B%5D=')}}{{$technology->value}}">{{ $technology->value }}{{ $allcount }}</a></td>
+                                        <td class="text-center">{{ $key+1 }}</td>
+                                        <td class=""><a href="{{url('/users?skills%5B%5D=')}}{{$technology->value}}">{{ $technology->value }}</a></td>
                                         <td class="text-center"><a href="{{url('/users?skills%5B%5D=')}}{{$technology->value}}&type=1">{{ $technology->primary_skills_user_count }}</a></td>
                                         <td class="text-center"><a href="{{url('/users?skills%5B%5D=')}}{{$technology->value}}&type=2">{{ $technology->secondary_skills_user_count }}</a></td>
                                         <td class="text-center"><a href="{{url('/users?skills%5B%5D=')}}{{$technology->value}}&type=3">{{ $technology->learning_skills_user_count }}</a></td>
@@ -118,7 +118,7 @@
 
                                     </tr>
                                     @endif
-                  
+
                                     @empty
                                     <tr>
                                         <td colspan="10">There are no data.</td>
@@ -155,13 +155,12 @@
 </div>
 @section('script')
 <script>
-   
     $(document).ready(function() {
         var oTable = $('#dataTables-example').DataTable({
             "pageLength": 50,
             responsive: true,
             "lengthChange": false,
-      
+
         });
         $("#myInput").on("keyup", function() {
             oTable.search(this.value).draw();
