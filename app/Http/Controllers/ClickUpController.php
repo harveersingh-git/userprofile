@@ -83,7 +83,7 @@ class ClickUpController extends Controller
 
 
 
-  
+                        dd('ds');
                         if (intval($hour)=='0' && intval($minutes)=='0') {
                             $chek_time_new =  DailyPerformance::where('min', '=', intval($hour))->where('max', '=', intval($hour))->first();
                             $input['daily_performance_id'] =  $chek_time_new['id'];
