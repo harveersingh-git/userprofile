@@ -32,7 +32,7 @@ Toast::message('message', 'level', 'title');
 
                     <form action="{{ url('clickup-report/') }}" method="GET" role="search" autocomplete="off" class="form-inline">
 
-                        <input type="text" class="form-control" name="daterange_search" value="{{Request::get('daterange_search')}}" id="daterange_search" placeholder="January 2022" />
+                        <input type="text" class="form-control" name="daterange_search" value="{{Request::get('daterange_search')}}" id="daterange_search" placeholder="01-2021" />
                         <input type="hidden" value="{{$id}}" name="id" id="team_id">
 
 
