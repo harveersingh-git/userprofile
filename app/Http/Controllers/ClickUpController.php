@@ -231,7 +231,7 @@ class ClickUpController extends Controller
         $finalTime = [];
         $users =  User::where(['team' => $id])->whereNotNull('click_up_user_id')->pluck('id');
 
-        $click = ClickUp::with('user', 'daily_performance')->whereIn('user_id', $users)->whereBetween('date', [$curent_month_first_date, $curent_month_end_date])->orderBy('date')->get();
+        $click = ClickUp::with('user', 'daily_performance')->whereIn('user_id', $users)->whereBetween('date', [$curent_month_first_date, $curent_month_end_date])->orderBy('user_id')->get();
 
 
 
@@ -251,23 +251,15 @@ class ClickUpController extends Controller
                         $hours = 0;
                         $minutes = 0;
                         if ($valu) {
-
-
                             $time = explode(':', $valu->time);
-
                             $minutes += $time[0] * 60;
                             $minutes += $time[1];
-
-
                             $hours = floor($minutes / 60);
                             $minutes -= $hours * 60;
-
                             $totalTime[$valu->user_id][] = $hours . ':' . $minutes;
                         }
 
-
-
-                        if (!in_array($valu->user['name'] . ' ' . $valu->user['last_name'], $columns, true)) {
+                     if (!in_array($valu->user['name'] . ' ' . $valu->user['last_name'], $columns, true)) {
                             $columns[] = $valu->user['name'] . ' ' . $valu->user['last_name'];
                         }
                     }
