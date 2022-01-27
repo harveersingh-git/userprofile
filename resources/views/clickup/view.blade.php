@@ -46,6 +46,7 @@ Toast::message('message', 'level', 'title');
                     <form action="{{ url('click-up-time-sync') }}" method="GET" role="search" autocomplete="off" class="form-inline">
                         <input type="text" class="form-control" name="daterange" value="" placeholder="2022-01-21" />
                         <input type="hidden" value="{{$id}}" name="id" id="team_id">
+                        <input type="hidden" name="sync" value="1">
 
 
                         <button type="submit" class="btn btn-info btn-default">Fetch Report</button>
