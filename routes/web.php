@@ -75,7 +75,7 @@ Route::post('/remove_achievement', [App\Http\Controllers\UserController::class, 
 Route::post('/remove_project', [App\Http\Controllers\UserController::class, 'removeProject']);
 Route::post('/remove_portfolio', [App\Http\Controllers\UserController::class, 'removePortfolio']);
 
-
+Route::any('/hire_status_sorting', [App\Http\Controllers\ClientStatusController::class, 'hireStatusShorting']);
 Route::any('/client-status', [App\Http\Controllers\ClientStatusController::class, 'index'])->name('client-status');
 Route::any('/add-client-status', [App\Http\Controllers\ClientStatusController::class, 'create'])->name('add-client-status');
 Route::any('/client-status/edit/{id}', [App\Http\Controllers\ClientStatusController::class, 'view']);

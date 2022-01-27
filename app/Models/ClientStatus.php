@@ -11,7 +11,8 @@ class ClientStatus extends Model
     protected $fillable = [
         'title',
         'background_color',
-        'font_color'   
+        'font_color',
+        'order_by'
     ];
 
     public function client_status_count(){

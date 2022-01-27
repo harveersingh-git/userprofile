@@ -50,7 +50,7 @@ class HomeController extends Controller
             ->where(['category' => 'skill'])->where('show_on_front','=','1')->orderBy('primary_skills_user_count', 'desc')->get();
 
 
-        $data['client_status'] =  ClientStatus::withCount('client_status_count')->get();
+        $data['client_status'] =  ClientStatus::withCount('client_status_count')->orderBy('order_by','asc')->get();
         // dd(  $data['technology']->toArray());
         return view('home', compact('data'));
     }

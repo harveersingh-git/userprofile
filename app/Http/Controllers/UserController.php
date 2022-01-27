@@ -175,7 +175,7 @@ class UserController extends Controller
         $data = $query->orderBy('id', 'DESC')->paginate(20);
         // dd(  $data->toArray());
 
-        $client_status = ClientStatus::with('client_status_count')->get();
+        $client_status = ClientStatus::with('client_status_count')->orderBy('order_by','asc')->get();
 
         $work_type = WorkType::get();
 
@@ -526,7 +526,7 @@ class UserController extends Controller
         $course = SkillsEducation::where('category', '=', 'course')->get();
         $team = Teams::get();
         $client_type = ClientType::get();
-        $client_status = ClientStatus::get();
+        $client_status = ClientStatus::orderBy('order_by','asc')->get();
         $work_type = WorkType::get();
 
         $selectedPrimarySkills = [];

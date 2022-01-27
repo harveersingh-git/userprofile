@@ -11,12 +11,13 @@ class ClientStatusController extends Controller
     {
         $this->middleware('access');
     }
-    public function index(Request $request){
-        $data = ClientStatus::latest()->paginate(10);
+    public function index(Request $request)
+    {
+        $data = ClientStatus::orderBy('order_by')->paginate(10);
 
         return view('clientstatus.index', compact('data'));
     }
-      /**
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -25,7 +26,7 @@ class ClientStatusController extends Controller
     {
         $url = '';
         if ($request->isMethod('post')) {
-           
+
             $request->validate([
                 'title' => 'required',
                 'background_color' => 'required',
@@ -67,7 +68,7 @@ class ClientStatusController extends Controller
             return  redirect()->route('client-status')->with('message', 'Data update Successfully');
         }
     }
-     /**
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -82,5 +83,16 @@ class ClientStatusController extends Controller
             $skillsEducation->delete();
             return response()->json(['status' => 'success']);
         }
+    }
+
+    public function hireStatusShorting(Request $request)
+    {
+        if (count($request['order']) > 0) {
+            foreach ($request['order'] as $order) {
+                $position['order_by'] = $order['position'];
+                ClientStatus::updateOrCreate(['id' => $order['id']], $position);
+            }
+        }
+        return response()->json(['status' => 'success']);
     }
 }
