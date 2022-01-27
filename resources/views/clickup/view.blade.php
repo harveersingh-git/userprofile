@@ -99,7 +99,7 @@ Toast::message('message', 'level', 'title');
 
                                 @endif
                                 @empty
-                            
+
                                 @endforelse
 
                             </tr>
@@ -120,7 +120,7 @@ Toast::message('message', 'level', 'title');
 
                                 @endif
                                 @empty
-                          
+
                                 @endforelse
 
                             </tr>
@@ -162,7 +162,7 @@ Toast::message('message', 'level', 'title');
 
                                 @endif
                                 @empty
-                         
+
                                 @endforelse
 
                             </tr>
@@ -198,7 +198,7 @@ Toast::message('message', 'level', 'title');
                     <div class="form-group">
 
                         <label for="recipient-name" class="col-form-label">Time:</label>
-                        <input type="time" class="form-control" id="time" required="" name="time">
+                        <input type="text" class="form-control" id="time" required="" name="time">
                         <input type="hidden" class="form-control" id="click_up_report_id" name="click_up_report_id">
                     </div>
                     <div class="form-group">
@@ -242,27 +242,39 @@ Toast::message('message', 'level', 'title');
     });
 
     $('.popup').on('click', function() {
-        var time = $(this).text();
+        var time = $(this).text().trim();
+
         $('#time').val(time);
 
         var token = $('input[name="_token"]').attr('value');
         var id = $(this).attr('id');
         $('#click_up_report_id').val(id);
         $('#myModal').modal('toggle');
+        var data = {
+            id: id
+        };
         $.ajax({
             type: 'GET',
             url: base_url + '/get_daily_perfomance',
             contentType: 'application/json',
             dataType: 'json',
+            data: data,
             headers: {
                 'X-CSRF-Token': token
             },
 
             success: function(result) {
+                console.log('test', result);
 
                 typee = '<option value="">--select--</option>';
                 result.data.forEach(element => {
-                    typee += "<option value=" + element.id + ">" + element.title + "</option>"
+                    if (element.id == result.daily.daily_performance_id) {
+                        typee += "<option value=" + element.id + "  selected>" + element.title + "</option>"
+                    } else {
+                        typee += "<option value=" + element.id + "  >" + element.title + "</option>"
+                    }
+
+
                 });
 
                 $('#daily_status_id').html(typee);

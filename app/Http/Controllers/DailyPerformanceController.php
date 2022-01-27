@@ -95,11 +95,11 @@ class DailyPerformanceController extends Controller
     {
 
         $result = DailyPerformance::get();
-        // dd(  $result);
+       $getperformance = ClickUp::select('daily_performance_id')->where('id',$request['id'])->first();
 
         if ($result) {
 
-            return response()->json(['status' => 'success', 'data' => $result]);
+            return response()->json(['status' => 'success', 'data' => $result,'daily'=>$getperformance]);
         }
     }
     public function checkDailyPerformance(Request $request)
@@ -152,6 +152,20 @@ class DailyPerformanceController extends Controller
             return response()->json(['status' => 'success', 'data' => $result]);
         }
     }
-   
+    public function skillShowOnFront(Request $request)
+    {
+
+
+        $result = UserSkills::where(['skill_value_id' => $request['skill_id'], 'user_id' => $request['user_id']])->first();
+
+        $result->update([
+            'show_on_front' => '1',
+
+        ]);
+        if ($result) {
+
+            return response()->json(['status' => 'success', 'data' => $result]);
+        }
+    }
     
 }
