@@ -53,6 +53,7 @@ class ClickUpController extends Controller
                     $data = json_decode($response->body());
 
                     if (count($data->data) > 0) {
+                        $chek_time= '';
                         $temp = 0;
                         foreach ($data as $key => $res) {
                             foreach ($res as $key => $value) {
@@ -75,19 +76,23 @@ class ClickUpController extends Controller
                         $input['user_id'] = $val->id;
                         $input['date'] =  $start_date;
                         $input['time'] =  $hour . ':' . $minutes;
-                        // $hour = '7.2';
+                        // $hour = '00:00';
 
 
                         $chek_time =  DailyPerformance::where('min','<=', intval($hour))->where('max','>', intval($hour))->first();
+                      
 
 
 
                         if ($chek_time) {
+                          
                             $input['daily_performance_id'] =  $chek_time['id'];
-                        } else {
-                            $chek_time =  DailyPerformance::where('min','=', intval($hour))->where('max', '=', intval($hour))->first();
-                            $input['daily_performance_id'] =  $chek_time['id'];
-                        }
+                        } 
+                        // else {
+                            
+                        //     $chek_time =  DailyPerformance::where('min','=', intval($hour))->where('max', '=', intval($hour))->first();
+                        //     $input['daily_performance_id'] =  $chek_time['id'];
+                        // }
 
                         $input['status'] =  "1";
 
