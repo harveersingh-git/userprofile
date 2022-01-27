@@ -84,15 +84,15 @@ class ClickUpController extends Controller
 
 
                     
-                        // if ((intval($hour)==0 && intval($minutes)==0)) {
-                        //     $chek_time_new =  DailyPerformance::where('min', intval($hour))->where('max',intval($hour))->first();
-                        //     $input['daily_performance_id'] =  $chek_time_new['id'];
-                        // } else {
+                        if ((intval($hour)==0 && intval($minutes)==0)) {
+                            $chek_time_new =  DailyPerformance::where('min', intval($hour))->where('max',intval($hour))->first();
+                            $input['daily_performance_id'] =  $chek_time_new['id'];
+                        } else {
                           
-                        //     $chek_time =  DailyPerformance::where('min','<=', intval($hour))->where('max','>', intval($hour))->first();
+                            $chek_time =  DailyPerformance::where('min','<=', intval($hour))->where('max','>', intval($hour))->first();
                          
-                        //     $input['daily_performance_id'] =  $chek_time['id'];
-                        // }
+                            $input['daily_performance_id'] =  $chek_time['id'];
+                        }
 
 
                         $input['status'] =  "1";
@@ -100,12 +100,12 @@ class ClickUpController extends Controller
                         ClickUp::where(['user_id' => $val->id, 'date' => $start_date])->delete();
                         $success =   ClickUp::create($input);
                     } else {
-                        $input['user_id'] = $val->id;
-                        $input['date'] =  $start_date;
-                        $input['time'] =  "00:00";
-                        $input['status'] =  "1";
+                        $inputt['user_id'] = $val->id;
+                        $inputt['date'] =  $start_date;
+                        $inputt['time'] =  "00:00";
+                        $inputt['status'] =  "1";
                         ClickUp::where(['user_id' => $val->id, 'date' => $start_date])->delete();
-                        $success =   ClickUp::create($input);
+                        $success =   ClickUp::create($inputt);
                     }
                 }
             }
