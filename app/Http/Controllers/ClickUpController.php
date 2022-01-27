@@ -52,7 +52,7 @@ class ClickUpController extends Controller
                     ])->get(env('CLICKUP_BASE_URL') . '/team/' . $click_up_team_id . '/time_entries?start_date=' . number_format($unix_start_date, 0, '.', '') . '&end_date=' . number_format($unix_end_date, 0, '.', '') . '&assignee=' . $val['click_up_user_id']);
                     $data = json_decode($response->body());
 
-                    if (count($data->data) > 0) {
+                    if (isset($data->data) && count($data->data) > 0) {
 
                         $temp = 0;
                         foreach ($data as $key => $res) {
