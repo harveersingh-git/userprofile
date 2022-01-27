@@ -56,6 +56,7 @@ Toast::message('message', 'level', 'title');
                                 <td class="text-center">{{ $value->value }}</td>
                                 <td class="text-center">{{ $value->category }}</td>
                                 <td class="text-center">
+                                    @if($value->category=='skill')
                                     @if($value->show_on_front=='1')
                                     <i class="fa fa-eye show_on_main" aria-hidden="true" id="{{$value->id}}"></i>
 
@@ -63,7 +64,7 @@ Toast::message('message', 'level', 'title');
                                     <i class="fa fa-eye-slash show_on_main" aria-hidden="true" id="{{$value->id}}"></i>
                                     @endif
 
-
+                                @endif
 
                                 <td class="text-center">
                                     <a class="btn btn-warning" href="{{url('/skills-education/edit')}}/{{$value->id}}"><i class="fa fa-edit"></i> Edit</button>
