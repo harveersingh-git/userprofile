@@ -53,7 +53,7 @@ class ClickUpController extends Controller
                     $data = json_decode($response->body());
 
                     if (count($data->data) > 0) {
-                       
+
                         $temp = 0;
                         foreach ($data as $key => $res) {
                             foreach ($res as $key => $value) {
@@ -68,28 +68,27 @@ class ClickUpController extends Controller
 
                         $input = floor($input / 60);
                         $minutes = $input % 60;
-                        
+
                         $input = floor($input / 60);
-                   
+
                         $hour = $input;
 
                         $input = [];
                         $input['user_id'] = $val->id;
                         $input['date'] =  $start_date;
                         $input['time'] =  $hour . ':' . $minutes;
-                        
-                       
-                        $chek_time= [];
-                        $chek_time =  DailyPerformance::where('min','<=', intval($hour))->where('max','>', intval($hour))->first();
-                     
-                        if ($chek_time !=null) {
-                          
-                            $input['daily_performance_id'] =  $chek_time['id'];
-                        } 
-                        else {
-                            
-                            $chek_time =  DailyPerformance::where('min','=', intval($hour))->where('max', '=', intval($hour))->first();
-                            $input['daily_performance_id'] =  $chek_time['id'];
+
+
+                        $chek_time = [];
+                        $chek_time =  DailyPerformance::where('min', '<=', intval($hour))->where('max', '>', intval($hour))->first();
+
+                        if ($chek_time) {
+                            if ($minutes == '0') {
+                                $chek_time =  DailyPerformance::where('min', '=', intval($hour))->where('max', '=', intval($hour))->first();
+                                $input['daily_performance_id'] =  $chek_time['id'];
+                            } else {
+                                $input['daily_performance_id'] =  $chek_time['id'];
+                            }
                         }
 
                         $input['status'] =  "1";
