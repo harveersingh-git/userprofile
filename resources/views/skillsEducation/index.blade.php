@@ -12,34 +12,36 @@ Toast::message('message', 'level', 'title');
                 <h1 class="page-header">Skills-Education</h1>
             </div>
 
-           
+
 
 
             <!-- /.col-lg-12 -->
         </div>
 
         <div class="row">
-        <div class="col-lg-3">
+            <div class="col-lg-3">
                 <a class="btn btn-info mb-20" href="{{ url('add-skills-education') }}" class="active"><i class="fa fa-plus fa-fw"></i>
                     <i class="fa fa-book fa-fw"></i> Add Skills-Education
                 </a>
             </div>
 
-</div>
+        </div>
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading mypnl_heading">
-                       <span>Skills-Education</span>
+                        <span>Skills-Education</span>
                     </div>
                     <!-- /.panel-heading -->
-                    <table class="table table-bordered table-responsive" >
+                    <table class="table table-bordered table-responsive">
                         <thead>
                             <tr>
                                 <th class="text-center">Sr. No.</th>
-                                <th class="text-center">value</th>
-                                <th class="text-center">category</th>
+                                <th class="text-center">Value</th>
+                                <th class="text-center">Category</th>
+                                <th class="text-center">Show on front</th>
+
 
 
 
@@ -50,14 +52,23 @@ Toast::message('message', 'level', 'title');
                             @if(!empty($data) && $data->count())
                             @foreach($data as $key => $value)
                             <tr>
-                                   <td class="text-center">{{ $key+1 }}</td>
+                                <td class="text-center">{{ $key+1 }}</td>
                                 <td class="text-center">{{ $value->value }}</td>
                                 <td class="text-center">{{ $value->category }}</td>
+                                <td class="text-center">
+                                    @if($value->show_on_front=='1')
+                                    <i class="fa fa-eye show_on_main" aria-hidden="true" id="{{$value->id}}"></i>
+
+                                    @else
+                                    <i class="fa fa-eye-slash show_on_main" aria-hidden="true" id="{{$value->id}}"></i>
+                                    @endif
+
+
 
                                 <td class="text-center">
-                                    <a  class="btn btn-warning" href="{{url('/skills-education/edit')}}/{{$value->id}}"><i class="fa fa-edit"></i> Edit</button>
+                                    <a class="btn btn-warning" href="{{url('/skills-education/edit')}}/{{$value->id}}"><i class="fa fa-edit"></i> Edit</button>
 
-                                    <a class="delete btn btn-danger" id="{{$value->id}}"> <i class="fa fa-trash"></i> Delete</button>
+                                        <a class="delete btn btn-danger" id="{{$value->id}}"> <i class="fa fa-trash"></i> Delete</button>
 
                                 </td>
                             </tr>
@@ -110,16 +121,41 @@ Toast::message('message', 'level', 'title');
                         window.location.reload();
                     }
                 })
-                //   axios.get(`/api/move_to_trash/${id}`).then(() => {
-                //      this.$router.push("/users");
-                //     let i = this.users.map((data) => data.id).indexOf(id);
-                //     this.users.splice(i, 1);
-                //      this.$toaster.success('Record delete successfully.')
-                //   });
+            
             } else {
                 swal("Your Record safe now!");
             }
         });
+
+    });
+
+
+    
+    $(document).on('click', '.show_on_main', function() {
+        var token = $('input[name="_token"]').attr('value');
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var data = {
+            id: $(this).attr('id')
+        };
+        $.ajax({
+            type: 'POST',
+            url: base_url + '/skill_show_on_front',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify(data),
+            headers: {
+                'X-CSRF-Token': token
+            },
+
+            success: function(result) {
+               
+                toastr.success("Record Update successfully");
+
+                
+
+
+            }
+        })
 
     });
 </script>

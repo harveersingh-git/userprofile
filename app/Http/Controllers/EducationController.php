@@ -32,14 +32,14 @@ class EducationController extends Controller
     {
         $url = '';
         if ($request->isMethod('post')) {
-      
+
             $request->validate([
                 'value' => 'required|unique:skills_education,value',
                 'category' => 'required',
             ]);
 
             $input = $request->all();
-      
+
 
             $user = SkillsEducation::create($input);
             return redirect('skills-education')->with('message', 'Data added Successfully');
@@ -137,6 +137,28 @@ class EducationController extends Controller
 
         if ($id) {
             return  redirect()->route('skills-education')->with('message', 'Data update Successfully');
+        }
+    }
+
+
+    public function skillShowOnFront(Request $request)
+    {
+
+
+        $result = SkillsEducation::where(['id' => $request['id']])->first();
+
+        if ($result->show_on_front == '0') {
+            $status = '1';
+        } else {
+            $status = '0';
+        }
+        $result->update([
+            'show_on_front' => $status,
+
+        ]);
+        if ($result) {
+
+            return response()->json(['status' => 'success', 'data' => $result]);
         }
     }
 }

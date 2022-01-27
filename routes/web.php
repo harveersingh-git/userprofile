@@ -133,3 +133,5 @@ Route::get('/get_daily_perfomance', [App\Http\Controllers\DailyPerformanceContro
 Route::post('/check_daily_perfomance', [App\Http\Controllers\DailyPerformanceController::class, 'checkDailyPerformance']);
 Route::any('/update-click-up-report', [App\Http\Controllers\DailyPerformanceController::class, 'updateReport'])->name('update-click-up-report');
 Route::post('/show_on_front', [App\Http\Controllers\DailyPerformanceController::class, 'showOnFront']);
+Route::post('/skill_show_on_front', [App\Http\Controllers\EducationController::class, 'skillShowOnFront']);
+
