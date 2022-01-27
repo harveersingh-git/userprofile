@@ -60,6 +60,8 @@ class ClickUpController extends Controller
                                 $temp += $value->duration;
                             }
                         }
+                        $minutes = 0;
+                        $hour = 0;
 
                         $input = $temp;
                         $uSec = $input % 1000;
@@ -79,18 +81,19 @@ class ClickUpController extends Controller
                         $input['time'] =  $hour . ':' . $minutes;
 
 
-                     
 
-                      
-                            if ($minutes == '0' || $minutes == '00') {
-                                $chek_time_new =  DailyPerformance::where('min','=', intval($hour))->where('max','=', intval($hour))->first();
-                                $input['daily_performance_id'] =  $chek_time_new['id'];
-                            } else {
-                                $chek_time =  DailyPerformance::where('min', '<=', intval($hour))->where('max', '>', intval($hour))->first();
 
-                                $input['daily_performance_id'] =  $chek_time['id'];
-                            }
-                     
+  
+                        if (intval($hour)=='0' && intval($minutes)=='0') {
+                            $chek_time_new =  DailyPerformance::where('min', '=', intval($hour))->where('max', '=', intval($hour))->first();
+                            $input['daily_performance_id'] =  $chek_time_new['id'];
+                        } else {
+                          
+                            $chek_time =  DailyPerformance::where('min', '<=', intval($hour))->where('max', '>', intval($hour))->first();
+                         
+                            $input['daily_performance_id'] =  $chek_time['id'];
+                        }
+
 
                         $input['status'] =  "1";
 
