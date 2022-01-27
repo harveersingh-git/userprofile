@@ -78,10 +78,14 @@ class ClickUpController extends Controller
                         // $hour = '7.2';
 
 
-                        $chek_time =  DailyPerformance::where('min', '<=', intval($hour))->where('max', '>=', intval($hour))->first();
+                        $chek_time =  DailyPerformance::where('min','<=', intval($hour))->where('max','>', intval($hour))->first();
+
 
 
                         if ($chek_time) {
+                            $input['daily_performance_id'] =  $chek_time['id'];
+                        } else {
+                            $chek_time =  DailyPerformance::where('min','=', intval($hour))->where('max', '=', intval($hour))->first();
                             $input['daily_performance_id'] =  $chek_time['id'];
                         }
 
