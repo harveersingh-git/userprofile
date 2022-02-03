@@ -35,7 +35,7 @@ class HomeController extends Controller
     public function index()
     {
 
-        $data['clinents'] = Clients::with('client_resource')->get();
+        $data['clinents'] = Clients::distinct('client_email')->with('client_resource')->get();
         // dd($data['clinents']->toArray());
         $data['work_type_count'] = WorkType::with('work_type_user_count')->get();
         // dd($data['work_type_count']->toArray());
