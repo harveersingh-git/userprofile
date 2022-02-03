@@ -11,8 +11,17 @@ class ClientType extends Model
     protected $fillable = [
         'title',
         'background_color',
-        'font_color'   
+        'font_color'
     ];
+    public function getTitleAttribute($value)
+    {
+        return strtoupper($value);
+    }
 
-   
+    public function setTitleAttribute($value)
+    {
+        $this->attributes['title'] = strtolower($value);
+    }
+ 
+
 }

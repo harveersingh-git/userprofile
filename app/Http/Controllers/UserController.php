@@ -91,17 +91,17 @@ class UserController extends Controller
         }
         if (isset($request['exprince'])  && $request['exprince'] != null) {
             if ($request['exprince'] == "0-3") {
-                $query->where('experience', '>=', 1)->where('experience', '<=', 3);
+                $query->where('experience', '>=', 1)->where('experience', '<', 3);
             }
             if ($request['exprince'] == "3-5") {
-                $query->where('experience', '>', 3)->where('experience', '<=', 5);
+                $query->where('experience', '>=', 3)->where('experience', '<', 5);
             }
             if ($request['exprince'] == "5-10") {
-                $query->where('experience', '>', 5)->where('experience', '<=', 10);
+                $query->where('experience', '>=', 5)->where('experience', '<', 10);
             }
             if ($request['exprince'] == "10-plus") {
 
-                $query->where('experience', '>', 11)->where('experience', '<=', 30);
+                $query->where('experience', '>=', 10)->where('experience', '<', 30);
             }
         }
         if (isset($request['client_status']) && $request['client_status'] != null) {

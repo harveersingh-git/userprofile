@@ -15,6 +15,10 @@ class ClientStatus extends Model
         'order_by'
     ];
 
+    public function getTitleAttribute($value)
+    {
+        return strtoupper($value);
+    }
     public function client_status_count(){
         return $this->hasMany(User::class, 'client_status', 'id');
 

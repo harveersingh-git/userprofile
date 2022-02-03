@@ -209,8 +209,10 @@ Toast::message('message', 'level', 'title');
                                                 </div>
 
                                             </div>
-                                            <input type="submit" value="Next Step" class=" action-button btn btn-primary  col-md-3 pull-right" id="genral_info_submit" />
-
+                                            <input type="submit" value="Next Step" class=" action-button btn btn-primary  col-md-3 pull-right mr-1" id="genral_info_submit" />
+                                         
+                                            <input type="submit"  value="Save" class=" action-button btn btn-primary  col-md-3 pull-right mr-1 mr-1" id="save_genral_info_submit" style=" margin-right: 5px;">
+                                           
                                         </form>
                                         <input type="button" name="next" style="display: none;" class="next btn btn-info  action-button col-md-3" value="Next Step" id="genral_info_button" />
                                         <input type="button" name="next" style="display: none;" class="next btn btn-info  action-button col-md-3" value="Next Step" id="genral_info_button_two" />
@@ -297,6 +299,8 @@ Toast::message('message', 'level', 'title');
 
 
                                         <input type="button" name="next" class="next action-button btn btn-primary  col-md-3 pull-right" value="Next Step" />
+                                        <input type="submit"  value="Save" class=" action-button btn btn-primary  col-md-3 pull-right mr-1 mr-1" id="save_skills" style=" margin-right: 5px;">
+
                                         <p >CreatedBy:<b>{{isset ($data->created_by['name']) ? $data->created_by['name'] : ''}}</b> UpdatedBy:<b>{{ isset($data->change_by['name']) ? $data->change_by['name']  : ''  }}</b></p>    
 
                                     </fieldset>
@@ -490,7 +494,8 @@ Toast::message('message', 'level', 'title');
                                             </div>
 
                                             <input type="submit" value="Next Step" class=" action-button btn btn-primary  col-md-3 pull-right" id="skills_submit" />
-
+                                            <input type="submit"  value="Save" class=" action-button btn btn-primary  col-md-3 pull-right mr-1 mr-1" id="save_skills_submit" style=" margin-right: 5px;">
+                         
                                         </form>
                                         <input type="button" id="skills_prev" name="previous" class="previous action-button-previous  pull-left btn btn-warning" value="Previous" />
 
@@ -653,7 +658,8 @@ Toast::message('message', 'level', 'title');
 
                                             </div>
                                             <input type="submit" value="Next Step" class="  action-button btn btn-primary  col-md-3 pull-right" id="exprince_submit" />
-
+                                            <input type="submit"  value="Save" class=" action-button btn btn-primary  col-md-3 pull-right mr-1 mr-1" id="save_exprince_submit" style=" margin-right: 5px;">
+                       
                                         </form>
                                         <input type="button" name="previous" id="exprince_prev" class="previous action-button-previous  pull-left btn btn-warning" value="Previous" />
 
@@ -764,7 +770,8 @@ Toast::message('message', 'level', 'title');
 
                                             </div>
                                             <input type="submit" name="certificate_submit" class="action-button pull-right btn btn-primary" value="Next Step" id="certificate_submit" />
-
+                                            <input type="submit"  value="Save" class=" action-button btn btn-primary  col-md-3 pull-right mr-1 mr-1" id="save_certificate_submit" style=" margin-right: 5px;">
+                           
                                         </form>
                                         <input type="button" name="previous" id="certificate_prev" class="previous action-button-previous  pull-left btn btn-warning" value="Previous" />
 
@@ -837,6 +844,7 @@ Toast::message('message', 'level', 'title');
 
                                     </div>
                                         <input type="submit" name="achivment_submit" class="btn action-button pull-right btn-primary" value="Next Step" id="achivment_submit" />
+                                        <input type="submit"  value="Save" class=" action-button btn btn-primary  col-md-3 pull-right mr-1 mr-1" id="save_achivment_submit" style=" margin-right: 5px;">
 
                                         </form>
                                         <input type="button" name="previous" class="previous action-button-previous btn btn-warning pull-left " value="Previous" id="achievement_prev" />
@@ -994,6 +1002,8 @@ Toast::message('message', 'level', 'title');
 
                                             </div>
                                             <input type="submit" value="Confirm" class="action-button btn btn-success col-md-3 pull-right" id="project_submit" />
+                                            <!-- <input type="submit"  value="Save" class=" action-button btn btn-primary  col-md-3 pull-right mr-1 mr-1" id="save_project_submit" style=" margin-right: 5px;"> -->
+
                                         </form>
                                         <input type="button" id="project_previous" name="previous" class="previous action-button-previous  pull-left btn btn-warning" value="Previous" />
                                         <p >CreatedBy:<b>{{isset ($data->created_by['name']) ? $data->created_by['name'] : ''}}</b> UpdatedBy:<b>{{ isset($data->change_by['name']) ? $data->change_by['name']  : ''  }}</b></p>    
@@ -1015,6 +1025,40 @@ Toast::message('message', 'level', 'title');
 
 <script>
  
+ 
+ $("#save_genral_info_submit").click(function() {
+        // $(document).on("click", "#genral_info_submit", function() {
+        $('#genralInfo').submit(function(e) {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+
+
+            var token = $('input[name="_token"]').attr('value');
+            var form = $(this);
+            var url = form.attr('action');
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                headers: {
+                    'X-CSRF-Token': token
+                },
+                contentType: false,
+                processData: false,
+                data: new FormData(this),
+                success: function(data) {
+                    toastr.success("Record insert successfully");
+                    window.location.href = base_url+ "/users";
+
+                }
+            })
+        })
+    });
+    $("#save_skills").click(function() {
+        window.location.href = base_url+ "/users";
+    });
 
     $("#genral_info_submit").click(function() {
         // $(document).on("click", "#genral_info_submit", function() {
@@ -1055,6 +1099,36 @@ Toast::message('message', 'level', 'title');
         })
     });
 
+
+    $(document).on("click", "#save_skills_submit", function() {
+        $('#skillsForm').submit(function(e) {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+            var token = $('input[name="_token"]').attr('value');
+            var form = $(this);
+            var url = form.attr('action');
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                headers: {
+                    'X-CSRF-Token': token
+                },
+                contentType: false,
+                processData: false,
+                data: new FormData(this),
+                success: function(data) {
+                    toastr.success("Record insert successfully");
+                    window.location.href = base_url+ "/users";
+                },
+                error: function(textStatus, errorThrown) {
+                    toastr.error("Somting went wrong Please try again");
+                }
+            })
+        })
+    });
     $(document).on("click", "#skills_submit", function() {
         $('#skillsForm').submit(function(e) {
             e.stopImmediatePropagation();
@@ -1091,6 +1165,35 @@ Toast::message('message', 'level', 'title');
             })
         })
     });
+
+    $(document).on("click", "#save_achivment_submit", function() {
+        $('#achievementForm').submit(function(e) {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+            var token = $('input[name="_token"]').attr('value');
+            var form = $(this);
+            var url = form.attr('action');
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                headers: {
+                    'X-CSRF-Token': token
+                },
+                contentType: false,
+                processData: false,
+                data: new FormData(this),
+                success: function(data) {
+                    toastr.success("Record insert successfully");
+                    window.location.href = base_url+ "/users";
+
+                }
+            })
+        })
+    });
+
     $(document).on("click", "#achivment_submit", function() {
         $('#achievementForm').submit(function(e) {
             e.stopImmediatePropagation();
@@ -1124,6 +1227,34 @@ Toast::message('message', 'level', 'title');
             })
         })
     });
+
+    $(document).on("click", "#save_certificate_submit", function() {
+        $('#certificateForm').submit(function(e) {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+            var token = $('input[name="_token"]').attr('value');
+            var form = $(this);
+            var url = form.attr('action');
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                headers: {
+                    'X-CSRF-Token': token
+                },
+                contentType: false,
+                processData: false,
+                data: new FormData(this),
+                success: function(data) {
+                 
+                    toastr.success("Record insert successfully");
+                    window.location.href = base_url+ "/users";
+                }
+            })
+        })
+    });
     $(document).on("click", "#certificate_submit", function() {
         $('#certificateForm').submit(function(e) {
             e.stopImmediatePropagation();
@@ -1152,6 +1283,33 @@ Toast::message('message', 'level', 'title');
                     } else {
                         toastr.error(data.message);
                     }
+
+                }
+            })
+        })
+    });
+    $(document).on("click", "#save_exprince_submit", function() {
+        $('#exprinceForm').submit(function(e) {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+            var token = $('input[name="_token"]').attr('value');
+            var form = $(this);
+            var url = form.attr('action');
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                headers: {
+                    'X-CSRF-Token': token
+                },
+                contentType: false,
+                processData: false,
+                data: new FormData(this),
+                success: function(data) {
+                    toastr.success("Record insert successfully");
+                    window.location.href = base_url+ "/users";
 
                 }
             })
@@ -1213,13 +1371,10 @@ Toast::message('message', 'level', 'title');
                 success: function(data) {
                     console.log('role',data.role);
                     if (data.status == "success") {
-                        // if(data.role=="ADMIN"){
+                    
                             toastr.success("Record insert successfully");
                         window.location.href = {!!json_encode(url('/')) !!} + "/users";
-                        // }else{
-                        //     toastr.success("Record insert successfully");
-                        // window.location.href = {!!json_encode(url('information')) !!} +'/'+ $('.user_id').val();
-                        // }
+                      
                      
 
                     }

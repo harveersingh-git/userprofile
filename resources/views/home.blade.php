@@ -39,10 +39,56 @@
             @empty
             <p></p>
             @endforelse
+            <div class="col-lg-2 col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-comments fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">{{$data['total_client']}}</div>
+                                <div>Total Client</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#">
+                        <div class="panel-footer">
+                            <span class="pull-left">View Details</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6">
+                <div class="panel panel-green">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-tasks fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">{{$data['active_client']}}</div>
+                                <div>Total Services</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#">
+                        <div class="panel-footer">
+                            <span class="pull-left">View Details</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
         <!-- /.row -->
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-6">
                 <div class="panel panel-default">
                     <div class="panel-heading " style="background-color: #f5f5f5 important;     font-weight: bold;">
                         <span>Experience<span>
@@ -67,6 +113,48 @@
                                 <td><a href="{{url('/users?exprince=3-5')}}">{{ $data['three_five']}}</a></td>
                                 <td><a href="{{url('/users?exprince=5-10')}}">{{$data['five_ten']}}</a></td>
                                 <td><a href="{{url('/users?exprince=10-plus')}}">{{ $data['ten_fifty']}}</a></td>
+                            </tr>
+                            <tr>
+
+                        </tbody>
+                    </table>
+
+
+
+
+
+
+                </div>
+                <!-- /.panel -->
+            </div>
+
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading " style="background-color: #f5f5f5 important;     font-weight: bold;">
+                        <span>Work Type<span>
+                    </div>
+
+
+                    <table class="table table-bordered table-responsive">
+
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                @forelse( $data['work_type_count'] as $key=>$workType)
+                                <th scope="col">{{$workType->title}}</th>
+                                @empty
+                                <th scope="col">No work Type found</th>
+                                @endforelse
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Number of Users</th>
+                                @forelse( $data['work_type_count'] as $key=>$workType)
+                                <th scope="col"><a href="{{url('/users?work_status='.$workType->id)}}">{{count($workType->work_type_user_count)}}</a></th>
+                                @empty
+                                <th scope="col">No User found</th>
+                                @endforelse
                             </tr>
                             <tr>
 
