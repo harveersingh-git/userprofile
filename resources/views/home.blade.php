@@ -52,7 +52,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#">
+                    <a href="{{url('/clients')}}">
                         <div class="panel-footer">
                             <span class="pull-left">View Details</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -75,7 +75,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#">
+                    <a href="{{url('/clients')}}">
                         <div class="panel-footer">
                             <span class="pull-left">View Details</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -172,7 +172,7 @@
             <!-- /.col-lg-12 -->
         </div>
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-6">
                 <div class="panel panel-default">
                     <div class="panel-heading" style="background-color: #f5f5f5 important; font-weight: bold;">Resource Summary <span class="pull-right" style="margin-top: -7px;"><input class="form-control pull-right" id="myInput" type="text" placeholder="Search.."><span></div>
                     <!-- /.panel-heading -->
@@ -222,6 +222,68 @@
                 </div>
                 <!-- /.panel -->
             </div>
+
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background-color: #f5f5f5 important; font-weight: bold;">Client Summary <span class="pull-right" style="margin-top: -7px;"><input class="form-control pull-right" id="serach_client" type="text" placeholder="Search.."><span></div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="client_summary">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Sr. No.</th>
+                                        <th>Clinet Name</th>
+                                        <th class="text-center">Clinet Code</th>
+                                        <th class="text-center">Working Resource</th>
+                                        <th class="text-center">Hire Resource</th>
+                                     </tr>
+                                </thead>
+                                <tbody>
+
+                                    @forelse($data['clinents'] as $key => $client)
+                                    
+                                  
+                                    <tr>
+                                        <td class="text-center">{{ $key+1 }}</td>
+                                        <td class="text-center"><a href="{{url('/clients?client_search=')}}{{$client->client_name}}">{{$client->client_name }}</a></td>
+                                        <td class="text-center"><a href="{{url('/clients?client_search=')}}{{$client->client_code}}">{{$client->client_code }}</a></td>
+                                        <td class="text-center">
+
+                                        @forelse($client->client_resource as $key => $resource)
+                                        <a href="{{url('/users?search=')}}{{$resource->working_resource['name']}}"> {{$resource->working_resource['name']}}</a>
+                                        @empty
+                                        <p>There are no resource.</p>
+                                        @endforelse
+                                        </td>
+                                        <td class="text-center">
+
+                                        @forelse($client->client_resource as $key => $resource)
+                                        <a href="{{url('/users?search=')}}{{$resource->hire_resource['name']}}">{{$resource->hire_resource['name']}}</a>
+                                        @empty
+                                        <p>There are no resource.</p>
+                                        @endforelse
+                                        </td>
+
+
+                                    </tr>
+                               
+
+                                    @empty
+                                    <tr>
+                                        <td colspan="10">There are no data.</td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
+
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
             <!-- /.col-lg-12 -->
         </div>
     </div>
@@ -251,6 +313,19 @@
 
         });
         $("#myInput").on("keyup", function() {
+            oTable.search(this.value).draw();
+
+        });
+    });
+
+    $(document).ready(function() {
+        var oTable = $('#client_summary').DataTable({
+            "pageLength": 50,
+            responsive: true,
+            "lengthChange": false,
+
+        });
+        $("#serach_client").on("keyup", function() {
             oTable.search(this.value).draw();
 
         });

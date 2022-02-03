@@ -34,6 +34,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+        $data['clinents'] = Clients::with('client_resource')->get();
+        // dd($data['clinents']->toArray());
         $data['work_type_count'] = WorkType::with('work_type_user_count')->get();
         // dd($data['work_type_count']->toArray());
         $data['current_month'] = User::where('id', '!=', 1)->whereMonth(
