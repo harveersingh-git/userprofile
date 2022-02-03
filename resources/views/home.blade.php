@@ -13,7 +13,7 @@
         <!-- /.row -->
         <div class="row">
             @forelse( $data['client_status'] as $key=>$clientstatus)
-            <div class="col-lg-2 col-md-6">
+            <div class="col-lg-2 col-md-6" style="height: 181px;">
                 <div class="panel " style="background-color: {{$clientstatus['background_color']}};">
                     <div class="panel-heading">
                         <div class="row">
@@ -39,7 +39,7 @@
             @empty
             <p></p>
             @endforelse
-            <div class="col-lg-2 col-md-6">
+            <div class="col-lg-2 col-md-6" style="height: 181px;">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <div class="row">
@@ -62,7 +62,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-6">
+            <div class="col-lg-2 col-md-6" style="height: 181px;">
                 <div class="panel panel-green">
                     <div class="panel-heading">
                         <div class="row">
