@@ -126,7 +126,7 @@
 
     <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <i class="fa fa-user fa-fw"></i> {{ Auth::user()->name }} <b class="caret"></b>
+            <i class="fa fa-user fa-fw"></i> {{ isset(auth()->user()->name) ? auth()->user()->name : 'test' }} <b class="caret"></b>
         </a>
         <ul class="dropdown-menu dropdown-user">
             <li><a href="{{ url('information') }}/{{ base64_encode(Auth::user()->id) }}"><i class="fa fa-user fa-fw"></i> User Profile</a>
