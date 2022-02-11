@@ -16,6 +16,10 @@ use App\Models\DailyPerformance;
 
 class ClickUpController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function clickTimeSync(Request $request)
     {
@@ -259,7 +263,7 @@ class ClickUpController extends Controller
                             $totalTime[$valu->user_id][] = $hours . ':' . $minutes;
                         }
 
-                     if (!in_array($valu->user['name'] . ' ' . $valu->user['last_name'], $columns, true)) {
+                        if (!in_array($valu->user['name'] . ' ' . $valu->user['last_name'], $columns, true)) {
                             $columns[] = $valu->user['name'] . ' ' . $valu->user['last_name'];
                         }
                     }
