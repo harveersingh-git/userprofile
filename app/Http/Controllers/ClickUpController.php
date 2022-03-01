@@ -257,7 +257,7 @@ class ClickUpController extends Controller
                         if ($valu) {
                             $time = explode(':', $valu->time);
                             $minutes += $time[0] * 60;
-                            $minutes += $time[1];
+                            // $minutes += $time[1];
                             $hours = floor($minutes / 60);
                             $minutes -= $hours * 60;
                             $totalTime[$valu->user_id][] = $hours . ':' . $minutes;
