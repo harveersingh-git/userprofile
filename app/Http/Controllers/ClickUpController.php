@@ -311,7 +311,7 @@ class ClickUpController extends Controller
                         if (Carbon::now()->startOfMonth()->addDays($i)->isWeekday() == "false") {
                             $input['status'] = '0';
                         } else {
-                            $input['status'] = '2';
+                            $input['status'] = '0';
                         }
                         $input['time'] = '00:00';
                         $success =   ClickUp::create($input);
