@@ -311,7 +311,7 @@ class ClickUpController extends Controller
                         if (Carbon::now()->startOfMonth()->addDays($i)->isWeekday() == "false") {
                             $input['status'] = '0';
                         } else {
-                            $input['status'] = '0';
+                            $input['status'] = '2';
                         }
                         $input['time'] = '00:00';
                         $success =   ClickUp::create($input);
@@ -331,7 +331,7 @@ class ClickUpController extends Controller
         $id = $request['team_id'];
         $users =  User::where(['team' => $id])->whereNotNull('click_up_user_id')->pluck('id');
 
-        $click = ClickUp::select('date')->whereIn('user_id', $users)->where('status', '!=', '0')->groupBy('date')->get();
+        $click = ClickUp::select('date')->whereIn('user_id', $users)->where('status', '!=', '0')->orWhere('status', '2')->groupBy('date')->get();
         // dd($click->toArray());
         if ($click) {
             return response()->json(['status' => 'success', 'data' => $click]);
