@@ -331,8 +331,8 @@ class ClickUpController extends Controller
         $id = $request['team_id'];
         $users =  User::where(['team' => $id])->whereNotNull('click_up_user_id')->pluck('id');
 
-        $click = ClickUp::select('date')->whereIn('user_id', $users)->where('status', '!=', '0')->orWhere('status', '2')->groupBy('date')->get();
-        // dd($click->toArray());
+        $click = ClickUp::select('date')->whereIn('user_id', $users)->where('status', '1')->groupBy('date')->get();
+
         if ($click) {
             return response()->json(['status' => 'success', 'data' => $click]);
         }
