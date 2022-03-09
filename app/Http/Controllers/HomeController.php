@@ -35,10 +35,12 @@ class HomeController extends Controller
     public function index()
     {
 
-        $data['clinents'] = Clients::distinct('client_email')->with('client_resource')->get();
-        // dd($data['clinents']->toArray());
+        $data['clinents'] = Clients::with('client_resource', function ($q) {
+            $q->where('title', '=', 'active');
+        })->get();
+
         $data['work_type_count'] = WorkType::with('work_type_user_count')->get();
-        // dd($data['work_type_count']->toArray());
+
         $data['current_month'] = User::where('id', '!=', 1)->whereMonth(
             'created_at',
             '=',
@@ -46,6 +48,7 @@ class HomeController extends Controller
         )->count();
 
         $data['total_client'] = Clients::distinct('client_email')->count();
+        $data['total_users'] = User::where('id', '!=', 1)->count();
         $data['active_client'] = Clients::whereHas('client_type', function ($q) {
             $q->where('title', '=', 'active');
         })->count();

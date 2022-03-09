@@ -63,6 +63,29 @@
                 </div>
             </div>
             <div class="col-lg-2 col-md-6" style="height: 181px;">
+                <div class="panel panel-yellow">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-users fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">{{$data['total_users']}}</div>
+                                <div>Total Resource</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{{url('/users')}}">
+                        <div class="panel-footer">
+                            <span class="pull-left">View Details</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6" style="height: 181px;">
                 <div class="panel panel-green">
                     <div class="panel-heading">
                         <div class="row">
@@ -237,37 +260,37 @@
                                         <th class="text-center">Clinet Code</th>
                                         <th class="text-center">Working Resource</th>
                                         <th class="text-center">Hire Resource</th>
-                                     </tr>
+                                    </tr>
                                 </thead>
                                 <tbody>
 
                                     @forelse($data['clinents'] as $key => $client)
-                                    
-                                  
+
+
                                     <tr>
                                         <td class="text-center">{{ $key+1 }}</td>
                                         <td class="text-center"><a href="{{url('/clients?client_search=')}}{{$client->client_name}}">{{$client->client_name }}</a></td>
                                         <td class="text-center"><a href="{{url('/clients?client_search=')}}{{$client->client_code}}">{{$client->client_code }}</a></td>
                                         <td class="text-center">
 
-                                        @forelse($client->client_resource as $key => $resource)
-                                        <a href="{{url('/users?search=')}}{{$resource->working_resource['name']}}"> {{$resource->working_resource['name']}}</a>
-                                        @empty
-                                        <p>There are no resource.</p>
-                                        @endforelse
+                                            @forelse($client->client_resource as $key => $resource)
+                                            <a href="{{url('/users?search=')}}{{$resource->working_resource['name']}}"> {{$resource->working_resource['name']}}</a>
+                                            @empty
+                                            <p>There are no resource.</p>
+                                            @endforelse
                                         </td>
                                         <td class="text-center">
 
-                                        @forelse($client->client_resource as $key => $resource)
-                                        <a href="{{url('/users?search=')}}{{$resource->hire_resource['name']}}">{{$resource->hire_resource['name']}}</a>
-                                        @empty
-                                        <p>There are no resource.</p>
-                                        @endforelse
+                                            @forelse($client->client_resource as $key => $resource)
+                                            <a href="{{url('/users?search=')}}{{$resource->hire_resource['name']}}">{{$resource->hire_resource['name']}}</a>
+                                            @empty
+                                            <p>There are no resource.</p>
+                                            @endforelse
                                         </td>
 
 
                                     </tr>
-                               
+
 
                                     @empty
                                     <tr>
