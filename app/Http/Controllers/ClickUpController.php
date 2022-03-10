@@ -214,28 +214,28 @@ class ClickUpController extends Controller
         $columns = [];
         $result = [];
         $finalTime = [];
-        $users =  User::where(['team' => $id])->whereNotNull('click_up_user_id')->pluck('id');
-        if (count($users) > 0) {
-            foreach ($users as $key => $value) {
+        // $users =  User::where(['team' => $id])->whereNotNull('click_up_user_id')->pluck('id');
+        // if (count($users) > 0) {
+        //     foreach ($users as $key => $value) {
 
-                $result =  ClickUp::where('user_id', $value)->first();
-                if (empty($result)) {
-                    for ($i = 0; $i < Carbon::now()->daysInMonth; $i++) {
+        //         $result =  ClickUp::where('user_id', $value)->first();
+        //         if (empty($result)) {
+        //             for ($i = 0; $i < Carbon::now()->daysInMonth; $i++) {
 
-                        $input['user_id'] = $value;
-                        $input['date'] = Carbon::now()->startOfMonth()->addDays($i)->toDateString();
+        //                 $input['user_id'] = $value;
+        //                 $input['date'] = Carbon::now()->startOfMonth()->addDays($i)->toDateString();
 
-                        if (Carbon::now()->startOfMonth()->addDays($i)->isWeekday() == "false") {
-                            $input['status'] = '0';
-                        } else {
-                            $input['status'] = '2';
-                        }
-                        $input['time'] = '00:00';
-                        ClickUp::create($input);
-                    }
-                }
-            }
-        }
+        //                 if (Carbon::now()->startOfMonth()->addDays($i)->isWeekday() == "false") {
+        //                     $input['status'] = '0';
+        //                 } else {
+        //                     $input['status'] = '2';
+        //                 }
+        //                 $input['time'] = '00:00';
+        //                 ClickUp::create($input);
+        //             }
+        //         }
+        //     }
+        // }
 
         $click = ClickUp::with('user', 'daily_performance')->whereIn('user_id', $users)->whereBetween('date', [$curent_month_first_date, $curent_month_end_date])->orderBy('user_id')->orderBy('date')->get();
 
@@ -291,14 +291,22 @@ class ClickUpController extends Controller
 
                     array_unshift($finalTime, "Total");
                     array_unshift($columns, "Date");
+
                     foreach ($click as $key => $value) {
                         $title = isset($value['daily_performance']->title) ? ($value['daily_performance']->title) : '';
                         $background_color = isset($value['daily_performance']->background_color) ? ($value['daily_performance']->background_color) : '';
                         $font_color = isset($value['daily_performance']->font_color) ? ($value['daily_performance']->font_color) : '';
 
-                        $result[$value->date][] = $value->time . ',' . $value->id . ',' . $value->status . ',' .  $background_color . ',' .  $font_color . ',' .  $title;
+                        if (isset($value->time)) {
+
+                            // $result[$value->date][] = $value->time . ',' . $value->id . ',' . $value->status . ',' .  $background_color . ',' .  $font_color . ',' .  $title;
+                            // dd($value->time . ',' . $value->id . ',' . $value->status . ',' .  $background_color . ',' .  $font_color . ',' .  $title);
+                            $result[$value->date] = $value->time . ',' . $value->id . ',' . $value->status . ',' .  $background_color . ',' .  $font_color . ',' .  $title;
+                        }
                     }
-                    // dd($total);
+                    // dd($result);
+
+
                     return view('clickup.view', compact('id', 'columns', 'result', 'teams', 'finalTime'));
                 }
             } else {
