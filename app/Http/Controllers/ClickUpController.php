@@ -215,34 +215,34 @@ class ClickUpController extends Controller
         $result = [];
         $finalTime = [];
         $users =  User::where(['team' => $id])->whereNotNull('click_up_user_id')->pluck('id');
-        // if (count($users) > 0) {
-        //     foreach ($users as $key => $value) {
+        if (count($users) > 0) {
+            foreach ($users as $key => $value) {
 
-        //         $result =  ClickUp::where('user_id', $value)->first();
-        //         if (empty($result)) {
-        //             for ($i = 0; $i < Carbon::now()->daysInMonth; $i++) {
+                $check_record =  ClickUp::where('user_id', $value)->first();
+                if (empty($check_record)) {
+                    for ($i = 0; $i < Carbon::now()->daysInMonth; $i++) {
 
-        //                 $input['user_id'] = $value;
-        //                 $input['date'] = Carbon::now()->startOfMonth()->addDays($i)->toDateString();
+                        $input['user_id'] = $value;
+                        $input['date'] = Carbon::now()->startOfMonth()->addDays($i)->toDateString();
 
-        //                 if (Carbon::now()->startOfMonth()->addDays($i)->isWeekday() == "false") {
-        //                     $input['status'] = '0';
-        //                 } else {
-        //                     $input['status'] = '2';
-        //                 }
-        //                 $input['time'] = '00:00';
-        //                 ClickUp::create($input);
-        //             }
-        //         }
-        //     }
-        // }
+                        if (Carbon::now()->startOfMonth()->addDays($i)->isWeekday() == "false") {
+                            $input['status'] = '0';
+                        } else {
+                            $input['status'] = '2';
+                        }
+                        $input['time'] = '00:00';
+                        ClickUp::create($input);
+                    }
+                }
+            }
+        }
 
         $click = ClickUp::with('user', 'daily_performance')->whereIn('user_id', $users)->whereBetween('date', [$curent_month_first_date, $curent_month_end_date])->orderBy('user_id')->orderBy('date')->get();
 
 
 
         foreach ($users as $user) {
-            $data_exists = ClickUp::where('date', $curent_month_first_date)->where('user_id', $user)->get();
+        $data_exists = ClickUp::where('date', $curent_month_first_date)->where('user_id', $user)->get();
 
             if (count($data_exists) > 0) {
 
