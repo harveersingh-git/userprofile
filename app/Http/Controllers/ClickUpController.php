@@ -214,7 +214,7 @@ class ClickUpController extends Controller
         $columns = [];
         $result = [];
         $finalTime = [];
-        // $users =  User::where(['team' => $id])->whereNotNull('click_up_user_id')->pluck('id');
+        $users =  User::where(['team' => $id])->whereNotNull('click_up_user_id')->pluck('id');
         // if (count($users) > 0) {
         //     foreach ($users as $key => $value) {
 
