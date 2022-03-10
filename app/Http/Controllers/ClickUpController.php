@@ -29,17 +29,6 @@ class ClickUpController extends Controller
             $start_date = Carbon::create($request['daterange'])->toDateTimeString();
             $end_date = Carbon::create($request['daterange'])->endOfDay()->toDateTimeString();
 
-
-            // range code
-            // $start_date = Carbon::create($rangdate[0])->startOfDay()->toDateTimeString();
-            // $end_date = Carbon::create($rangdate[1])->endOfDay()->toDateTimeString();
-            // range code
-
-            // $start_date = Carbon::now()->startOfDay()->toDateTimeString();
-            // $end_date = Carbon::now()->endOfDay()->toDateTimeString();
-
-            // $end_date = Carbon::create($request['start_date'])->addHours(23)->addMinutes(59)->toDateTimeString();
-
             $unix_start_date = strtotime($start_date) * 1000;
             $unix_end_date = strtotime($end_date) * 1000;
 
@@ -214,12 +203,6 @@ class ClickUpController extends Controller
         $teams =  Teams::get();
         if ($reques['daterange_search']) {
             $id = $reques['id'];
-            // dd($reques['daterange_search']);
-            // $curent_month_first_date = Carbon::parse($reques['daterange_search'])->toDateString();
-            // dd($curent_month_first_date);
-            // $date = explode("to", $reques['daterange_search']);
-            // $curent_month_first_date =    trim($date[0]);
-            // $curent_month_end_date = trim($date[1]);
             $curent_month_first_date = Carbon::parse('01-' . $reques['daterange_search'])->startOfMonth()->toDateString();
 
             $curent_month_end_date = Carbon::parse('01-' . $reques['daterange_search'])->endOfMonth()->toDateString();
@@ -227,13 +210,32 @@ class ClickUpController extends Controller
             $curent_month_first_date = Carbon::now()->startOfMonth()->toDateString();
             $curent_month_end_date = Carbon::now()->endOfMonth()->toDateString();
         }
-        // dd();
-        // Carbon::now()->daysInMonth
 
         $columns = [];
         $result = [];
         $finalTime = [];
         $users =  User::where(['team' => $id])->whereNotNull('click_up_user_id')->pluck('id');
+        if (count($users) > 0) {
+            foreach ($users as $key => $value) {
+
+                $result =  ClickUp::where('user_id', $value)->first();
+                if (empty($result)) {
+                    for ($i = 0; $i < Carbon::now()->daysInMonth; $i++) {
+
+                        $input['user_id'] = $value;
+                        $input['date'] = Carbon::now()->startOfMonth()->addDays($i)->toDateString();
+
+                        if (Carbon::now()->startOfMonth()->addDays($i)->isWeekday() == "false") {
+                            $input['status'] = '0';
+                        } else {
+                            $input['status'] = '2';
+                        }
+                        $input['time'] = '00:00';
+                        ClickUp::create($input);
+                    }
+                }
+            }
+        }
 
         $click = ClickUp::with('user', 'daily_performance')->whereIn('user_id', $users)->whereBetween('date', [$curent_month_first_date, $curent_month_end_date])->orderBy('user_id')->orderBy('date')->get();
 
@@ -327,7 +329,7 @@ class ClickUpController extends Controller
 
     public function getSyncDate(Request $request)
     {
-        // dd($request->all());
+
         $id = $request['team_id'];
         $users =  User::where(['team' => $id])->whereNotNull('click_up_user_id')->pluck('id');
 
