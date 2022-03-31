@@ -275,7 +275,7 @@
                                         <td class="text-center">
 
                                             @forelse($client->client_resource as $key => $resource)
-                                            <a href="{{url('/users?search=')}}{{$resource->working_resource['name']}}"> {{$resource->working_resource['name']}}</a>
+                                            <a href="{{url('/users?search=')}}{{isset($resource->working_resource['name'])?$resource->working_resource['name']:''}}"> {{isset($resource->working_resource['name'])?$resource->working_resource['name']:''}}</a>
                                             @empty
                                             <p>There are no resource.</p>
                                             @endforelse
