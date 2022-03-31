@@ -120,8 +120,9 @@ Toast::message('message', 'level', 'title');
 
                                 <td class="">
                                     @forelse($value['client_resource'] as $index=>$res)
+                                    @if(isset($res['working_resource']->name))
                                     {{$res['working_resource']->name}} {{$res['working_resource']->last_name}}-{{$res['working_resource']->employee_id}} {{$res['working_resource']->client_status_value[0]->title}} ({{$res['working_resource']->work_status_value[0]->title}}),</br>
-
+                                    @endif
                                     @empty
                                     <p>No Resource available yet</p>
                                     @endforelse
