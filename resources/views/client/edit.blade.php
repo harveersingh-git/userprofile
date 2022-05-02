@@ -190,8 +190,10 @@ Edit Client
                                         </td>
                                         <td class="">
                                             @forelse($value['client_resource'] as $index=>$res)
-                                            {{$res['hire_resource']->name}} {{$res['hire_resource']->last_name}}-{{$res['hire_resource']->employee_id}} {{$res['hire_resource']->client_status_value[0]->title}} ({{$res['hire_resource']->work_status_value[0]->title}}),</br>
 
+                                            @if(isset($res['hire_resource']->name))
+                                            {{$res['hire_resource']->name}} {{$res['hire_resource']->last_name}}-{{$res['hire_resource']->employee_id}} {{$res['hire_resource']->client_status_value[0]->title}} ({{$res['hire_resource']->work_status_value[0]->title}}),</br>
+                                             @endif       
                                             @empty
                                             <p>No Resource available yet</p>
                                             @endforelse
