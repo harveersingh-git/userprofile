@@ -47,7 +47,7 @@ Toast::message('message', 'level', 'title');
                             </tr>
                         </thead>
                         <tbody>
-                            @if(!empty($data) && $data->count())
+                            @if(!empty($data) && $data->count()>0)
                             @foreach($data as $key => $value)
                             <tr style="background-color:{{$value['background_color']}};  color:{{$value['font_color']}};">
                                    <td class="text-center">{{ $key+1 }}</td>

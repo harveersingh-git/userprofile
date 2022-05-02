@@ -1402,7 +1402,7 @@ Toast::message('message', 'level', 'title');
                 var type = 2;
                 var order = new Array();
                 $('#sortable>li').each(function(index, element) {
-                    console.log('idddd', $(this).attr("id"));
+                   
                     order.push({
                             id: $(this).attr("id"),
                             position: index + 1,

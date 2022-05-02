@@ -101,8 +101,9 @@ Toast::message('message', 'level', 'title');
                         <thead>
                             <tr>
                                 <th width="5%" class="text-center">Sr. No.</th>
-                                <th class="text-center" width="18%">Working Resource</th>
-                                <th class="text-center" width="18%">Hire Resource</th>
+                                <th class="text-center" width="18%">Number of Resource</th>
+                                <!-- <th class="text-center" width="18%">Working Resource</th>
+                                <th class="text-center" width="18%">Hire Resource</th> -->
                                 <th class="text-center" width="8%">Client Code</th>
                                 <th class="text-center" width="8%">Client Name</th>
                                 <th class="text-center" width="8%">Client Email</th>
@@ -117,8 +118,8 @@ Toast::message('message', 'level', 'title');
                             @foreach($data as $key => $value)
                             <tr>
                                 <td class="text-center" data-toggle="tooltip" data-placement="top" style="background-color: {{isset($value->client_type->background_color) ? $value->client_type->background_color:''}}"><span style="color: {{isset($value->client_type->font_color) ? $value->client_type->font_color:'';}}">{{ $key+1 }} </span></td>
-
-                                <td class="">
+                                <td class="text-center">{{count($value->client_resource)}}</td>
+                                <!-- <td class="">
                                     @forelse($value['client_resource'] as $index=>$res)
                                     @if(isset($res['working_resource']->name))
                                     {{$res['working_resource']->name}} {{$res['working_resource']->last_name}}-{{$res['working_resource']->employee_id}} {{$res['working_resource']->client_status_value[0]->title}} ({{$res['working_resource']->work_status_value[0]->title}}),</br>
@@ -136,7 +137,7 @@ Toast::message('message', 'level', 'title');
                                     <p>No Resource available yet</p>
                                     @endforelse
 
-                                </td>
+                                </td> -->
                                 <td class="text-center">{{ $value->client_code}}</td>
                                 <td class="text-center">{{ $value->client_name}}</td>
                                 <td class="text-center">{{ $value->client_email}}</td>
@@ -148,8 +149,8 @@ Toast::message('message', 'level', 'title');
                                 <td class="text-center">
                                     <a class="btn btn-warning myac_btn" href="{{url('/client/edit')}}/{{$value->id}}" data-toggle="tooltip" title="Edit!"> <i class="fa fa-edit"></i></button>
 
-                                        <a class="delete btn btn-danger myac_btn" id="{{$value->id}}" data-toggle="tooltip" title="Delete"> <i class="fa fa-trash" ></i></button>
-                                        <a class="btn btn-success  myac_btn" href="{{url('/add-resource')}}/{{$value->id}}" data-toggle="tooltip" title="Add New Resources!"><i class="fa fa-user-plus"></i></button>
+                                        <a class="delete btn btn-danger myac_btn" id="{{$value->id}}" data-toggle="tooltip" title="Delete"> <i class="fa fa-trash"></i></button>
+                                            <a class="btn btn-success  myac_btn" href="{{url('/add-resource')}}/{{$value->id}}" data-toggle="tooltip" title="Add New Resources!"><i class="fa fa-user-plus"></i></button>
 
                                 </td>
                             </tr>
@@ -212,9 +213,9 @@ Toast::message('message', 'level', 'title');
 </script>
 
 <script>
-$(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip();
-});
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
 </script>
 
 @endsection

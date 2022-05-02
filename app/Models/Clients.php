@@ -22,7 +22,9 @@ class Clients extends Model
         'starting_date',
         'end_date',
         'client_type_id',
-        'hours_cunsumed'
+        'hours_cunsumed',
+        'year',
+        'month'
     ];
 
     public function users(){

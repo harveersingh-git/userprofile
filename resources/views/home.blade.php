@@ -267,7 +267,6 @@
 
                                     @forelse($data['clinents'] as $key => $client)
 
-
                                     <tr>
                                         <td class="text-center">{{ $key+1 }}</td>
                                         <td class="text-center"><a href="{{url('/clients?client_search=')}}{{$client->client_name}}">{{$client->client_name }}</a></td>

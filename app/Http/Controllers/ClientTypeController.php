@@ -45,7 +45,7 @@ class ClientTypeController extends Controller
     {
 
         $url = '';
-        $id =  $id;
+      
         $data = ClientType::find($id);
         return view('clienttype.edit', compact('id', 'url', 'data'));
     }

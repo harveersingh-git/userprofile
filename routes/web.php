@@ -84,6 +84,7 @@ Route::post('/delete_client_status', [App\Http\Controllers\ClientStatusControlle
 
 
 Route::any('/client-type', [App\Http\Controllers\ClientTypeController::class, 'index'])->name('client-type');
+
 Route::any('/add-client-type', [App\Http\Controllers\ClientTypeController::class, 'create'])->name('add-client-type');
 Route::any('/client-type/edit/{id}', [App\Http\Controllers\ClientTypeController::class, 'view']);
 Route::post('/update-client-type', [App\Http\Controllers\ClientTypeController::class, 'update']);

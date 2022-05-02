@@ -19,16 +19,16 @@ Add Skills Education
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
-                    
-                        <div class="panel-heading mypnl_heading">
-                            <span class="back_btn"><a type="reset" href="{{url('work-type')}}">
-                            <i class="fa fa-arrow-left"></i> Back </a></span> <span>Add Work Type</span>
-                        </div>
+
+                    <div class="panel-heading mypnl_heading">
+                        <span class="back_btn"><a type="reset" href="{{url('work-type')}}">
+                                <i class="fa fa-arrow-left"></i> Back </a></span> <span>Add Work Type</span>
+                    </div>
 
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12">
-                            <form role="form" action="{{$url}}" method="post">
+                                <form role="form" action="{{$url}}" method="post">
                                     @csrf
                                     <div class="">
                                         <div class="row">
@@ -45,16 +45,16 @@ Add Skills Education
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6 form-group">
-                                            <label>Background Color</label>
+                                                <label>Background Color</label>
                                                 <div class="row">
-                                                    
+
                                                     <div class="col-md-12 col-sm-12  ">
                                                         <div class="input-group demo2">
                                                             <input type="text" value="#e01ab5" class="form-control" name="background_color" />
                                                             <span class="input-group-addon"><i></i></span>
                                                             @error('background_color')
-                                                <p class="alert alert-danger"> {{ $message }} </p>
-                                                @enderror
+                                                            <p class="alert alert-danger"> {{ $message }} </p>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                 </div>
@@ -65,16 +65,16 @@ Add Skills Education
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6 form-group">
-                                            <label>Font Color</label>
+                                                <label>Font Color</label>
                                                 <div class="row">
-                                                    
+
                                                     <div class="col-md-12 col-sm-12  ">
                                                         <div class="input-group demo2">
-                                                            <input type="text" value="#e01ab5" class="form-control" name="font_color"/>
+                                                            <input type="text" value="#e01ab5" class="form-control" name="font_color" />
                                                             <span class="input-group-addon"><i></i></span>
                                                             @error('font_color')
-                                                             <p class="alert alert-danger"> {{ $message }} </p>
-                                                             @enderror
+                                                            <p class="alert alert-danger"> {{ $message }} </p>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                 </div>
@@ -112,22 +112,24 @@ Add Skills Education
 </div>
 @section('script')
 <script>
- function init_ColorPicker() {
+    function init_ColorPicker() {
 
-if (typeof ($.fn.colorpicker) === 'undefined') { return; }
+        if (typeof($.fn.colorpicker) === 'undefined') {
+            return;
+        }
 
-$('.demo2').colorpicker();
-
-
-};
-
-
-$(document).ready(function () {
-
-init_ColorPicker();
+        $('.demo2').colorpicker();
 
 
-});	
+    };
+
+
+    $(document).ready(function() {
+
+        init_ColorPicker();
+
+
+    });
 </script>
 @endsection
 @endsection

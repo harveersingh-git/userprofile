@@ -151,13 +151,13 @@ class ClientControlle extends Controller
         $data['workstatus'] =  WorkType::get();
         // $data['team'] =  Teams::get();
         $data['users'] = User::where('id', '!=', 1)->get();
-
+        $result =  Clients::with(['users', 'client_type', 'client_resource'])->orderBy('id', 'DESC')->get();
         if ($request->isMethod('post')) {
-         
+
             if (!empty($request['end_date'])) {
-           
+
                 $request->validate([
-              
+
                     'client_type' => 'required',
                     'client_code' => 'required',
                     'client_name' => 'required',
@@ -166,6 +166,8 @@ class ClientControlle extends Controller
                     'start_date' => 'required|before_or_equal:end_date',
                     'end_date' => 'date_format:Y-m-d',
                     'hours_cunsumed' => 'required',
+                    'month' => 'required',
+                    'year' => 'required',
 
 
                 ]);
@@ -178,29 +180,11 @@ class ClientControlle extends Controller
                     'hours' => 'required',
                     'start_date' => 'required',
                     'hours_cunsumed' => 'required',
-
+                    'month' => 'required',
+                    'year' => 'required',
 
                 ]);
             }
-
-            $request->validate([
-                // 'user_name' => 'required',
-                'client_type' => 'required',
-                'client_code' => 'required',
-                'client_name' => 'required',
-                'client_email' => 'required',
-                // 'work_type' => 'required',
-                // 'team_leader' => 'required',
-                'hours' => 'required',
-                'start_date' => 'required',
-                // 'start_date' => 'required|before_or_equal:end_date',
-                // 'end_date' => 'date_format:Y-m-d',
-                'hours_cunsumed' => 'required',
-
-
-            ]);
-
-            // dd();
 
             $input = $request->all();
             // $input['user_id'] =  $input['user_name'];
@@ -210,6 +194,8 @@ class ClientControlle extends Controller
             $input['hours_cunsumed'] =  $input['hours_cunsumed'];
             $input['starting_date'] =  $input['start_date'];
             $input['end_date'] =  isset($input['end_date']) ? $input['end_date'] : NULL;
+            $input['month'] =  isset($input['month']) ? $input['month'] : NULL;
+            $input['year'] =  isset($input['year']) ? $input['year'] : NULL;
             $client = Clients::create($input);
             // if ($client) {
             //     $updated['client_status'] = $input['client_status'];
@@ -220,7 +206,8 @@ class ClientControlle extends Controller
 
             return redirect('clients')->with('message', 'Data added Successfully');
         }
-        return view('client.create', compact('url', 'data'));
+        
+        return view('client.create', compact('url', 'data','result'));
     }
 
     public function view(Request $reques, $id)
@@ -230,12 +217,13 @@ class ClientControlle extends Controller
         $data['workstatus'] =  WorkType::get();
         $data['client_type'] =  ClientType::get();
         // $data['team'] =  Teams::get();
+        $result =  Clients::with(['users', 'client_type', 'client_resource'])->orderBy('id', 'DESC')->get();
         $data['users'] = User::where('id', '!=', 1)->get();
         $url = '';
         $id =  $id;
         $client = Clients::find($id);
 
-        return view('client.edit', compact('id', 'url', 'data', 'client'));
+        return view('client.edit', compact('id', 'url', 'data', 'client','result'));
     }
 
 
@@ -245,6 +233,7 @@ class ClientControlle extends Controller
         $input = $request->all();
         $id = $request['id'];
         $data = Clients::find($id);
+
         $data->update([
             // 'user_id' => isset($input['user_name']) ? $input['user_name'] : '',
             // 'client_status_id' => isset($input['client_status']) ? $input['client_status'] : '',
@@ -258,6 +247,8 @@ class ClientControlle extends Controller
             'starting_date' => isset($input['start_date']) ? $input['start_date'] : '',
             'end_date' => isset($input['end_date']) ? $input['end_date'] : NULL,
             'hours_cunsumed' => isset($input['hours_cunsumed']) ? $input['hours_cunsumed'] : '',
+            'month' => isset($input['month']) ? $input['month'] : '',
+            'year' => isset($input['year']) ? $input['year'] : '',
 
 
         ]);
