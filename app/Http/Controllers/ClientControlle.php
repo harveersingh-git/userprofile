@@ -296,7 +296,7 @@ class ClientControlle extends Controller
                 'month' => 'required',
                 'year' => 'required',
                 'start_date' => 'required|before_or_equal:end_date',
-                'end_date' => 'date_format:Y-m-d',
+                'end_date' =>'required',
                 'hours' => 'required',
             ]);
             $input = $request->all();
