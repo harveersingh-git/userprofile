@@ -78,7 +78,7 @@ Add Resource
                                             </div>
                                             <div class="col-lg-2 form-group">
                                                 <label>Hours<span style="color: red;">*</span></label>
-                                                <input class="form-control" placeholder="Ex: 45" name="hours" id="hours" value="{{old('hours')}}" autocomplete="off" />
+                                                <input class="form-control" placeholder="Ex: 45" name="hours" id="hours" value="{{old('hours')}}" autocomplete="off" type="number" min="1"/>
                                                 @error('hours')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
@@ -182,28 +182,9 @@ Add Resource
 
                                             <button type="submit" class="btn btn-info submit_info">Add</button>
                                 </form>
-                                <!-- <div class="col-lg-3 form-group">
+                                </div>
+                                </div>
 
-
-
-
-                                        </div>
-
-
-
-
-
-
-
-                                    </div>
-
-
-
-
-
-
-
-                            </div>
                             <!-- /.col-lg-6 (nested) -->
 
                                 <!-- /.col-lg-6 (nested) -->
