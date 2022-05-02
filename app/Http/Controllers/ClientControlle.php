@@ -151,7 +151,7 @@ class ClientControlle extends Controller
         $data['workstatus'] =  WorkType::get();
         // $data['team'] =  Teams::get();
         $data['users'] = User::where('id', '!=', 1)->get();
-        $result =  Clients::with(['users', 'client_type', 'client_resource'])->orderBy('id', 'DESC')->get();
+
         if ($request->isMethod('post')) {
 
             if (!empty($request['end_date'])) {
@@ -162,12 +162,10 @@ class ClientControlle extends Controller
                     'client_code' => 'required',
                     'client_name' => 'required',
                     'client_email' => 'required',
-                    'hours' => 'required',
+                    // 'hours' => 'required',
                     'start_date' => 'required|before_or_equal:end_date',
                     'end_date' => 'date_format:Y-m-d',
-                    'hours_cunsumed' => 'required',
-                    'month' => 'required',
-                    'year' => 'required',
+                    // 'hours_cunsumed' => 'required',
 
 
                 ]);
@@ -177,11 +175,10 @@ class ClientControlle extends Controller
                     'client_code' => 'required',
                     'client_name' => 'required',
                     'client_email' => 'required',
-                    'hours' => 'required',
+                    // 'hours' => 'required',
                     'start_date' => 'required',
-                    'hours_cunsumed' => 'required',
-                    'month' => 'required',
-                    'year' => 'required',
+                    // 'hours_cunsumed' => 'required',
+
 
                 ]);
             }
@@ -191,11 +188,9 @@ class ClientControlle extends Controller
             $input['client_type_id'] =  $input['client_type'];
             // $input['work_type_id'] =  $input['work_type'];
             // $input['client_status_id'] =  $input['client_status'];
-            $input['hours_cunsumed'] =  $input['hours_cunsumed'];
+            // $input['hours_cunsumed'] =  $input['hours_cunsumed'];
             $input['starting_date'] =  $input['start_date'];
             $input['end_date'] =  isset($input['end_date']) ? $input['end_date'] : NULL;
-            $input['month'] =  isset($input['month']) ? $input['month'] : NULL;
-            $input['year'] =  isset($input['year']) ? $input['year'] : NULL;
             $client = Clients::create($input);
             // if ($client) {
             //     $updated['client_status'] = $input['client_status'];
@@ -206,8 +201,7 @@ class ClientControlle extends Controller
 
             return redirect('clients')->with('message', 'Data added Successfully');
         }
-        
-        return view('client.create', compact('url', 'data','result'));
+        return view('client.create', compact('url', 'data'));
     }
 
     public function view(Request $reques, $id)
@@ -217,13 +211,12 @@ class ClientControlle extends Controller
         $data['workstatus'] =  WorkType::get();
         $data['client_type'] =  ClientType::get();
         // $data['team'] =  Teams::get();
-        $result =  Clients::with(['users', 'client_type', 'client_resource'])->orderBy('id', 'DESC')->get();
         $data['users'] = User::where('id', '!=', 1)->get();
         $url = '';
         $id =  $id;
         $client = Clients::find($id);
 
-        return view('client.edit', compact('id', 'url', 'data', 'client','result'));
+        return view('client.edit', compact('id', 'url', 'data', 'client'));
     }
 
 
@@ -233,7 +226,6 @@ class ClientControlle extends Controller
         $input = $request->all();
         $id = $request['id'];
         $data = Clients::find($id);
-
         $data->update([
             // 'user_id' => isset($input['user_name']) ? $input['user_name'] : '',
             // 'client_status_id' => isset($input['client_status']) ? $input['client_status'] : '',
@@ -247,8 +239,6 @@ class ClientControlle extends Controller
             'starting_date' => isset($input['start_date']) ? $input['start_date'] : '',
             'end_date' => isset($input['end_date']) ? $input['end_date'] : NULL,
             'hours_cunsumed' => isset($input['hours_cunsumed']) ? $input['hours_cunsumed'] : '',
-            'month' => isset($input['month']) ? $input['month'] : '',
-            'year' => isset($input['year']) ? $input['year'] : '',
 
 
         ]);
@@ -294,17 +284,32 @@ class ClientControlle extends Controller
         $data['workstatus'] =  WorkType::get();
         $data['users'] = User::where('id', '!=', 1)->get();
         $data['clients'] = Clients::get();
+        $result =  ClientResource::where('client_id', $id)->with(['working_resource', 'hire_resource'])->get();
+
+        // dd( $result->toArray());
         if ($request->isMethod('post')) {
             // dd($request->all());
             $request->validate([
                 'client_name' => 'required',
                 'working_user_name' => 'required',
                 'hire_user_name' => 'required',
+                'month' => 'required',
+                'year' => 'required',
+                'start_date' => 'required|before_or_equal:end_date',
+                'end_date' => 'date_format:Y-m-d',
+                'hours' => 'required',
             ]);
             $input = $request->all();
             $input['client_id'] =  $input['client_name'];
             $input['working_user_id'] =  $input['working_user_name'];
             $input['hire_user_id'] =  $input['hire_user_name'];
+
+            $input['month'] =  $input['month'];
+            $input['year'] =  $input['year'];
+            $input['start_date'] =  $input['start_date'];
+            $input['end_date'] =  $input['end_date'];
+            $input['hours'] =  $input['hours'];
+
             $client = ClientResource::create($input);
 
             if ($client) {
@@ -314,6 +319,7 @@ class ClientControlle extends Controller
             }
             return redirect('clients')->with('message', 'Data added Successfully');
         }
-        return view('client.addresource', compact('url', 'data', 'id'));
+
+        return view('client.addresource', compact('url', 'data', 'id', 'result'));
     }
 }

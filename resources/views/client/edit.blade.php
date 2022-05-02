@@ -72,13 +72,7 @@ Edit Client
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
-                                            <div class="col-lg-3 form-group">
-                                                <label>Hours</label>
-                                                <input type="number" class="form-control" placeholder="Ex:152" name="hours" value="{{$client['hours']}}" required="" autocomplete="off" />
-                                                @error('hours')
-                                                <p class="alert alert-danger"> {{ $message }} </p>
-                                                @enderror
-                                            </div>
+                                         
 
                                         </div>
 
@@ -104,31 +98,10 @@ Edit Client
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
-                                            <div class="col-lg-3 form-group">
-                                                <label>Hours Consumed</label>
-                                                <input type="number" class="form-control" placeholder="Ex:152" name="hours_cunsumed" value="{{$client['hours_cunsumed']}}" required="" autocomplete="off" />
-                                                @error('hours_cunsumed')
-                                                <p class="alert alert-danger"> {{ $message }} </p>
-                                                @enderror
-                                            </div>
+                                     
                                            
                                         </div>
-                                        <div class="row">
-                                            <div class="col-lg-3 form-group">
-                                                <label>Month<span style="color: red;">*</span></label>
-                                                <input class="form-control" placeholder="Ex:5" name="month" value="{{$client['month']}}" required="" autocomplete="off" />
-                                                @error('month')
-                                                <p class="alert alert-danger"> {{ $message }} </p>
-                                                @enderror
-                                            </div>
-                                            <div class="col-lg-3 form-group">
-                                                <label>Year<span style="color: red;">*</span></label>
-                                                <input class="form-control" placeholder="Ex:5" name="year" value="{{$client['year']}}" required="" autocomplete="off" />
-                                                @error('year')
-                                                <p class="alert alert-danger"> {{ $message }} </p>
-                                                @enderror
-                                            </div>
-                                        </div>
+                                      
                                      
 
                                       
@@ -152,83 +125,7 @@ Edit Client
                         <!-- /.row (nested) -->
                     </div>
 
-                    <div class="panel-body">
-                        <div class="row">
-
-                            <table class="table table-bordered table-responsive">
-                                <thead>
-                                    <tr>
-                                        <th width="5%" class="text-center">Sr. No.</th>
-
-                                        <th class="text-center" width="18%">Working Resource</th>
-                                        <th class="text-center" width="18%">Front Resource</th>
-                                        <th class="text-center" width="8%">Hours</th>
-                                        <th class="text-center" width="8%">Work Duration</th>
-                                        <th class="text-center" width="8%">Resource Hire Status</th>
-                                        <th class="text-center" width="8%">Month</th>
-                                        <th class="text-center" width="8%">Year</th>
-                                        <th class="text-center" width="8%">Start date</th>
-                                        <th class="text-center" width="8%">End date</th>
-                                        <!-- <th class="text-center" width="12%">Action</th> -->
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    @forelse($result as $key => $value)
-                                    <tr>
-                                        <td class="text-center" data-toggle="tooltip" data-placement="top" style="background-color: {{isset($value->client_type->background_color) ? $value->client_type->background_color:''}}"><span style="color: {{isset($value->client_type->font_color) ? $value->client_type->font_color:'';}}">{{ $key+1 }} </span></td>
-
-                                        <td class="">
-                                            @forelse($value['client_resource'] as $index=>$res)
-                                            @if(isset($res['working_resource']->name))
-                                            {{$res['working_resource']->name}} {{$res['working_resource']->last_name}}-{{$res['working_resource']->employee_id}} {{$res['working_resource']->client_status_value[0]->title}} ({{$res['working_resource']->work_status_value[0]->title}}),</br>
-                                            @endif
-                                            @empty
-                                            <p>No Resource available yet</p>
-                                            @endforelse
-
-                                        </td>
-                                        <td class="">
-                                            @forelse($value['client_resource'] as $index=>$res)
-
-                                            @if(isset($res['hire_resource']->name))
-                                            {{$res['hire_resource']->name}} {{$res['hire_resource']->last_name}}-{{$res['hire_resource']->employee_id}} {{$res['hire_resource']->client_status_value[0]->title}} ({{$res['hire_resource']->work_status_value[0]->title}}),</br>
-                                             @endif       
-                                            @empty
-                                            <p>No Resource available yet</p>
-                                            @endforelse
-
-                                        </td>
-                                        <td class="text-center">{{ $value->hours}}</td>
-                                        <td class="text-center">{{ $value->hours_cunsumed}}</td>
-                                        <td class="text-center">{{ isset($value->client_type->title) ? $value->client_type->title:''}}</td>
-                                        <td class="text-center">{{ isset($value->month)?$value->month:'' }}</td>
-                                        <td class="text-center">{{ isset($value->year)?$value->year:'' }}</td>
-                                        <td class="text-center">{{ $value->starting_date}}</td>
-                                        <td class="text-center">{{ $value->end_date}}</td>
-
-                                        <!-- <td class="text-center">
-                                            <a class="btn btn-warning myac_btn" href="{{url('/client/edit')}}/{{$value->id}}" data-toggle="tooltip" title="Edit!"> <i class="fa fa-edit"></i></button>
-
-                                                <a class="delete btn btn-danger myac_btn" id="{{$value->id}}" data-toggle="tooltip" title="Delete"> <i class="fa fa-trash"></i></button>
-                                                    <a class="btn btn-success  myac_btn" href="{{url('/add-resource')}}/{{$value->id}}" data-toggle="tooltip" title="Add New Resources!"><i class="fa fa-user-plus"></i></button>
-
-                                        </td> -->
-                                    </tr>
-                                    @empty
-                                    <tr>
-                                        <td colspan="13">There are no data.</td>
-                                    </tr>
-                                    @endforelse
-
-
-
-                                </tbody>
-
-                            </table>
-                        </div>
-
-                    </div>
+               
                 </div>
                 <!-- /.panel -->
             </div>

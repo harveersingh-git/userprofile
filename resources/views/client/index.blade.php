@@ -101,7 +101,7 @@ Toast::message('message', 'level', 'title');
                         <thead>
                             <tr>
                                 <th width="5%" class="text-center">Sr. No.</th>
-                                <th class="text-center" width="18%">Number of Resource</th>
+                                <th class="text-center" width="18%">Number of resource</th>
                                 <!-- <th class="text-center" width="18%">Working Resource</th>
                                 <th class="text-center" width="18%">Hire Resource</th> -->
                                 <th class="text-center" width="8%">Client Code</th>
@@ -118,26 +118,8 @@ Toast::message('message', 'level', 'title');
                             @foreach($data as $key => $value)
                             <tr>
                                 <td class="text-center" data-toggle="tooltip" data-placement="top" style="background-color: {{isset($value->client_type->background_color) ? $value->client_type->background_color:''}}"><span style="color: {{isset($value->client_type->font_color) ? $value->client_type->font_color:'';}}">{{ $key+1 }} </span></td>
-                                <td class="text-center">{{count($value->client_resource)}}</td>
-                                <!-- <td class="">
-                                    @forelse($value['client_resource'] as $index=>$res)
-                                    @if(isset($res['working_resource']->name))
-                                    {{$res['working_resource']->name}} {{$res['working_resource']->last_name}}-{{$res['working_resource']->employee_id}} {{$res['working_resource']->client_status_value[0]->title}} ({{$res['working_resource']->work_status_value[0]->title}}),</br>
-                                    @endif
-                                    @empty
-                                    <p>No Resource available yet</p>
-                                    @endforelse
-
-                                </td>
-                                <td class="">
-                                    @forelse($value['client_resource'] as $index=>$res)
-                                    {{$res['hire_resource']->name}} {{$res['hire_resource']->last_name}}-{{$res['hire_resource']->employee_id}} {{$res['hire_resource']->client_status_value[0]->title}} ({{$res['hire_resource']->work_status_value[0]->title}}),</br>
-
-                                    @empty
-                                    <p>No Resource available yet</p>
-                                    @endforelse
-
-                                </td> -->
+                                <td class="text-center"><a href="{{url('add-resource')}}/{{$value->id}}">{{count($value->client_resource)}}</a></td>
+                        
                                 <td class="text-center">{{ $value->client_code}}</td>
                                 <td class="text-center">{{ $value->client_name}}</td>
                                 <td class="text-center">{{ $value->client_email}}</td>

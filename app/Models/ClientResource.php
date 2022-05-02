@@ -12,7 +12,12 @@ class ClientResource extends Model
 
         'client_id',
         'working_user_id',
-        'hire_user_id'
+        'hire_user_id',
+        'month',
+        'year',
+        'start_date',
+        'end_date',
+        'hours'
     ];
 
     public function working_resource()
