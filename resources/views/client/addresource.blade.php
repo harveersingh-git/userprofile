@@ -158,7 +158,7 @@ Add Resource
 
                                             <div class="col-lg-3 form-group form-group datepicker-prsonal_new">
                                                 <label>Year <span style="color: red;">*</span></label>
-                                                <input class="form-control" placeholder="2022-01-13" name="year" id="year" value="{{old('year')}}" autocomplete="off" />
+                                                <input class="form-control" placeholder="2022" name="year" id="year" value="{{old('year')}}" autocomplete="off" />
                                                 @error('year')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
