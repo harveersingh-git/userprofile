@@ -47,7 +47,7 @@
                                 <i class="fa fa-comments fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">{{$data['total_client']}}</div>
+                                <div class="huge">{{$data['active_client']}}</div>
                                 <div>Total Client</div>
                             </div>
                         </div>
@@ -71,12 +71,12 @@
                                 <i class="fa fa-tasks fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">{{count($data['active_client'])}}</div>
+                                <div class="huge">{{$data['total_services']}}</div>
                                 <div>Total Services</div>
                             </div>
                         </div>
                     </div>
-                    <a href="{{url('/clients')}}">
+                    <a href="{{url('/services')}}">
                         <div class="panel-footer">
                             <span class="pull-left">View Details</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

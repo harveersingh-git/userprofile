@@ -10,6 +10,7 @@ use App\Models\Clients;
 use App\Models\ClientStatus;
 use DB;
 use Auth;
+use App\Models\ClientResource;
 
 use App\Models\WorkType;
 
@@ -48,11 +49,11 @@ class HomeController extends Controller
         )->count();
 
         $data['total_client'] = Clients::distinct('client_email')->count();
-        // dd($data['total_client']);
+        $data['total_services'] = ClientResource::count();
         $data['total_users'] = User::where('id', '!=', 1)->count();
         $data['active_client'] = Clients::whereHas('client_type', function ($q) {
-            $q->where('title','active');
-        })->get();
+            $q->where('title', '=', 'active');
+        })->count();
 
         $data['zeo_three'] = User::where('experience', '>=', 1)->where('experience', '<', 3)->count();
 
@@ -64,7 +65,7 @@ class HomeController extends Controller
 
 
         $data['client_status'] =  ClientStatus::withCount('client_status_count')->orderBy('order_by', 'asc')->get();
-        
+
         return view('home', compact('data'));
     }
 }
