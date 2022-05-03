@@ -286,9 +286,7 @@ class ClientControlle extends Controller
         $data['clients'] = Clients::get();
         $result =  ClientResource::where('client_id', $id)->with(['working_resource', 'hire_resource'])->get();
 
-        // dd( $result->toArray());
         if ($request->isMethod('post')) {
-            // dd($request->all());
             $request->validate([
                 'client_name' => 'required',
                 'working_user_name' => 'required',
@@ -296,7 +294,7 @@ class ClientControlle extends Controller
                 'month' => 'required',
                 'year' => 'required',
                 'start_date' => 'required|before_or_equal:end_date',
-                'end_date' =>'required',
+                'end_date' => 'required',
                 'hours' => 'required',
             ]);
             $input = $request->all();
@@ -309,8 +307,8 @@ class ClientControlle extends Controller
             $input['start_date'] =  $input['start_date'];
             $input['end_date'] =  $input['end_date'];
             $input['hours'] =  $input['hours'];
-
-            $client = ClientResource::create($input);
+            $client = ClientResource::updateOrCreate(['id' => $input['resource_id']], $input);
+            // $client = ClientResource::create($input);
 
             if ($client) {
                 $updated['client_status'] = $input['resource_status'];
@@ -321,5 +319,25 @@ class ClientControlle extends Controller
         }
 
         return view('client.addresource', compact('url', 'data', 'id', 'result'));
+    }
+
+
+    public function viewResource(Request $request)
+    {
+        $id = $request['id'];
+
+        $data = ClientResource::with('working_resource')->find($id);
+        return response()->json(['status' => 'success', 'data' => $data]);
+    }
+
+    public function deleteResource(Request $request)
+    {
+        $id = $request['id'];
+        $data = ClientResource::with('working_resource')->find($id);
+
+        if ($data) {
+            $data->delete();
+            return response()->json(['status' => 'success']);
+        }
     }
 }

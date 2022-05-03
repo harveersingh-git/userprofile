@@ -36,6 +36,7 @@ Add Resource
                                     @csrf
                                     <div class="form-group">
                                         <div class="row">
+                                            <input type="hiddden" name="resource_id" id="resource_id">
 
                                             <div class="col-lg-3 form-group">
                                                 <label>Working Resource<span style="color: red;">*</span></label>
@@ -78,7 +79,7 @@ Add Resource
                                             </div>
                                             <div class="col-lg-2 form-group">
                                                 <label>Hours<span style="color: red;">*</span></label>
-                                                <input class="form-control" placeholder="Ex: 45" name="hours" id="hours" value="{{old('hours')}}" autocomplete="off" type="number" min="1"/>
+                                                <input class="form-control" placeholder="Ex: 45" name="hours" id="hours" value="{{old('hours')}}" autocomplete="off" type="number" min="1" />
                                                 @error('hours')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
@@ -87,7 +88,7 @@ Add Resource
                                             </div>
                                             <div class="col-lg-2 form-group">
                                                 <label>Work Duration<span style="color: red;">*</span></label>
-                                                <select class="form-control" name="work_type" id="" required="">
+                                                <select class="form-control" name="work_type" id="work_type" required="">
                                                     <option value="">--Please select--</option>
                                                     @forelse($data['workstatus'] as $key=>$type)
 
@@ -106,7 +107,7 @@ Add Resource
                                             </div>
                                             <div class="col-lg-2 form-group">
                                                 <label>Resource Hire Status<span style="color: red;">*</span></label>
-                                                <select class="form-control" name="resource_status" id="" required="">
+                                                <select class="form-control" name="resource_status" id="resource_status" required="">
                                                     <option value="">--Please select--</option>
                                                     @forelse($data['client_status'] as $key=>$client)
 
@@ -135,7 +136,7 @@ Add Resource
                                         <div class="row">
                                             <div class="col-lg-3 form-group ">
                                                 <label>Month<span style="color: red;">*</span></label>
-                                                <select class="form-control" name="month" id="" required="">
+                                                <select class="form-control" name="month" id="month" required="">
                                                     <option value="">--Please select--</option>
                                                     <option selected value='Janaury'>Janaury</option>
                                                     <option value='February'>February</option>
@@ -180,135 +181,209 @@ Add Resource
                                                 @enderror
                                             </div>
 
-                                            <button type="submit" class="btn btn-info submit_info">Add</button>
+                                            <button type="submit" class="btn btn-info submit_info" id="add">Add</button>
                                 </form>
-                                </div>
-                                </div>
-
-                            <!-- /.col-lg-6 (nested) -->
-
-                                <!-- /.col-lg-6 (nested) -->
                             </div>
-                            <!-- /.row (nested) -->
                         </div>
-                        <div class="panel-body">
-                            <div class="row">
 
-                                <table class="table table-bordered table-responsive">
-                                    <thead>
-                                        <tr>
-                                            <th width="5%" class="text-center">Sr. No.</th>
+                        <!-- /.col-lg-6 (nested) -->
 
-                                            <th class="text-center" width="18%">Working Resource</th>
-                                            <th class="text-center" width="18%">Front Resource</th>
-                                            <th class="text-center" width="8%">Hours</th>
-                                            <th class="text-center" width="8%">Work Duration</th>
-                                            <th class="text-center" width="8%">Resource Hire Status</th>
-                                            <th class="text-center" width="8%">Month</th>
-                                            <th class="text-center" width="8%">Year</th>
-                                            <th class="text-center" width="8%">Start date</th>
-                                            <th class="text-center" width="8%">End date</th>
-                                            <!-- <th class="text-center" width="12%">Action</th> -->
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        @forelse($result as $key => $value)
-                                        <tr>
-                                            <td class="text-center" data-toggle="tooltip" data-placement="top" style="background-color: {{isset($value->client_type->background_color) ? $value->client_type->background_color:''}}"><span style="color: {{isset($value->client_type->font_color) ? $value->client_type->font_color:'';}}">{{ $key+1 }} </span></td>
-
-                                            <td class="">
-                                        
-                                                @if(isset($value['working_resource']->name))
-                                                {{$value['working_resource']->name}} {{$value['working_resource']->last_name}}-{{$value['working_resource']->employee_id}} {{$value['working_resource']->client_status_value[0]->title}} ({{isset($value['working_resource']['work_status_value'][0]->title)?$value['working_resource']['work_status_value'][0]->title:'N/A'}}),</br>
-                                                @endif
-                                            
-
-                                            </td>
-                                            <td class="">
-                                             
-                                                @if(isset($value['hire_resource']->name))
-                                                {{$value['hire_resource']->name}} {{$value['hire_resource']->last_name}}-{{$value['hire_resource']->employee_id}} {{isset($value['hire_resource']['client_status_value'][0]->title)?$value['hire_resource']['client_status_value'][0]->title:'N/A'}}),</br>
-                                                @endif
-                                             
-
-                                            </td>
-                                            <td class="text-center">{{ $value->hours}}</td>
-                                            
-                                            <td class="text-center"> {{isset($value['working_resource']['work_status_value'][0]->title)?$value['working_resource']['work_status_value'][0]->title:'N/A'}}</td>
-                                            <td class="text-center">{{isset($value['hire_resource']['client_status_value'][0]->title)?$value['hire_resource']['client_status_value'][0]->title:'N/A'}}</td>
-                                            <td class="text-center">{{ isset($value->month)?$value->month:'' }}</td>
-                                            <td class="text-center">{{ isset($value->year)?$value->year:'' }}</td>
-                                            <td class="text-center">{{ $value->start_date}}</td>
-                                            <td class="text-center">{{ $value->end_date}}</td>
-
-                                            <!-- <td class="text-center">
-        <a class="btn btn-warning myac_btn" href="{{url('/client/edit')}}/{{$value->id}}" data-toggle="tooltip" title="Edit!"> <i class="fa fa-edit"></i></button>
-
-            <a class="delete btn btn-danger myac_btn" id="{{$value->id}}" data-toggle="tooltip" title="Delete"> <i class="fa fa-trash"></i></button>
-                <a class="btn btn-success  myac_btn" href="{{url('/add-resource')}}/{{$value->id}}" data-toggle="tooltip" title="Add New Resources!"><i class="fa fa-user-plus"></i></button>
-
-    </td> -->
-                                        </tr>
-                                        @empty
-                                        <tr>
-                                            <td colspan="13">There are no data.</td>
-                                        </tr>
-                                        @endforelse
-
-
-
-                                    </tbody>
-
-                                </table>
-                            </div>
-
-                        </div>
+                        <!-- /.col-lg-6 (nested) -->
                     </div>
-                    <!-- /.panel -->
+                    <!-- /.row (nested) -->
                 </div>
-                <!-- /.col-lg-12 -->
+                <div class="panel-body">
+                    <div class="row">
+
+                        <table class="table table-bordered table-responsive">
+                            <thead>
+                                <tr>
+                                    <th width="5%" class="text-center">Sr. No.</th>
+
+                                    <th class="text-center" width="18%">Working Resource</th>
+                                    <th class="text-center" width="18%">Front Resource</th>
+                                    <th class="text-center" width="8%">Hours</th>
+                                    <th class="text-center" width="8%">Work Duration</th>
+                                    <th class="text-center" width="8%">Resource Hire Status</th>
+                                    <th class="text-center" width="8%">Month</th>
+                                    <th class="text-center" width="8%">Year</th>
+                                    <th class="text-center" width="8%">Start date</th>
+                                    <th class="text-center" width="8%">End date</th>
+                                    <th class="text-center" width="12%">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @forelse($result as $key => $value)
+                                <tr>
+                                    <td class="text-center" data-toggle="tooltip" data-placement="top" style="background-color: {{isset($value->client_type->background_color) ? $value->client_type->background_color:''}}"><span style="color: {{isset($value->client_type->font_color) ? $value->client_type->font_color:'';}}">{{ $key+1 }} </span></td>
+
+                                    <td class="">
+
+                                        @if(isset($value['working_resource']->name))
+                                        {{$value['working_resource']->name}} {{$value['working_resource']->last_name}}-{{$value['working_resource']->employee_id}} {{$value['working_resource']->client_status_value[0]->title}} ({{isset($value['working_resource']['work_status_value'][0]->title)?$value['working_resource']['work_status_value'][0]->title:'N/A'}}),</br>
+                                        @endif
+
+
+                                    </td>
+                                    <td class="">
+
+                                        @if(isset($value['hire_resource']->name))
+                                        {{$value['hire_resource']->name}} {{$value['hire_resource']->last_name}}-{{$value['hire_resource']->employee_id}} {{isset($value['hire_resource']['client_status_value'][0]->title)?$value['hire_resource']['client_status_value'][0]->title:'N/A'}}),</br>
+                                        @endif
+
+
+                                    </td>
+                                    <td class="text-center">{{ $value->hours}}</td>
+
+                                    <td class="text-center"> {{isset($value['working_resource']['work_status_value'][0]->title)?$value['working_resource']['work_status_value'][0]->title:'N/A'}}</td>
+                                    <td class="text-center">{{isset($value['hire_resource']['client_status_value'][0]->title)?$value['hire_resource']['client_status_value'][0]->title:'N/A'}}</td>
+                                    <td class="text-center">{{ isset($value->month)?$value->month:'' }}</td>
+                                    <td class="text-center">{{ isset($value->year)?$value->year:'' }}</td>
+                                    <td class="text-center">{{ $value->start_date}}</td>
+                                    <td class="text-center">{{ $value->end_date}}</td>
+
+                                    <td class="text-center">
+                                        <a class="btn btn-warning myac_btn edit_resource" href="javascript:void(0)" data-toggle="tooltip" title="Edit!" id="{{$value->id}}"> <i class="fa fa-edit"></i></button>
+
+                                            <a class="delete btn btn-danger myac_btn" id="{{$value->id}}" data-toggle="tooltip" title="Delete"> <i class="fa fa-trash"></i></button>
+                                                <!-- <a class="btn btn-success  myac_btn" href="{{url('/add-resource')}}/{{$value->id}}" data-toggle="tooltip" title="Add New Resources!">
+                                                    <i class="fa fa-user-plus"></i> -->
+                                                </button>
+
+                                    </td>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="13">There are no data.</td>
+                                </tr>
+                                @endforelse
+
+
+
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                </div>
             </div>
-
-            <!-- /.row -->
+            <!-- /.panel -->
         </div>
-        <!-- /.container-fluid -->
+        <!-- /.col-lg-12 -->
     </div>
-    @section('script')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#clients').select2();
-            $('#workingusers').select2();
-            $('#hireusers').select2();
 
-            $("#start_date").datepicker({
-                    format: 'yy-mm-dd',
-                    // maxDate: new Date()
+    <!-- /.row -->
+</div>
+<!-- /.container-fluid -->
+</div>
+@section('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#clients').select2();
+        $('#workingusers').select2();
+        $('#hireusers').select2();
 
-                }
-
-            );
-
-            $("#end_date").datepicker({
+        $("#start_date").datepicker({
                 format: 'yy-mm-dd',
                 // maxDate: new Date()
 
-            });
+            }
 
-            $("#year").datepicker({
-                format: "yyyy",
-                viewMode: "years",
-                minViewMode: "years"
-            });
-            var today = new Date();
-            var startDate = new Date(today.getFullYear(), 6, 1);
-            var endDate = new Date(today.getFullYear(), 6, 31);
+        );
 
-
-
+        $("#end_date").datepicker({
+            format: 'yy-mm-dd',
+            // maxDate: new Date()
 
         });
-    </script>
-    @endsection
-    @endsection
+
+        $("#year").datepicker({
+            format: "yyyy",
+            viewMode: "years",
+            minViewMode: "years"
+        });
+        var today = new Date();
+        var startDate = new Date(today.getFullYear(), 6, 1);
+        var endDate = new Date(today.getFullYear(), 6, 31);
+
+
+
+
+    });
+
+
+
+    $(document).on('click', '.edit_resource', function() {
+        id = $(this).attr('id');
+        var current = $(this);
+
+        $.ajax({
+            type: "POST",
+            url: "{{url('edit_resource')}}",
+            data: {
+                _token: '{{csrf_token()}}',
+                id: id
+            },
+            beforeSend: function() {
+
+            },
+            success: function(data) {
+                
+                $('#resource_id').val(data.data.id);
+                $('#workingusers').val(data.data.working_user_id).trigger("change");
+                $('#hireusers').val(data.data.hire_user_id).trigger("change");
+                $('#hours').val(data.data.hours);
+                $('#resource_status').val(data.data.hours);
+                $('#work_type').val(data.data.hours);
+                $('#month').val(data.data.month);
+                $('#year').val(data.data.year);
+                $('#start_date').val(data.data.start_date);
+                $('#end_date').val(data.data.end_date);
+                $('#work_type').val(data.data.working_resource.work_type);
+                $('#resource_status').val(data.data.working_resource.client_status);
+                $('#add').text('Update')
+
+            }
+        })
+
+    });
+
+
+    $(document).on('click', '.delete', function() {
+        id = $(this).attr('id');
+        var current = $(this);
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover !",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    type: "POST",
+                    url: "{{url('delete_resource')}}",
+                    data: {
+                        _token: '{{csrf_token()}}',
+                        id: id
+                    },
+                    beforeSend: function() {
+
+                    },
+                    success: function(data) {
+                        $(current).closest('tr').remove();
+
+                    }
+                })
+
+            } else {
+                swal("Your Record safe now!");
+            }
+        });
+
+    });
+</script>
+@endsection
+@endsection

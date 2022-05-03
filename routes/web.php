@@ -102,7 +102,10 @@ Route::any('/clients', [App\Http\Controllers\ClientControlle::class, 'index'])->
 Route::any('/add-client', [App\Http\Controllers\ClientControlle::class, 'create'])->name('add-client');
 Route::any('/add-resource/{id}', [App\Http\Controllers\ClientControlle::class, 'createResource'])->name('add-resource');
 
-Route::any('/client/edit/{id}', [App\Http\Controllers\ClientControlle::class, 'view']);
+
+Route::post('/delete_resource', [App\Http\Controllers\ClientControlle::class, 'deleteResource']);
+Route::any('/resource/edit/{id}', [App\Http\Controllers\ClientControlle::class, 'view']);
+Route::any('/edit_resource', [App\Http\Controllers\ClientControlle::class, 'viewResource']);
 Route::post('/update-client', [App\Http\Controllers\ClientControlle::class, 'update']);
 Route::post('/delete_client', [App\Http\Controllers\ClientControlle::class, 'destroy']);
 Route::any('/csv', [App\Http\Controllers\ClientControlle::class, 'csv'])->name('csv');
