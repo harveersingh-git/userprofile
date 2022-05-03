@@ -104,7 +104,8 @@ Route::any('/add-resource/{id}', [App\Http\Controllers\ClientControlle::class, '
 
 
 Route::post('/delete_resource', [App\Http\Controllers\ClientControlle::class, 'deleteResource']);
-Route::any('/resource/edit/{id}', [App\Http\Controllers\ClientControlle::class, 'view']);
+Route::any('/client/edit/{id}', [App\Http\Controllers\ClientControlle::class, 'view']);
+// Route::any('/resource/edit/{id}', [App\Http\Controllers\ClientControlle::class, 'view']);
 Route::any('/edit_resource', [App\Http\Controllers\ClientControlle::class, 'viewResource']);
 Route::post('/update-client', [App\Http\Controllers\ClientControlle::class, 'update']);
 Route::post('/delete_client', [App\Http\Controllers\ClientControlle::class, 'destroy']);
