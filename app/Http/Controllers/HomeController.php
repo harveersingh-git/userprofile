@@ -52,7 +52,8 @@ class HomeController extends Controller
         $data['total_users'] = User::where('id', '!=', 1)->count();
         $data['active_client'] = Clients::whereHas('client_type', function ($q) {
             $q->where('title','active');
-        })->count();
+        })->get()->toArray();
+        dd(   $data['active_client']);
 
         $data['zeo_three'] = User::where('experience', '>=', 1)->where('experience', '<', 3)->count();
 
