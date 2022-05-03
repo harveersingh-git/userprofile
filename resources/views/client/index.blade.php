@@ -79,6 +79,8 @@ Toast::message('message', 'level', 'title');
         <!-- /.row -->
         <div class="">
             <div class="form-inline">
+            <a data-toggle="tooltip" data-placement="top" title="Client Status" href="{{url('clients?client_type=0')}}" class="btn" style="margin-bottom: 4px; background-color:gray;color:black;">All </a>
+
                 @forelse ($client_type as $status)
 
                 <a data-toggle="tooltip" data-placement="top" title="Client Status" href="{{url('clients?client_type=')}}{{$status['id']}}" class="btn" style="margin-bottom: 4px; background-color:{{$status['background_color']}};  color:{{$status['font_color']}};"> {{$status['title']}} </a>

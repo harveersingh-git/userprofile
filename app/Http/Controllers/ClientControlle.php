@@ -60,6 +60,19 @@ class ClientControlle extends Controller
         $work_type = WorkType::get();
         $client_status = ClientStatus::get();
         $client_type = ClientType::get();
+
+        if (!isset($request['client_type'])) {
+            foreach ($client_type as $val) {
+                if ($val->title == 'ACTIVE') {
+                    $request['client_type'] = $val->id;
+                }
+            }
+        } else {
+            if (isset($request['client_type']) && ($request['client_type'] == '0')) {
+                $request['client_type'] = '';
+            }
+        }
+
         $query = Clients::with(['users', 'client_type', 'client_resource']);
 
         if (isset($request['search']) && $request['search'] != null) {

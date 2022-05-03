@@ -201,15 +201,15 @@ Add Resource
                                 <tr>
                                     <th width="5%" class="text-center">Sr. No.</th>
 
-                                    <th class="text-center" width="18%">Working Resource</th>
-                                    <th class="text-center" width="18%">Front Resource</th>
-                                    <th class="text-center" width="8%">Hours</th>
-                                    <th class="text-center" width="8%">Work Duration</th>
-                                    <th class="text-center" width="8%">Resource Hire Status</th>
-                                    <th class="text-center" width="8%">Month</th>
-                                    <th class="text-center" width="8%">Year</th>
-                                    <th class="text-center" width="8%">Start date</th>
-                                    <th class="text-center" width="8%">End date</th>
+                                    <th class="text-center" >Working Resource</th>
+                                    <th class="text-center" >Front Resource</th>
+                                    <th class="text-center" >Hours</th>
+                                    <th class="text-center" >Work Duration</th>
+                                    <th class="text-center" >Resource Hire Status</th>
+                                    <th class="text-center">Month</th>
+                                    <th class="text-center" >Year</th>
+                                    <th class="text-center" >Start date</th>
+                                    <th class="text-center" >End date</th>
                                     <th class="text-center" width="12%">Action</th>
                                 </tr>
                             </thead>
@@ -219,18 +219,18 @@ Add Resource
                                 <tr>
                                     <td class="text-center" data-toggle="tooltip" data-placement="top" style="background-color: {{isset($value->client_type->background_color) ? $value->client_type->background_color:''}}"><span style="color: {{isset($value->client_type->font_color) ? $value->client_type->font_color:'';}}">{{ $key+1 }} </span></td>
 
-                                    <td class="">
+                                    <td  class="text-center">
 
                                         @if(isset($value['working_resource']->name))
-                                        {{$value['working_resource']->name}} {{$value['working_resource']->last_name}}-{{$value['working_resource']->employee_id}} {{$value['working_resource']->client_status_value[0]->title}} ({{isset($value['working_resource']['work_status_value'][0]->title)?$value['working_resource']['work_status_value'][0]->title:'N/A'}}),</br>
+                                        {{$value['working_resource']->name}} {{$value['working_resource']->last_name}}-{{$value['working_resource']->employee_id}} </br> {{$value['working_resource']->client_status_value[0]->title}} ({{isset($value['working_resource']['work_status_value'][0]->title)?$value['working_resource']['work_status_value'][0]->title:'N/A'}}),</br>
                                         @endif
 
 
                                     </td>
-                                    <td class="">
+                                    <td  class="text-center">
 
                                         @if(isset($value['hire_resource']->name))
-                                        {{$value['hire_resource']->name}} {{$value['hire_resource']->last_name}}-{{$value['hire_resource']->employee_id}} {{isset($value['hire_resource']['client_status_value'][0]->title)?$value['hire_resource']['client_status_value'][0]->title:'N/A'}}),</br>
+                                        {{$value['hire_resource']->name}} {{$value['hire_resource']->last_name}}-{{$value['hire_resource']->employee_id}} </br> {{isset($value['hire_resource']['client_status_value'][0]->title)?$value['hire_resource']['client_status_value'][0]->title:'N/A'}}),</br>
                                         @endif
 
 
