@@ -180,8 +180,9 @@ Add Resource
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
-
-                                            <button type="submit" class="btn btn-info submit_info" id="add">Add</button>
+                                            <div class="col-lg-3 form-group form-group " id="button_div">
+                                                <button type="submit" class="btn btn-info " id="add">Add</button>
+                                            </div>
                                 </form>
                             </div>
                         </div>
@@ -314,10 +315,11 @@ Add Resource
     });
 
 
-
+    counter = 0;
     $(document).on('click', '.edit_resource', function() {
         id = $(this).attr('id');
         var current = $(this);
+
 
         $.ajax({
             type: "POST",
@@ -330,7 +332,11 @@ Add Resource
 
             },
             success: function(data) {
-                
+
+                if (counter <= 0) {
+                    $('#button_div').append('<a href="javascript:window.location.href=window.location.href" class="btn btn-danger " id="add">Reset </a>');
+                    counter++;
+                }
                 $('#resource_id').val(data.data.id);
                 $('#workingusers').val(data.data.working_user_id).trigger("change");
                 $('#hireusers').val(data.data.hire_user_id).trigger("change");
@@ -343,7 +349,7 @@ Add Resource
                 $('#end_date').val(data.data.end_date);
                 $('#work_type').val(data.data.working_resource.work_type);
                 $('#resource_status').val(data.data.working_resource.client_status);
-                $('#add').text('Update')
+                $('#add').text('Update');
 
             }
         })
