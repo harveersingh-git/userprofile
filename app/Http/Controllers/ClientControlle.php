@@ -309,6 +309,7 @@ class ClientControlle extends Controller
                 'start_date' => 'required|before_or_equal:end_date',
                 'end_date' => 'required',
                 'hours' => 'required',
+                'status'=>'required'
             ]);
             $input = $request->all();
             $input['client_id'] =  $input['client_name'];
@@ -320,6 +321,7 @@ class ClientControlle extends Controller
             $input['start_date'] =  $input['start_date'];
             $input['end_date'] =  $input['end_date'];
             $input['hours'] =  $input['hours'];
+            $input['status'] =  $input['status'];
             $client = ClientResource::updateOrCreate(['id' => $input['resource_id']], $input);
             // $client = ClientResource::create($input);
 

@@ -180,9 +180,28 @@ Add Resource
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
-                                            <div class="col-lg-3 form-group form-group " id="button_div">
-                                                <button type="submit" class="btn btn-info " id="add">Add</button>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3 form-group ">
+                                                <label>Status<span style="color: red;">*</span></label>
+                                                <select class="form-control" name="status" id="status" required="">
+                                                    <option value="">--Please select--</option>
+                                                    <option selected value='Active'>Active</option>
+                                                    <option value='In-active'>In-active</option>
+                                                    
+
+                                                </select>
+                                                @error('month')
+                                                <p class="alert alert-danger"> {{ $message }} </p>
+                                                @enderror
                                             </div>
+
+                                        </div>
+
+                                        <div class="col-lg-3 form-group form-group " id="button_div">
+                                            <button type="submit" class="btn btn-info " id="add">Add</button>
+                                        </div>
+
                                 </form>
                             </div>
                         </div>
@@ -200,16 +219,16 @@ Add Resource
                             <thead>
                                 <tr>
                                     <th width="5%" class="text-center">Sr. No.</th>
-
-                                    <th class="text-center" >Working Resource</th>
-                                    <th class="text-center" >Front Resource</th>
-                                    <th class="text-center" >Hours</th>
-                                    <th class="text-center" >Work Duration</th>
-                                    <th class="text-center" >Resource Hire Status</th>
+                                    <th class="text-center">Status</th>
+                                    <th class="text-center">Working Resource</th>
+                                    <th class="text-center">Front Resource</th>
+                                    <th class="text-center">Hours</th>
+                                    <th class="text-center">Work Duration</th>
+                                    <th class="text-center">Resource Hire Status</th>
                                     <th class="text-center">Month</th>
-                                    <th class="text-center" >Year</th>
-                                    <th class="text-center" >Start date</th>
-                                    <th class="text-center" >End date</th>
+                                    <th class="text-center">Year</th>
+                                    <th class="text-center">Start date</th>
+                                    <th class="text-center">End date</th>
                                     <th class="text-center" width="12%">Action</th>
                                 </tr>
                             </thead>
@@ -217,9 +236,10 @@ Add Resource
 
                                 @forelse($result as $key => $value)
                                 <tr>
-                                    <td class="text-center" data-toggle="tooltip" data-placement="top" style="background-color: {{isset($value->client_type->background_color) ? $value->client_type->background_color:''}}"><span style="color: {{isset($value->client_type->font_color) ? $value->client_type->font_color:'';}}">{{ $key+1 }} </span></td>
 
-                                    <td  class="text-center">
+                                    <td class="text-center" data-toggle="tooltip" data-placement="top" style="background-color: {{isset($value->client_type->background_color) ? $value->client_type->background_color:''}}"><span style="color: {{isset($value->client_type->font_color) ? $value->client_type->font_color:'';}}">{{ $key+1 }} </span></td>
+                                    <td class="text-center">{{ $value->status}}</td>
+                                    <td class="text-center">
 
                                         @if(isset($value['working_resource']->name))
                                         {{$value['working_resource']->name}} {{$value['working_resource']->last_name}}-{{$value['working_resource']->employee_id}} </br> {{$value['working_resource']->client_status_value[0]->title}} ({{isset($value['working_resource']['work_status_value'][0]->title)?$value['working_resource']['work_status_value'][0]->title:'N/A'}}),</br>
@@ -227,7 +247,7 @@ Add Resource
 
 
                                     </td>
-                                    <td  class="text-center">
+                                    <td class="text-center">
 
                                         @if(isset($value['hire_resource']->name))
                                         {{$value['hire_resource']->name}} {{$value['hire_resource']->last_name}}-{{$value['hire_resource']->employee_id}} </br> {{isset($value['hire_resource']['client_status_value'][0]->title)?$value['hire_resource']['client_status_value'][0]->title:'N/A'}}),</br>
@@ -340,6 +360,7 @@ Add Resource
                 $('#resource_id').val(data.data.id);
                 $('#workingusers').val(data.data.working_user_id).trigger("change");
                 $('#hireusers').val(data.data.hire_user_id).trigger("change");
+                $('#status').val(data.data.status).trigger("change");
                 $('#hours').val(data.data.hours);
                 $('#resource_status').val(data.data.hours);
                 $('#work_type').val(data.data.hours);

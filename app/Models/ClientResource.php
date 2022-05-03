@@ -17,7 +17,8 @@ class ClientResource extends Model
         'year',
         'start_date',
         'end_date',
-        'hours'
+        'hours',
+        'status'
     ];
 
     public function working_resource()
