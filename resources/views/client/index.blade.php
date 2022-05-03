@@ -128,7 +128,7 @@ Toast::message('message', 'level', 'title');
                                 <td class="text-center">{{ isset($value->client_type['title'])?$value->client_type['title']:'' }}</td>
 
                                 <td class="text-center">{{ $value->starting_date}}</td>
-                                <td class="text-center">{{ $value->end_date}}</td>
+                                <td class="text-center">{{ ($value->end_date)?$value->end_date:'continue'}}</td>
 
                                 <td class="text-center">
                                     <a class="btn btn-warning myac_btn" href="{{url('/client/edit')}}/{{$value->id}}" data-toggle="tooltip" title="Edit!"> <i class="fa fa-edit"></i></button>

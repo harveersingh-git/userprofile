@@ -391,7 +391,7 @@ class ClientControlle extends Controller
         }
         if (isset($request['year']) && $request['year'] != null) {
 
-            $query->orWhere('year', $request['year']);
+            $query->where('year', $request['year']);
         }
         $result =  $query->paginate(10);
         return view('client.services', compact('result'));
