@@ -297,20 +297,39 @@ class ClientControlle extends Controller
         $data['workstatus'] =  WorkType::get();
         $data['users'] = User::where('id', '!=', 1)->get();
         $data['clients'] = Clients::get();
-        $result =  ClientResource::where('client_id', $id)->with(['working_resource', 'hire_resource'])->get();
+        $result =  ClientResource::where('client_id', $id)->with(['working_resource', 'hire_resource'])->orderBy('id', 'DESC')->get();
 
         if ($request->isMethod('post')) {
-            $request->validate([
-                'client_name' => 'required',
-                'working_user_name' => 'required',
-                'hire_user_name' => 'required',
-                'month' => 'required',
-                'year' => 'required',
-                'start_date' => 'required|before_or_equal:end_date',
-                'end_date' => 'required',
-                'hours' => 'required',
-                'status'=>'required'
-            ]);
+
+            if (isset($request['end_date']) && !empty($request['end_date'])) {
+
+                $request->validate([
+                    'client_name' => 'required',
+                    'working_user_name' => 'required',
+                    'hire_user_name' => 'required',
+                    'month' => 'required',
+                    'year' => 'required',
+                    'start_date' => 'required|before_or_equal:end_date',
+                    'end_date' => 'required',
+                    'hours' => 'required',
+                    'status' => 'required',
+                    'service_id' => 'required'
+                ]);
+            } else {
+
+                $request->validate([
+                    'client_name' => 'required',
+                    'working_user_name' => 'required',
+                    'hire_user_name' => 'required',
+                    'month' => 'required',
+                    'year' => 'required',
+                    'start_date' => 'required',
+                    'service_id' => 'required',
+                    'hours' => 'required',
+                    'status' => 'required'
+                ]);
+            }
+
             $input = $request->all();
             $input['client_id'] =  $input['client_name'];
             $input['working_user_id'] =  $input['working_user_name'];
@@ -322,6 +341,8 @@ class ClientControlle extends Controller
             $input['end_date'] =  $input['end_date'];
             $input['hours'] =  $input['hours'];
             $input['status'] =  $input['status'];
+            $input['service_id'] =  $input['service_id'];
+
             $client = ClientResource::updateOrCreate(['id' => $input['resource_id']], $input);
             // $client = ClientResource::create($input);
 
@@ -330,7 +351,7 @@ class ClientControlle extends Controller
                 $updated['work_type'] = $input['work_type'];
                 User::updateOrCreate(['id' => $input['working_user_name']], $updated);
             }
-            return redirect('clients')->with('message', 'Data added Successfully');
+            return redirect()->route('add-resource', $id)->with('message', 'Data added Successfully');
         }
 
         return view('client.addresource', compact('url', 'data', 'id', 'result'));
@@ -354,5 +375,25 @@ class ClientControlle extends Controller
             $data->delete();
             return response()->json(['status' => 'success']);
         }
+    }
+
+    public function services(Request $request)
+    {
+        $query =  ClientResource::with(['client_details', 'working_resource', 'hire_resource'])->orderBy('id', 'DESC')->orderBy('id', 'DESC');
+        if (isset($request['status']) && $request['status'] != null) {
+
+            $query->where('status', $request['status']);
+        }
+
+        if (isset($request['month']) && $request['month'] != null) {
+
+            $query->where('month', $request['month']);
+        }
+        if (isset($request['year']) && $request['year'] != null) {
+
+            $query->orWhere('year', $request['year']);
+        }
+        $result =  $query->paginate(10);
+        return view('client.services', compact('result'));
     }
 }

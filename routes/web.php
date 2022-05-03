@@ -101,7 +101,7 @@ Route::post('/delete_work_type', [App\Http\Controllers\WorkTypeController::class
 Route::any('/clients', [App\Http\Controllers\ClientControlle::class, 'index'])->name('clients');
 Route::any('/add-client', [App\Http\Controllers\ClientControlle::class, 'create'])->name('add-client');
 Route::any('/add-resource/{id}', [App\Http\Controllers\ClientControlle::class, 'createResource'])->name('add-resource');
-
+Route::any('/services', [App\Http\Controllers\ClientControlle::class, 'services'])->name('services');
 
 Route::post('/delete_resource', [App\Http\Controllers\ClientControlle::class, 'deleteResource']);
 Route::any('/client/edit/{id}', [App\Http\Controllers\ClientControlle::class, 'view']);

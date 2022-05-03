@@ -40,7 +40,7 @@
 
             <ul class="dropdown-menu">
                 <li><a href="{{route('clients')}}" class="{{ Request::segment(1) === 'clients' ? 'active' : null }}"><i class="fa fa-american-sign-language-interpreting"></i> Clients List</a></li>
-                <li> <a href="#"><i class="fa fa-cogs"></i> Services List</a>
+                <li> <a href="{{route('services')}}" class="{{ Request::segment(1) === 'services' ? 'active' : null }}"><i class="fa fa-cogs"></i> Services List</a>
 
 
                 </li>

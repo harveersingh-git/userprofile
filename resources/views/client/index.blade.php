@@ -79,7 +79,7 @@ Toast::message('message', 'level', 'title');
         <!-- /.row -->
         <div class="">
             <div class="form-inline">
-            <a data-toggle="tooltip" data-placement="top" title="Client Status" href="{{url('clients?client_type=0')}}" class="btn" style="margin-bottom: 4px; background-color:gray;color:black;">All </a>
+                <a data-toggle="tooltip" data-placement="top" title="Client Status" href="{{url('clients?client_type=0')}}" class="btn" style="margin-bottom: 4px; background-color:gray;color:#fff;">All </a>
 
                 @forelse ($client_type as $status)
 
@@ -121,7 +121,7 @@ Toast::message('message', 'level', 'title');
                             <tr>
                                 <td class="text-center" data-toggle="tooltip" data-placement="top" style="background-color: {{isset($value->client_type->background_color) ? $value->client_type->background_color:''}}"><span style="color: {{isset($value->client_type->font_color) ? $value->client_type->font_color:'';}}">{{ $key+1 }} </span></td>
                                 <td class="text-center"><a href="{{url('add-resource')}}/{{$value->id}}">{{count($value->client_resource)}}</a></td>
-                        
+
                                 <td class="text-center">{{ $value->client_code}}</td>
                                 <td class="text-center">{{ $value->client_name}}</td>
                                 <td class="text-center">{{ $value->client_email}}</td>

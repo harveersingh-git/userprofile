@@ -18,7 +18,8 @@ class ClientResource extends Model
         'start_date',
         'end_date',
         'hours',
-        'status'
+        'status',
+        'service_id'
     ];
 
     public function working_resource()
@@ -29,4 +30,11 @@ class ClientResource extends Model
     {
         return $this->belongsTo(User::class, 'hire_user_id', 'id')->with(['client_status_value', 'work_status_value']);
     }
+
+
+    public function client_details()
+    {
+        return $this->belongsTo(Clients::class, 'client_id', 'id');
+    }
+
 }

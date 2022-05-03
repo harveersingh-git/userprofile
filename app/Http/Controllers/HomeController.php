@@ -48,9 +48,10 @@ class HomeController extends Controller
         )->count();
 
         $data['total_client'] = Clients::distinct('client_email')->count();
+        // dd($data['total_client']);
         $data['total_users'] = User::where('id', '!=', 1)->count();
         $data['active_client'] = Clients::whereHas('client_type', function ($q) {
-            $q->where('title', '=', 'active');
+            $q->where('title','active');
         })->count();
 
         $data['zeo_three'] = User::where('experience', '>=', 1)->where('experience', '<', 3)->count();
@@ -63,7 +64,7 @@ class HomeController extends Controller
 
 
         $data['client_status'] =  ClientStatus::withCount('client_status_count')->orderBy('order_by', 'asc')->get();
-
+        
         return view('home', compact('data'));
     }
 }

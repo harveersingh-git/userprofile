@@ -36,7 +36,7 @@ Add Resource
                                     @csrf
                                     <div class="form-group">
                                         <div class="row">
-                                            <input type="hidden" name="resource_id" id="resource_id">
+                                            <input type="hidden" name="resource_id" id="resource_id" value="{{old('resource_id')}}">
 
                                             <div class="col-lg-3 form-group">
                                                 <label>Working Resource<span style="color: red;">*</span></label>
@@ -45,7 +45,7 @@ Add Resource
                                                     <option value="">--Please select--</option>
                                                     @forelse($data['users'] as $key=>$user)
 
-                                                    <option value="{{$user['id']}}">{{$user['name']}} - {{$user['last_name']}}</option>
+                                                    <option value="{{$user['id']}}" {{ ( $user['id'] == old('working_user_name')) ? 'selected' : '' }}>{{$user['name']}} - {{$user['last_name']}}</option>
 
 
                                                     @empty
@@ -64,7 +64,7 @@ Add Resource
                                                     <option value="">--Please select--</option>
                                                     @forelse($data['users'] as $key=>$user)
 
-                                                    <option value="{{$user['id']}}">{{$user['name']}} - {{$user['last_name']}}</option>
+                                                    <option value="{{$user['id']}}" {{ ( $user['id'] == old('hire_user_name')) ? 'selected' : '' }}>{{$user['name']}} - {{$user['last_name']}}</option>
 
 
                                                     @empty
@@ -92,7 +92,7 @@ Add Resource
                                                     <option value="">--Please select--</option>
                                                     @forelse($data['workstatus'] as $key=>$type)
 
-                                                    <option value="{{$type['id']}}">{{$type['title']}}</option>
+                                                    <option value="{{$type['id']}}" {{ ( $type['id'] == old('work_type')) ? 'selected' : '' }}>{{$type['title']}}</option>
 
 
                                                     @empty
@@ -111,7 +111,7 @@ Add Resource
                                                     <option value="">--Please select--</option>
                                                     @forelse($data['client_status'] as $key=>$client)
 
-                                                    <option value="{{$client['id']}}">{{$client['title']}}</option>
+                                                    <option value="{{$client['id']}}" {{ ( $client['id'] == old('resource_status')) ? 'selected' : '' }}>{{$client['title']}}</option>
 
 
                                                     @empty
@@ -134,7 +134,7 @@ Add Resource
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-lg-3 form-group ">
+                                            <div class="col-lg-2 form-group ">
                                                 <label>Month<span style="color: red;">*</span></label>
                                                 <select class="form-control" name="month" id="month" required="">
                                                     <option value="">--Please select--</option>
@@ -157,15 +157,24 @@ Add Resource
                                                 @enderror
                                             </div>
 
-                                            <div class="col-lg-3 form-group form-group datepicker-prsonal_new">
+                                            <div class="col-lg-2 form-group form-group datepicker-prsonal_new">
                                                 <label>Year <span style="color: red;">*</span></label>
                                                 <input class="form-control" placeholder="2022" name="year" id="year" value="{{old('year')}}" autocomplete="off" />
                                                 @error('year')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
+                                            <div class="col-lg-2 form-group">
+                                                <label>Service Id<span style="color: red;">*</span></label>
+                                                <input class="form-control" placeholder="Ex: 12345" name="service_id" id="service_id" value="{{old('service_id')}}" autocomplete="off" type="text" min="1" />
+                                                @error('service_id')
+                                                <p class="alert alert-danger"> {{ $message }} </p>
+                                                @enderror
 
-                                            <div class="col-lg-3 form-group datepicker-prsonal_new">
+
+                                            </div>
+
+                                            <div class="col-lg-2 form-group datepicker-prsonal_new">
                                                 <label>Start Date<span style="color: red;">*</span></label>
                                                 <input class="form-control" placeholder="2022-01-13" name="start_date" id="start_date" value="{{old('start_date')}}" required="" autocomplete="off" />
                                                 @error('start_date')
@@ -173,33 +182,38 @@ Add Resource
                                                 @enderror
                                             </div>
 
-                                            <div class="col-lg-3 form-group form-group datepicker-prsonal_new">
-                                                <label>End Date<span style="color: red;">*</span></label>
+                                            <div class="col-lg-2 form-group form-group datepicker-prsonal_new">
+                                                <label>End Date</label>
                                                 <input class="form-control" placeholder="2022-01-13" name="end_date" id="end_date" value="{{old('end_date')}}" autocomplete="off" />
                                                 @error('end_date')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-3 form-group ">
+                                            <div class="col-lg-2 form-group ">
                                                 <label>Status<span style="color: red;">*</span></label>
                                                 <select class="form-control" name="status" id="status" required="">
                                                     <option value="">--Please select--</option>
                                                     <option selected value='Active'>Active</option>
                                                     <option value='In-active'>In-active</option>
-                                                    
+                                                    <option value='Completed'>Completed</option>
+
 
                                                 </select>
                                                 @error('month')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
-
                                         </div>
 
+
                                         <div class="col-lg-3 form-group form-group " id="button_div">
+                                            @if(!empty(old('resource_id')))
                                             <button type="submit" class="btn btn-info " id="add">Add</button>
+                                            <a href="javascript:window.location.href=window.location.href" class="btn btn-danger " id="add">Reset </a>
+                                            @else
+                                            <button type="submit" class="btn btn-info " id="add">Add</button>
+                                            @endif
+
                                         </div>
 
                                 </form>
@@ -262,7 +276,7 @@ Add Resource
                                     <td class="text-center">{{ isset($value->month)?$value->month:'' }}</td>
                                     <td class="text-center">{{ isset($value->year)?$value->year:'' }}</td>
                                     <td class="text-center">{{ $value->start_date}}</td>
-                                    <td class="text-center">{{ $value->end_date}}</td>
+                                    <td class="text-center">{{ ($value->end_date)?$value->end_date:'continue'}}</td>
 
                                     <td class="text-center">
                                         <a class="btn btn-warning myac_btn edit_resource" href="javascript:void(0)" data-toggle="tooltip" title="Edit!" id="{{$value->id}}"> <i class="fa fa-edit"></i></button>
@@ -370,6 +384,7 @@ Add Resource
                 $('#end_date').val(data.data.end_date);
                 $('#work_type').val(data.data.working_resource.work_type);
                 $('#resource_status').val(data.data.working_resource.client_status);
+                $('#service_id').val(data.data.service_id);
                 $('#add').text('Update');
 
             }

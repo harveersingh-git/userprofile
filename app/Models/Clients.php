@@ -53,7 +53,7 @@ class Clients extends Model
 
     // }
     public function client_resource(){
-        return $this->hasMany(ClientResource::class, 'client_id', 'id')->with(['working_resource','hire_resource']);;
+        return $this->hasMany(ClientResource::class, 'client_id', 'id')->with(['working_resource','hire_resource'])->where('status','Active');
 
     }
     
