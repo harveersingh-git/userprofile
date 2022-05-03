@@ -36,7 +36,7 @@ Add Resource
                                     @csrf
                                     <div class="form-group">
                                         <div class="row">
-                                            <input type="hiddden" name="resource_id" id="resource_id">
+                                            <input type="hidden" name="resource_id" id="resource_id">
 
                                             <div class="col-lg-3 form-group">
                                                 <label>Working Resource<span style="color: red;">*</span></label>
