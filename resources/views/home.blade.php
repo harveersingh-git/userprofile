@@ -71,7 +71,7 @@
                                 <i class="fa fa-tasks fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">{{$data['active_client']}}</div>
+                                <div class="huge">{{count($data['active_client'])}}</div>
                                 <div>Total Services</div>
                             </div>
                         </div>
