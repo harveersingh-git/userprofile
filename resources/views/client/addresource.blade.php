@@ -174,7 +174,7 @@ Add Resource
                                             </div>
 
                                             <div class="col-lg-3 form-group form-group datepicker-prsonal_new">
-                                                <label>End Date</label>
+                                                <label>End Date<span style="color: red;">*</span></label>
                                                 <input class="form-control" placeholder="2022-01-13" name="end_date" id="end_date" value="{{old('end_date')}}" autocomplete="off" />
                                                 @error('end_date')
                                                 <p class="alert alert-danger"> {{ $message }} </p>
