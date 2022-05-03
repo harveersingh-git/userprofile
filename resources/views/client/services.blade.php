@@ -35,18 +35,18 @@ All services
 
                             <select class="form-control" name="month" id="month">
                                 <option value="">--Select Month--</option>
-                                <option value='Janaury'>Janaury</option>
-                                <option value='February'>February</option>
-                                <option value='March'>March</option>
-                                <option value='April'>April</option>
-                                <option value='May'>May</option>
-                                <option value='June'>June</option>
-                                <option value='July'>July</option>
-                                <option value='August'>August</option>
-                                <option value='September'>September</option>
-                                <option value='October'>October</option>
-                                <option value='November'>November</option>
-                                <option value='December'>December</option>
+                                <option value='Janaury' {{ ( Request::get('month') == 'Janaury') ? 'selected' : '' }}>Janaury</option>
+                                <option value='February' {{ ( Request::get('month')  == 'February')  ? 'selected' : '' }}>February</option>
+                                <option value='March' {{ ( Request::get('month')  =='March') ? 'selected' : '' }}>March</option>
+                                <option value='April' {{ ( Request::get('month')  == 'April') ? 'selected' : '' }}>April</option>
+                                <option value='May' {{ ( Request::get('month')  == 'May') ? 'selected' : '' }}>May</option>
+                                <option value='June' {{ ( Request::get('month')  == 'june') ? 'selected' : '' }}>June</option>
+                                <option value='July' {{ ( Request::get('month') == 'July') ? 'selected' : '' }}>July</option>
+                                <option value='August' {{ ( Request::get('month')  == 'August') ? 'selected' : '' }}>August</option>
+                                <option value='September' {{ ( Request::get('month')  == 'September') ? 'selected' : '' }}>September</option>
+                                <option value='October' {{ ( Request::get('month')  == 'October') ? 'selected' : '' }}>October</option>
+                                <option value='November' {{ (Request::get('month')  == 'November') ? 'selected' : '' }}>November</option>
+                                <option value='December' {{ (Request::get('month')  == 'December') ? 'selected' : '' }}>December</option>
 
                             </select>
                         </div>
@@ -84,7 +84,7 @@ All services
                             <thead>
                                 <tr>
                                     <th width="5%" class="text-center">Sr. No.</th>
-                               
+
                                     <th class="text-center">Client Details</th>
                                     <th class="text-center">Working Resource</th>
                                     <th class="text-center">Front Resource</th>
