@@ -389,7 +389,7 @@ class ClientControlle extends Controller
     public function services(Request $request)
     {
         $search = $request->all();
-        $query =  ClientResource::with(['client_details', 'working_resource', 'hire_resource'])->orderBy('id', 'DESC')->orderBy('id', 'DESC');
+        $query =  ClientResource::with(['client_details', 'working_resource', 'hire_resource']);
 
         if (isset($request['status']) && $request['status'] != null) {
             if ($request['status'] != '0') {
