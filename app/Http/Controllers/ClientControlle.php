@@ -390,10 +390,13 @@ class ClientControlle extends Controller
     {
 
         $query =  ClientResource::with(['client_details', 'working_resource', 'hire_resource'])->orderBy('id', 'DESC')->orderBy('id', 'DESC');
+     
         if (isset($request['status']) && $request['status'] != null) {
             if ($request['status'] != '0') {
                 $query->where('status', $request['status']);
             }
+        }else{
+            $query->where('status', "Active");
         }
 
         if (isset($request['month']) && $request['month'] != null) {
@@ -410,6 +413,7 @@ class ClientControlle extends Controller
         $data['In-active'] = ClientResource::where('status', 'In-active')->count();
         $data['Completed'] = ClientResource::where('status', 'Completed')->count();
         $data['All'] = ClientResource::count();
+
         return view('client.services', compact('result', 'data'));
     }
 }
