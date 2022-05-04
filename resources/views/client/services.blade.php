@@ -66,9 +66,11 @@ All services
         <!-- /.row -->
         <div class="">
             <div class="form-inline">
-                <a data-toggle="tooltip" data-placement="top" title="Resource Status" href="{{url('services?status=Active')}}" class="btn" style="margin-bottom: 4px; background-color:#556b2f;color:#fff;">Active </a>
-                <a data-toggle="tooltip" data-placement="top" title="Resource Status" href="{{url('services?status=In-active')}}" class="btn" style="margin-bottom: 4px; background-color:#e3963e;color:#fff;">In-active </a>
-                <a data-toggle="tooltip" data-placement="top" title="Resource Status" href="{{url('services?status=Completed')}}" class="btn" style="margin-bottom: 4px; background-color:#1b1b1b;color:#fff;">Completed </a>
+            <a data-toggle="tooltip" data-placement="top" title="Resource Status" href="{{url('services?status=0&year=')}}{{request()->get('year')?request()->get('year'):''}}&month={{request()->get('month')?request()->get('month'):''}}" class="btn" style="margin-bottom: 4px; background-color:gray;color:#fff;">All({{$data['All']}}) </a>
+
+                <a data-toggle="tooltip" data-placement="top" title="Resource Status" href="{{url('services?status=Active&year=')}}{{request()->get('year')?request()->get('year'):''}}&month={{request()->get('month')?request()->get('month'):''}}" class="btn" style="margin-bottom: 4px; background-color:#556b2f;color:#fff;">Active({{$data['active']}}) </a>
+                <a data-toggle="tooltip" data-placement="top" title="Resource Status" href="{{url('services?status=In-active&year=')}}{{request()->get('year')?request()->get('year'):''}}&month={{request()->get('month')?request()->get('month'):''}}" class="btn" style="margin-bottom: 4px; background-color:#e3963e;color:#fff;">In-active({{$data['In-active']}}) </a>
+                <a data-toggle="tooltip" data-placement="top" title="Resource Status" href="{{url('services?status=Completed&year=')}}{{request()->get('year')?request()->get('year'):''}}&month={{request()->get('month')?request()->get('month'):''}}" class="btn" style="margin-bottom: 4px; background-color:#1b1b1b;color:#fff;">Completed({{$data['Completed']}}) </a>
 
 
 

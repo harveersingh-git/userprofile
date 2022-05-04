@@ -60,7 +60,13 @@ class ClientControlle extends Controller
         $work_type = WorkType::get();
         $client_status = ClientStatus::get();
         $client_type = ClientType::get();
+        if (count($client_type) > 0) {
+            foreach ($client_type as $key => $valu) {
+                $client_type[$key]['count'] = Clients::where('client_type_id', $valu->id)->count();
+            }
+        }
 
+        // dd($client_type->toArray());
         if (!isset($request['client_type'])) {
             foreach ($client_type as $val) {
                 if ($val->title == 'ACTIVE') {
@@ -146,8 +152,11 @@ class ClientControlle extends Controller
 
             return response()->stream($callback, 200, $headers);
         }
+        $count['all'] = Clients::count();
+
+
         // dd($data->toArray());
-        return view('client.index', compact('data', 'client_type', 'work_type', 'client_status'));
+        return view('client.index', compact('data', 'client_type', 'work_type', 'client_status', 'count'));
     }
 
     /**
@@ -349,7 +358,7 @@ class ClientControlle extends Controller
             if ($client) {
                 $updated['client_status'] = $input['resource_status'];
                 $updated['work_type'] = $input['work_type'];
-                User::updateOrCreate(['id' => $input['working_user_name']], $updated);
+                // User::updateOrCreate(['id' => $input['working_user_name']], $updated);
             }
             return redirect()->route('add-resource', $id)->with('message', 'Data added Successfully');
         }
@@ -379,10 +388,12 @@ class ClientControlle extends Controller
 
     public function services(Request $request)
     {
+
         $query =  ClientResource::with(['client_details', 'working_resource', 'hire_resource'])->orderBy('id', 'DESC')->orderBy('id', 'DESC');
         if (isset($request['status']) && $request['status'] != null) {
-
-            $query->where('status', $request['status']);
+            if ($request['status'] != '0') {
+                $query->where('status', $request['status']);
+            }
         }
 
         if (isset($request['month']) && $request['month'] != null) {
@@ -394,6 +405,11 @@ class ClientControlle extends Controller
             $query->where('year', $request['year']);
         }
         $result =  $query->paginate(10);
-        return view('client.services', compact('result'));
+
+        $data['active'] = ClientResource::where('status', 'Active')->count();
+        $data['In-active'] = ClientResource::where('status', 'In-active')->count();
+        $data['Completed'] = ClientResource::where('status', 'Completed')->count();
+        $data['All'] = ClientResource::count();
+        return view('client.services', compact('result', 'data'));
     }
 }

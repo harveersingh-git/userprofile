@@ -49,7 +49,7 @@ class HomeController extends Controller
         )->count();
 
         $data['total_client'] = Clients::distinct('client_email')->count();
-        $data['total_services'] = ClientResource::count();
+        $data['total_services'] = ClientResource::where('status', 'Active')->count();
         $data['total_users'] = User::where('id', '!=', 1)->count();
         $data['active_client'] = Clients::whereHas('client_type', function ($q) {
             $q->where('title', '=', 'active');
