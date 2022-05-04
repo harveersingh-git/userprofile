@@ -407,7 +407,7 @@ class ClientControlle extends Controller
 
             $query->where('year', $request['year']);
         }
-        $result =  $query->paginate(10);
+        $result =  $query->orderBy('client_id','ASC')->paginate(50);
 
         $data['active'] = ClientResource::where('status', 'Active')->count();
         $data['In-active'] = ClientResource::where('status', 'In-active')->count();
