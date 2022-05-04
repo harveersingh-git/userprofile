@@ -174,7 +174,7 @@ All services
                             </tbody>
 
                         </table>
-                        {!! $result->links() !!}
+                        {!! $result->appends($search)->links() !!}
                     </div>
 
                 </div>

@@ -388,14 +388,14 @@ class ClientControlle extends Controller
 
     public function services(Request $request)
     {
-
+        $search = $request->all();
         $query =  ClientResource::with(['client_details', 'working_resource', 'hire_resource'])->orderBy('id', 'DESC')->orderBy('id', 'DESC');
-     
+
         if (isset($request['status']) && $request['status'] != null) {
             if ($request['status'] != '0') {
                 $query->where('status', $request['status']);
             }
-        }else{
+        } else {
             $query->where('status', "Active");
         }
 
@@ -414,6 +414,6 @@ class ClientControlle extends Controller
         $data['Completed'] = ClientResource::where('status', 'Completed')->count();
         $data['All'] = ClientResource::count();
 
-        return view('client.services', compact('result', 'data'));
+        return view('client.services', compact('result', 'data','search'));
     }
 }
