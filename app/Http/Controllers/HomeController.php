@@ -75,8 +75,8 @@ class HomeController extends Controller
         // $currentmonthResourcesCount =    ClickUp::whereMonth('created_at', date('m'))
         //     ->whereYear('created_at', date('Y'))
         //     ->get()->groupBy('user_id')->count();
-            $currentmonthResourcesCount =    User::get()->groupBy('id')->count();
-    
+            $currentmonthResourcesCount =    User::count();
+        dd(  $currentmonthResourcesCount);
         // if (count($currentmonthhours) > 0) {
         //     foreach ($currentmonthhours as $time) {
         //         list($hour, $minute) = explode(':', $time->time);
