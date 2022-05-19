@@ -59,7 +59,7 @@ class UserController extends Controller
 
             $skills = $skill->pluck('id');
         }
-        dd($skills );
+    
 
         // $query = User::with('myTeam')->where('id', '!=', 1);
 
@@ -173,7 +173,7 @@ class UserController extends Controller
         // }
 
         $data = $query->orderBy('id', 'DESC')->paginate(20);
-        // dd(  $data->toArray());
+        dd(  $data->toArray());
 
         $client_status = ClientStatus::with('client_status_count')->orderBy('order_by','asc')->get();
 
