@@ -101,7 +101,7 @@ class HomeController extends Controller
     
         $currentmonthResourcesTotal =  ((($currentmonthResourcesCount + 1) * 176)- $currentmonthhours)/100;
 
-            // dd(    $currentmonthResourcesTotal);
+            dd(    $currentmonthResourcesTotal);
         return view('home', compact('data'));
     }
 }
