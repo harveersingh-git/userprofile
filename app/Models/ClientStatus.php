@@ -12,15 +12,16 @@ class ClientStatus extends Model
         'title',
         'background_color',
         'font_color',
-        'order_by'
+        'order_by',
+        'image'
     ];
 
     public function getTitleAttribute($value)
     {
         return strtoupper($value);
     }
-    public function client_status_count(){
+    public function client_status_count()
+    {
         return $this->hasMany(User::class, 'client_status', 'id');
-
     }
 }

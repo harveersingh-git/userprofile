@@ -18,7 +18,13 @@
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-3">
+                                @if(isset($clientstatus['image']))
+                                <img src="{{asset('clientStatus/')}}/{{$clientstatus['image']}}" id="p1img1"  width="80" height="80">
+
+                                @else
                                 <i class="fa fa-support fa-5x" style="color:#fff"></i>
+                                @endif
+
                             </div>
                             <div class="col-xs-9 text-right">
                                 <div class="huge" style="color: {{$clientstatus['font_color']}};">{{$clientstatus['client_status_count_count']}}</div>
@@ -100,6 +106,29 @@
                         </div>
                     </div>
                     <a href="{{url('/users')}}">
+                        <div class="panel-footer">
+                            <span class="pull-left">View Details</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6" style="height: 181px;">
+                <div class="panel panel-red">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-table fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">{{$data['banch_percent']}}</div>
+                                <div>Banch %</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#">
                         <div class="panel-footer">
                             <span class="pull-left">View Details</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -283,7 +312,7 @@
                                         </td>
                                         <!-- <td class="text-center">
                                             {{count($client->client_resource)}} -->
-<!-- 
+                                        <!-- 
                                             @forelse($client->client_resource as $key => $resource)
                                             <a href="{{url('/users?search=')}}{{$resource->hire_resource['name']}}">{{$resource->hire_resource['name']}}</a>
                                             @empty

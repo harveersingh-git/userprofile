@@ -28,7 +28,7 @@ Add Skills Education
                         <div class="row">
                             <div class="col-lg-12">
 
-                                <form role="form" action="{{url('update-client-status')}}" method="post">
+                                <form role="form" action="{{url('update-client-status')}}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$id}}">
 
@@ -77,6 +77,25 @@ Add Skills Education
                                                             @error('font_color')
                                                              <p class="alert alert-danger"> {{ $message }} </p>
                                                              @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6 form-group">
+                                                <label>Icon</label>
+                                                <div class=" row">
+
+                                                    <div class="col-md-12 col-sm-12  ">
+                                                        <div class="input-group demo2">
+                                                            <input type="file" value="#e01ab5" class="form-control" name="image" />
+                                                            @error('image')
+                                                            <p class="alert alert-danger"> {{ $message }} </p>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                 </div>

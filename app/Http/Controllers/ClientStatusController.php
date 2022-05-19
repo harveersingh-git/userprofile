@@ -32,8 +32,14 @@ class ClientStatusController extends Controller
                 'background_color' => 'required',
                 'font_color' => 'required'
             ]);
-
             $input = $request->all();
+            if (isset($request->image)) {
+
+                $imageName = time() . '.' . $request->image->extension();
+                $request->image->move(public_path('clientStatus'), $imageName);
+
+                $input['image'] =  $imageName;
+            }
 
 
             $user = ClientStatus::create($input);
@@ -58,10 +64,18 @@ class ClientStatusController extends Controller
         $input = $request->all();
         $id = $request['id'];
         $data = ClientStatus::find($id);
+        if (isset($request->image)) {
+
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('clientStatus'), $imageName);
+
+            $input['image'] =  $imageName;
+        }
         $data->update([
             'title' => $input['title'],
             'background_color' => $input['background_color'],
-            'font_color' => $input['font_color']
+            'font_color' => $input['font_color'],
+            'image' => (isset($input['image'])) ? $input['image'] : $data['image']
         ]);
 
         if ($id) {

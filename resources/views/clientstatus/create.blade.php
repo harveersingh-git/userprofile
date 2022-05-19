@@ -29,7 +29,7 @@ Add Skills Education
                         <div class="row">
                             <div class="col-lg-12">
 
-                                <form role="form" action="{{$url}}" method="post">
+                                <form role="form" action="{{$url}}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="">
                                         <div class="row">
@@ -46,16 +46,16 @@ Add Skills Education
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6 form-group">
-                                            <label>Background Color</label>
+                                                <label>Background Color</label>
                                                 <div class=" row">
-                                                    
+
                                                     <div class="col-md-12 col-sm-12  ">
                                                         <div class="input-group demo2">
                                                             <input type="text" value="#e01ab5" class="form-control" name="background_color" />
                                                             <span class="input-group-addon"><i></i></span>
                                                             @error('background_color')
-                                                <p class="alert alert-danger"> {{ $message }} </p>
-                                                @enderror
+                                                            <p class="alert alert-danger"> {{ $message }} </p>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                 </div>
@@ -66,16 +66,35 @@ Add Skills Education
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6 form-group">
-                                            <label>Font Color</label>
+                                                <label>Font Color</label>
                                                 <div class=" row">
-                                                    
+
                                                     <div class="col-md-12 col-sm-12  ">
                                                         <div class="input-group demo2">
-                                                            <input type="text" value="#e01ab5" class="form-control" name="font_color"/>
+                                                            <input type="text" value="#e01ab5" class="form-control" name="font_color" />
                                                             <span class="input-group-addon"><i></i></span>
                                                             @error('font_color')
-                                                             <p class="alert alert-danger"> {{ $message }} </p>
-                                                             @enderror
+                                                            <p class="alert alert-danger"> {{ $message }} </p>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6 form-group">
+                                                <label>Icon</label>
+                                                <div class=" row">
+
+                                                    <div class="col-md-12 col-sm-12  ">
+                                                        <div class="input-group demo2">
+                                                            <input type="file" value="#e01ab5" class="form-control" name="image" />
+                                                            @error('image')
+                                                            <p class="alert alert-danger"> {{ $message }} </p>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                 </div>
@@ -113,22 +132,24 @@ Add Skills Education
 </div>
 @section('script')
 <script>
-function init_ColorPicker() {
+    function init_ColorPicker() {
 
-    if (typeof ($.fn.colorpicker) === 'undefined') { return; }
- 
-    $('.demo2').colorpicker();
+        if (typeof($.fn.colorpicker) === 'undefined') {
+            return;
+        }
+
+        $('.demo2').colorpicker();
 
 
-};
+    };
 
 
-$(document).ready(function () {
+    $(document).ready(function() {
 
-    init_ColorPicker();
-    
+        init_ColorPicker();
 
-});	
+
+    });
 </script>
 @endsection
 @endsection
