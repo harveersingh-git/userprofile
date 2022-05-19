@@ -358,7 +358,7 @@ class ClientControlle extends Controller
             if ($client) {
                 $updated['client_status'] = $input['resource_status'];
                 $updated['work_type'] = $input['work_type'];
-                // User::updateOrCreate(['id' => $input['working_user_name']], $updated);
+                User::updateOrCreate(['id' => $input['working_user_name']], $updated);
             }
             return redirect()->route('add-resource', $id)->with('message', 'Data added Successfully');
         }
