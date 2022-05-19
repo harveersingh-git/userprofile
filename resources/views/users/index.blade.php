@@ -131,6 +131,7 @@ Toast::message('message', 'level', 'title');
                     <table class="table table-bordered table-responsive">
                         <thead>
                             <tr>
+                            <th class="text-center">Sr. No.</th>
                                 <th class="text-center">Emp Id</th>
                                 <th class="text-center"> Name</th>
                                 <th class="text-center">Joining Date</th>
@@ -152,6 +153,7 @@ Toast::message('message', 'level', 'title');
                             @if(!empty($data) && $data->count())
                             @foreach($data as $key => $value)
                             <tr class="text-center" id="{{ $value->id }}">
+                            <td class="text-center">{{ $key+1 }}</td>
                                 <td data-toggle="tooltip" data-placement="top" title="{{isset($value->client_status_value['0']->title) ? $value->client_status_value['0']->title:'';}} " style="background-color: {{isset($value->client_status_value['0']->background_color) ? $value->client_status_value['0']->background_color:'';}}  "><span style="color: {{isset($value->client_status_value['0']->font_color) ? $value->client_status_value['0']->font_color:'';}}">{{ $value->employee_id }} </span></td>
                                 <td>{{ $value->name }} {{ $value->last_name }} </br> <span style="color: red;font-size: 10px;">{{isset($value->work_status_value['0']->title) ? $value->work_status_value['0']->title:'';}}</span></td>
                                 <td>{{ Carbon\Carbon::parse($value->joining_date)->format('d F Y') }}</td>

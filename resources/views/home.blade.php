@@ -124,7 +124,7 @@
                             </div>
                             <div class="col-xs-9 text-right">
                                 <div class="huge">{{$data['banch_percent']}}</div>
-                                <div>Banch %</div>
+                                <div>Bench %</div>
                             </div>
                         </div>
                     </div>

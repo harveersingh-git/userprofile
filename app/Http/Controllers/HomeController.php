@@ -68,32 +68,39 @@ class HomeController extends Controller
         $data['client_status'] =  ClientStatus::withCount('client_status_count')->orderBy('order_by', 'asc')->get();
 
 
-        $currentmonthhours =    ClickUp::whereMonth('created_at', date('m'))
-            ->whereYear('created_at', date('Y'))
-            ->get();
+        // $currentmonthhours =    ClickUp::whereMonth('created_at', date('m'))
+        //     ->whereYear('created_at', date('Y'))
+        //     ->get();
 
         $currentmonthResourcesCount =    ClickUp::whereMonth('created_at', date('m'))
             ->whereYear('created_at', date('Y'))
             ->get()->groupBy('user_id')->count();
 
         $minutes = 0;
-        if (count($currentmonthhours) > 0) {
-            foreach ($currentmonthhours as $time) {
-                list($hour, $minute) = explode(':', $time->time);
-                $minutes += $hour * 60;
-                $minutes += $minute;
-            }
+        // if (count($currentmonthhours) > 0) {
+        //     foreach ($currentmonthhours as $time) {
+        //         list($hour, $minute) = explode(':', $time->time);
+        //         $minutes += $hour * 60;
+        //         $minutes += $minute;
+        //     }
 
-            $hours = floor($minutes / 60);
-            $minutes -= $hours * 60;
+        //     $hours = floor($minutes / 60);
+        //     $minutes -= $hours * 60;
 
-            $current_mont_spend_hours =    $hours;
-            $currentmonthResourcesTotal = $currentmonthResourcesCount * 176;
-            $data['banch_percent'] = ($currentmonthResourcesTotal - $current_mont_spend_hours) / 100;
-        } else {
-            $data['banch_percent'] = 0;
-        }
+        //     $current_mont_spend_hours =    $hours;
+        //     $currentmonthResourcesTotal = $currentmonthResourcesCount * 176;
+        //     $data['banch_percent'] = ($currentmonthResourcesTotal - $current_mont_spend_hours) / 100;
+        // } else {
+        //     $data['banch_percent'] = 0;
+        // }
+        $month = date('M');
+        $year = date('Y');
+        $currentmonthhours =    ClientResource::where('month',  $month)
+            ->where('year', $year)
+            ->get()->sum('hours');
 
+        $currentmonthResourcesTotal = $currentmonthhours - ($currentmonthResourcesCount + 1) * 176;
+            dd(   $currentmonthResourcesTotal);
 
         return view('home', compact('data'));
     }
