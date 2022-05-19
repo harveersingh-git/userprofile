@@ -59,7 +59,7 @@ class UserController extends Controller
 
             $skills = $skill->pluck('id');
         }
-
+        dd($skills );
 
         // $query = User::with('myTeam')->where('id', '!=', 1);
 
