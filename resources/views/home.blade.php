@@ -269,8 +269,10 @@
 
                                     <tr>
                                         <td class="text-center">{{ $key+1 }}</td>
-                                        <td class="text-center"><a href="{{url('/clients?client_search=')}}{{$client->client_name}}">{{$client->client_name }}</a></td>
-                                        <td class="text-center"><a href="{{url('/clients?client_search=')}}{{$client->client_code}}">{{$client->client_code }}</a></td>
+                                        <!-- <td class="text-center"><a href="{{url('/clients?client_search=')}}{{$client->client_name}}">{{$client->client_name }}</a></td>
+                                        <td class="text-center"><a href="{{url('/clients?client_search=')}}{{$client->client_code}}">{{$client->client_code }}</a></td> -->
+                                        <td class="text-center"><a href="{{url('/add-resource')}}{{$client->id}}">{{$client->client_name }}</a></td>
+                                        <td class="text-center"><a href="{{url('/add-resource')}}{{$client->id}}">{{$client->client_code }}</a></td>
                                         <td class="text-center">
                                             {{count($client->client_resource)}}
                                             <!-- @forelse($client->client_resource as $key => $resource) -->
