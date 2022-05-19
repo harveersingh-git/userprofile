@@ -72,11 +72,11 @@ class HomeController extends Controller
         //     ->whereYear('created_at', date('Y'))
         //     ->get();
 
-        $currentmonthResourcesCount =    ClickUp::whereMonth('created_at', date('m'))
-            ->whereYear('created_at', date('Y'))
-            ->get()->groupBy('user_id')->count();
-
-        $minutes = 0;
+        // $currentmonthResourcesCount =    ClickUp::whereMonth('created_at', date('m'))
+        //     ->whereYear('created_at', date('Y'))
+        //     ->get()->groupBy('user_id')->count();
+            $currentmonthResourcesCount =    User::get()->groupBy('id')->count();
+    
         // if (count($currentmonthhours) > 0) {
         //     foreach ($currentmonthhours as $time) {
         //         list($hour, $minute) = explode(':', $time->time);
@@ -98,7 +98,7 @@ class HomeController extends Controller
         $currentmonthhours =    ClientResource::where('month',  $month)
             ->where('year', $year)
             ->get()->sum('hours');
-            dd($currentmonthResourcesCount );
+    
         $currentmonthResourcesTotal =  ((($currentmonthResourcesCount + 1) * 176)- $currentmonthhours)/100;
 
             // dd(    $currentmonthResourcesTotal);
