@@ -99,7 +99,7 @@ class HomeController extends Controller
             ->where('year', $year)
             ->get()->sum('hours');
         $resource = ($currentmonthResourcesCount) * 176;
-        $bench =  round((($resource - $currentmonthhours) / $resource) * 100);
+        $bench =  ((($resource - $currentmonthhours) / $resource) * 100);
         $data['banch_percent'] =   number_format($bench,2);
         return view('home', compact('data'));
     }
