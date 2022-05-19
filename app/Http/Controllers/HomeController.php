@@ -76,7 +76,7 @@ class HomeController extends Controller
         //     ->whereYear('created_at', date('Y'))
         //     ->get()->groupBy('user_id')->count();
             $currentmonthResourcesCount =    User::count();
-        dd(  $currentmonthResourcesCount);
+  
         // if (count($currentmonthhours) > 0) {
         //     foreach ($currentmonthhours as $time) {
         //         list($hour, $minute) = explode(':', $time->time);
@@ -99,7 +99,7 @@ class HomeController extends Controller
             ->where('year', $year)
             ->get()->sum('hours');
     
-        $data['banch_percent'] =  ((($currentmonthResourcesCount + 1) * 176)- $currentmonthhours)/100;
+        $data['banch_percent'] =  ((($currentmonthResourcesCount) * 176)- $currentmonthhours)/100;
 
         return view('home', compact('data'));
     }
