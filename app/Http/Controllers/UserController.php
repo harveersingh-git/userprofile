@@ -75,14 +75,14 @@ class UserController extends Controller
 
             $query->whereHas('skills', function ($q) use ($skills, $request) {
 
-                if (isset($request['tech'])) {
-                    $q->where('skill_value_id', $request['tech']);
-                }
-                if (isset($request['type']) && $request['type'] != null) {
+                // if (isset($request['tech'])) {
+                //     $q->where('skill_value_id', $request['tech']);
+                // }
+                // if (isset($request['type']) && $request['type'] != null) {
 
-                    $q->where('type', $request['type']);
-                }
-                // $q->whereIn('skill_value_id', $skills->toArray());
+                //     $q->where('type', $request['type']);
+                // }
+                $q->whereIn('skill_value_id', $skills->toArray());
             });
         }
         if (isset($request['client_status'])  && $request['client_status'] != null) {
