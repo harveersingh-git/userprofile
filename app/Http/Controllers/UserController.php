@@ -82,7 +82,7 @@ class UserController extends Controller
 
                     $q->where('type', $request['type']);
                 }
-                $q->whereIn('skill_value_id', $skills->toArray());
+                // $q->whereIn('skill_value_id', $skills->toArray());
             });
         }
         if (isset($request['client_status'])  && $request['client_status'] != null) {
@@ -173,7 +173,7 @@ class UserController extends Controller
         // }
 
         $data = $query->orderBy('id', 'DESC')->paginate(20);
-        dd(  $data->toArray());
+        // dd(  $data->toArray());
 
         $client_status = ClientStatus::with('client_status_count')->orderBy('order_by','asc')->get();
 
