@@ -259,8 +259,8 @@
                                         <th class="text-center">Sr. No.</th>
                                         <th>Clinet Name</th>
                                         <th class="text-center">Clinet Code</th>
-                                        <th class="text-center">Working Resource</th>
-                                        <th class="text-center">Hire Resource</th>
+                                        <th class="text-center">Number of Services</th>
+                                        <!-- <th class="text-center">Hire Resource</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -281,15 +281,15 @@
                                             <p>There are no resource.</p>
                                             @endforelse -->
                                         </td>
-                                        <td class="text-center">
-                                            {{count($client->client_resource)}}
+                                        <!-- <td class="text-center">
+                                            {{count($client->client_resource)}} -->
 <!-- 
                                             @forelse($client->client_resource as $key => $resource)
                                             <a href="{{url('/users?search=')}}{{$resource->hire_resource['name']}}">{{$resource->hire_resource['name']}}</a>
                                             @empty
                                             <p>There are no resource.</p>
                                             @endforelse -->
-                                        </td>
+                                        <!-- </td> -->
 
 
                                     </tr>
