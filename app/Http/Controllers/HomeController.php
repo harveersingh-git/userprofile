@@ -98,9 +98,9 @@ class HomeController extends Controller
         $currentmonthhours =    ClientResource::where('month',  $month)
             ->where('year', $year)
             ->get()->sum('hours');
-
+        dd($currentmonthhours);
         $currentmonthResourcesTotal = $currentmonthhours - ($currentmonthResourcesCount + 1) * 176;
-            dd(   $currentmonthResourcesTotal);
+
 
         return view('home', compact('data'));
     }
