@@ -75,8 +75,8 @@ class HomeController extends Controller
         // $currentmonthResourcesCount =    ClickUp::whereMonth('created_at', date('m'))
         //     ->whereYear('created_at', date('Y'))
         //     ->get()->groupBy('user_id')->count();
-            $currentmonthResourcesCount =    User::count();
-  
+        $currentmonthResourcesCount =    User::count();
+
         // if (count($currentmonthhours) > 0) {
         //     foreach ($currentmonthhours as $time) {
         //         list($hour, $minute) = explode(':', $time->time);
@@ -98,8 +98,8 @@ class HomeController extends Controller
         $currentmonthhours =    ClientResource::where('month',  $month)
             ->where('year', $year)
             ->get()->sum('hours');
-    
-        $data['banch_percent'] =  ((($currentmonthResourcesCount) * 176)- $currentmonthhours)/100;
+        $resource = ($currentmonthResourcesCount) * 176;
+        $data['banch_percent'] =  ((($resource - $currentmonthhours) / $resource) * 100);
 
         return view('home', compact('data'));
     }
