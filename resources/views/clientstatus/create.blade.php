@@ -42,9 +42,6 @@ Add Skills Education
 
 
                                             </div>
-
-                                        </div>
-                                        <div class="row">
                                             <div class="col-lg-6 form-group">
                                                 <label>Background Color</label>
                                                 <div class=" row">
@@ -65,6 +62,10 @@ Add Skills Education
 
                                         </div>
                                         <div class="row">
+
+
+                                        </div>
+                                        <div class="row">
                                             <div class="col-lg-6 form-group">
                                                 <label>Font Color</label>
                                                 <div class=" row">
@@ -82,11 +83,20 @@ Add Skills Education
 
 
                                             </div>
+                                            <div class="col-lg-6 form-group">
+                                                <label>Icon</label>
+                                                <input class="form-control" placeholder="Ex:fa fa-user" name="icon" value="{{old('icon')}}" required="" autocomplete="off" />
+                                                @error('icon')
+                                                <p class="alert alert-danger"> {{ $message }} </p>
+                                                @enderror
+
+
+                                            </div>
 
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6 form-group">
-                                                <label>Icon</label>
+                                                <label>Image</label>
                                                 <div class=" row">
 
                                                     <div class="col-md-12 col-sm-12  ">
@@ -111,7 +121,9 @@ Add Skills Education
 
 
 
-                                    <button type="submit" class="btn btn-info submit_info">Add</button>
+                                    <button type="submit" class="btn btn-info submit_info">Add</button
+                                    
+                                    >
                                 </form>
                             </div>
                             <!-- /.col-lg-6 form-group (nested) -->

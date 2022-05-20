@@ -40,6 +40,9 @@ class ClientStatusController extends Controller
 
                 $input['image'] =  $imageName;
             }
+            if (isset($request->icon)) {
+                $input['icon'] = $request->icon;
+            }
 
 
             $user = ClientStatus::create($input);
@@ -75,6 +78,7 @@ class ClientStatusController extends Controller
             'title' => $input['title'],
             'background_color' => $input['background_color'],
             'font_color' => $input['font_color'],
+            'icon' => (isset($input['icon'])) ? $input['icon'] : $data['icon'],
             'image' => (isset($input['image'])) ? $input['image'] : $data['image']
         ]);
 

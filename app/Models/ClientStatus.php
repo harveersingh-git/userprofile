@@ -13,7 +13,8 @@ class ClientStatus extends Model
         'background_color',
         'font_color',
         'order_by',
-        'image'
+        'image',
+        'icon'
     ];
 
     public function getTitleAttribute($value)

@@ -41,10 +41,7 @@ Add Skills Education
                                                 <p class="alert alert-danger"> {{ $message }} </p>
                                                 @enderror
                                             </div>
-                                            
-                                        </div>
-                                           <div class="row">
-                                           <div class="col-lg-6 form-group">
+                                            <div class="col-lg-6 form-group">
                                             <label>Background Color</label>
                                                 <div class="row">
                                                     
@@ -63,8 +60,9 @@ Add Skills Education
                                             </div>
 
                                            </div> 
-
+                                            
                                         </div>
+                                          
                                         <div class="row">
                                             <div class="col-lg-6 form-group">
                                             <label>Font Color</label>
@@ -83,11 +81,19 @@ Add Skills Education
 
 
                                             </div>
+                                            <div class="col-lg-6 form-group">
+                                                <label>Icon</label>
+                                                <input class="form-control" placeholder="Ex:fa fa-user" name="icon" value="{{$data['icon']}}" required="" autocomplete="off" />
+                                                @error('icon')
+                                                <p class="alert alert-danger"> {{ $message }} </p>
+                                                @enderror
 
+
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6 form-group">
-                                                <label>Icon</label>
+                                                <label>Image</label>
                                                 <div class=" row">
 
                                                     <div class="col-md-12 col-sm-12  ">
