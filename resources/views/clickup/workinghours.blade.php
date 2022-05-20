@@ -23,8 +23,8 @@ ClickUp Report
                 <div class="panel panel-default">
 
                     <div class="panel-heading mypnl_heading">
-                        <span class="back_btn"><a type="reset" href="{{url('clients')}}">
-                                <i class="fa fa-arrow-left"></i> Back </a></span> <span>Add Client</span>
+                        <span class="back_btn"><a type="reset" href="{{url('/')}}">
+                                <i class="fa fa-arrow-left"></i> Back </a></span> <span>Working Hours</span>
                     </div>
 
                     <div class="panel-body">
