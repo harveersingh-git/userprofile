@@ -62,6 +62,7 @@
                         <li> <a href="{{route('work-type')}}" class="{{ Request::segment(1) === 'work-type' ? 'active' : null }}"><i class="fa fa-cogs"></i> Work Type</a>
                         <li> <a href="{{route('client-status')}}" class="{{ Request::segment(1) === 'client-status' ? 'active' : null }}"><i class="fa fa-users"></i> Resource Hire Status</a></li>
                         <li> <a href="{{route('daily-performance')}}" class="{{ Request::segment(1) === 'daily-performance' ? 'active' : null }}"><i class="fa fa-cogs"></i> Daily Performance</a></li>
+                        <li> <a href="{{route('working-hours')}}" class="{{ Request::segment(1) === 'working-hours' ? 'active' : null }}"><i class="fa fa-clock-o"></i> Working Hours</a></li>
 
                 </li>
 

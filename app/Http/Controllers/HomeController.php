@@ -12,6 +12,7 @@ use DB;
 use Auth;
 use App\Models\ClientResource;
 use App\Models\ClickUp;
+use App\Models\WorkingHour;
 
 use App\Models\WorkType;
 
@@ -40,7 +41,7 @@ class HomeController extends Controller
         $data['clinents'] = Clients::withCount('client_resource')->whereHas('client_type', function ($q) {
             $q->where('title', '=', 'active');
         })->orderBy('client_resource_count', 'desc')->get();
-     
+
         $data['work_type_count'] = WorkType::with('work_type_user_count')->get();
         // dd($data['work_type_count']->toArray());
         $data['current_month'] = User::where('id', '!=', 1)->whereMonth(
@@ -61,7 +62,7 @@ class HomeController extends Controller
         $data['three_five'] = User::where('experience', '>=', 3)->where('experience', '<', 5)->count();
         $data['five_ten'] = User::where('experience', '>=', 5)->where('experience', '<', 10)->count();
         $data['ten_fifty'] = User::where('experience', '>=', 10)->where('experience', '<', 30)->count();
-        $data['technology'] = SkillsEducation::withCount(['active_skills','primary_skills_user', 'secondary_skills_user', 'learning_skills_user'])
+        $data['technology'] = SkillsEducation::withCount(['active_skills', 'primary_skills_user', 'secondary_skills_user', 'learning_skills_user'])
             ->where(['category' => 'skill'])->where('show_on_front', '=', '1')->orderBy('active_skills_count', 'DESC')->get();
         // dd( $data['technology']->toArray());
 
@@ -98,9 +99,12 @@ class HomeController extends Controller
         $currentmonthhours =    ClientResource::where('month',  $month)
             ->where('year', $year)
             ->get()->sum('hours');
-        $resource = ($currentmonthResourcesCount) * 176;
+        $totalHours = WorkingHour::select('hours')->where('month',  $month)
+            ->where('year', $year)->first();
+
+        $resource = ($currentmonthResourcesCount) * isset($totalHours->hours) ? $totalHours->hours : '176';
         $bench =  ((($resource - $currentmonthhours) / $resource) * 100);
-        $data['banch_percent'] =   number_format($bench,2);
+        $data['banch_percent'] =   number_format($bench, 2);
         return view('home', compact('data'));
     }
 }

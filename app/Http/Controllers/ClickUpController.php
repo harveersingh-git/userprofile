@@ -12,6 +12,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use App\Models\ClickUp;
 use App\Models\DailyPerformance;
+use App\Models\WorkingHour;
 
 
 class ClickUpController extends Controller
@@ -281,7 +282,7 @@ class ClickUpController extends Controller
                         $hours2 = 0;
                         $minutes2 = 0;
                         $minutes = 0;
-                       
+
                         foreach ($getTime as $key => $timeVal) {
 
                             // $time2 = explode(':', $timeVal);
@@ -362,5 +363,59 @@ class ClickUpController extends Controller
         if ($click) {
             return response()->json(['status' => 'success', 'data' => $click]);
         }
+    }
+
+    public function workingHours(Request $reques, $year = NULL)
+    {
+
+        $url = '';
+        $years = ['2022', '2023', '2024', '2025', '2026'];
+        if (isset($year)) {
+            $current_year = $year;
+        } else {
+            $current_year = date('Y');
+        }
+
+        $months = WorkingHour::where('year', '=', $current_year)->get();
+
+        if (count($months)) {
+            $months = $months;
+        } else {
+            $months = array(
+                'January',
+                'February',
+                'March',
+                'April',
+                'May',
+                'June',
+                'July ',
+                'August',
+                'September',
+                'October',
+                'November',
+                'December',
+            );
+        }
+
+
+        if ($reques->isMethod('post')) {
+            $input = $reques->all();
+
+            WorkingHour::where('year', $reques->year)->delete();
+            $id = '';
+
+            foreach ($reques->months as $key => $val) {
+
+                $res['year'] =  $reques->year;
+                $res['hours'] = isset($reques->hours[$key]) ? $reques->hours[$key] : '';
+                $res['month'] = $reques->months[$key];
+
+                $data = WorkingHour::updateOrCreate(['id' => $id], $res);
+            }
+
+            return redirect()->back()->with('success', 'Data added Successfully');
+        }
+
+        return view('clickup.workinghours', compact('years', 'url', 'current_year', 'months'));
     }
 }

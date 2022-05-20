@@ -125,6 +125,10 @@ Route::any('/genrate-daily-report/{id}', [App\Http\Controllers\ClickUpController
 Route::any('/clickup-report/{id}', [App\Http\Controllers\ClickUpController::class, 'view']);
 Route::any('/clickup-report', [App\Http\Controllers\ClickUpController::class, 'view'])->name('clickup-report');
 
+Route::any('/working-hours/{year}', [App\Http\Controllers\ClickUpController::class, 'workingHours']);
+Route::any('/working-hours', [App\Http\Controllers\ClickUpController::class, 'workingHours'])->name('working-hours');
+
+
 Route::get('/get_sync_dates', [App\Http\Controllers\ClickUpController::class, 'getSyncDate']);
 
 

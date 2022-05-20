@@ -19,13 +19,13 @@
                         <div class="row">
                             <div class="col-xs-3">
                                 @if(isset($clientstatus['icon']))
-                                <i class="{{$clientstatus['icon']}} fa-5x" style="color:#fff"></i>
+                                <i class="{{$clientstatus['icon']}} fa-3x" style="color:#fff"></i>
                                 @elseif($clientstatus['image'])
                                 <img src="{{asset('clientStatus/')}}/{{$clientstatus['image']}}" id="p1img1" width="80" height="80">
 
 
                                 @else
-                                <i class="fa fa-support fa-5x" style="color:#fff"></i>
+                                <i class="fa fa-support fa-3x" style="color:#fff"></i>
                                 @endif
 
                             </div>
@@ -53,7 +53,7 @@
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-3">
-                                <i class="fa fa-comments fa-5x"></i>
+                                <i class="fa fa-comments fa-3x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
                                 <div class="huge">{{$data['active_client']}}</div>
@@ -77,7 +77,7 @@
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-3">
-                                <i class="fa fa-tasks fa-5x"></i>
+                                <i class="fa fa-tasks fa-3x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
                                 <div class="huge">{{$data['total_services']}}</div>
@@ -100,7 +100,7 @@
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-3">
-                                <i class="fa fa-users fa-5x"></i>
+                                <i class="fa fa-users fa-3x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
                                 <div class="huge">{{$data['total_users']}}</div>
