@@ -242,6 +242,7 @@
                                         <th class="text-center">Primary</th>
                                         <th class="text-center">Secondary</th>
                                         <th class="text-center">Learning</th>
+                                        <th class="text-center">Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -257,7 +258,7 @@
                                         <td class="text-center"><a href="{{url('/users?skills%5B%5D=')}}{{$technology->value}}&type=1">{{ $technology->primary_skills_user_count }}</a></td>
                                         <td class="text-center"><a href="{{url('/users?skills%5B%5D=')}}{{$technology->value}}&type=2">{{ $technology->secondary_skills_user_count }}</a></td>
                                         <td class="text-center"><a href="{{url('/users?skills%5B%5D=')}}{{$technology->value}}&type=3">{{ $technology->learning_skills_user_count }}</a></td>
-
+                                        <td class="text-center">{{ $technology->active_skills_count }}</td>
 
 
                                     </tr>
@@ -365,7 +366,7 @@
 <script>
     $(document).ready(function() {
         var oTable = $('#dataTables-example').DataTable({
-            "pageLength": 50,
+            "pageLength": 15,
             responsive: true,
             "lengthChange": false,
 
@@ -378,7 +379,7 @@
 
     $(document).ready(function() {
         var oTable = $('#client_summary').DataTable({
-            "pageLength": 50,
+            "pageLength": 15,
             responsive: true,
             "lengthChange": false,
 

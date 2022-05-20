@@ -46,6 +46,10 @@ class SkillsEducation extends Model
 
     }
 
+    public function active_skills(){
+        return $this->hasMany(UserSkills::class, 'skill_value_id', 'id')->whereHas('user');
+
+    }
 
 
 
