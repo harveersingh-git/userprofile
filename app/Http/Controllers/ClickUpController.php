@@ -241,8 +241,12 @@ class ClickUpController extends Controller
 
 
 
+
+
+
         foreach ($users as $user) {
-        $data_exists = ClickUp::where('date', $curent_month_first_date)->where('user_id', $user)->get();
+            // dd($curent_month_first_date);
+            $data_exists = ClickUp::where('date', $curent_month_first_date)->where('user_id', $user)->get();
 
             if (count($data_exists) > 0) {
 
@@ -252,13 +256,16 @@ class ClickUpController extends Controller
                     $total = 0;
                     $minutes = 0;
                     $minutes2 = 0;
-                    //    dd($click->toArray());
+
                     foreach ($click as $key => $valu) {
                         $hours = 0;
                         $minutes = 0;
                         if ($valu) {
-                            $time = explode(':', $valu->time);
-                            $minutes += $time[0] * 60;
+                            list($hour, $minute) = explode(':', $valu->time);
+                            $minutes += $hour * 60;
+                            $minutes += $minute;
+                            // $time = explode(':', $valu->time);
+                            // $minutes += $time[0] * 60;
                             // $minutes += $time[1];
                             $hours = floor($minutes / 60);
                             $minutes -= $hours * 60;
@@ -273,19 +280,28 @@ class ClickUpController extends Controller
                     foreach ($totalTime as $key => $getTime) {
                         $hours2 = 0;
                         $minutes2 = 0;
-
+                        $minutes = 0;
+                       
                         foreach ($getTime as $key => $timeVal) {
 
-                            $time2 = explode(':', $timeVal);
-                            $minutes2 += $time2[0] * 60;
-                            $minutes2 += $time2[1];
+                            // $time2 = explode(':', $timeVal);
+                            // $minutes2 += $time2[0] * 60;
+                            // $minutes2 += $time2[1];
+                            list($hour, $minute) = explode(':', $timeVal);
+
+                            $minutes += $hour * 60;
+                            $minutes += $minute;
                         }
 
-                        $hours2 = floor($minutes2 / 60);
+                        // $hours2 = floor($minutes2 / 60);
 
-                        $minutes2 -= $hours2 * 60;
+                        // $minutes2 -= $hours2 * 60;
 
-                        $finalTime[] = $hours2 . ':' . $minutes2;
+                        // $finalTime[] = $hours2 . ':' . $minutes2;
+
+                        $hours = floor($minutes / 60);
+                        $minutes -= $hours * 60;
+                        $finalTime[] = $hours . ':' . $minutes;
                     }
                     // dd($finalTime);
 
