@@ -123,7 +123,7 @@
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-3">
-                                <i class="fa fa-bed fa-3x"></i>
+                                <i class="fa fa-line-chart fa-3x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
                                 <div class="huge">{{$data['banch_percent']}}</div>
