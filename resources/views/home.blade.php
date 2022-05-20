@@ -306,7 +306,7 @@
                                         <td class="text-center"><a href="{{url('/add-resource')}}/{{$client->id}}">{{$client->client_name }}</a></td>
                                         <td class="text-center"><a href="{{url('/add-resource')}}/{{$client->id}}">{{$client->client_code }}</a></td>
                                         <td class="text-center">
-                                            {{count($client->client_resource)}}
+                                            {{$client->client_resource_count}}
                                             <!-- @forelse($client->client_resource as $key => $resource) -->
                                             <!-- <a href="{{url('/users?search=')}}{{isset($resource->working_resource['name'])?$resource->working_resource['name']:''}}"> {{isset($resource->working_resource['name'])?$resource->working_resource['name']:''}}</a> -->
                                             <!-- @empty
