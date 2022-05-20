@@ -62,7 +62,7 @@ class HomeController extends Controller
         $data['five_ten'] = User::where('experience', '>=', 5)->where('experience', '<', 10)->count();
         $data['ten_fifty'] = User::where('experience', '>=', 10)->where('experience', '<', 30)->count();
         $data['technology'] = SkillsEducation::withCount(['active_skills','primary_skills_user', 'secondary_skills_user', 'learning_skills_user'])
-            ->where(['category' => 'skill'])->where('show_on_front', '=', '1')->orderBy('primary_skills_user_count', 'DESC')->get();
+            ->where(['category' => 'skill'])->where('show_on_front', '=', '1')->orderBy('active_skills_count', 'DESC')->get();
         // dd( $data['technology']->toArray());
 
         $data['client_status'] =  ClientStatus::withCount('client_status_count')->orderBy('order_by', 'asc')->get();
