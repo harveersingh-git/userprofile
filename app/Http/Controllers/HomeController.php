@@ -102,7 +102,8 @@ class HomeController extends Controller
         $totalHours = WorkingHour::select('hours')->where('month',  $month)
             ->where('year', $year)->first();
 
-        $resource = ($currentmonthResourcesCount) * isset($totalHours->hours) ? $totalHours->hours : '176';
+        $totalHours = isset($totalHours->hours) ? $totalHours->hours : '176';
+        $resource = ($currentmonthResourcesCount) *    $totalHours;
         $bench =  ((($resource - $currentmonthhours) / $resource) * 100);
         $data['banch_percent'] =   number_format($bench, 2);
         return view('home', compact('data'));
