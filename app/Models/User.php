@@ -154,6 +154,13 @@ class User extends Authenticatable
         return $this->hasOne(Miscellaneous::class, 'user_id', 'id');
 
     }
-    
+    public function onFrontEnd()
+    {
+        return $this->hasMany('App\Models\ClientResource', 'hire_user_id')->where('status','Active');
+    }
+    public function onBackEnd()
+    {
+        return $this->hasMany('App\Models\ClientResource', 'working_user_id')->where('status','Active');
+    }
     
 }

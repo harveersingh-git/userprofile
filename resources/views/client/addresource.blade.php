@@ -279,6 +279,7 @@ Add Resource
                                     <td class="text-center">{{ ($value->end_date)?$value->end_date:'continue'}}</td>
 
                                     <td class="text-center">
+                                        <a class="btn btn-primary myac_btn copy_resource" href="javascript:void(0)" data-toggle="tooltip" title="Copy!" id="{{$value->id}}"> <i class="fa fa-copy"></i></button>
                                         <a class="btn btn-warning myac_btn edit_resource" href="javascript:void(0)" data-toggle="tooltip" title="Edit!" id="{{$value->id}}"> <i class="fa fa-edit"></i></button>
 
                                             <a class="delete btn btn-danger myac_btn" id="{{$value->id}}" data-toggle="tooltip" title="Delete"> <i class="fa fa-trash"></i></button>
@@ -386,6 +387,49 @@ Add Resource
                 $('#resource_status').val(data.data.working_resource.client_status);
                 $('#service_id').val(data.data.service_id);
                 $('#add').text('Update');
+
+            }
+        })
+
+    });
+
+    counter = 0;
+    $(document).on('click', '.copy_resource', function() {
+        id = $(this).attr('id');
+        var current = $(this);
+
+
+        $.ajax({
+            type: "POST",
+            url: "{{url('edit_resource')}}",
+            data: {
+                _token: '{{csrf_token()}}',
+                id: id
+            },
+            beforeSend: function() {
+
+            },
+            success: function(data) {
+
+                // if (counter <= 0) {
+                //     $('#button_div').append('<a href="javascript:window.location.href=window.location.href" class="btn btn-danger " id="add">Reset </a>');
+                //     counter++;
+                // }
+                // $('#resource_id').val(data.data.id);
+                $('#workingusers').val(data.data.working_user_id).trigger("change");
+                $('#hireusers').val(data.data.hire_user_id).trigger("change");
+                $('#status').val(data.data.status).trigger("change");
+                $('#hours').val(data.data.hours);
+                $('#resource_status').val(data.data.hours);
+                $('#work_type').val(data.data.hours);
+                $('#month').val(data.data.month);
+                $('#year').val(data.data.year);
+                $('#start_date').val(data.data.start_date);
+                $('#end_date').val(data.data.end_date);
+                $('#work_type').val(data.data.working_resource.work_type);
+                $('#resource_status').val(data.data.working_resource.client_status);
+                $('#service_id').val(data.data.service_id);
+                // $('#add').text('Update');
 
             }
         })
