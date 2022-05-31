@@ -133,7 +133,7 @@ Toast::message('message', 'level', 'title');
                             <tr>
                             <th class="text-center">Sr. No.</th>
                                 <th class="text-center">Emp Id</th>
-                                <th class="text-center"> Name</th>
+                                <th class="text-center"> Name (H/W)</th>
                                 <th class="text-center">Joining Date</th>
                                 <th class="text-center">Email</th>
                                 <th class="text-center">Mobile</th>
