@@ -293,7 +293,7 @@
                                         <th>Clinet Name</th>
                                         <th class="text-center">Clinet Code</th>
                                         <th class="text-center">Number of Services</th>
-                                        <!-- <th class="text-center">Hire Resource</th> -->
+                                      
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -302,27 +302,14 @@
 
                                     <tr>
                                         <td class="text-center">{{ $key+1 }}</td>
-                                        <!-- <td class="text-center"><a href="{{url('/clients?client_search=')}}{{$client->client_name}}">{{$client->client_name }}</a></td>
-                                        <td class="text-center"><a href="{{url('/clients?client_search=')}}{{$client->client_code}}">{{$client->client_code }}</a></td> -->
+                                       
                                         <td class="text-center"><a href="{{url('/add-resource')}}/{{$client->id}}">{{$client->client_name }}</a></td>
                                         <td class="text-center"><a href="{{url('/add-resource')}}/{{$client->id}}">{{$client->client_code }}</a></td>
                                         <td class="text-center">
                                             {{$client->client_resource_count}}
-                                            <!-- @forelse($client->client_resource as $key => $resource) -->
-                                            <!-- <a href="{{url('/users?search=')}}{{isset($resource->working_resource['name'])?$resource->working_resource['name']:''}}"> {{isset($resource->working_resource['name'])?$resource->working_resource['name']:''}}</a> -->
-                                            <!-- @empty
-                                            <p>There are no resource.</p>
-                                            @endforelse -->
+                                          
                                         </td>
-                                        <!-- <td class="text-center">
-                                            {{count($client->client_resource)}} -->
-                                        <!-- 
-                                            @forelse($client->client_resource as $key => $resource)
-                                            <a href="{{url('/users?search=')}}{{$resource->hire_resource['name']}}">{{$resource->hire_resource['name']}}</a>
-                                            @empty
-                                            <p>There are no resource.</p>
-                                            @endforelse -->
-                                        <!-- </td> -->
+                                     
 
 
                                     </tr>
