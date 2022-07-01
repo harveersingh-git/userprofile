@@ -94,7 +94,7 @@ class HomeController extends Controller
         // } else {
         //     $data['banch_percent'] = 0;
         // }
-        $month = date('M');
+        $month = date('F');
         $year = date('Y');
         $currentmonthhours =    ClientResource::where('month',  $month)
             ->where('year', $year)
@@ -102,8 +102,10 @@ class HomeController extends Controller
         $totalHours = WorkingHour::select('hours')->where('month',  $month)
             ->where('year', $year)->first();
 
-        $totalHours = isset($totalHours->hours) ? $totalHours->hours : '176';
-        $resource = ($currentmonthResourcesCount) *    $totalHours;
+        $totalHours = (!empty($totalHours->hours)) ? $totalHours->hours : 176;
+        echo $totalHours . "<br/>";
+        dd($currentmonthResourcesCount);
+        $resource = ($currentmonthResourcesCount) * $totalHours;
         $bench =  ((($resource - $currentmonthhours) / $resource) * 100);
         $data['banch_percent'] =   number_format($bench, 2);
         return view('home', compact('data'));
