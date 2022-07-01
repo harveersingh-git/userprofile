@@ -104,9 +104,9 @@ class HomeController extends Controller
 
         $totalHours = (!empty($totalHours->hours)) ? $totalHours->hours : 176;
 
-        
-        echo $totalHours . "<br/>";
-        dd($currentmonthResourcesCount);
+
+        // echo $totalHours . "<br/>";
+        // dd($currentmonthResourcesCount);
         $resource = ($currentmonthResourcesCount) * $totalHours;
         $bench =  ((($resource - $currentmonthhours) / $resource) * 100);
         $data['banch_percent'] =   number_format($bench, 2);
