@@ -103,6 +103,8 @@ class HomeController extends Controller
             ->where('year', $year)->first();
 
         $totalHours = (!empty($totalHours->hours)) ? $totalHours->hours : 176;
+
+        
         echo $totalHours . "<br/>";
         dd($currentmonthResourcesCount);
         $resource = ($currentmonthResourcesCount) * $totalHours;
